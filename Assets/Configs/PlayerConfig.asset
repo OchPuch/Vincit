@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d87892626f69441f8c6b0a843908c176, type: 3}
+  m_Name: PlayerConfig
+  m_EditorClassIdentifier: 
+  stableMovementData:
+    maxStableMoveSpeed: 10
+    stableMovementSharpness: 80
+    orientationSharpness: 999
+    orientationMethod: 0
+  airMovementData:
+    maxAirMoveSpeed: 20
+    airAccelerationSpeed: 40
+    drag: 0.1
+  jumpingData:
+    allowJumpingWhenSliding: 0
+    jumpUpSpeed: 20
+    jumpScalableForwardSpeed: 10
+    jumpPreGroundingGraceTime: 0
+    jumpPostGroundingGraceTime: 0
+    wallJumps: 3
+    wallJumpControlPercent: 0
+  slidingData:
+    minSlidingSpeed: 30
+    slidingDirectionByCurrentVelocityThreshold: 5
+    slidingStopThreshold: 5
+  miscData:
+    bonusOrientationMethod: 1
+    bonusOrientationSharpness: 10
+    crouchedCapsuleHeight: 1
+    slamingSpeed: 50
+    slamStorageKeepTime: 1
+    maxSlamStorage: 30
+    slamFlightBackMaxTime: 2
+    dashSpeed: 100
+    dashDuration: 0.1
+    dashMaxEnergy: 100
+    dashCost: 33
+    dashRechargeRate: 10
+    dashDirectionByInputThreshold: 0.1

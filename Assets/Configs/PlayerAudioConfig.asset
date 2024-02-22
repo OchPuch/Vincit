@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235b65e3096040d19d6be5f25d4c26da, type: 3}
+  m_Name: PlayerAudioConfig
+  m_EditorClassIdentifier: 
+  jumpSound: {fileID: 8300000, guid: 837b5c5f51d2f2543bff171dfdb00a32, type: 3}
+  landSound: {fileID: 8300000, guid: e3691ce17382b9c42aa78e669291dce5, type: 3}
+  wallJumpSound:
+  - {fileID: 8300000, guid: 837b5c5f51d2f2543bff171dfdb00a32, type: 3}
+  dashSound: {fileID: 8300000, guid: 837b5c5f51d2f2543bff171dfdb00a32, type: 3}
+  slamSound: {fileID: 8300000, guid: e42862a33ecefb747a6ca1191db98cac, type: 3}
+  startSlideSound: {fileID: 8300000, guid: c6e382bcbdb068240bdf6abb9019606d, type: 3}
+  slideSound: {fileID: 8300000, guid: 5e5ab4ba1a980bf45921708711eaaf06, type: 3}
+  footstepSounds:
+  - {fileID: 8300000, guid: e3691ce17382b9c42aa78e669291dce5, type: 3}
