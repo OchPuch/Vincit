@@ -231,8 +231,8 @@ Camera:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -737,7 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee8a57d6c47a4b72ac7cda1e45c3e466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioConfig: {fileID: 11400000, guid: ba593247a21cbfe478c9d02fe62ffb62, type: 2}
+  audioConfig: {fileID: 11400000, guid: 0b2d628fdec72864aa420e3cd177ddda, type: 2}
   footstepDelay: 0.5
   walkPitchRandomRange: 0.2
   wallJumpPitchAddition: 0.2

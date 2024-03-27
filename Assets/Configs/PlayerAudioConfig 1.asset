@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 235b65e3096040d19d6be5f25d4c26da, type: 3}
-  m_Name: PlayerAudioConfig
+  m_Name: PlayerAudioConfig 1
   m_EditorClassIdentifier: 
-  jumpSound: {fileID: 8300000, guid: 837b5c5f51d2f2543bff171dfdb00a32, type: 3}
-  landSound: {fileID: 8300000, guid: e3691ce17382b9c42aa78e669291dce5, type: 3}
-  wallJumpSound:
-  - {fileID: 8300000, guid: 837b5c5f51d2f2543bff171dfdb00a32, type: 3}
-  dashSound: {fileID: 8300000, guid: 837b5c5f51d2f2543bff171dfdb00a32, type: 3}
+  jumpSound: {fileID: 0}
+  landSound: {fileID: 0}
+  wallJumpSound: []
+  dashSound: {fileID: 0}
   slamSound: {fileID: 0}
   startSlideSound: {fileID: 0}
   slideSound: {fileID: 0}
