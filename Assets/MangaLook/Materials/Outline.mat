@@ -107,7 +107,7 @@ Material:
     - _DepthThickness: 1
     - _Depth_Affect_Radius: 107.63
     - _Depth_Radius: 4.5
-    - _Depth_Threshold: 0.03
+    - _Depth_Threshold: 0.4
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -131,6 +131,7 @@ Material:
     - _Normal_Threshold: 0.0001
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _Power_Depth: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
