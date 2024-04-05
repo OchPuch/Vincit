@@ -62,7 +62,7 @@ namespace Player
             NormalizePitch();
             if (index < audioConfig.wallJumpSound.Length)
                 audioSource.PlayOneShot(audioConfig.wallJumpSound[index]);
-            else
+            else if (audioConfig.wallJumpSound.Length > 0)
             {
                 var pitch = 1 + ((audioConfig.wallJumpSound.Length - index) + 1) * wallJumpPitchAddition;
                 audioSource.pitch = pitch;

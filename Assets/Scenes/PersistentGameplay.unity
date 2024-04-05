@@ -188,6 +188,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114967586934651944, guid: d295472d4ce25404e9aed2627c34801f,
+        type: 3}
+      propertyPath: RigidbodyInteractionType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114967586934651944, guid: d295472d4ce25404e9aed2627c34801f,
+        type: 3}
+      propertyPath: MaxStableDenivelationAngle
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 7743039165563520228, guid: d295472d4ce25404e9aed2627c34801f,
         type: 3}
       propertyPath: m_Layer
