@@ -1,37 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
-public class GravityTrigger : MonoBehaviour
+namespace Enviroment.Triggers
 {
-    [SerializeField] private Vector3 gravity;
-    [SerializeField] private GravityType gravityType;
-    
-    private void OnTriggerEnter(Collider other)
+    public class GravityTrigger : MonoBehaviour
     {
-        if (other.CompareTag("Player"))
+        [SerializeField] private Vector3 gravity;
+        [SerializeField] private GravityType gravityType;
+
+        [Button("Rotate gravity with object")]
+        private void RotateGravity()
         {
-            var obj = other.GetComponent<Player.CharacterController>();
-            if (obj)
+            gravity = -transform.up * gravity.magnitude;
+        }
+    
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
             {
-                switch (gravityType)
+                var obj = other.GetComponent<Player.CharacterController>();
+                if (obj)
                 {
-                    case GravityType.Center:
-                        //Calculate the direction from the object to the center of the planet
-                        var direction = (transform.position - other.transform.position).normalized;
-                        obj.SetGravity(direction * gravity.magnitude);
-                        break;
-                    case GravityType.Custom:
-                        obj.SetGravity(gravity);
-                        break;
+                    switch (gravityType)
+                    {
+                        case GravityType.Center:
+                            //Calculate the direction from the object to the center of the planet
+                            var direction = (transform.position - other.transform.position).normalized;
+                            obj.SetGravity(direction * gravity.magnitude);
+                            break;
+                        case GravityType.Custom:
+                            obj.SetGravity(gravity);
+                            break;
+                    }
                 }
             }
         }
-    }
     
-    private enum GravityType
-    {
-        Center,
-        Custom
+        private enum GravityType
+        {
+            Center,
+            Custom
+        }
     }
 }
