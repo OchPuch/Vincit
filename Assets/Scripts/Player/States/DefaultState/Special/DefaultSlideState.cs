@@ -2,6 +2,7 @@
 using Player.States.DefaultState.Grounded;
 using StateMachine;
 using UnityEngine;
+using Utils;
 
 namespace Player.States.DefaultState.Special
 {
@@ -32,7 +33,7 @@ namespace Player.States.DefaultState.Special
         public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
             base.UpdateVelocity(ref currentVelocity, deltaTime);
-
+            
             if (PlayerData.motor.GroundingStatus.IsStableOnGround && !_stopped)
             {
                 Vector3 velocityOnPlane = Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
@@ -49,9 +50,16 @@ namespace Player.States.DefaultState.Special
                 else 
                 {
                     var lookVector = PlayerData.motor.CharacterForward;
-                    currentVelocity =
-                        Vector3.ProjectOnPlane(lookVector, PlayerData.motor.GroundingStatus.GroundNormal)
+                    currentVelocity = Vector3.ProjectOnPlane(lookVector, PlayerData.motor.GroundingStatus.GroundNormal)
                             .normalized * PlayerData.playerConfig.slidingData.minSlidingSpeed;
+                    velocityOnPlane = Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
+                }
+                
+                //Gravity helps
+                Vector3 gravityHelp = Vector3.Project(PlayerData.gravity, currentVelocity);
+                if (VectorUtils.AreCodirected(currentVelocity, gravityHelp))
+                {
+                    currentVelocity += gravityHelp * (PlayerData.playerConfig.slidingData.gravityHelpK * deltaTime);
                 }
                 
                 if (velocityOnPlane.magnitude <= PlayerData.playerConfig.slidingData.slidingStopThreshold)
@@ -59,8 +67,19 @@ namespace Player.States.DefaultState.Special
                     _stopped = true;
                 }
             }
-            
-            
+
+            // Acceleration to side
+            float currentVelocityMagnitude = currentVelocity.magnitude;
+            if (!_stopped)
+            {
+                Vector3 additionalVelocity = PlayerData.motor.CharacterRight * (PlayerData.playerConfig.slidingData.slidingAccelerationByInput * PlayerData.Inputs.MoveAxisRight);
+                Vector3 addForwardPart = Vector3.Project(additionalVelocity, currentVelocity);
+                additionalVelocity -= addForwardPart;
+                currentVelocity += additionalVelocity * deltaTime;
+                currentVelocity = currentVelocity.normalized * currentVelocityMagnitude;
+                
+            }
+
             if (!PlayerData.motor.GroundingStatus.IsStableOnGround)
             {
                 // Gravity
@@ -75,6 +94,7 @@ namespace Player.States.DefaultState.Special
             }
             
             WallJump(ref currentVelocity, deltaTime);
+            
         }
 
         public override void AfterCharacterUpdate(float deltaTime)

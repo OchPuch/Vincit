@@ -31,8 +31,10 @@ MonoBehaviour:
     wallJumpControlPercent: 0
   slidingData:
     minSlidingSpeed: 30
+    slidingAccelerationByInput: 45
     slidingDirectionByCurrentVelocityThreshold: 5
     slidingStopThreshold: 5
+    gravityHelpK: 5
   miscData:
     bonusOrientationMethod: 1
     bonusOrientationSharpness: 10

@@ -8,10 +8,16 @@ namespace Enviroment.Triggers
         [SerializeField] private Vector3 gravity;
         [SerializeField] private GravityType gravityType;
 
-        [Button("Rotate gravity with object")]
-        private void RotateGravity()
+        [Button("Rotate gravity to Down")]
+        private void RotateGravityDown()
         {
             gravity = -transform.up * gravity.magnitude;
+        }
+
+        [Button("Rotate gravity to Up")]
+        private void RotateGravityUp()
+        {
+            gravity = transform.up * gravity.magnitude;
         }
     
         private void OnTriggerEnter(Collider other)

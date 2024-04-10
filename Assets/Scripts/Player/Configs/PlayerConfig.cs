@@ -46,8 +46,10 @@ namespace Player.Configs
         public class Sliding
         {
             public float minSlidingSpeed = 30f;
+            public float slidingAccelerationByInput = 30f;
             public float slidingDirectionByCurrentVelocityThreshold = 0.1f;
             public float slidingStopThreshold = 0.1f;
+            public float gravityHelpK = 5f;
         }
 
         [Serializable]

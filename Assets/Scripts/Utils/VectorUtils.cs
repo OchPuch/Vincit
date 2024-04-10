@@ -25,5 +25,10 @@ namespace Utils
             
             return !(Vector3.Dot(look, planeNormal) > 0);
         }
+        
+        public static bool AreCodirected(Vector2 a, Vector2 b)
+        {
+            return Vector2.Dot(a, b) > 1 - Mathf.Epsilon;
+        }
     }
 }
