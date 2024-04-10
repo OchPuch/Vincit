@@ -25,8 +25,8 @@ MonoBehaviour:
     allowJumpingWhenSliding: 0
     jumpUpSpeed: 20
     jumpScalableForwardSpeed: 10
-    jumpPreGroundingGraceTime: 0
-    jumpPostGroundingGraceTime: 0
+    jumpPreGroundingGraceTime: 0.1
+    jumpPostGroundingGraceTime: 0.1
     wallJumps: 3
     wallJumpControlPercent: 0
   slidingData:

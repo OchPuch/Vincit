@@ -127,7 +127,7 @@
     "m_ObjectId": "0e03d420da8a420595530605a510b377",
     "m_Datas": [],
     "m_ActiveSubTarget": {
-        "m_Id": "766ba4f28c564d77825ff049ad7b6371"
+        "m_Id": "7352c043fc5e43f7aa5aad80a048d5c6"
     },
     "m_AllowMaterialOverride": true,
     "m_SurfaceType": 0,
@@ -444,7 +444,7 @@
 {
     "m_SGVersion": 2,
     "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalUnlitSubTarget",
-    "m_ObjectId": "766ba4f28c564d77825ff049ad7b6371"
+    "m_ObjectId": "7352c043fc5e43f7aa5aad80a048d5c6"
 }
 
 {

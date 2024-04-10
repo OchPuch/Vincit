@@ -104,7 +104,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DepthThickness: 0.0005
+    - _DepthThickness: 1
     - _Depth_Affect_Radius: 107.63
     - _Depth_Distance_Threshold: 60
     - _Depth_Radius: 4.5
@@ -131,7 +131,7 @@ Material:
     - _Max_Threshold: 0
     - _Metallic: 0
     - _Move_Lines_Power: 10
-    - _Normal_Thickness: 0.0003
+    - _Normal_Thickness: 1
     - _Normal_Threshold: 0.1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
