@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1a5eeabbb3a2a1640af6e5de1133011f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 74214
+  packageName: Brick House
+  packageVersion: 1.4
+  assetPath: Assets/Brick_House/Materials/brick_house.mat
+  uploadId: 622662

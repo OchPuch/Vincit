@@ -120,6 +120,7 @@ Material:
     - _Depth_Threshold_Increase_by_distance: 2
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _Distance_Stop_Ceiling: 3
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1

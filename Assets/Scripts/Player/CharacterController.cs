@@ -1,4 +1,5 @@
-﻿using KinematicCharacterController;
+﻿using System;
+using KinematicCharacterController;
 using Player.AdditionalPhysics;
 using Player.States;
 using UnityEngine;
@@ -106,5 +107,6 @@ namespace Player
         {
             _stateMachine.OnDiscreteCollisionDetected(hitCollider);
         }
+        
     }
 }

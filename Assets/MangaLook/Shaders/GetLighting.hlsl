@@ -13,5 +13,8 @@ void GetLight_float(float3 worldPos, out float3 direction, out float3 color, out
     color = mainLight.color;
     distanceAttenuation = mainLight.distanceAttenuation;
     shadowAttenuation = mainLight.shadowAttenuation;
+
+    
+    
     #endif
 }
