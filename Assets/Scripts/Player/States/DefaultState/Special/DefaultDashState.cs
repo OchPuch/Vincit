@@ -34,12 +34,15 @@ namespace Player.States.DefaultState.Special
             }
 
             PlayerData.playerMovementAudio.PlayDashSound();
+            
+            PlayerData.dashCrushPoint.position = PlayerData.meshRoot.position + Vector3.up + _dashDirection.normalized;
         }
 
         public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
             base.UpdateVelocity(ref currentVelocity, deltaTime);
             _dashTime += deltaTime;
+            PlayerData.dashGun.Shoot();
             if (_dashTime > PlayerData.playerConfig.miscData.dashDuration)
             {
                 currentVelocity = _dashDirection * PlayerData.playerConfig.airMovementData.maxAirMoveSpeed;
@@ -56,6 +59,11 @@ namespace Player.States.DefaultState.Special
             }
 
             currentVelocity = _dashDirection * PlayerData.playerConfig.miscData.dashSpeed;
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
         }
     }
 }

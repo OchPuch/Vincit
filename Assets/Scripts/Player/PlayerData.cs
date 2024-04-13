@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using KinematicCharacterController;
 using Player.Configs;
+using RayFire;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -14,13 +14,20 @@ namespace Player
         public PlayerConfig playerConfig;
         public Vector3 gravity = new Vector3(0, -30f, 0);
         [Header("Components")]
+        [Space(5)]
         public KinematicCharacterMotor motor;
         public PlayerView playerView;
         public PlayerMovementAudio playerMovementAudio;
+        [Space(2)] 
+        public RayfireGun slamGun;
+        public RayfireGun dashGun;
+        public Transform dashCrushPoint;
         [Header("Transforms")]
+        [Space(5)]
         public Transform meshRoot;
         public Transform cameraFollowPoint;
         [Space(10)]
+        public LayerMask levelLayerMask;
         public List<Collider> IgnoredColliders = new List<Collider>();
 
         #region input
@@ -38,6 +45,7 @@ namespace Player
         #endregion
 
         #region wallJumping
+        [HideInInspector] public Collider lastWallJumpCollider = null;
         [HideInInspector] public bool isNearWall = false;
         [HideInInspector] public Vector3 wallNormal = Vector3.zero;
         [HideInInspector] public int wallJumpCount = 0;

@@ -13,7 +13,6 @@ namespace Player.States.DefaultState.Airborne
         {
         }
         
-
         public override void SetInputs(ref CharacterController.PlayerCharacterInputs newInputs)
         {
             base.SetInputs(ref newInputs);
@@ -87,7 +86,7 @@ namespace Player.States.DefaultState.Airborne
         public override void PostGroundingUpdate(float deltaTime)
         {
             base.PostGroundingUpdate(deltaTime);
-            if (PlayerData.motor.GroundingStatus.IsStableOnGround && !PlayerData.motor.LastGroundingStatus.IsStableOnGround)
+            if (PlayerData.motor.GroundingStatus.IsStableOnGround)
             {
                 StateMachine.SwitchState<DefaultGroundedState>();
                 PlayerData.playerMovementAudio.PlayLandSound();

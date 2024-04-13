@@ -1,6 +1,4 @@
-﻿using Player.States.DefaultState.Special;
-using Player.States.DefaultState.Transitions;
-using StateMachine;
+﻿using StateMachine;
 using UnityEngine;
 
 namespace Player.States.DefaultState.Grounded

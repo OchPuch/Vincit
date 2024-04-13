@@ -442,7 +442,8 @@ namespace RayFire
             RFPhysic.SetDensity (this);
 
             // Set drag properties
-            RFPhysic.SetDrag (this);
+            if (physics.customDrag) RFPhysic.SetDrag(physics.drag, physics.dragAngular, this);
+            else RFPhysic.SetDrag (this);
 
             // Set material solidity and destructible
             physics.solidity     = physics.Solidity;
@@ -550,6 +551,7 @@ namespace RayFire
         void OnCollisionEnter (Collision collision)
         {
             // TODO check if it is better to check state or collisions str
+            if (limitations.ignoreCollisions) return;
             
             // Demolish object check
             if (DemolitionState() == false) 

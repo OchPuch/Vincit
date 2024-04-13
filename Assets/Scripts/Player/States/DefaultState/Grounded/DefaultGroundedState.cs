@@ -71,7 +71,7 @@ namespace Player.States.DefaultState.Grounded
         public override void PostGroundingUpdate(float deltaTime)
         {
             base.PostGroundingUpdate(deltaTime);
-            if (!PlayerData.motor.GroundingStatus.IsStableOnGround && PlayerData.motor.LastGroundingStatus.IsStableOnGround)
+            if (!PlayerData.motor.GroundingStatus.IsStableOnGround)
             {
                 StateMachine.SwitchState<DefaultAirborneState>();
             }

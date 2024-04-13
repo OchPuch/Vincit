@@ -113,7 +113,7 @@ namespace Player.States.DefaultState
                 PlayerData.jumpRequested = false;
             }
             
-            if (PlayerData.slamStorageKeepTimer > PlayerData.playerConfig.miscData.slamStorageKeepTime)
+            if (PlayerData.slamStorageKeepTimer > PlayerData.playerConfig.slamingData.slamStorageKeepTime)
             {
                 PlayerData.slamStorage = 0;
             }
@@ -192,12 +192,12 @@ namespace Player.States.DefaultState
         {
             if (!PlayerData.jumpRequested) return;
             // See if we actually are allowed to jump
-            if ((!PlayerData.jumpConsumed &&
+            if (!PlayerData.jumpConsumed &&
                  ((PlayerData.playerConfig.jumpingData.allowJumpingWhenSliding
                       ? PlayerData.motor.GroundingStatus.FoundAnyGround
                       : PlayerData.motor.GroundingStatus.IsStableOnGround) ||
                   PlayerData.timeSinceLastAbleToJump <=
-                  PlayerData.playerConfig.jumpingData.jumpPostGroundingGraceTime)))
+                  PlayerData.playerConfig.jumpingData.jumpPostGroundingGraceTime))
             {
                 // Calculate jump direction before ungrounding
                 Vector3 jumpDirection = PlayerData.motor.CharacterUp;
@@ -205,9 +205,7 @@ namespace Player.States.DefaultState
                 {
                     jumpDirection = PlayerData.motor.GroundingStatus.GroundNormal;
                 }
-
-                // Makes the character skip ground probing/snapping on its next update. 
-                // If this line weren't here, the character would remain snapped to the ground when trying to jump. Try commenting this line out and see.
+                
                 PlayerData.motor.ForceUnground();
 
                 // Add to the return velocity and reset jump state
@@ -216,6 +214,19 @@ namespace Player.States.DefaultState
                 currentVelocity += (PlayerData.moveInputVector *
                                     PlayerData.playerConfig.jumpingData.jumpScalableForwardSpeed);
                 currentVelocity += (jumpDirection * PlayerData.slamStorage);
+                
+                //Crush ground if slam storage is greater than 0
+                if (PlayerData.slamStorage > 0)
+                {
+                    float slamStoragePercent = PlayerData.slamStorage / PlayerData.playerConfig.slamingData.maxSlamStorage;
+                    if (slamStoragePercent >= PlayerData.playerConfig.slamingData.minCrushPercentage)
+                    {
+                        PlayerData.slamGun.damage = slamStoragePercent * PlayerData.playerConfig.slamingData.slamDamageMultiplier;
+                        PlayerData.slamGun.Shoot();
+                    }
+                }
+                
+                
                 PlayerData.jumpRequested = false;
                 PlayerData.jumpConsumed = true;
                 PlayerData.jumpedThisFrame = true;
@@ -230,6 +241,17 @@ namespace Player.States.DefaultState
             if (PlayerData.wallJumpCount >= PlayerData.playerConfig.jumpingData.wallJumps) return;
             if (PlayerData.isNearWall && !PlayerData.motor.GroundingStatus.IsStableOnGround)
             {
+                //hit the wall with raycast to get the normal
+                RaycastHit hit;
+                var position = PlayerData.meshRoot.transform.position;
+                Vector3 closestPoint = PlayerData.lastWallJumpCollider.ClosestPointOnBounds(position);
+                Vector3 direction = closestPoint - position;
+                if (Physics.Raycast(position, direction, out hit, 1f + direction.magnitude, PlayerData.levelLayerMask))
+                {
+                    PlayerData.wallNormal = hit.normal;
+                }
+                
+                
                 Vector3 jumpDirection;
                 if (VectorUtils.IsLookingAtThePlane(PlayerData.motor.CharacterForward, PlayerData.wallNormal))
                 {
@@ -243,6 +265,7 @@ namespace Player.States.DefaultState
                 float jumpControlPercent = PlayerData.wallNormal == Vector3.zero ? 1 : PlayerData.playerConfig.jumpingData.wallJumpControlPercent;
                 
                 PlayerData.motor.ForceUnground();
+                
                 currentVelocity += (PlayerData.motor.CharacterUp * PlayerData.playerConfig.jumpingData.jumpUpSpeed) -
                                    Vector3.Project(currentVelocity, PlayerData.motor.CharacterUp);
                 currentVelocity += (jumpDirection * 
@@ -255,6 +278,7 @@ namespace Player.States.DefaultState
                 PlayerData.jumpConsumed = true;
                 PlayerData.jumpedThisFrame = true;
                 PlayerData.wallJumpCount++;
+                
                 StateMachine.SwitchState<DefaultFlyingState>();
                 PlayerData.playerMovementAudio.PlayWallJumpSound(PlayerData.wallJumpCount - 1);
             }

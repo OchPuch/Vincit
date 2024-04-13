@@ -1,6 +1,5 @@
 ﻿
 
-using Player.States.DefaultState.Airborne;
 using Player.States.DefaultState.Grounded;
 using StateMachine;
 using UnityEngine;
@@ -26,14 +25,17 @@ namespace Player.States.DefaultState.Special
         public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
             base.UpdateVelocity(ref currentVelocity, deltaTime);
-            currentVelocity = PlayerData.gravity.normalized * PlayerData.playerConfig.miscData.slamingSpeed;
+            currentVelocity = PlayerData.gravity.normalized * PlayerData.playerConfig.slamingData.slamingSpeed;
         }
 
         public override void AfterCharacterUpdate(float deltaTime)
         {
             base.AfterCharacterUpdate(deltaTime);
             PlayerData.timeSinceLastAbleToJump += deltaTime;
-
+            if (PlayerData.motor.Velocity.magnitude < PlayerData.playerConfig.slamingData.slamingSpeed)
+            {
+                StateMachine.SwitchState<DefaultGroundedState>();
+            }
         }
 
         public override void PostGroundingUpdate(float deltaTime)
@@ -55,8 +57,8 @@ namespace Player.States.DefaultState.Special
             PlayerData.slamStorageKeepTimer = 0;
             
             float distance = Vector3.Distance(_slamStartPos, _slamEndPos);
-            PlayerData.slamStorage = distance * 2 / PlayerData.playerConfig.miscData.slamFlightBackMaxTime;
-            PlayerData.slamStorage = Mathf.Clamp(PlayerData.slamStorage, 0,  PlayerData.playerConfig.miscData.maxSlamStorage);
+            PlayerData.slamStorage = distance * 2 / PlayerData.playerConfig.slamingData.slamFlightBackMaxTime;
+            PlayerData.slamStorage = Mathf.Clamp(PlayerData.slamStorage, 0,  PlayerData.playerConfig.slamingData.maxSlamStorage);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Player.StateMachine
 {
@@ -23,6 +24,11 @@ namespace Player.StateMachine
         public bool IsInState<TState>() where TState : IState
         {
             return currentState is TState;
+        }
+        
+        public string CurrentStateName()
+        {
+            return (currentState.GetType().Name);
         }
         
         

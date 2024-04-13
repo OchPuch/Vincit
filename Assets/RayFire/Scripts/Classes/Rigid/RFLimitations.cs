@@ -8,6 +8,9 @@ namespace RayFire
     [Serializable]
     public class RFLimitations
     {
+        [Tooltip("Object will not be activated by any collision.")]
+        public bool ignoreCollisions;
+        
         [Tooltip ("Local Object solidity multiplier for object. Low Solidity makes object more fragile.")]
         [Range (0.0f, 10f)]
         public float solidity;

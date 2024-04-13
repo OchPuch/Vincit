@@ -1,5 +1,4 @@
-﻿using System;
-using KinematicCharacterController;
+﻿using KinematicCharacterController;
 using Player.AdditionalPhysics;
 using Player.States;
 using UnityEngine;
@@ -35,7 +34,7 @@ namespace Player
             _playerData.motor.CharacterController = this;
             _stateMachine = new PlayerStateMachine(this, _playerData);
             
-            wallDetector.Init(_playerData);
+            wallDetector.Init(_playerData, _stateMachine);
         }
 
         private void LateUpdate()

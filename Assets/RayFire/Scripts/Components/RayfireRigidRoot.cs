@@ -220,9 +220,20 @@ namespace RayFire
         void SetPhysics()
         {
             // Set density.
-            float density     = RayfireMan.inst.materialPresets.Density (physics.materialType);
-            float drag        = RayfireMan.inst.materialPresets.Drag (physics.materialType);
-            float dragAngular = RayfireMan.inst.materialPresets.AngularDrag (physics.materialType);
+            float density = RayfireMan.inst.materialPresets.Density (physics.materialType);
+            float drag;  
+            float dragAngular; 
+
+            if (physics.customDrag)
+            {
+                drag        = physics.drag;
+                dragAngular = physics.dragAngular;
+            }
+            else
+            {
+                drag        = RayfireMan.inst.materialPresets.Drag (physics.materialType);
+                dragAngular = RayfireMan.inst.materialPresets.AngularDrag (physics.materialType);
+            }
             
             // Add Collider and Rigid body if has no Rigid component
             for (int i = 0; i < cluster.shards.Count; i++)

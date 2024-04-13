@@ -12,6 +12,7 @@ namespace Player.Configs
         public AirMovement airMovementData;
         public Jumping jumpingData;
         public Sliding slidingData;
+        public Slaming slamingData;
         public Misc miscData;
         
         [Serializable]
@@ -53,15 +54,23 @@ namespace Player.Configs
         }
 
         [Serializable]
+        public class Slaming
+        {
+            public float slamingSpeed = 50;
+            public float slamStorageKeepTime = 1f;
+            public float maxSlamStorage = 30;
+            public float slamFlightBackMaxTime = 2f;
+            public float slamDamageMultiplier = 10f;
+            [Tooltip("How big slam storage should be to crush object after jumping with it.")] public float minCrushPercentage = 0.5f;
+        }
+        
+
+        [Serializable]
         public class Misc
         {
             public BonusOrientationMethod bonusOrientationMethod = BonusOrientationMethod.None;
             public float bonusOrientationSharpness = 10f;
             public float crouchedCapsuleHeight = 1f;
-            public float slamingSpeed;
-            public float slamStorageKeepTime = 1f;
-            public float maxSlamStorage = 100;
-            public float slamFlightBackMaxTime = 2f;
             public float dashSpeed;
             public float dashDuration;
             public float dashMaxEnergy = 100f;

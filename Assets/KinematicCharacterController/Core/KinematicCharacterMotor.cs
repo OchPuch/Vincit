@@ -982,7 +982,7 @@ namespace KinematicCharacterController
                     _attachedRigidbodyVelocity = tmpVelocityFromCurrentAttachedRigidbody;
 
                     // Rotation from attached rigidbody
-                    Vector3 newForward = Vector3.ProjectOnPlane(Quaternion.Euler(Mathf.Rad2Deg * tmpAngularVelocityFromCurrentAttachedRigidbody * deltaTime) * _characterForward, _characterUp).normalized;
+                    Vector3 newForward = Vector3.ProjectOnPlane(Quaternion.Euler(tmpAngularVelocityFromCurrentAttachedRigidbody * (Mathf.Rad2Deg * deltaTime)) * _characterForward, _characterUp).normalized;
                     TransientRotation = Quaternion.LookRotation(newForward, _characterUp);
                 }
 

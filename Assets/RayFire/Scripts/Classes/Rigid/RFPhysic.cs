@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -42,6 +43,13 @@ namespace RayFire
         
         [Tooltip("Mass which will be applied to object if Mass By set to By Mass Property.")]
         [Range(0.1f, 100f)] public float mass;
+        
+        [Header("Drag")]
+        [Space(3)]
+        public bool customDrag;
+        [Space(2)]
+        [ShowIf("customDrag")] public float drag;
+        [ShowIf("customDrag")] public float dragAngular;
         
         [Header ("  Collider")]
         [Space(3)]
@@ -122,6 +130,9 @@ namespace RayFire
             colliderType       = physics.colliderType;
             useGravity         = physics.useGravity;
             dampening          = physics.dampening;
+            customDrag         = physics.customDrag;
+            drag               = physics.drag;
+            dragAngular        = physics.dragAngular;
 
             Reset();
         }
@@ -294,6 +305,12 @@ namespace RayFire
         {
             scr.physics.rigidBody.drag        = RayfireMan.inst.materialPresets.Drag(scr.physics.materialType);
             scr.physics.rigidBody.angularDrag = RayfireMan.inst.materialPresets.AngularDrag(scr.physics.materialType);
+        }
+        
+        public static void SetDrag(float drag, float dragAngular, RayfireRigid scr)
+        {
+            scr.physics.rigidBody.drag        = drag;
+            scr.physics.rigidBody.angularDrag = dragAngular;
         }
 
         // Set drag properties

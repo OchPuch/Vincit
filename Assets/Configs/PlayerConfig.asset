@@ -35,14 +35,17 @@ MonoBehaviour:
     slidingDirectionByCurrentVelocityThreshold: 5
     slidingStopThreshold: 5
     gravityHelpK: 5
-  miscData:
-    bonusOrientationMethod: 1
-    bonusOrientationSharpness: 10
-    crouchedCapsuleHeight: 1
+  slamingData:
     slamingSpeed: 50
     slamStorageKeepTime: 1
     maxSlamStorage: 30
     slamFlightBackMaxTime: 2
+    slamDamageMultiplier: 10
+    minCrushPercentage: 0.3
+  miscData:
+    bonusOrientationMethod: 1
+    bonusOrientationSharpness: 10
+    crouchedCapsuleHeight: 1
     dashSpeed: 100
     dashDuration: 0.1
     dashMaxEnergy: 100
