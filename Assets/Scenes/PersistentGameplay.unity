@@ -842,6 +842,9 @@ MonoBehaviour:
     dashCrushPoint: {fileID: 1097449652}
     meshRoot: {fileID: 69383162}
     cameraFollowPoint: {fileID: 4718917612552288}
+    levelLayerMask:
+      serializedVersion: 2
+      m_Bits: 64
     IgnoredColliders: []
     moveInputVector: {x: 0, y: 0, z: 0}
     lookInputVector: {x: 0, y: 0, z: 0}
@@ -850,6 +853,7 @@ MonoBehaviour:
     jumpedThisFrame: 0
     timeSinceJumpRequested: Infinity
     timeSinceLastAbleToJump: 0
+    lastWallJumpCollider: {fileID: 0}
     isNearWall: 0
     wallNormal: {x: 0, y: 0, z: 0}
     wallJumpCount: 0
@@ -1777,9 +1781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d478705cc64183b3c4aa37ce8fc6c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
+  _sphereCollider: {fileID: 7743039165673922033}
 --- !u!54 &6177337246465338354
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1807,8 +1809,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &7713619058906253791
-CapsuleCollider:
+--- !u!1 &7743039165673922032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1667544160148310880}
+  - component: {fileID: 5879557332415667615}
+  - component: {fileID: 1486858053400955206}
+  - component: {fileID: 7743039165673922033}
+  m_Layer: 7
+  m_Name: Capsule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &7743039165673922033
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1825,27 +1846,6 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &7743039165673922032
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1667544160148310880}
-  - component: {fileID: 7713619058906253791}
-  - component: {fileID: 5879557332415667615}
-  - component: {fileID: 1486858053400955206}
-  m_Layer: 7
-  m_Name: Capsule
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1

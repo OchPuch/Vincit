@@ -13629,12 +13629,17 @@ PrefabInstance:
     - target: {fileID: 544193428111510593, guid: aa0562c6c46b3954e8cc808885351524,
         type: 3}
       propertyPath: TranslationSpeed
-      value: 5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 544193428111510593, guid: aa0562c6c46b3954e8cc808885351524,
+        type: 3}
+      propertyPath: TranslationAxis.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 544193428111510593, guid: aa0562c6c46b3954e8cc808885351524,
         type: 3}
       propertyPath: TranslationPeriod
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8190740380152104176, guid: aa0562c6c46b3954e8cc808885351524,
         type: 3}
@@ -13664,7 +13669,7 @@ PrefabInstance:
     - target: {fileID: 8190740380152104176, guid: aa0562c6c46b3954e8cc808885351524,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.3
+      value: 22.6
       objectReference: {fileID: 0}
     - target: {fileID: 8190740380152104176, guid: aa0562c6c46b3954e8cc808885351524,
         type: 3}
