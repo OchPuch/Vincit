@@ -8,8 +8,9 @@ namespace Player.States.DefaultState.Special
 {
     public class DefaultSlideState : DefaultState
     {
-        
         private bool _stopped;
+        private bool _startVelocitySet;
+        
 
         public DefaultSlideState(CharacterController controller, IStateSwitcher stateMachine, PlayerData playerData) :
             base(controller, stateMachine, playerData)
@@ -25,20 +26,23 @@ namespace Player.States.DefaultState.Special
                 PlayerData.playerConfig.miscData.crouchedCapsuleHeight * 0.5f);
             PlayerData.meshRoot.localScale = new Vector3(1f, 0.5f, 1f);
             _stopped = false;
-            
+            _startVelocitySet = false;
+
+
             PlayerData.playerMovementAudio.StartSlideLoop();
-            
         }
 
         public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
             base.UpdateVelocity(ref currentVelocity, deltaTime);
-            
+
             if (PlayerData.motor.GroundingStatus.IsStableOnGround && !_stopped)
             {
-                Vector3 velocityOnPlane = Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
-                
-                if (velocityOnPlane.magnitude > PlayerData.playerConfig.slidingData.slidingDirectionByCurrentVelocityThreshold)
+                Vector3 velocityOnPlane =
+                    Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
+
+                if (velocityOnPlane.magnitude >
+                    PlayerData.playerConfig.slidingData.slidingDirectionByCurrentVelocityThreshold)
                 {
                     currentVelocity = velocityOnPlane;
                     if (currentVelocity.magnitude <= PlayerData.playerConfig.slidingData.minSlidingSpeed)
@@ -47,38 +51,72 @@ namespace Player.States.DefaultState.Special
                                           PlayerData.playerConfig.slidingData.minSlidingSpeed;
                     }
                 }
-                else 
+                else
                 {
-                    var lookVector = PlayerData.motor.CharacterForward;
-                    currentVelocity = Vector3.ProjectOnPlane(lookVector, PlayerData.motor.GroundingStatus.GroundNormal)
+                    if (PlayerData.moveInputVector != Vector3.zero && !_startVelocitySet)
+                    {
+                        Vector3 effectiveGroundNormal = PlayerData.motor.GroundingStatus.GroundNormal;
+
+                        // Reorient velocity on slope
+                        currentVelocity =
+                            PlayerData.motor.GetDirectionTangentToSurface(currentVelocity, effectiveGroundNormal) *
+                            currentVelocity.magnitude;
+
+                        // Calculate target velocity
+                        Vector3 inputRight = Vector3.Cross(PlayerData.moveInputVector, PlayerData.motor.CharacterUp);
+                        Vector3 reorientedInput = Vector3.Cross(effectiveGroundNormal, inputRight).normalized *
+                                                  PlayerData.moveInputVector.magnitude;
+                        currentVelocity = reorientedInput * PlayerData.playerConfig.slidingData.minSlidingSpeed;
+                    }
+                    else
+                    {
+                        var lookVector = PlayerData.motor.CharacterForward;
+                        currentVelocity = Vector3
+                            .ProjectOnPlane(lookVector, PlayerData.motor.GroundingStatus.GroundNormal)
                             .normalized * PlayerData.playerConfig.slidingData.minSlidingSpeed;
-                    velocityOnPlane = Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
-                }
-                
-                //Gravity helps
-                Vector3 gravityHelp = Vector3.Project(PlayerData.gravity, currentVelocity);
-                if (VectorUtils.AreCodirected(currentVelocity, gravityHelp))
-                {
-                    currentVelocity += gravityHelp * (PlayerData.playerConfig.slidingData.gravityHelpK * deltaTime);
+                        velocityOnPlane = Vector3.ProjectOnPlane(currentVelocity,
+                            PlayerData.motor.GroundingStatus.GroundNormal);
+                    }
                 }
                 
                 if (velocityOnPlane.magnitude <= PlayerData.playerConfig.slidingData.slidingStopThreshold)
                 {
                     _stopped = true;
                 }
+
+                _startVelocitySet = true;
+            }
+
+            if (_stopped)
+            {
+                Vector3 velocityOnPlane =
+                    Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
+                if (velocityOnPlane.magnitude >= PlayerData.playerConfig.slidingData.minSlidingSpeed)
+                {
+                    _stopped = false;
+                }
+            }
+            
+            //Gravity helps
+            if (PlayerData.motor.GroundingStatus.IsStableOnGround)
+            {
+                Vector3 gravityHelp = Vector3.Project(PlayerData.gravity, currentVelocity);
+                if (VectorUtils.AreCodirected(currentVelocity, gravityHelp))
+                {
+                    currentVelocity += gravityHelp * (PlayerData.playerConfig.slidingData.gravityHelpK * deltaTime);
+                }
             }
 
             // Acceleration to side
             float currentVelocityMagnitude = currentVelocity.magnitude;
-            if (!_stopped)
-            {
-                Vector3 additionalVelocity = PlayerData.motor.CharacterRight * (PlayerData.playerConfig.slidingData.slidingAccelerationByInput * PlayerData.Inputs.MoveAxisRight);
-                Vector3 addForwardPart = Vector3.Project(additionalVelocity, currentVelocity);
-                additionalVelocity -= addForwardPart;
-                currentVelocity += additionalVelocity * deltaTime;
-                currentVelocity = currentVelocity.normalized * currentVelocityMagnitude;
-                
-            }
+            Vector3 additionalVelocity = PlayerData.motor.CharacterRight *
+                                         (PlayerData.playerConfig.slidingData.slidingAccelerationByInput *
+                                          PlayerData.Inputs.MoveAxisRight);
+            Vector3 addForwardPart = Vector3.Project(additionalVelocity, currentVelocity);
+            additionalVelocity -= addForwardPart;
+            currentVelocity += additionalVelocity * deltaTime;
+            currentVelocity = currentVelocity.normalized * currentVelocityMagnitude;
+
 
             if (!PlayerData.motor.GroundingStatus.IsStableOnGround)
             {
@@ -92,9 +130,8 @@ namespace Player.States.DefaultState.Special
             {
                 Jump(ref currentVelocity, deltaTime);
             }
-            
+
             WallJump(ref currentVelocity, deltaTime);
-            
         }
 
         public override void AfterCharacterUpdate(float deltaTime)

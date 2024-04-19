@@ -218,11 +218,14 @@ namespace Player.States.DefaultState
                 //Crush ground if slam storage is greater than 0
                 if (PlayerData.slamStorage > 0)
                 {
+                    float slamRadius = PlayerData.slamGun.radius;
                     float slamStoragePercent = PlayerData.slamStorage / PlayerData.playerConfig.slamingData.maxSlamStorage;
                     if (slamStoragePercent >= PlayerData.playerConfig.slamingData.minCrushPercentage)
                     {
+                        PlayerData.slamGun.radius = slamStoragePercent * slamRadius;
                         PlayerData.slamGun.damage = slamStoragePercent * PlayerData.playerConfig.slamingData.slamDamageMultiplier;
                         PlayerData.slamGun.Shoot();
+                        PlayerData.slamGun.radius = slamRadius;
                     }
                 }
                 

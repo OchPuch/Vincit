@@ -2,6 +2,7 @@
 using KinematicCharacterController.Examples;
 using Unity.Entities.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player.Configs
 {

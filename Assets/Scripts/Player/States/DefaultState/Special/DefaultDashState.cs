@@ -35,7 +35,7 @@ namespace Player.States.DefaultState.Special
 
             PlayerData.playerMovementAudio.PlayDashSound();
             
-            PlayerData.dashCrushPoint.position = PlayerData.meshRoot.position + Vector3.up + _dashDirection.normalized;
+            PlayerData.dashCrushPoint.position = PlayerData.dashGun.transform.position + _dashDirection.normalized;
         }
 
         public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)

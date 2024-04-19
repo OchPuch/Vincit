@@ -132,7 +132,7 @@ MonoBehaviour:
     drag: 1
     dragAngular: 5
     colliderType: 1
-    planarCheck: 0
+    planarCheck: 1
     useGravity: 0
     dampening: 0.8
     rigidBody: {fileID: 0}
@@ -170,7 +170,7 @@ MonoBehaviour:
       colliderType: 0
       sizeFilter: 0
       decompose: 1
-      removeCollinear: 1
+      removeCollinear: 0
       layer: 
     runtimeCaching:
       type: 0
@@ -250,10 +250,10 @@ MonoBehaviour:
     onDemolition: 1
     onActivation: 0
     lifeType: 4
-    lifeTime: 7
-    lifeVariation: 3
+    lifeTime: 1
+    lifeVariation: 1
     fadeType: 3
-    fadeTime: 5
+    fadeTime: 1
     sizeFilter: 3
   reset:
     transform: 1
