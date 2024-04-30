@@ -1,5 +1,6 @@
 ﻿
 
+using Player.Data;
 using Player.States.DefaultState.Grounded;
 using StateMachine;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace Player.States.DefaultState.Special
     {
         private Vector3 _slamStartPos;
         private Vector3 _slamEndPos;
-        public DefaultSlamingState(CharacterController controller, IStateSwitcher stateMachine, PlayerData playerData) : base(controller, stateMachine, playerData)
+        public DefaultSlamingState(PlayerController controller, IStateSwitcher stateMachine, PlayerData playerData) : base(controller, stateMachine, playerData)
         {
         }
 
@@ -25,14 +26,14 @@ namespace Player.States.DefaultState.Special
         public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
             base.UpdateVelocity(ref currentVelocity, deltaTime);
-            currentVelocity = PlayerData.gravity.normalized * PlayerData.playerConfig.slamingData.slamingSpeed;
+            currentVelocity = PlayerData.gravity.normalized * PlayerData.playerConfig.SlamingData.slamingSpeed;
         }
 
         public override void AfterCharacterUpdate(float deltaTime)
         {
             base.AfterCharacterUpdate(deltaTime);
             PlayerData.timeSinceLastAbleToJump += deltaTime;
-            if (PlayerData.motor.Velocity.magnitude < PlayerData.playerConfig.slamingData.slamingSpeed)
+            if (PlayerData.motor.Velocity.magnitude < PlayerData.playerConfig.SlamingData.slamingSpeed)
             {
                 StateMachine.SwitchState<DefaultGroundedState>();
             }
@@ -57,8 +58,8 @@ namespace Player.States.DefaultState.Special
             PlayerData.slamStorageKeepTimer = 0;
             
             float distance = Vector3.Distance(_slamStartPos, _slamEndPos);
-            PlayerData.slamStorage = distance * 2 / PlayerData.playerConfig.slamingData.slamFlightBackMaxTime;
-            PlayerData.slamStorage = Mathf.Clamp(PlayerData.slamStorage, 0,  PlayerData.playerConfig.slamingData.maxSlamStorage);
+            PlayerData.slamStorage = distance * 2 / PlayerData.playerConfig.SlamingData.slamFlightBackMaxTime;
+            PlayerData.slamStorage = Mathf.Clamp(PlayerData.slamStorage, 0,  PlayerData.playerConfig.SlamingData.maxSlamStorage);
         }
     }
 }

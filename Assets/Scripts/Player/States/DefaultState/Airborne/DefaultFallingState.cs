@@ -1,11 +1,12 @@
-﻿using StateMachine;
+﻿using Player.Data;
+using StateMachine;
 using UnityEngine;
 
 namespace Player.States.DefaultState.Airborne
 {
     public class DefaultFallingState : DefaultAirborneState
     {
-        public DefaultFallingState(CharacterController controller, IStateSwitcher stateMachine, PlayerData playerData) : base(controller, stateMachine, playerData)
+        public DefaultFallingState(PlayerController controller, IStateSwitcher stateMachine, PlayerData playerData) : base(controller, stateMachine, playerData)
         {
         }
         

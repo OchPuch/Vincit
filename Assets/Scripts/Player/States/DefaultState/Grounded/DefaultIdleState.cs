@@ -1,11 +1,12 @@
-﻿using StateMachine;
+﻿using Player.Data;
+using StateMachine;
 using UnityEngine;
 
 namespace Player.States.DefaultState.Grounded
 {
     public class DefaultIdleState : DefaultGroundedState
     {
-        public DefaultIdleState(CharacterController controller, IStateSwitcher stateMachine, PlayerData playerData) : base(controller, stateMachine, playerData)
+        public DefaultIdleState(PlayerController controller, IStateSwitcher stateMachine, PlayerData playerData) : base(controller, stateMachine, playerData)
         {
         }
         

@@ -1,5 +1,6 @@
 using System;
 using KinematicCharacterController;
+using Player.Data;
 using Player.StateMachine;
 using StateMachine;
 using UnityEngine;
@@ -10,13 +11,13 @@ namespace Player.States
     [Serializable]
     public abstract class PlayerState : IState
     {
-        protected readonly CharacterController CharacterController;
+        protected readonly PlayerController PlayerController;
         protected readonly IStateSwitcher StateMachine;
         protected readonly PlayerData PlayerData;
 
-        public PlayerState(CharacterController controller, IStateSwitcher stateMachine, PlayerData playerData)
+        public PlayerState(PlayerController controller, IStateSwitcher stateMachine, PlayerData playerData)
         {
-            CharacterController = controller;
+            PlayerController = controller;
             this.StateMachine = stateMachine;
             this.PlayerData = playerData;
         }
@@ -35,7 +36,7 @@ namespace Player.States
             
         }
         
-        public virtual void SetInputs(ref CharacterController.PlayerCharacterInputs newInputs)
+        public virtual void SetInputs(ref PlayerController.PlayerCharacterInputs newInputs)
         {
             
         }
@@ -77,6 +78,7 @@ namespace Player.States
         public virtual void OnMovementHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint,
             ref HitStabilityReport hitStabilityReport)
         {
+            
         }
 
         public virtual void ProcessHitStabilityReport(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, Vector3 atCharacterPosition,

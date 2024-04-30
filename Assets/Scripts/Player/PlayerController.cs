@@ -1,11 +1,12 @@
 ﻿using KinematicCharacterController;
 using Player.AdditionalPhysics;
+using Player.Data;
 using Player.States;
 using UnityEngine;
 
 namespace Player
 {
-    public class CharacterController : MonoBehaviour, ICharacterController
+    public class PlayerController : MonoBehaviour, ICharacterController
     {
         public struct PlayerCharacterInputs
         {
@@ -20,12 +21,10 @@ namespace Player
 
         [Header("Additional Physics")] 
         [SerializeField] private WallDetector wallDetector;
-        
-        
+        public PlayerData PlayerData => _playerData;
         private PlayerData _playerData;
-
+        
         private PlayerStateMachine _stateMachine;
-
         public global::Player.StateMachine.StateMachine StateMachine => _stateMachine;
 
         public void Init(PlayerData data)
@@ -33,10 +32,15 @@ namespace Player
             _playerData = data;
             _playerData.motor.CharacterController = this;
             _stateMachine = new PlayerStateMachine(this, _playerData);
-            
             wallDetector.Init(_playerData, _stateMachine);
         }
+        public void SetGravity(Vector3 newGravity)
+        {
+            _playerData.gravity = newGravity;
+        }
 
+        #region StateMachineCalls
+        
         private void LateUpdate()
         {
             _stateMachine.Update();
@@ -45,11 +49,6 @@ namespace Player
         public void SetInputs(ref PlayerCharacterInputs newInputs)
         {
             _stateMachine.SetInputs(ref newInputs);
-        }
-
-        public void SetGravity(Vector3 newGravity)
-        {
-            _playerData.gravity = newGravity;
         }
         
         public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
@@ -106,6 +105,9 @@ namespace Player
         {
             _stateMachine.OnDiscreteCollisionDetected(hitCollider);
         }
+        
+        #endregion
+
         
     }
 }

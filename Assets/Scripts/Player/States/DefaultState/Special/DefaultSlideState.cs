@@ -1,4 +1,5 @@
-﻿using Player.States.DefaultState.Airborne;
+﻿using Player.Data;
+using Player.States.DefaultState.Airborne;
 using Player.States.DefaultState.Grounded;
 using StateMachine;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Player.States.DefaultState.Special
         private bool _startVelocitySet;
         
 
-        public DefaultSlideState(CharacterController controller, IStateSwitcher stateMachine, PlayerData playerData) :
+        public DefaultSlideState(PlayerController controller, IStateSwitcher stateMachine, PlayerData playerData) :
             base(controller, stateMachine, playerData)
         {
         }
@@ -22,8 +23,8 @@ namespace Player.States.DefaultState.Special
             base.Enter();
             PlayerData.isSliding = true;
             PlayerData.motor.SetCapsuleDimensions(0.5f,
-                PlayerData.playerConfig.miscData.crouchedCapsuleHeight,
-                PlayerData.playerConfig.miscData.crouchedCapsuleHeight * 0.5f);
+                PlayerData.playerConfig.MiscData.crouchedCapsuleHeight,
+                PlayerData.playerConfig.MiscData.crouchedCapsuleHeight * 0.5f);
             PlayerData.meshRoot.localScale = new Vector3(1f, 0.5f, 1f);
             _stopped = false;
             _startVelocitySet = false;
@@ -42,13 +43,13 @@ namespace Player.States.DefaultState.Special
                     Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
 
                 if (velocityOnPlane.magnitude >
-                    PlayerData.playerConfig.slidingData.slidingDirectionByCurrentVelocityThreshold)
+                    PlayerData.playerConfig.SlidingData.slidingDirectionByCurrentVelocityThreshold)
                 {
                     currentVelocity = velocityOnPlane;
-                    if (currentVelocity.magnitude <= PlayerData.playerConfig.slidingData.minSlidingSpeed)
+                    if (currentVelocity.magnitude <= PlayerData.playerConfig.SlidingData.minSlidingSpeed)
                     {
                         currentVelocity = currentVelocity.normalized *
-                                          PlayerData.playerConfig.slidingData.minSlidingSpeed;
+                                          PlayerData.playerConfig.SlidingData.minSlidingSpeed;
                     }
                 }
                 else
@@ -66,20 +67,20 @@ namespace Player.States.DefaultState.Special
                         Vector3 inputRight = Vector3.Cross(PlayerData.moveInputVector, PlayerData.motor.CharacterUp);
                         Vector3 reorientedInput = Vector3.Cross(effectiveGroundNormal, inputRight).normalized *
                                                   PlayerData.moveInputVector.magnitude;
-                        currentVelocity = reorientedInput * PlayerData.playerConfig.slidingData.minSlidingSpeed;
+                        currentVelocity = reorientedInput * PlayerData.playerConfig.SlidingData.minSlidingSpeed;
                     }
                     else
                     {
                         var lookVector = PlayerData.motor.CharacterForward;
                         currentVelocity = Vector3
                             .ProjectOnPlane(lookVector, PlayerData.motor.GroundingStatus.GroundNormal)
-                            .normalized * PlayerData.playerConfig.slidingData.minSlidingSpeed;
+                            .normalized * PlayerData.playerConfig.SlidingData.minSlidingSpeed;
                         velocityOnPlane = Vector3.ProjectOnPlane(currentVelocity,
                             PlayerData.motor.GroundingStatus.GroundNormal);
                     }
                 }
                 
-                if (velocityOnPlane.magnitude <= PlayerData.playerConfig.slidingData.slidingStopThreshold)
+                if (velocityOnPlane.magnitude <= PlayerData.playerConfig.SlidingData.slidingStopThreshold)
                 {
                     _stopped = true;
                 }
@@ -91,7 +92,7 @@ namespace Player.States.DefaultState.Special
             {
                 Vector3 velocityOnPlane =
                     Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
-                if (velocityOnPlane.magnitude >= PlayerData.playerConfig.slidingData.minSlidingSpeed)
+                if (velocityOnPlane.magnitude >= PlayerData.playerConfig.SlidingData.minSlidingSpeed)
                 {
                     _stopped = false;
                 }
@@ -103,14 +104,14 @@ namespace Player.States.DefaultState.Special
                 Vector3 gravityHelp = Vector3.Project(PlayerData.gravity, currentVelocity);
                 if (VectorUtils.AreCodirected(currentVelocity, gravityHelp))
                 {
-                    currentVelocity += gravityHelp * (PlayerData.playerConfig.slidingData.gravityHelpK * deltaTime);
+                    currentVelocity += gravityHelp * (PlayerData.playerConfig.SlidingData.gravityHelpK * deltaTime);
                 }
             }
 
             // Acceleration to side
             float currentVelocityMagnitude = currentVelocity.magnitude;
             Vector3 additionalVelocity = PlayerData.motor.CharacterRight *
-                                         (PlayerData.playerConfig.slidingData.slidingAccelerationByInput *
+                                         (PlayerData.playerConfig.SlidingData.slidingAccelerationByInput *
                                           PlayerData.Inputs.MoveAxisRight);
             Vector3 addForwardPart = Vector3.Project(additionalVelocity, currentVelocity);
             additionalVelocity -= addForwardPart;
@@ -124,7 +125,7 @@ namespace Player.States.DefaultState.Special
                 currentVelocity += PlayerData.gravity * deltaTime;
 
                 // Drag
-                currentVelocity *= (1f / (1f + (PlayerData.playerConfig.airMovementData.drag * deltaTime)));
+                currentVelocity *= (1f / (1f + (PlayerData.playerConfig.AirMovementData.drag * deltaTime)));
             }
             else
             {
@@ -174,8 +175,8 @@ namespace Player.States.DefaultState.Special
                     QueryTriggerInteraction.Ignore) > 0)
             {
                 // If obstructions, just stick to crouching dimensions
-                PlayerData.motor.SetCapsuleDimensions(0.5f, PlayerData.playerConfig.miscData.crouchedCapsuleHeight,
-                    PlayerData.playerConfig.miscData.crouchedCapsuleHeight * 0.5f);
+                PlayerData.motor.SetCapsuleDimensions(0.5f, PlayerData.playerConfig.MiscData.crouchedCapsuleHeight,
+                    PlayerData.playerConfig.MiscData.crouchedCapsuleHeight * 0.5f);
             }
             else
             {

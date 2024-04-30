@@ -1,7 +1,7 @@
 using System;
 using NaughtyAttributes;
+using Player;
 using UnityEngine;
-using CharacterController = Player.CharacterController;
 
 namespace Enviroment.Triggers
 {
@@ -23,7 +23,7 @@ namespace Enviroment.Triggers
             gravity = transform.up * gravity.magnitude;
         }
         
-        private void SetGravityForPlayer(CharacterController player)
+        private void SetGravityForPlayer(PlayerController player)
         {
             switch (gravityType)
             {
@@ -43,7 +43,7 @@ namespace Enviroment.Triggers
         {
             if (other.CompareTag("Player"))
             {
-                var obj = other.GetComponent<CharacterController>();
+                var obj = other.GetComponent<PlayerController>();
                 if (obj)
                 {
                     SetGravityForPlayer(obj);
@@ -55,7 +55,7 @@ namespace Enviroment.Triggers
         private void OnTriggerStay(Collider other)
         {
             if (!prioritizeIfOverlapping || !other.CompareTag("Player")) return;
-            var obj = other.GetComponent<CharacterController>();
+            var obj = other.GetComponent<PlayerController>();
             if (obj)
             {
                 SetGravityForPlayer(obj);

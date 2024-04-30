@@ -1,4 +1,6 @@
-﻿using Player.States.DefaultState.Airborne;
+﻿using KinematicCharacterController;
+using Player.Data;
+using Player.States.DefaultState.Airborne;
 using Player.States.DefaultState.Grounded;
 using StateMachine;
 using UnityEngine;
@@ -10,10 +12,10 @@ namespace Player.States.DefaultState.Special
         private float _dashTime;
         private Vector3 _dashDirection;
 
-        public DefaultDashState(CharacterController controller, IStateSwitcher stateMachine, PlayerData playerData) :
+        public DefaultDashState(PlayerController controller, IStateSwitcher stateMachine, PlayerData playerData) :
             base(controller, stateMachine, playerData)
         {
-            PlayerData.currentDashEnergy = PlayerData.playerConfig.miscData.dashMaxEnergy;
+            PlayerData.currentDashEnergy = PlayerData.playerConfig.MiscData.dashMaxEnergy;
         }
 
         public override void Enter()
@@ -21,10 +23,10 @@ namespace Player.States.DefaultState.Special
             base.Enter();
             _dashTime = 0;
             PlayerData.slamStorage = 0;
-            PlayerData.currentDashEnergy -= PlayerData.playerConfig.miscData.dashCost;
+            PlayerData.currentDashEnergy -= PlayerData.playerConfig.MiscData.dashCost;
 
             //if no move input, dash forward
-            if (PlayerData.moveInputVector.magnitude < PlayerData.playerConfig.miscData.dashDirectionByInputThreshold)
+            if (PlayerData.moveInputVector.magnitude < PlayerData.playerConfig.MiscData.dashDirectionByInputThreshold)
             {
                 _dashDirection = PlayerData.motor.CharacterForward;
             }
@@ -43,9 +45,9 @@ namespace Player.States.DefaultState.Special
             base.UpdateVelocity(ref currentVelocity, deltaTime);
             _dashTime += deltaTime;
             PlayerData.dashGun.Shoot();
-            if (_dashTime > PlayerData.playerConfig.miscData.dashDuration)
+            if (_dashTime > PlayerData.playerConfig.MiscData.dashDuration)
             {
-                currentVelocity = _dashDirection * PlayerData.playerConfig.airMovementData.maxAirMoveSpeed;
+                currentVelocity = _dashDirection * PlayerData.playerConfig.AirMovementData.maxAirMoveSpeed;
                 if (PlayerData.motor.GroundingStatus.IsStableOnGround)
                 {
                     StateMachine.SwitchState<DefaultGroundedState>();
@@ -58,12 +60,8 @@ namespace Player.States.DefaultState.Special
                 return;
             }
 
-            currentVelocity = _dashDirection * PlayerData.playerConfig.miscData.dashSpeed;
+            currentVelocity = _dashDirection * PlayerData.playerConfig.MiscData.dashSpeed;
         }
-
-        public override void Exit()
-        {
-            base.Exit();
-        }
+        
     }
 }

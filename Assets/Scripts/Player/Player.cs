@@ -1,6 +1,8 @@
 ﻿using KinematicCharacterController;
 using KinematicCharacterController.Examples;
+using Player.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 namespace Player
@@ -8,7 +10,7 @@ namespace Player
     public class Player : MonoBehaviour
     {
         public PlayerData playerData = new PlayerData();
-        public CharacterController character;
+        [FormerlySerializedAs("character")] public PlayerController player;
         public ExampleCharacterCamera characterCamera;
 
         private PhysicsMover _physicsMover;
@@ -22,7 +24,7 @@ namespace Player
 
         private void Start()
         {
-            character.Init(playerData);
+            player.Init(playerData);
             
             Cursor.lockState = CursorLockMode.Locked;
 
@@ -31,7 +33,7 @@ namespace Player
 
             // Ignore the character's collider(s) for camera obstruction checks
             characterCamera.IgnoredColliders.Clear();
-            characterCamera.IgnoredColliders.AddRange(character.GetComponentsInChildren<Collider>());
+            characterCamera.IgnoredColliders.AddRange(player.GetComponentsInChildren<Collider>());
 
             if (playerData.motor.AttachedRigidbody != null) 
                 _physicsMover = playerData.motor.AttachedRigidbody.GetComponent<PhysicsMover>();
@@ -94,7 +96,7 @@ namespace Player
 
         private void HandleCharacterInput()
         {
-            CharacterController.PlayerCharacterInputs characterInputs = new CharacterController.PlayerCharacterInputs
+            PlayerController.PlayerCharacterInputs characterInputs = new PlayerController.PlayerCharacterInputs
             {
                 // Build the CharacterInputs struct
                 MoveAxisForward = Input.GetAxisRaw(VerticalInput),
@@ -107,7 +109,7 @@ namespace Player
             };
 
             // Apply inputs to character
-            character.SetInputs(ref characterInputs);
+            player.SetInputs(ref characterInputs);
         }
     } 
 }

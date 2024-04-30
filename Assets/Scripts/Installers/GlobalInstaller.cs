@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using Zenject;
-using Application = UnityEngine.Device.Application;
+﻿using Zenject;
 
 namespace Installers
 {
@@ -9,8 +7,7 @@ namespace Installers
         
         public override void InstallBindings()
         {
-            Debug.Log("GlobalInstaller Installed");
-            Application.targetFrameRate = 240;
+            
         }
     }
 }

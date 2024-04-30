@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using KinematicCharacterController;
+using Player.Data;
 using Player.StateMachine;
 using Player.States.DefaultState.Airborne;
 using Player.States.DefaultState.Grounded;
@@ -14,24 +15,24 @@ namespace Player.States
     {
         private PlayerState PlayerState => (PlayerState)currentState;
 
-        public PlayerStateMachine(CharacterController characterController, PlayerData playerData)
+        public PlayerStateMachine(PlayerController playerController, PlayerData playerData)
         {
             states = new List<IState>(new List<PlayerState>()
             {
                 //Transition
-                new DefaultEnteringState(characterController, this, playerData),
+                new DefaultEnteringState(playerController, this, playerData),
                 //Airborne
-                new DefaultFallingState(characterController, this, playerData),
-                new DefaultFlyingState(characterController, this, playerData), 
+                new DefaultFallingState(playerController, this, playerData),
+                new DefaultFlyingState(playerController, this, playerData), 
                 //Grounded                
-                new DefaultRunState(characterController, this, playerData),
-                new DefaultIdleState(characterController, this, playerData),
+                new DefaultRunState(playerController, this, playerData),
+                new DefaultIdleState(playerController, this, playerData),
                 //Special
-                new DefaultSlideState(characterController, this, playerData),
-                new DefaultSlamingState(characterController, this, playerData),
-                new DefaultDashState(characterController, this, playerData),
+                new DefaultSlideState(playerController, this, playerData),
+                new DefaultSlamingState(playerController, this, playerData),
+                new DefaultDashState(playerController, this, playerData),
                 //Death
-                new DeathState.DeathState(characterController, this, playerData),
+                new DeathState.DeathState(playerController, this, playerData),
             });
 
             currentState = states[0];
@@ -110,7 +111,7 @@ namespace Player.States
             PlayerState.OnDiscreteCollisionDetected(hitCollider);
         }
 
-        public void SetInputs(ref CharacterController.PlayerCharacterInputs newInputs)
+        public void SetInputs(ref PlayerController.PlayerCharacterInputs newInputs)
         {
             PlayerState.SetInputs(ref newInputs);
         }

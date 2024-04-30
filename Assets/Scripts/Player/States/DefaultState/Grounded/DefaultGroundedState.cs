@@ -1,4 +1,5 @@
 ﻿
+using Player.Data;
 using Player.States.DefaultState.Airborne;
 using Player.States.DefaultState.Special;
 using StateMachine;
@@ -8,7 +9,7 @@ namespace Player.States.DefaultState.Grounded
 {
     public class DefaultGroundedState : DefaultState
     {
-        public DefaultGroundedState(CharacterController controller, IStateSwitcher stateMachine, PlayerData playerData) : base(controller, stateMachine, playerData)
+        public DefaultGroundedState(PlayerController controller, IStateSwitcher stateMachine, PlayerData playerData) : base(controller, stateMachine, playerData)
         {
         }
 
@@ -24,7 +25,7 @@ namespace Player.States.DefaultState.Grounded
                     QueryTriggerInteraction.Ignore) > 0)
             {
                 // If obstructions, just stick to crouching dimensions
-                PlayerData.motor.SetCapsuleDimensions(0.5f, PlayerData.playerConfig.miscData.crouchedCapsuleHeight, PlayerData.playerConfig.miscData.crouchedCapsuleHeight * 0.5f);
+                PlayerData.motor.SetCapsuleDimensions(0.5f, PlayerData.playerConfig.MiscData.crouchedCapsuleHeight, PlayerData.playerConfig.MiscData.crouchedCapsuleHeight * 0.5f);
             }
             else
             {
@@ -47,10 +48,10 @@ namespace Player.States.DefaultState.Grounded
             // Calculate target velocity
             Vector3 inputRight = Vector3.Cross(PlayerData.moveInputVector, PlayerData.motor.CharacterUp);
             Vector3 reorientedInput = Vector3.Cross(effectiveGroundNormal, inputRight).normalized * PlayerData.moveInputVector.magnitude;
-            Vector3 targetMovementVelocity = reorientedInput * PlayerData.playerConfig.stableMovementData.maxStableMoveSpeed;
+            Vector3 targetMovementVelocity = reorientedInput * PlayerData.playerConfig.StableMovementData.maxStableMoveSpeed;
 
             // Smooth movement Velocity
-            currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-PlayerData.playerConfig.stableMovementData.stableMovementSharpness * deltaTime));
+            currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-PlayerData.playerConfig.StableMovementData.stableMovementSharpness * deltaTime));
             
             Jump(ref currentVelocity, deltaTime);
         }

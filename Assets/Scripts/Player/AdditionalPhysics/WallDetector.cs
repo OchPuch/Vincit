@@ -1,4 +1,5 @@
-﻿using Player.StateMachine;
+﻿using Player.Data;
+using Player.StateMachine;
 using Player.States.DefaultState.Grounded;
 using UnityEngine;
 using Utils;

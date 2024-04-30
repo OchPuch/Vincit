@@ -220,7 +220,7 @@ MonoBehaviour:
     rangeMax: 7
     distance: 0.4
     color: {r: 1, g: 1, b: 0.8, a: 1}
-  mask: 64
+  mask: 1
   tagFilter: Untagged
   showRay: 1
   showHit: 1
@@ -628,7 +628,7 @@ MonoBehaviour:
     rangeMax: 7
     distance: 0.4
     color: {r: 1, g: 1, b: 0.8, a: 1}
-  mask: 64
+  mask: 1
   tagFilter: Untagged
   showRay: 1
   showHit: 1
@@ -835,8 +835,7 @@ MonoBehaviour:
     playerConfig: {fileID: 11400000, guid: 51b8696fea0ac6a4fa22f8167742167a, type: 2}
     gravity: {x: 0, y: -30, z: 0}
     motor: {fileID: 114967586958730556}
-    playerView: {fileID: 840886945262125622}
-    playerMovementAudio: {fileID: 1483422412}
+    playerMovementAudio: {fileID: 1483422411}
     slamGun: {fileID: 115713894}
     dashGun: {fileID: 1263154420}
     dashCrushPoint: {fileID: 1097449652}
@@ -844,7 +843,7 @@ MonoBehaviour:
     cameraFollowPoint: {fileID: 4718917612552288}
     levelLayerMask:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 1
     IgnoredColliders: []
     moveInputVector: {x: 0, y: 0, z: 0}
     lookInputVector: {x: 0, y: 0, z: 0}
@@ -877,9 +876,26 @@ MonoBehaviour:
     - {fileID: 0}
     lastInnerNormal: {x: 0, y: 0, z: 0}
     lastOuterNormal: {x: 0, y: 0, z: 0}
-  character: {fileID: 1185531043422071794}
+  player: {fileID: 1185531043422071794}
   characterCamera: {fileID: 1426876732}
---- !u!82 &1483422411
+--- !u!114 &1483422411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483422407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8a57d6c47a4b72ac7cda1e45c3e466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioConfig: {fileID: 11400000, guid: 0b2d628fdec72864aa420e3cd177ddda, type: 2}
+  footstepDelay: 0.5
+  walkPitchRandomRange: 0.2
+  wallJumpPitchAddition: 0.2
+  audioSource: {fileID: 1483422412}
+--- !u!82 &1483422412
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -890,8 +906,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.09
+  m_PlayOnAwake: 1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -975,23 +991,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1483422412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483422407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee8a57d6c47a4b72ac7cda1e45c3e466, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioConfig: {fileID: 11400000, guid: 0b2d628fdec72864aa420e3cd177ddda, type: 2}
-  footstepDelay: 0.5
-  walkPitchRandomRange: 0.2
-  wallJumpPitchAddition: 0.2
-  audioSource: {fileID: 1483422411}
 --- !u!1001 &1555504075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1413,9 +1412,8 @@ GameObject:
   - component: {fileID: 1185531043422071794}
   - component: {fileID: 114967586958730556}
   - component: {fileID: 6177337246465338354}
-  - component: {fileID: 840886945262125622}
   m_Layer: 0
-  m_Name: ExampleCharacter
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1557,7 +1555,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf774b4c734b1d04e9fbf6d71e964591, type: 2}
+  - {fileID: 2100000, guid: 1b898341794b88e468e9b0fc127393ef, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1599,7 +1597,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf774b4c734b1d04e9fbf6d71e964591, type: 2}
+  - {fileID: 2100000, guid: 8dfa54b19ab98314aba33a9e1fc6c36e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1702,18 +1700,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &840886945262125622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398904735955534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2536f53e428c4b2b87494ad49d91482e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1185531043422071794
 MonoBehaviour:
   m_ObjectHideFlags: 0

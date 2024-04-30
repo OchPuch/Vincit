@@ -1,4 +1,5 @@
-﻿using Player.States.DefaultState.Airborne;
+﻿using Player.Data;
+using Player.States.DefaultState.Airborne;
 using Player.States.DefaultState.Grounded;
 using StateMachine;
 
@@ -6,7 +7,7 @@ namespace Player.States.DefaultState.Transitions
 {
     public class DefaultEnteringState : DefaultState
     {
-        public DefaultEnteringState(CharacterController controller, IStateSwitcher stateMachine, PlayerData playerData)
+        public DefaultEnteringState(PlayerController controller, IStateSwitcher stateMachine, PlayerData playerData)
             : base(controller, stateMachine, playerData)
         {
         }

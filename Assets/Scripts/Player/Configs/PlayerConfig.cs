@@ -9,16 +9,34 @@ namespace Player.Configs
     [CreateAssetMenu(fileName = "PlayerConfig", menuName = "Player/PlayerConfig")]
     public class PlayerConfig : ScriptableObject
     {
-        public StableMovement stableMovementData;
-        public AirMovement airMovementData;
-        public Jumping jumpingData;
-        public Sliding slidingData;
-        public Slaming slamingData;
-        public Misc miscData;
+        [SerializeField] private StableMovement stableMovementData;
+        [SerializeField] private AirMovement airMovementData;
+        [SerializeField] private Jumping jumpingData;
+        [SerializeField] private Sliding slidingData;
+        [SerializeField] private Slaming slamingData;
+        [SerializeField] private Misc miscData;
+        
+        public StableMovement StableMovementData => stableMovementData.GetReadonly();
+        public AirMovement AirMovementData => airMovementData.GetReadonly();
+        public Jumping JumpingData => jumpingData.GetReadonly();
+        public Sliding SlidingData => slidingData.GetReadonly();
+        public Slaming SlamingData => slamingData.GetReadonly();
+        public Misc MiscData => miscData.GetReadonly();
         
         [Serializable]
         public class StableMovement
         {
+            public StableMovement GetReadonly()
+            {
+                return new StableMovement
+                {
+                    maxStableMoveSpeed = maxStableMoveSpeed,
+                    stableMovementSharpness = stableMovementSharpness,
+                    orientationSharpness = orientationSharpness,
+                    orientationMethod = orientationMethod
+                };
+            }
+            
             public float maxStableMoveSpeed = 10f;
             public float stableMovementSharpness = 15f;
             public float orientationSharpness = 10f;
@@ -28,6 +46,16 @@ namespace Player.Configs
         [Serializable]
         public class AirMovement
         {
+            public AirMovement GetReadonly()
+            {
+                return new AirMovement
+                {
+                    maxAirMoveSpeed = maxAirMoveSpeed,
+                    airAccelerationSpeed = airAccelerationSpeed,
+                    drag = drag
+                };
+            }
+            
             public float maxAirMoveSpeed = 15f;
             public float airAccelerationSpeed = 15f;
             public float drag = 0.1f;
@@ -35,6 +63,20 @@ namespace Player.Configs
         [Serializable]
         public class Jumping
         {
+            public Jumping GetReadonly()
+            {
+                return new Jumping
+                {
+                    jumpPreGroundingGraceTime = jumpPreGroundingGraceTime,
+                    allowJumpingWhenSliding = allowJumpingWhenSliding,
+                    jumpUpSpeed = jumpUpSpeed,
+                    jumpScalableForwardSpeed = jumpScalableForwardSpeed,
+                    jumpPostGroundingGraceTime = jumpPostGroundingGraceTime,
+                    wallJumps = wallJumps,
+                    wallJumpControlPercent = wallJumpControlPercent
+                };
+            }
+            
             public bool allowJumpingWhenSliding = false;
             public float jumpUpSpeed = 10f;
             public float jumpScalableForwardSpeed = 10f;
@@ -47,6 +89,18 @@ namespace Player.Configs
         [Serializable]
         public class Sliding
         {
+            public Sliding GetReadonly()
+            {
+                return new Sliding
+                {
+                    minSlidingSpeed = minSlidingSpeed,
+                    slidingAccelerationByInput = slidingAccelerationByInput,
+                    slidingDirectionByCurrentVelocityThreshold = slidingDirectionByCurrentVelocityThreshold,
+                    slidingStopThreshold = slidingStopThreshold,
+                    gravityHelpK = gravityHelpK
+                };
+            }
+            
             public float minSlidingSpeed = 30f;
             public float slidingAccelerationByInput = 30f;
             public float slidingDirectionByCurrentVelocityThreshold = 0.1f;
@@ -57,6 +111,19 @@ namespace Player.Configs
         [Serializable]
         public class Slaming
         {
+            public Slaming GetReadonly()
+            {
+                return new Slaming
+                {
+                    slamingSpeed = slamingSpeed,
+                    slamStorageKeepTime = slamStorageKeepTime,
+                    maxSlamStorage = maxSlamStorage,
+                    slamFlightBackMaxTime = slamFlightBackMaxTime,
+                    slamDamageMultiplier = slamDamageMultiplier,
+                    minCrushPercentage = minCrushPercentage
+                };
+            }
+            
             public float slamingSpeed = 50;
             public float slamStorageKeepTime = 1f;
             public float maxSlamStorage = 30;
@@ -69,6 +136,23 @@ namespace Player.Configs
         [Serializable]
         public class Misc
         {
+            public Misc GetReadonly()
+            {
+                return new Misc
+                {
+                    bonusOrientationMethod = bonusOrientationMethod,
+                    bonusOrientationSharpness = bonusOrientationSharpness,
+                    crouchedCapsuleHeight = crouchedCapsuleHeight,
+                    dashSpeed = dashSpeed,
+                    dashDuration = dashDuration,
+                    dashMaxEnergy = dashMaxEnergy,
+                    dashCost = dashCost,
+                    dashRechargeRate = dashRechargeRate,
+                    dashDirectionByInputThreshold = dashDirectionByInputThreshold
+                };
+            }
+            
+            
             public BonusOrientationMethod bonusOrientationMethod = BonusOrientationMethod.None;
             public float bonusOrientationSharpness = 10f;
             public float crouchedCapsuleHeight = 1f;

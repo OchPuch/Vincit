@@ -1,4 +1,5 @@
-﻿using StateMachine;
+﻿using Player.Data;
+using StateMachine;
 using UnityEngine;
 
 
@@ -6,7 +7,7 @@ namespace Player.States.DefaultState.Airborne
 {
     public class DefaultFlyingState : DefaultAirborneState
     {
-        public DefaultFlyingState(CharacterController controller, IStateSwitcher stateMachine, PlayerData playerData) : base(controller, stateMachine, playerData)
+        public DefaultFlyingState(PlayerController controller, IStateSwitcher stateMachine, PlayerData playerData) : base(controller, stateMachine, playerData)
         {
         }
 

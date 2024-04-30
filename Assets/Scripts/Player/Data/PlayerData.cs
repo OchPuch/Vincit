@@ -5,7 +5,7 @@ using Player.Configs;
 using RayFire;
 using UnityEngine;
 
-namespace Player
+namespace Player.Data
 {
     [Serializable]
     public class PlayerData
@@ -16,7 +16,6 @@ namespace Player
         [Header("Components")]
         [Space(5)]
         public KinematicCharacterMotor motor;
-        public PlayerView playerView;
         public PlayerMovementAudio playerMovementAudio;
         [Space(2)] 
         public RayfireGun slamGun;
@@ -31,7 +30,7 @@ namespace Player
         public List<Collider> IgnoredColliders = new List<Collider>();
 
         #region input
-        [HideInInspector] public CharacterController.PlayerCharacterInputs Inputs;
+        [HideInInspector] public PlayerController.PlayerCharacterInputs Inputs;
         [HideInInspector] public Vector3 moveInputVector;
         [HideInInspector] public Vector3 lookInputVector;
         #endregion
@@ -77,4 +76,6 @@ namespace Player
         [HideInInspector] public Vector3 lastOuterNormal = Vector3.zero;
         
     }
+
+    
 }
