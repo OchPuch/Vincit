@@ -2,7 +2,6 @@
 using StateMachine;
 using UnityEngine;
 
-
 namespace Player.States.DefaultState.Airborne
 {
     public class DefaultFlyingState : DefaultAirborneState

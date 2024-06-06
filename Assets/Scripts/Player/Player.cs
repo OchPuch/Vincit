@@ -4,7 +4,6 @@ using Player.Data;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-
 namespace Player
 {
     public class Player : MonoBehaviour

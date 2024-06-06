@@ -126,13 +126,14 @@ namespace Player.States.DefaultState.Special
 
                 // Drag
                 currentVelocity *= (1f / (1f + (PlayerData.playerConfig.AirMovementData.drag * deltaTime)));
+                
+                WallJump(ref currentVelocity, deltaTime);
             }
             else
             {
                 Jump(ref currentVelocity, deltaTime);
             }
 
-            WallJump(ref currentVelocity, deltaTime);
         }
 
         public override void AfterCharacterUpdate(float deltaTime)

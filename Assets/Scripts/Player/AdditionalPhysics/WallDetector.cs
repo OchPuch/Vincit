@@ -1,6 +1,4 @@
 ﻿using Player.Data;
-using Player.StateMachine;
-using Player.States.DefaultState.Grounded;
 using UnityEngine;
 using Utils;
 
@@ -16,17 +14,8 @@ namespace Player.AdditionalPhysics
         public void Init(PlayerData data, StateMachine.StateMachine stateMachine)
         {
             _playerData = data;
-            stateMachine.StateEntered += OnStateEntered;
         }
-
-        private void OnStateEntered(IState obj)
-        {
-            if (obj is DefaultGroundedState)
-            {
-                WallCheck();
-            }
-        }
-
+        
         private void WallCheck()
         {
             //Overlap sphere same as collider and check if theres any level layer object
@@ -44,8 +33,7 @@ namespace Player.AdditionalPhysics
                 _playerData.lastWallJumpCollider = colliders[0];
             }
         }
-
-
+        
         private void OnTriggerEnter(Collider other)
         {
             if (LayerUtils.IsInLayerMask(other.gameObject.layer, _playerData.levelLayerMask))
