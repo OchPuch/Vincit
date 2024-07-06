@@ -30,50 +30,50 @@ namespace Player.Data
         public List<Collider> IgnoredColliders = new List<Collider>();
 
         #region input
-        [HideInInspector] public PlayerController.PlayerCharacterInputs Inputs;
-        [HideInInspector] public Vector3 moveInputVector;
-        [HideInInspector] public Vector3 lookInputVector;
+         public PlayerController.PlayerCharacterInputs Inputs;
+         public Vector3 moveInputVector;
+         public Vector3 lookInputVector;
         #endregion
         
         #region jumping
-        [HideInInspector] public bool jumpRequested = false;
-        [HideInInspector] public bool jumpConsumed = false;
-        [HideInInspector] public bool jumpedThisFrame = false;
-        [HideInInspector] public float timeSinceJumpRequested = Mathf.Infinity;
-        [HideInInspector] public float timeSinceLastAbleToJump = 0f;
+         public bool jumpRequested = false;
+         public bool jumpConsumed = false;
+         public bool jumpedThisFrame = false;
+         public float timeSinceJumpRequested = Mathf.Infinity;
+         public float timeSinceLastAbleToJump = 0f;
         #endregion
 
         #region wallJumping
-        [HideInInspector] public Collider lastWallJumpCollider = null;
-        [HideInInspector] public bool isNearWall = false;
-        [HideInInspector] public Vector3 wallNormal = Vector3.zero;
-        [HideInInspector] public int wallJumpCount = 0;
+         public Collider lastWallJumpCollider = null;
+         public bool isNearWall = false;
+         public Vector3 wallNormal = Vector3.zero;
+         public int wallJumpCount = 0;
         #endregion
         
         #region sliding
-        [HideInInspector] public bool shouldBeSliding = false;
-        [HideInInspector] public bool isSliding = false;
+         public bool shouldBeSliding = false;
+         public bool isSliding = false;
         #endregion
 
         #region dash
-        [HideInInspector] public bool dashRequested = false;
-        [HideInInspector] public bool isDashing = false;
-        [HideInInspector] public float currentDashEnergy = 0f;
+         public bool dashRequested = false;
+         public bool isDashing = false;
+         public float currentDashEnergy = 0f;
         #endregion
 
         #region slam
-        [HideInInspector] public bool isSlaming = false;
-        [HideInInspector] public float slamStorage = 0f;
-        [HideInInspector] public float slamStorageKeepTimer = 0f;
+         public bool isSlaming = false;
+         public float slamStorage = 0f;
+         public float slamStorageKeepTimer = 0f;
         #endregion
         
-        [HideInInspector] public Vector3 internalVelocityAdd = Vector3.zero;
+         public Vector3 internalVelocityAdd = Vector3.zero;
         
-        [HideInInspector] public Collider[] probedColliders = new Collider[8];
-        [HideInInspector] public RaycastHit[] probedHits = new RaycastHit[8];
+         public Collider[] probedColliders = new Collider[8];
+         public RaycastHit[] probedHits = new RaycastHit[8];
         
-        [HideInInspector] public Vector3 lastInnerNormal = Vector3.zero;
-        [HideInInspector] public Vector3 lastOuterNormal = Vector3.zero;
+         public Vector3 lastInnerNormal = Vector3.zero;
+         public Vector3 lastOuterNormal = Vector3.zero;
         
     }
 

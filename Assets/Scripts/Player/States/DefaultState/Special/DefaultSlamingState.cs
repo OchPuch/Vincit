@@ -26,14 +26,14 @@ namespace Player.States.DefaultState.Special
         public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
             base.UpdateVelocity(ref currentVelocity, deltaTime);
-            currentVelocity = PlayerData.gravity.normalized * PlayerData.playerConfig.SlamingData.slamingSpeed;
+            currentVelocity = PlayerData.gravity.normalized * PlayerData.playerConfig.SlamingData.SlamingSpeed;
         }
 
         public override void AfterCharacterUpdate(float deltaTime)
         {
             base.AfterCharacterUpdate(deltaTime);
             PlayerData.timeSinceLastAbleToJump += deltaTime;
-            if (PlayerData.motor.Velocity.magnitude < PlayerData.playerConfig.SlamingData.slamingSpeed)
+            if (PlayerData.motor.Velocity.magnitude < PlayerData.playerConfig.SlamingData.SlamingSpeed)
             {
                 StateMachine.SwitchState<DefaultGroundedState>();
             }
@@ -58,8 +58,8 @@ namespace Player.States.DefaultState.Special
             PlayerData.slamStorageKeepTimer = 0;
             
             float distance = Vector3.Distance(_slamStartPos, _slamEndPos);
-            PlayerData.slamStorage = distance * 2 / PlayerData.playerConfig.SlamingData.slamFlightBackMaxTime;
-            PlayerData.slamStorage = Mathf.Clamp(PlayerData.slamStorage, 0,  PlayerData.playerConfig.SlamingData.maxSlamStorage);
+            PlayerData.slamStorage = distance * 2 / PlayerData.playerConfig.SlamingData.SlamFlightBackMaxTime;
+            PlayerData.slamStorage = Mathf.Clamp(PlayerData.slamStorage, 0,  PlayerData.playerConfig.SlamingData.MaxSlamStorage);
         }
     }
 }

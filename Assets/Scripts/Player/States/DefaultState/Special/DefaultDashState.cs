@@ -15,7 +15,7 @@ namespace Player.States.DefaultState.Special
         public DefaultDashState(PlayerController controller, IStateSwitcher stateMachine, PlayerData playerData) :
             base(controller, stateMachine, playerData)
         {
-            PlayerData.currentDashEnergy = PlayerData.playerConfig.MiscData.dashMaxEnergy;
+            PlayerData.currentDashEnergy = PlayerData.playerConfig.MiscData.DashMaxEnergy;
         }
 
         public override void Enter()
@@ -23,10 +23,10 @@ namespace Player.States.DefaultState.Special
             base.Enter();
             _dashTime = 0;
             PlayerData.slamStorage = 0;
-            PlayerData.currentDashEnergy -= PlayerData.playerConfig.MiscData.dashCost;
+            PlayerData.currentDashEnergy -= PlayerData.playerConfig.MiscData.DashCost;
 
             //if no move input, dash forward
-            if (PlayerData.moveInputVector.magnitude < PlayerData.playerConfig.MiscData.dashDirectionByInputThreshold)
+            if (PlayerData.moveInputVector.magnitude < PlayerData.playerConfig.MiscData.DashDirectionByInputThreshold)
             {
                 _dashDirection = PlayerData.motor.CharacterForward;
             }
@@ -45,9 +45,9 @@ namespace Player.States.DefaultState.Special
             base.UpdateVelocity(ref currentVelocity, deltaTime);
             _dashTime += deltaTime;
             PlayerData.dashGun.Shoot();
-            if (_dashTime > PlayerData.playerConfig.MiscData.dashDuration)
+            if (_dashTime > PlayerData.playerConfig.MiscData.DashDuration)
             {
-                currentVelocity = _dashDirection * PlayerData.playerConfig.AirMovementData.maxAirMoveSpeed;
+                currentVelocity = _dashDirection * PlayerData.playerConfig.AirMovementData.MaxAirMoveSpeed;
                 if (PlayerData.motor.GroundingStatus.IsStableOnGround)
                 {
                     StateMachine.SwitchState<DefaultGroundedState>();
@@ -60,7 +60,7 @@ namespace Player.States.DefaultState.Special
                 return;
             }
 
-            currentVelocity = _dashDirection * PlayerData.playerConfig.MiscData.dashSpeed;
+            currentVelocity = _dashDirection * PlayerData.playerConfig.MiscData.DashSpeed;
         }
         
     }

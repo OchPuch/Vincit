@@ -576,7 +576,7 @@ namespace RayFire
                 return scrRigid;
             
             // Check for demolition TODO input collision collider if radius is 0
-            bool damageDemolition = scrRigid.ApplyDamage(damage, impactPoint, radius);
+                bool damageDemolition = scrRigid.ApplyDamage(damage, impactPoint, radius);
             
             // object was not demolished
             if (damageDemolition == false)

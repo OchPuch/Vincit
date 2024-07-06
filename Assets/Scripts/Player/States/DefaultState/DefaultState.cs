@@ -23,12 +23,12 @@ namespace Player.States.DefaultState
         {
             base.UpdateRotation(ref currentRotation, deltaTime);
             if (PlayerData.lookInputVector.sqrMagnitude > 0f &&
-                PlayerData.playerConfig.StableMovementData.orientationSharpness > 0f)
+                PlayerData.playerConfig.StableMovementData.OrientationSharpness > 0f)
             {
                 // Smoothly interpolate from current to target look direction
                 Vector3 smoothedLookInputDirection = Vector3.Slerp(PlayerData.motor.CharacterForward,
                         PlayerData.lookInputVector,
-                        1 - Mathf.Exp(-PlayerData.playerConfig.StableMovementData.orientationSharpness * deltaTime))
+                        1 - Mathf.Exp(-PlayerData.playerConfig.StableMovementData.OrientationSharpness * deltaTime))
                     .normalized;
 
                 // Set the current rotation (which will be used by the KinematicCharacterMotor)
@@ -36,14 +36,14 @@ namespace Player.States.DefaultState
             }
 
             Vector3 currentUp = (currentRotation * Vector3.up);
-            switch (PlayerData.playerConfig.MiscData.bonusOrientationMethod)
+            switch (PlayerData.playerConfig.MiscData.BonusOrientationMethod)
             {
                 case BonusOrientationMethod.TowardsGravity:
                 {
                     // Rotate from current up to invert gravity
                     Vector3 smoothedGravityDir = Vector3.Slerp(currentUp,
                         -PlayerData.gravity.normalized,
-                        1 - Mathf.Exp(-PlayerData.playerConfig.MiscData.bonusOrientationSharpness * deltaTime));
+                        1 - Mathf.Exp(-PlayerData.playerConfig.MiscData.BonusOrientationSharpness * deltaTime));
                     currentRotation = Quaternion.FromToRotation(currentUp, smoothedGravityDir) * currentRotation;
                     break;
                 }
@@ -55,7 +55,7 @@ namespace Player.States.DefaultState
 
                     Vector3 smoothedGroundNormal = Vector3.Slerp(PlayerData.motor.CharacterUp,
                         PlayerData.motor.GroundingStatus.GroundNormal,
-                        1 - Mathf.Exp(-PlayerData.playerConfig.MiscData.bonusOrientationSharpness * deltaTime));
+                        1 - Mathf.Exp(-PlayerData.playerConfig.MiscData.BonusOrientationSharpness * deltaTime));
                     currentRotation = Quaternion.FromToRotation(currentUp, smoothedGroundNormal) * currentRotation;
 
                     // Move the position to create a rotation around the bottom hemi center instead of around the pivot
@@ -68,14 +68,14 @@ namespace Player.States.DefaultState
                 {
                     Vector3 smoothedGravityDir = Vector3.Slerp(currentUp,
                         -PlayerData.gravity.normalized,
-                        1 - Mathf.Exp(-PlayerData.playerConfig.MiscData.bonusOrientationSharpness * deltaTime));
+                        1 - Mathf.Exp(-PlayerData.playerConfig.MiscData.BonusOrientationSharpness * deltaTime));
                     currentRotation = Quaternion.FromToRotation(currentUp, smoothedGravityDir) * currentRotation;
                     break;
                 }
                 default:
                 {
                     Vector3 smoothedGravityDir = Vector3.Slerp(currentUp, Vector3.up,
-                        1 - Mathf.Exp(-PlayerData.playerConfig.MiscData.bonusOrientationSharpness * deltaTime));
+                        1 - Mathf.Exp(-PlayerData.playerConfig.MiscData.BonusOrientationSharpness * deltaTime));
                     currentRotation = Quaternion.FromToRotation(currentUp, smoothedGravityDir) * currentRotation;
                     break;
                 }
@@ -90,8 +90,8 @@ namespace Player.States.DefaultState
             PlayerData.timeSinceJumpRequested += deltaTime;
             
             PlayerData.slamStorageKeepTimer += deltaTime;
-            PlayerData.currentDashEnergy += deltaTime * PlayerData.playerConfig.MiscData.dashRechargeRate;
-            PlayerData.currentDashEnergy = Mathf.Clamp(PlayerData.currentDashEnergy, 0, PlayerData.playerConfig.MiscData.dashMaxEnergy);
+            PlayerData.currentDashEnergy += deltaTime * PlayerData.playerConfig.MiscData.DashRechargeRate;
+            PlayerData.currentDashEnergy = Mathf.Clamp(PlayerData.currentDashEnergy, 0, PlayerData.playerConfig.MiscData.DashMaxEnergy);
             
             // Take into account additive velocity
             if (PlayerData.internalVelocityAdd.sqrMagnitude > 0f)
@@ -109,19 +109,19 @@ namespace Player.States.DefaultState
 
             // Handle jumping pre-ground grace period
             if (PlayerData.jumpRequested && PlayerData.timeSinceJumpRequested >
-                PlayerData.playerConfig.JumpingData.jumpPreGroundingGraceTime)
+                PlayerData.playerConfig.JumpingData.JumpPreGroundingGraceTime)
             {
                 PlayerData.jumpRequested = false;
             }
             
-            if (PlayerData.slamStorageKeepTimer > PlayerData.playerConfig.SlamingData.slamStorageKeepTime)
+            if (PlayerData.slamStorageKeepTimer > PlayerData.playerConfig.SlamingData.SlamStorageKeepTime)
             {
                 PlayerData.slamStorage = 0;
             }
 
             if (PlayerData.dashRequested)
             {
-                if (PlayerData.currentDashEnergy >= PlayerData.playerConfig.MiscData.dashCost)
+                if (PlayerData.currentDashEnergy >= PlayerData.playerConfig.MiscData.DashCost)
                 {
                     StateMachine.SwitchState<DefaultDashState>();
                 }
@@ -156,7 +156,7 @@ namespace Player.States.DefaultState
             // Move and look inputs
             PlayerData.moveInputVector = cameraPlanarRotation * moveInputVector;
 
-            switch (PlayerData.playerConfig.StableMovementData.orientationMethod)
+            switch (PlayerData.playerConfig.StableMovementData.OrientationMethod)
             {
                 case OrientationMethod.TowardsCamera:
                     PlayerData.lookInputVector = cameraPlanarDirection;
@@ -194,11 +194,11 @@ namespace Player.States.DefaultState
             if (!PlayerData.jumpRequested) return;
             // See if we actually are allowed to jump
             if (!PlayerData.jumpConsumed &&
-                 ((PlayerData.playerConfig.JumpingData.allowJumpingWhenSliding
+                 ((PlayerData.playerConfig.JumpingData.AllowJumpingWhenSliding
                       ? PlayerData.motor.GroundingStatus.FoundAnyGround
                       : PlayerData.motor.GroundingStatus.IsStableOnGround) ||
                   PlayerData.timeSinceLastAbleToJump <=
-                  PlayerData.playerConfig.JumpingData.jumpPostGroundingGraceTime))
+                  PlayerData.playerConfig.JumpingData.JumpPostGroundingGraceTime))
             {
                 // Calculate jump direction before ungrounding
                 Vector3 jumpDirection = PlayerData.motor.CharacterUp;
@@ -210,21 +210,21 @@ namespace Player.States.DefaultState
                 PlayerData.motor.ForceUnground();
 
                 // Add to the return velocity and reset jump state
-                currentVelocity += (jumpDirection * PlayerData.playerConfig.JumpingData.jumpUpSpeed) -
+                currentVelocity += (jumpDirection * PlayerData.playerConfig.JumpingData.JumpUpSpeed) -
                                    Vector3.Project(currentVelocity, PlayerData.motor.CharacterUp);
                 currentVelocity += (PlayerData.moveInputVector *
-                                    PlayerData.playerConfig.JumpingData.jumpScalableForwardSpeed);
+                                    PlayerData.playerConfig.JumpingData.JumpScalableForwardSpeed);
                 currentVelocity += (jumpDirection * PlayerData.slamStorage);
                 
                 //Crush ground if slam storage is greater than 0
                 if (PlayerData.slamStorage > 0)
                 {
                     float slamRadius = PlayerData.slamGun.radius;
-                    float slamStoragePercent = PlayerData.slamStorage / PlayerData.playerConfig.SlamingData.maxSlamStorage;
-                    if (slamStoragePercent >= PlayerData.playerConfig.SlamingData.minCrushPercentage)
+                    float slamStoragePercent = PlayerData.slamStorage / PlayerData.playerConfig.SlamingData.MaxSlamStorage;
+                    if (slamStoragePercent >= PlayerData.playerConfig.SlamingData.MinCrushPercentage)
                     {
                         PlayerData.slamGun.radius = slamStoragePercent * slamRadius;
-                        PlayerData.slamGun.damage = slamStoragePercent * PlayerData.playerConfig.SlamingData.slamDamageMultiplier;
+                        PlayerData.slamGun.damage = slamStoragePercent * PlayerData.playerConfig.SlamingData.SlamDamageMultiplier;
                         PlayerData.slamGun.Shoot();
                         PlayerData.slamGun.radius = slamRadius;
                     }
@@ -242,9 +242,10 @@ namespace Player.States.DefaultState
         protected void WallJump(ref Vector3 currentVelocity, float deltaTime)
         {
             if (!PlayerData.jumpRequested) return;
-            if (PlayerData.wallJumpCount >= PlayerData.playerConfig.JumpingData.wallJumps) return;
+            if (PlayerData.wallJumpCount >= PlayerData.playerConfig.JumpingData.WallJumps) return;
             if (PlayerData.isNearWall && !PlayerData.motor.GroundingStatus.IsStableOnGround)
             {
+                if (PlayerData.lastWallJumpCollider == null) return;
                 //hit the wall with raycast to get the normal
                 RaycastHit hit;
                 var position = PlayerData.meshRoot.transform.position;
@@ -266,17 +267,17 @@ namespace Player.States.DefaultState
                     jumpDirection = PlayerData.motor.CharacterForward;
                 }
                 
-                float jumpControlPercent = PlayerData.wallNormal == Vector3.zero ? 1 : PlayerData.playerConfig.JumpingData.wallJumpControlPercent;
+                float jumpControlPercent = PlayerData.wallNormal == Vector3.zero ? 1 : PlayerData.playerConfig.JumpingData.WallJumpControlPercent;
                 
                 PlayerData.motor.ForceUnground();
                 
-                currentVelocity += (PlayerData.motor.CharacterUp * PlayerData.playerConfig.JumpingData.jumpUpSpeed) -
+                currentVelocity += (PlayerData.motor.CharacterUp * PlayerData.playerConfig.JumpingData.JumpUpSpeed) -
                                    Vector3.Project(currentVelocity, PlayerData.motor.CharacterUp);
                 currentVelocity += (jumpDirection * 
-                                    (PlayerData.playerConfig.JumpingData.jumpUpSpeed * 
+                                    (PlayerData.playerConfig.JumpingData.JumpUpSpeed * 
                                      jumpControlPercent));
                 currentVelocity += (PlayerData.wallNormal *
-                                    (PlayerData.playerConfig.JumpingData.jumpUpSpeed *
+                                    (PlayerData.playerConfig.JumpingData.JumpUpSpeed *
                                      (1 - jumpControlPercent)));
                 PlayerData.jumpRequested = false;
                 PlayerData.jumpConsumed = true;

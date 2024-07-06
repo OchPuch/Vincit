@@ -16,152 +16,75 @@ namespace Player.Configs
         [SerializeField] private Slaming slamingData;
         [SerializeField] private Misc miscData;
         
-        public StableMovement StableMovementData => stableMovementData.GetReadonly();
-        public AirMovement AirMovementData => airMovementData.GetReadonly();
-        public Jumping JumpingData => jumpingData.GetReadonly();
-        public Sliding SlidingData => slidingData.GetReadonly();
-        public Slaming SlamingData => slamingData.GetReadonly();
-        public Misc MiscData => miscData.GetReadonly();
+        public StableMovement StableMovementData => stableMovementData;
+        public AirMovement AirMovementData => airMovementData;
+        public Jumping JumpingData => jumpingData;
+        public Sliding SlidingData => slidingData;
+        public Slaming SlamingData => slamingData;
+        public Misc MiscData => miscData;
         
         [Serializable]
         public class StableMovement
         {
-            public StableMovement GetReadonly()
-            {
-                return new StableMovement
-                {
-                    maxStableMoveSpeed = maxStableMoveSpeed,
-                    stableMovementSharpness = stableMovementSharpness,
-                    orientationSharpness = orientationSharpness,
-                    orientationMethod = orientationMethod
-                };
-            }
-            
-            public float maxStableMoveSpeed = 10f;
-            public float stableMovementSharpness = 15f;
-            public float orientationSharpness = 10f;
-            public OrientationMethod orientationMethod = OrientationMethod.TowardsCamera;
+            [field: SerializeField] public float MaxStableMoveSpeed { get; private set; } = 10f;
+            [field: SerializeField] public float StableMovementSharpness { get; private set; } = 15f;
+            [field: SerializeField] public float OrientationSharpness { get; private set; } = 10f;
+            [field: SerializeField] public OrientationMethod OrientationMethod { get; private set; } = OrientationMethod.TowardsCamera;
         }
         
         [Serializable]
         public class AirMovement
         {
-            public AirMovement GetReadonly()
-            {
-                return new AirMovement
-                {
-                    maxAirMoveSpeed = maxAirMoveSpeed,
-                    airAccelerationSpeed = airAccelerationSpeed,
-                    drag = drag
-                };
-            }
-            
-            public float maxAirMoveSpeed = 15f;
-            public float airAccelerationSpeed = 15f;
-            public float drag = 0.1f;
+            [field: SerializeField] public float MaxAirMoveSpeed { get; private set; } = 15f;
+            [field: SerializeField] public float AirAccelerationSpeed { get; private set; } = 15f;
+            [field: SerializeField] public float Drag { get; private set; } = 0.1f;
         }
         [Serializable]
         public class Jumping
         {
-            public Jumping GetReadonly()
-            {
-                return new Jumping
-                {
-                    jumpPreGroundingGraceTime = jumpPreGroundingGraceTime,
-                    allowJumpingWhenSliding = allowJumpingWhenSliding,
-                    jumpUpSpeed = jumpUpSpeed,
-                    jumpScalableForwardSpeed = jumpScalableForwardSpeed,
-                    jumpPostGroundingGraceTime = jumpPostGroundingGraceTime,
-                    wallJumps = wallJumps,
-                    wallJumpControlPercent = wallJumpControlPercent
-                };
-            }
-            
-            public bool allowJumpingWhenSliding = false;
-            public float jumpUpSpeed = 10f;
-            public float jumpScalableForwardSpeed = 10f;
-            public float jumpPreGroundingGraceTime = 0f;
-            public float jumpPostGroundingGraceTime = 0f;
-            public int wallJumps = 3;
-            [MinMax(0,1)] public float wallJumpControlPercent = 1f;
+            [field: SerializeField] public bool AllowJumpingWhenSliding { get; private set; } = false;
+            [field: SerializeField] public float JumpUpSpeed { get; private set; } = 10f;
+            [field: SerializeField] public float JumpScalableForwardSpeed { get; private set; } = 10f;
+            [field: SerializeField] public float JumpPreGroundingGraceTime { get; private set; } = 0f;
+            [field: SerializeField] public float JumpPostGroundingGraceTime { get; private set; } = 0f;
+            [field: SerializeField] public int WallJumps { get; private set; } = 3;
+            [field: SerializeField] [MinMax(0,1)] public float WallJumpControlPercent { get; private set; } = 1f;
         }
 
         [Serializable]
         public class Sliding
         {
-            public Sliding GetReadonly()
-            {
-                return new Sliding
-                {
-                    minSlidingSpeed = minSlidingSpeed,
-                    slidingAccelerationByInput = slidingAccelerationByInput,
-                    slidingDirectionByCurrentVelocityThreshold = slidingDirectionByCurrentVelocityThreshold,
-                    slidingStopThreshold = slidingStopThreshold,
-                    gravityHelpK = gravityHelpK
-                };
-            }
-            
-            public float minSlidingSpeed = 30f;
-            public float slidingAccelerationByInput = 30f;
-            public float slidingDirectionByCurrentVelocityThreshold = 0.1f;
-            public float slidingStopThreshold = 0.1f;
-            public float gravityHelpK = 5f;
+            [field: SerializeField] public float MinSlidingSpeed { get; private set; } = 30f;
+            [field: SerializeField] public float SlidingAccelerationByInput { get; private set; } = 30f;
+            [field: SerializeField] public float SlidingDirectionByCurrentVelocityThreshold { get; private set; } = 0.1f;
+            [field: SerializeField] public float SlidingStopThreshold { get; private set; } = 0.1f;
+            [field: SerializeField] public float GravityHelpK { get; private set; } = 5f;
         }
 
         [Serializable]
         public class Slaming
         {
-            public Slaming GetReadonly()
-            {
-                return new Slaming
-                {
-                    slamingSpeed = slamingSpeed,
-                    slamStorageKeepTime = slamStorageKeepTime,
-                    maxSlamStorage = maxSlamStorage,
-                    slamFlightBackMaxTime = slamFlightBackMaxTime,
-                    slamDamageMultiplier = slamDamageMultiplier,
-                    minCrushPercentage = minCrushPercentage
-                };
-            }
-            
-            public float slamingSpeed = 50;
-            public float slamStorageKeepTime = 1f;
-            public float maxSlamStorage = 30;
-            public float slamFlightBackMaxTime = 2f;
-            public float slamDamageMultiplier = 10f;
-            [Tooltip("How big slam storage should be to crush object after jumping with it.")] public float minCrushPercentage = 0.5f;
+            [field: SerializeField] public float SlamingSpeed { get; private set; } = 50;
+            [field: SerializeField] public float SlamStorageKeepTime { get; private set; } = 1f;
+            [field: SerializeField] public float MaxSlamStorage { get; private set; } = 30;
+            [field: SerializeField] public float SlamFlightBackMaxTime { get; private set; } = 2f;
+            [field: SerializeField] public float SlamDamageMultiplier { get; private set; } = 10f;
+            [field: SerializeField] [Tooltip("How big slam storage should be to crush object after jumping with it.")] public float MinCrushPercentage { get; private set; } = 0.5f;
         }
         
 
         [Serializable]
         public class Misc
         {
-            public Misc GetReadonly()
-            {
-                return new Misc
-                {
-                    bonusOrientationMethod = bonusOrientationMethod,
-                    bonusOrientationSharpness = bonusOrientationSharpness,
-                    crouchedCapsuleHeight = crouchedCapsuleHeight,
-                    dashSpeed = dashSpeed,
-                    dashDuration = dashDuration,
-                    dashMaxEnergy = dashMaxEnergy,
-                    dashCost = dashCost,
-                    dashRechargeRate = dashRechargeRate,
-                    dashDirectionByInputThreshold = dashDirectionByInputThreshold
-                };
-            }
-            
-            
-            public BonusOrientationMethod bonusOrientationMethod = BonusOrientationMethod.None;
-            public float bonusOrientationSharpness = 10f;
-            public float crouchedCapsuleHeight = 1f;
-            public float dashSpeed;
-            public float dashDuration;
-            public float dashMaxEnergy = 100f;
-            public float dashCost = 33f;
-            public float dashRechargeRate = 10f;
-            public float dashDirectionByInputThreshold = 0.1f;
+            [field: SerializeField] public BonusOrientationMethod BonusOrientationMethod { get; private set; } = BonusOrientationMethod.None;
+            [field: SerializeField] public float BonusOrientationSharpness { get; private set; } = 10f;
+            [field: SerializeField] public float CrouchedCapsuleHeight { get; private set; } = 1f;
+            [field: SerializeField] public float DashSpeed { get; private set; }
+            [field: SerializeField] public float DashDuration { get; private set; }
+            [field: SerializeField] public float DashMaxEnergy { get; private set; } = 100f;
+            [field: SerializeField] public float DashCost { get; private set; } = 33f;
+            [field: SerializeField] public float DashRechargeRate { get; private set; } = 10f;
+            [field: SerializeField] public float DashDirectionByInputThreshold { get; private set; } = 0.1f;
 
         }
     }

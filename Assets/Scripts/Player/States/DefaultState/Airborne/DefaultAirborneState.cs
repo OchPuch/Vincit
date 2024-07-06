@@ -28,16 +28,16 @@ namespace Player.States.DefaultState.Airborne
             base.UpdateVelocity(ref currentVelocity, deltaTime);
             if (PlayerData.moveInputVector.sqrMagnitude > 0f)
             {
-                Vector3 addedVelocity = PlayerData.moveInputVector * (PlayerData.playerConfig.AirMovementData.airAccelerationSpeed * deltaTime);
+                Vector3 addedVelocity = PlayerData.moveInputVector * (PlayerData.playerConfig.AirMovementData.AirAccelerationSpeed * deltaTime);
 
                 Vector3 currentVelocityOnInputsPlane = Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.CharacterUp);
 
                 // Limit air velocity from inputs
-                if (currentVelocityOnInputsPlane.magnitude < PlayerData.playerConfig.AirMovementData.maxAirMoveSpeed)
+                if (currentVelocityOnInputsPlane.magnitude < PlayerData.playerConfig.AirMovementData.MaxAirMoveSpeed)
                 {
                     // clamp addedVel to make total vel not exceed max vel on inputs plane
                     Vector3 newTotal =
-                        Vector3.ClampMagnitude(currentVelocityOnInputsPlane + addedVelocity, PlayerData.playerConfig.AirMovementData.maxAirMoveSpeed);
+                        Vector3.ClampMagnitude(currentVelocityOnInputsPlane + addedVelocity, PlayerData.playerConfig.AirMovementData.MaxAirMoveSpeed);
                     addedVelocity = newTotal - currentVelocityOnInputsPlane;
                     
                 }
@@ -70,7 +70,7 @@ namespace Player.States.DefaultState.Airborne
             currentVelocity += PlayerData.gravity * deltaTime;
 
             // Drag
-            currentVelocity *= (1f / (1f + (PlayerData.playerConfig.AirMovementData.drag * deltaTime)));
+            currentVelocity *= (1f / (1f + (PlayerData.playerConfig.AirMovementData.Drag * deltaTime)));
             
             
             WallJump(ref currentVelocity, deltaTime);

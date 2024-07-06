@@ -1,4 +1,6 @@
 ﻿using Player.Data;
+using Player.StateMachine;
+using Player.States.DefaultState.Airborne;
 using UnityEngine;
 using Utils;
 
@@ -6,7 +8,7 @@ namespace Player.AdditionalPhysics
 {
     public class WallDetector : MonoBehaviour
     {
-        [SerializeField] private SphereCollider _sphereCollider;
+        [SerializeField] private CapsuleCollider nearCollider;
         private PlayerData _playerData;
         private int _objectCount;
   
@@ -14,6 +16,16 @@ namespace Player.AdditionalPhysics
         public void Init(PlayerData data, StateMachine.StateMachine stateMachine)
         {
             _playerData = data;
+            WallCheck();
+            stateMachine.StateEntered += OnStateEntered;
+        }
+
+        private void OnStateEntered(IState obj)
+        {
+            if (obj is DefaultAirborneState)
+            {
+                WallCheck();
+            }
         }
         
         private void WallCheck()
@@ -26,7 +38,7 @@ namespace Player.AdditionalPhysics
             
             //Create overlapp sphere
             Collider[] colliders = new Collider[1];
-            _objectCount = Physics.OverlapSphereNonAlloc(transform.position, _sphereCollider.radius, colliders, _playerData.levelLayerMask); 
+            _objectCount = Physics.OverlapSphereNonAlloc(transform.position, nearCollider.radius, colliders, _playerData.levelLayerMask); 
             if (_objectCount > 0)
             {
                 _playerData.isNearWall = true;
