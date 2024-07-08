@@ -1780,7 +1780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d478705cc64183b3c4aa37ce8fc6c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sphereCollider: {fileID: 7743039165673922033}
+  nearCollider: {fileID: 7743039165673922033}
 --- !u!54 &6177337246465338354
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1827,8 +1827,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &7743039165673922033
-SphereCollider:
+--- !u!65 &7743039165673922033
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1837,7 +1837,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 128
@@ -1846,5 +1846,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.2053912, y: 0.30549455, z: 1}
+  m_Center: {x: 0, y: -0.025934186, z: 0}

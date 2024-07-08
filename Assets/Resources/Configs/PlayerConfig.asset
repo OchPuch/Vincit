@@ -13,42 +13,42 @@ MonoBehaviour:
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
   stableMovementData:
-    maxStableMoveSpeed: 10
-    stableMovementSharpness: 80
-    orientationSharpness: 999
-    orientationMethod: 0
+    <MaxStableMoveSpeed>k__BackingField: 10
+    <StableMovementSharpness>k__BackingField: 80
+    <OrientationSharpness>k__BackingField: 80
+    <OrientationMethod>k__BackingField: 0
   airMovementData:
-    maxAirMoveSpeed: 20
-    airAccelerationSpeed: 40
-    drag: 0.1
+    <MaxAirMoveSpeed>k__BackingField: 20
+    <AirAccelerationSpeed>k__BackingField: 40
+    <Drag>k__BackingField: 0.1
   jumpingData:
-    allowJumpingWhenSliding: 0
-    jumpUpSpeed: 20
-    jumpScalableForwardSpeed: 10
-    jumpPreGroundingGraceTime: 0.1
-    jumpPostGroundingGraceTime: 0.1
-    wallJumps: 3
-    wallJumpControlPercent: 0
+    <AllowJumpingWhenSliding>k__BackingField: 0
+    <JumpUpSpeed>k__BackingField: 20
+    <JumpScalableForwardSpeed>k__BackingField: 10
+    <JumpPreGroundingGraceTime>k__BackingField: 0.1
+    <JumpPostGroundingGraceTime>k__BackingField: 0.1
+    <WallJumps>k__BackingField: 3
+    <WallJumpControlPercent>k__BackingField: 0
   slidingData:
-    minSlidingSpeed: 30
-    slidingAccelerationByInput: 45
-    slidingDirectionByCurrentVelocityThreshold: 5
-    slidingStopThreshold: 5
-    gravityHelpK: 5
+    <MinSlidingSpeed>k__BackingField: 30
+    <SlidingAccelerationByInput>k__BackingField: 45
+    <SlidingDirectionByCurrentVelocityThreshold>k__BackingField: 5
+    <SlidingStopThreshold>k__BackingField: 5
+    <GravityHelpK>k__BackingField: 5
   slamingData:
-    slamingSpeed: 50
-    slamStorageKeepTime: 1
-    maxSlamStorage: 30
-    slamFlightBackMaxTime: 2
-    slamDamageMultiplier: 10
-    minCrushPercentage: 0.3
+    <SlamingSpeed>k__BackingField: 50
+    <SlamStorageKeepTime>k__BackingField: 1
+    <MaxSlamStorage>k__BackingField: 30
+    <SlamFlightBackMaxTime>k__BackingField: 2
+    <SlamDamageMultiplier>k__BackingField: 10
+    <MinCrushPercentage>k__BackingField: 0.3
   miscData:
-    bonusOrientationMethod: 1
-    bonusOrientationSharpness: 10
-    crouchedCapsuleHeight: 1
-    dashSpeed: 100
-    dashDuration: 0.1
-    dashMaxEnergy: 100
-    dashCost: 33
-    dashRechargeRate: 10
-    dashDirectionByInputThreshold: 0.1
+    <BonusOrientationMethod>k__BackingField: 1
+    <BonusOrientationSharpness>k__BackingField: 10
+    <CrouchedCapsuleHeight>k__BackingField: 1
+    <DashSpeed>k__BackingField: 150
+    <DashDuration>k__BackingField: 0.1
+    <DashMaxEnergy>k__BackingField: 100
+    <DashCost>k__BackingField: 33
+    <DashRechargeRate>k__BackingField: 10
+    <DashDirectionByInputThreshold>k__BackingField: 0.1
