@@ -17,6 +17,18 @@ namespace Player.States.DefaultState.Special
         {
             PlayerData.currentDashEnergy = PlayerData.playerConfig.MiscData.DashMaxEnergy;
         }
+        public override void SetInputs(ref PlayerController.PlayerCharacterInputs newInputs)
+        {
+            base.SetInputs(ref newInputs);
+            if (PlayerData.Inputs.CrouchDown)
+            {
+                if (PlayerData.motor.GroundingStatus.IsStableOnGround)
+                {
+                    StateMachine.SwitchState<DefaultSlideState>();
+                }
+            }
+        }
+
 
         public override void Enter()
         {
@@ -47,6 +59,7 @@ namespace Player.States.DefaultState.Special
             PlayerData.dashGun.Shoot();
             if (_dashTime > PlayerData.playerConfig.MiscData.DashDuration)
             {
+                SetSpeedSlideBuffer();
                 currentVelocity = _dashDirection * PlayerData.playerConfig.AirMovementData.MaxAirMoveSpeed;
                 if (PlayerData.motor.GroundingStatus.IsStableOnGround)
                 {

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 22e6d86fba8fdbe4f8a0008cb55f444e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 210177
+  packageName: 'Super Simple Skybox: Dynamic Sky / Procedural Skybox (URP & BIRP)'
+  packageVersion: 4.2.1
+  assetPath: Packages/com.occasoftware.super-simple-skybox/Samples/Demo/Materials/PlaneMaterial.mat
+  uploadId: 612339

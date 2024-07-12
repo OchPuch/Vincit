@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 81738e1e09b451a49a8dc359d4aaebdc
+timeCreated: 1431951610
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Samples/Blacksmith/Models/Materials/blacksmith_cart_wheels.mat
+  uploadId: 379298

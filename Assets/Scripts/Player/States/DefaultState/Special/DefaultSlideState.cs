@@ -11,7 +11,7 @@ namespace Player.States.DefaultState.Special
     {
         private bool _stopped;
         private bool _startVelocitySet;
-        
+        private Vector3 _bufferedVelocity;
 
         public DefaultSlideState(PlayerController controller, IStateSwitcher stateMachine, PlayerData playerData) :
             base(controller, stateMachine, playerData)
@@ -28,7 +28,12 @@ namespace Player.States.DefaultState.Special
             PlayerData.meshRoot.localScale = new Vector3(1f, 0.5f, 1f);
             _stopped = false;
             _startVelocitySet = false;
+            _bufferedVelocity = Vector3.zero;
 
+            if (PlayerData.slideSpeedBufferApplyTimer > 0)
+            {
+                _bufferedVelocity = PlayerData.slideSpeedBuffer;
+            }
 
             PlayerData.playerMovementAudio.StartSlideLoop();
         }
@@ -39,13 +44,24 @@ namespace Player.States.DefaultState.Special
 
             if (PlayerData.motor.GroundingStatus.IsStableOnGround && !_stopped)
             {
-                Vector3 velocityOnPlane =
+                Vector3 currentVelocityOnPlane =
                     Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
+                Vector3 bufferedVelocityOnPlane =
+                    Vector3.ProjectOnPlane(_bufferedVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
 
-                if (velocityOnPlane.magnitude >
-                    PlayerData.playerConfig.SlidingData.SlidingDirectionByCurrentVelocityThreshold)
+                Vector3 slidingSpeedOnPlane = currentVelocityOnPlane.magnitude > bufferedVelocityOnPlane.magnitude
+                    ? currentVelocityOnPlane
+                    : bufferedVelocityOnPlane;
+
+                if (slidingSpeedOnPlane.magnitude > PlayerData.playerConfig.SlidingData.MaxSlidingSpeed)
                 {
-                    currentVelocity = velocityOnPlane;
+                    slidingSpeedOnPlane = slidingSpeedOnPlane.normalized *
+                                          PlayerData.playerConfig.SlidingData.MaxSlidingSpeed;
+                }
+
+                if (slidingSpeedOnPlane.magnitude > PlayerData.playerConfig.SlidingData.SlidingDirectionByCurrentVelocityThreshold)
+                {
+                    currentVelocity = slidingSpeedOnPlane;
                     if (currentVelocity.magnitude <= PlayerData.playerConfig.SlidingData.MinSlidingSpeed)
                     {
                         currentVelocity = currentVelocity.normalized *
@@ -75,12 +91,12 @@ namespace Player.States.DefaultState.Special
                         currentVelocity = Vector3
                             .ProjectOnPlane(lookVector, PlayerData.motor.GroundingStatus.GroundNormal)
                             .normalized * PlayerData.playerConfig.SlidingData.MinSlidingSpeed;
-                        velocityOnPlane = Vector3.ProjectOnPlane(currentVelocity,
+                        slidingSpeedOnPlane = Vector3.ProjectOnPlane(currentVelocity,
                             PlayerData.motor.GroundingStatus.GroundNormal);
                     }
                 }
-                
-                if (velocityOnPlane.magnitude <= PlayerData.playerConfig.SlidingData.SlidingStopThreshold)
+
+                if (slidingSpeedOnPlane.magnitude <= PlayerData.playerConfig.SlidingData.SlidingStopThreshold)
                 {
                     _stopped = true;
                 }
@@ -97,7 +113,7 @@ namespace Player.States.DefaultState.Special
                     _stopped = false;
                 }
             }
-            
+
             //Gravity helps
             if (PlayerData.motor.GroundingStatus.IsStableOnGround)
             {
@@ -105,6 +121,11 @@ namespace Player.States.DefaultState.Special
                 if (VectorUtils.AreCodirected(currentVelocity, gravityHelp))
                 {
                     currentVelocity += gravityHelp * (PlayerData.playerConfig.SlidingData.GravityHelpK * deltaTime);
+                    if (currentVelocity.magnitude > PlayerData.playerConfig.SlidingData.MaxSlidingSpeed)
+                    {
+                        currentVelocity = currentVelocity.normalized *
+                                          PlayerData.playerConfig.SlidingData.MaxSlidingSpeed;
+                    }
                 }
             }
 
@@ -126,14 +147,10 @@ namespace Player.States.DefaultState.Special
 
                 // Drag
                 currentVelocity *= (1f / (1f + (PlayerData.playerConfig.AirMovementData.Drag * deltaTime)));
-                
+            }
+            
+            if (!Jump(ref currentVelocity, deltaTime))
                 WallJump(ref currentVelocity, deltaTime);
-            }
-            else
-            {
-                Jump(ref currentVelocity, deltaTime);
-            }
-
         }
 
         public override void AfterCharacterUpdate(float deltaTime)
@@ -185,7 +202,7 @@ namespace Player.States.DefaultState.Special
                 PlayerData.meshRoot.localScale = new Vector3(1f, 1f, 1f);
                 PlayerData.isSliding = false;
             }
-            
+
             PlayerData.playerMovementAudio.StopSlideLoop();
         }
     }

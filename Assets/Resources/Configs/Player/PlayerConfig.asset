@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d87892626f69441f8c6b0a843908c176, type: 3}
+  m_Name: PlayerConfig
+  m_EditorClassIdentifier: 
+  stableMovementData:
+    <MaxStableMoveSpeed>k__BackingField: 10
+    <StableMovementSharpness>k__BackingField: 80
+    <OrientationSharpness>k__BackingField: 80
+    <OrientationMethod>k__BackingField: 0
+  airMovementData:
+    <MaxAirMoveSpeed>k__BackingField: 20
+    <AirAccelerationSpeed>k__BackingField: 40
+    <Drag>k__BackingField: 0.1
+  jumpingData:
+    <AllowJumpingWhenSliding>k__BackingField: 0
+    <JumpUpSpeed>k__BackingField: 20
+    <JumpScalableForwardSpeed>k__BackingField: 10
+    <JumpPreGroundingGraceTime>k__BackingField: 0.1
+    <JumpPostGroundingGraceTime>k__BackingField: 0.1
+    <WallJumps>k__BackingField: 3
+    <WallJumpControlPercent>k__BackingField: 0
+  slidingData:
+    <SpeedBufferApplyTime>k__BackingField: 0.05
+    <MaxSlidingSpeed>k__BackingField: 60
+    <MinSlidingSpeed>k__BackingField: 30
+    <SlidingAccelerationByInput>k__BackingField: 45
+    <SlidingDirectionByCurrentVelocityThreshold>k__BackingField: 5
+    <SlidingStopThreshold>k__BackingField: 5
+    <GravityHelpK>k__BackingField: 2
+  slamingData:
+    <SlamingSpeed>k__BackingField: 50
+    <SlamStorageKeepTime>k__BackingField: 1
+    <MaxSlamStorage>k__BackingField: 30
+    <SlamFlightBackMaxTime>k__BackingField: 2
+    <SlamDamageMultiplier>k__BackingField: 10
+    <CancelInAirGraceTime>k__BackingField: 0.05
+    <MinCrushPercentage>k__BackingField: 0.3
+  miscData:
+    <BonusOrientationMethod>k__BackingField: 1
+    <BonusOrientationSharpness>k__BackingField: 10
+    <CrouchedCapsuleHeight>k__BackingField: 1
+    <DashSpeed>k__BackingField: 150
+    <DashDuration>k__BackingField: 0.1
+    <DashMaxEnergy>k__BackingField: 100
+    <DashCost>k__BackingField: 33
+    <DashRechargeRate>k__BackingField: 10
+    <DashDirectionByInputThreshold>k__BackingField: 0.1

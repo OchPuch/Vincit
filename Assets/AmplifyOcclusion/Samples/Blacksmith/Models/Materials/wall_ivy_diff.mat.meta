@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b0db2e8fdb30c48409610610c0abad3b
+timeCreated: 1460115216
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Samples/Blacksmith/Models/Materials/wall_ivy_diff.mat
+  uploadId: 379298

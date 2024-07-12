@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1fa936bbecc2b8d47b66b26a25371298
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Packages/PostProcessingSRP_3.0.0.unitypackage
+  uploadId: 379298

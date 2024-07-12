@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 238497e393ef0114796482775a4e64e4
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Packages/PostProcessingLightweightRP_5.7.2.unitypackage
+  uploadId: 379298

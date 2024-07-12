@@ -2,40 +2,29 @@
 using KinematicCharacterController.Examples;
 using Player.Data;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player
 {
     public class Player : MonoBehaviour
     {
-        public PlayerData playerData = new PlayerData();
-        [FormerlySerializedAs("character")] public PlayerController player;
-        public ExampleCharacterCamera characterCamera;
-
+        private PlayerData _data;
+        private PlayerController _character;
+        private ExampleCharacterCamera _characterCamera;
         private PhysicsMover _physicsMover;
-        
+
         private const string MouseXInput = "Mouse X";
         private const string MouseYInput = "Mouse Y";
         private const string MouseScrollInput = "Mouse ScrollWheel";
         private const string HorizontalInput = "Horizontal";
         private const string VerticalInput = "Vertical";
-        
 
-        private void Start()
+        public void Init(PlayerData data, PlayerController character  ,ExampleCharacterCamera characterCamera)
         {
-            player.Init(playerData);
-            
-            Cursor.lockState = CursorLockMode.Locked;
-
-            // Tell camera to follow transform
-            characterCamera.SetFollowTransform(playerData.cameraFollowPoint);
-
-            // Ignore the character's collider(s) for camera obstruction checks
-            characterCamera.IgnoredColliders.Clear();
-            characterCamera.IgnoredColliders.AddRange(player.GetComponentsInChildren<Collider>());
-
-            if (playerData.motor.AttachedRigidbody != null) 
-                _physicsMover = playerData.motor.AttachedRigidbody.GetComponent<PhysicsMover>();
+            _data = data;
+            _character = character;
+            _characterCamera = characterCamera;
+            if (_data.motor.AttachedRigidbody != null)
+                _physicsMover = _data.motor.AttachedRigidbody.GetComponent<PhysicsMover>();
         }
 
         private void Update()
@@ -51,14 +40,17 @@ namespace Player
         private void LateUpdate()
         {
             // Handle rotating the camera along with physics movers
-            if (characterCamera.RotateWithPhysicsMover)
+            if (_characterCamera.RotateWithPhysicsMover)
             {
-                if (playerData.motor.AttachedRigidbody && !_physicsMover)
+                if (_data.motor.AttachedRigidbody && !_physicsMover)
                 {
-                    _physicsMover = playerData.motor.AttachedRigidbody.GetComponent<PhysicsMover>();
+                    _physicsMover = _data.motor.AttachedRigidbody.GetComponent<PhysicsMover>();
                 }
-                characterCamera.PlanarDirection = _physicsMover.RotationDeltaFromInterpolation * characterCamera.PlanarDirection;
-                characterCamera.PlanarDirection = Vector3.ProjectOnPlane(characterCamera.PlanarDirection, playerData.motor.CharacterUp).normalized;
+
+                _characterCamera.PlanarDirection =
+                    _physicsMover.RotationDeltaFromInterpolation * _characterCamera.PlanarDirection;
+                _characterCamera.PlanarDirection = Vector3
+                    .ProjectOnPlane(_characterCamera.PlanarDirection, _data.motor.CharacterUp).normalized;
             }
 
             HandleCameraInput();
@@ -84,12 +76,13 @@ namespace Player
 #endif
 
             // Apply inputs to the camera
-            characterCamera.UpdateWithInput(Time.deltaTime, scrollInput, lookInputVector);
+            _characterCamera.UpdateWithInput(Time.deltaTime, scrollInput, lookInputVector);
 
             // Handle toggling zoom level
             if (Input.GetMouseButtonDown(1))
             {
-                characterCamera.TargetDistance = (characterCamera.TargetDistance == 0f) ? characterCamera.DefaultDistance : 0f;
+                _characterCamera.TargetDistance =
+                    (_characterCamera.TargetDistance == 0f) ? _characterCamera.DefaultDistance : 0f;
             }
         }
 
@@ -100,15 +93,15 @@ namespace Player
                 // Build the CharacterInputs struct
                 MoveAxisForward = Input.GetAxisRaw(VerticalInput),
                 MoveAxisRight = Input.GetAxisRaw(HorizontalInput),
-                CameraRotation = characterCamera.Transform.rotation,
+                CameraRotation = _characterCamera.Transform.rotation,
                 JumpDown = Input.GetKeyDown(KeyCode.Space),
-                CrouchDown = Input.GetKeyDown(KeyCode.CapsLock),
-                CrouchUp = Input.GetKeyUp(KeyCode.CapsLock),
+                CrouchDown = Input.GetKeyDown(KeyCode.CapsLock) || Input.GetKeyDown(KeyCode.LeftControl),
+                CrouchUp = Input.GetKeyUp(KeyCode.CapsLock) || Input.GetKeyUp(KeyCode.LeftControl),
                 DashDown = Input.GetKeyDown(KeyCode.LeftShift)
             };
 
             // Apply inputs to character
-            player.SetInputs(ref characterInputs);
+            _character.SetInputs(ref characterInputs);
         }
-    } 
+    }
 }

@@ -54,6 +54,8 @@ namespace Player.Configs
         [Serializable]
         public class Sliding
         {
+            [field: SerializeField] public float SpeedBufferApplyTime { get; private set; } = 0.1f;
+            [field: SerializeField] public float MaxSlidingSpeed { get; private set; } = 100f;
             [field: SerializeField] public float MinSlidingSpeed { get; private set; } = 30f;
             [field: SerializeField] public float SlidingAccelerationByInput { get; private set; } = 30f;
             [field: SerializeField] public float SlidingDirectionByCurrentVelocityThreshold { get; private set; } = 0.1f;
@@ -69,6 +71,8 @@ namespace Player.Configs
             [field: SerializeField] public float MaxSlamStorage { get; private set; } = 30;
             [field: SerializeField] public float SlamFlightBackMaxTime { get; private set; } = 2f;
             [field: SerializeField] public float SlamDamageMultiplier { get; private set; } = 10f;
+            [field: SerializeField] public float CancelInAirGraceTime { get; private set; } = 50;
+
             [field: SerializeField] [Tooltip("How big slam storage should be to crush object after jumping with it.")] public float MinCrushPercentage { get; private set; } = 0.5f;
         }
         

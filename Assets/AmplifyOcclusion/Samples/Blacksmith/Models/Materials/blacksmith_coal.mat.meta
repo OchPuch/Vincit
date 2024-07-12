@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1e182bb13f09b51429158a10dfa20164
+timeCreated: 1431951613
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Samples/Blacksmith/Models/Materials/blacksmith_coal.mat
+  uploadId: 379298

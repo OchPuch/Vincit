@@ -1,0 +1,24 @@
+{
+  "displayName": "Super Simple Skybox",
+  "name": "com.occasoftware.super-simple-skybox",
+  "version": "5.0.0",
+  "unity": "2022.3",
+  "description": "Super Simple Skybox is a procedural skybox shader developed using Shader Graph. The Skybox also includes a simple day/night system along with useful callbacks.",
+  "author": {
+    "name": "OccaSoftware",
+    "email": "hello@occasoftware.com",
+    "url": "https://www.occasoftware.com/"
+  },
+  "documentationUrl": "https://occasoftware.com/assets/super-simple-skybox",
+  "unityRelease": "0f1",
+  "dependencies": {
+    "com.unity.shadergraph": "14.0.7"
+  },
+  "samples": [
+    {
+      "displayName": "Demo",
+      "description": "A very simple example, enough to get started.",
+      "path": "Samples/Demo"
+    }
+  ]
+}

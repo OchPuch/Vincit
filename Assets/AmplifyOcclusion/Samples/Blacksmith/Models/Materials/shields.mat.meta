@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b41ba00c2bfab814ea9457c5dd4d8020
+timeCreated: 1431951610
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Samples/Blacksmith/Models/Materials/shields.mat
+  uploadId: 379298

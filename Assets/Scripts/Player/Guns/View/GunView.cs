@@ -6,7 +6,12 @@ namespace Player.Guns.View
 {
     public class GunView : MonoBehaviour
     {
+        [Header("Hold view")]
         [SerializeField] private Animator animator;
+        [SerializeField] private GameObject holdViewRoot;
+        [Header("PropView")]
+        [SerializeField] private GameObject propViewRoot;
+         
         //Bools
         private static readonly int IsSpinning = Animator.StringToHash("IsSpinning");
         //Triggers
@@ -24,10 +29,16 @@ namespace Player.Guns.View
 
         void Update()
         {
+            if (Input.GetMouseButtonDown(0))
+            {
+                animator.SetTrigger(Shoot);
+            }
+
             if (Input.GetMouseButtonDown(1))
             {
                 animator.SetBool(IsSpinning, true);
             }
+
             if (Input.GetMouseButtonUp(1))
             {
                 animator.SetBool(IsSpinning, false);

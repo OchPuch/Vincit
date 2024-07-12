@@ -88,6 +88,8 @@ namespace Player.States.DefaultState
 
             PlayerData.jumpedThisFrame = false;
             PlayerData.timeSinceJumpRequested += deltaTime;
+
+            PlayerData.slideSpeedBufferApplyTimer -= deltaTime;
             
             PlayerData.slamStorageKeepTimer += deltaTime;
             PlayerData.currentDashEnergy += deltaTime * PlayerData.playerConfig.MiscData.DashRechargeRate;
@@ -99,8 +101,6 @@ namespace Player.States.DefaultState
                 currentVelocity += PlayerData.internalVelocityAdd;
                 PlayerData.internalVelocityAdd = Vector3.zero;
             }
-            
-
         }
 
         public override void AfterCharacterUpdate(float deltaTime)
@@ -189,9 +189,9 @@ namespace Player.States.DefaultState
             }
         }
 
-        protected void Jump(ref Vector3 currentVelocity, float deltaTime)
+        protected bool Jump(ref Vector3 currentVelocity, float deltaTime)
         {
-            if (!PlayerData.jumpRequested) return;
+            if (!PlayerData.jumpRequested) return false;
             // See if we actually are allowed to jump
             if (!PlayerData.jumpConsumed &&
                  ((PlayerData.playerConfig.JumpingData.AllowJumpingWhenSliding
@@ -236,7 +236,10 @@ namespace Player.States.DefaultState
                 PlayerData.jumpedThisFrame = true;
                 StateMachine.SwitchState<DefaultFlyingState>();
                 PlayerData.playerMovementAudio.PlayJumpSound();
+                return true;
             }
+
+            return false;
         }
 
         protected void WallJump(ref Vector3 currentVelocity, float deltaTime)
@@ -287,6 +290,12 @@ namespace Player.States.DefaultState
                 StateMachine.SwitchState<DefaultFlyingState>();
                 PlayerData.playerMovementAudio.PlayWallJumpSound(PlayerData.wallJumpCount - 1);
             }
+        }
+
+        protected void SetSpeedSlideBuffer()
+        {
+            PlayerData.slideSpeedBufferApplyTimer = PlayerData.playerConfig.SlidingData.SpeedBufferApplyTime;
+            PlayerData.slideSpeedBuffer = PlayerData.motor.Velocity;
         }
     }
 }

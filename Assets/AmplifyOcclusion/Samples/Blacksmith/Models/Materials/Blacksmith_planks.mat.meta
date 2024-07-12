@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e0d0f547596726346918b50009931fd9
+timeCreated: 1431951606
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Samples/Blacksmith/Models/Materials/Blacksmith_planks.mat
+  uploadId: 379298

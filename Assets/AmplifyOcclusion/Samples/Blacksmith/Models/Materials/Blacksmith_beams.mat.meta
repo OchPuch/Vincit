@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7935be859038838469ad196170afc06e
+timeCreated: 1431951606
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Samples/Blacksmith/Models/Materials/Blacksmith_beams.mat
+  uploadId: 379298

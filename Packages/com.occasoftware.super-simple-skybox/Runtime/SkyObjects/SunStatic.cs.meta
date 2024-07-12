@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b6bc0f1414c2f9f4cb45eff128907e7f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 210177
+  packageName: 'Super Simple Skybox: Dynamic Sky / Procedural Skybox (URP & BIRP)'
+  packageVersion: 4.2.1
+  assetPath: Packages/com.occasoftware.super-simple-skybox/Runtime/SkyObjects/SunStatic.cs
+  uploadId: 612339

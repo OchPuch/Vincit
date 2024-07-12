@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ded9d1655e199ae4ebff6f245f611401
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Plugins/Editor/StartScreen.cs
+  uploadId: 379298

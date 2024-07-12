@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dfa338cea5f954545b083ffc900a35b9
+timeCreated: 1460115215
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Samples/Blacksmith/Models/Materials/SmithyLog_01.mat
+  uploadId: 379298

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c8712549cbeb62447bde49d0beceff23
+timeCreated: 1431951610
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Samples/Blacksmith/Models/Materials/blacksmith_rope.mat
+  uploadId: 379298

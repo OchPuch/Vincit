@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 62725b7ca0e576647a2340b96441572d
+timeCreated: 1431951606
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Samples/Blacksmith/Models/Materials/Blacksmith_chair.mat
+  uploadId: 379298

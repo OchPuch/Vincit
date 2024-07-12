@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 721d4727a93c1e548a5c6160a6229427
+timeCreated: 1449343856
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Resources/Blur.shader
+  uploadId: 379298

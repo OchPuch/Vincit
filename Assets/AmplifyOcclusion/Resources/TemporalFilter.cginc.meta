@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 99bb66f53a3674e6cad462ff44c28826
+timeCreated: 1522081059
+licenseType: Store
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Resources/TemporalFilter.cginc
+  uploadId: 379298

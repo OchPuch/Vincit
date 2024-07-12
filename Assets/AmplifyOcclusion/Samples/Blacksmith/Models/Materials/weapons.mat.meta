@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f46f6222f35adb240831b33667fe8964
+timeCreated: 1431951607
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56739
+  packageName: Amplify Occlusion
+  packageVersion: 2.0.8
+  assetPath: Assets/AmplifyOcclusion/Samples/Blacksmith/Models/Materials/weapons.mat
+  uploadId: 379298

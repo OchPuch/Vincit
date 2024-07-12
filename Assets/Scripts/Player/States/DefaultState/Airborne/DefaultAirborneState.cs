@@ -1,7 +1,6 @@
 ﻿using Player.Data;
 using Player.States.DefaultState.Grounded;
 using Player.States.DefaultState.Special;
-using Player.States.DefaultState.Transitions;
 using StateMachine;
 using UnityEngine;
 
@@ -19,7 +18,14 @@ namespace Player.States.DefaultState.Airborne
             base.SetInputs(ref newInputs);
             if (PlayerData.Inputs.CrouchDown)
             {
-                StateMachine.SwitchState<DefaultSlamingState>();
+                if (PlayerData.timeSinceLastAbleToJump >= PlayerData.playerConfig.SlamingData.CancelInAirGraceTime)
+                {
+                    StateMachine.SwitchState<DefaultSlamingState>();
+                }
+                else
+                {
+                    StateMachine.SwitchState<DefaultSlideState>();
+                }
             }
         }
 
@@ -72,9 +78,8 @@ namespace Player.States.DefaultState.Airborne
             // Drag
             currentVelocity *= (1f / (1f + (PlayerData.playerConfig.AirMovementData.Drag * deltaTime)));
             
-            
-            WallJump(ref currentVelocity, deltaTime);
-            
+            if (!Jump(ref currentVelocity, deltaTime))
+                WallJump(ref currentVelocity, deltaTime);
         }
 
         public override void AfterCharacterUpdate(float deltaTime)
@@ -83,6 +88,7 @@ namespace Player.States.DefaultState.Airborne
             // Keep track of time since we were last able to jump (for grace period)
             PlayerData.timeSinceLastAbleToJump += deltaTime;
         }
+        
 
         public override void PostGroundingUpdate(float deltaTime)
         {
