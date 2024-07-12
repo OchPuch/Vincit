@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.9934917, g: 0.99225104, b: 0.99184245, a: 1}
+  m_IndirectSpecularColor: {r: 0.9566198, g: 0.9566198, b: 0.9566198, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -775,8 +775,8 @@ MonoBehaviour:
   InvertX: 0
   InvertY: 0
   DefaultVerticalAngle: 20
-  MinVerticalAngle: -90
-  MaxVerticalAngle: 90
+  MinVerticalAngle: -89.9
+  MaxVerticalAngle: 89.9
   RotationSpeed: 1
   RotationSharpness: 10000
   TiltSharpness: 10
@@ -913,6 +913,8 @@ MonoBehaviour:
     isNearWall: 0
     wallNormal: {x: 0, y: 0, z: 0}
     wallJumpCount: 0
+    slideSpeedBufferApplyTimer: 0
+    slideSpeedBuffer: {x: 0, y: 0, z: 0}
     shouldBeSliding: 0
     isSliding: 0
     dashRequested: 0
@@ -1502,13 +1504,13 @@ MonoBehaviour:
     m_Bits: 4294967295
   DiscreteCollisionEvents: 1
   StepHandling: 1
-  MaxStepHeight: 0.5
-  AllowSteppingWithoutStableGrounding: 0
+  MaxStepHeight: 1.3
+  AllowSteppingWithoutStableGrounding: 1
   MinRequiredStepDepth: 0.1
   LedgeAndDenivelationHandling: 1
   MaxStableDistanceFromLedge: 0.5
-  MaxVelocityForLedgeSnap: 0
-  MaxStableDenivelationAngle: 45
+  MaxVelocityForLedgeSnap: 1
+  MaxStableDenivelationAngle: 40
   InteractiveRigidbodyHandling: 1
   RigidbodyInteractionType: 2
   SimulatedCharacterMass: 1

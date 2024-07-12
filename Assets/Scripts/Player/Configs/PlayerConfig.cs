@@ -56,11 +56,14 @@ namespace Player.Configs
         {
             [field: SerializeField] public float SpeedBufferApplyTime { get; private set; } = 0.1f;
             [field: SerializeField] public float MaxSlidingSpeed { get; private set; } = 100f;
+            [field: SerializeField] public float StableSlidingSpeed { get; private set; } = 35f;
             [field: SerializeField] public float MinSlidingSpeed { get; private set; } = 30f;
             [field: SerializeField] public float SlidingAccelerationByInput { get; private set; } = 30f;
             [field: SerializeField] public float SlidingDirectionByCurrentVelocityThreshold { get; private set; } = 0.1f;
             [field: SerializeField] public float SlidingStopThreshold { get; private set; } = 0.1f;
             [field: SerializeField] public float GravityHelpK { get; private set; } = 5f;
+            [field: SerializeField] public float UnstableDecreaseK { get; private set; } = 2f;
+            
         }
 
         [Serializable]

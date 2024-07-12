@@ -75,9 +75,7 @@ namespace Player.States.DefaultState.Special
                         Vector3 effectiveGroundNormal = PlayerData.motor.GroundingStatus.GroundNormal;
 
                         // Reorient velocity on slope
-                        currentVelocity =
-                            PlayerData.motor.GetDirectionTangentToSurface(currentVelocity, effectiveGroundNormal) *
-                            currentVelocity.magnitude;
+                        currentVelocity = PlayerData.motor.GetDirectionTangentToSurface(currentVelocity, effectiveGroundNormal) * currentVelocity.magnitude;
 
                         // Calculate target velocity
                         Vector3 inputRight = Vector3.Cross(PlayerData.moveInputVector, PlayerData.motor.CharacterUp);
@@ -106,8 +104,7 @@ namespace Player.States.DefaultState.Special
 
             if (_stopped)
             {
-                Vector3 velocityOnPlane =
-                    Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
+                Vector3 velocityOnPlane = Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
                 if (velocityOnPlane.magnitude >= PlayerData.playerConfig.SlidingData.MinSlidingSpeed)
                 {
                     _stopped = false;
@@ -118,13 +115,17 @@ namespace Player.States.DefaultState.Special
             if (PlayerData.motor.GroundingStatus.IsStableOnGround)
             {
                 Vector3 gravityHelp = Vector3.Project(PlayerData.gravity, currentVelocity);
-                if (VectorUtils.AreCodirected(currentVelocity, gravityHelp))
+                if (gravityHelp.magnitude > 0.05f && VectorUtils.AreCodirected(currentVelocity, gravityHelp))
                 {
                     currentVelocity += gravityHelp * (PlayerData.playerConfig.SlidingData.GravityHelpK * deltaTime);
                     if (currentVelocity.magnitude > PlayerData.playerConfig.SlidingData.MaxSlidingSpeed)
                     {
-                        currentVelocity = currentVelocity.normalized *
-                                          PlayerData.playerConfig.SlidingData.MaxSlidingSpeed;
+                        currentVelocity = currentVelocity.normalized * PlayerData.playerConfig.SlidingData.MaxSlidingSpeed;
+                    }
+
+                    if (currentVelocity.magnitude > PlayerData.playerConfig.SlidingData.StableSlidingSpeed)
+                    {
+                        currentVelocity += -currentVelocity.normalized * (PlayerData.playerConfig.SlidingData.UnstableDecreaseK * deltaTime);
                     }
                 }
             }

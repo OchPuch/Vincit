@@ -31,26 +31,28 @@ MonoBehaviour:
     <WallJumpControlPercent>k__BackingField: 0
   slidingData:
     <SpeedBufferApplyTime>k__BackingField: 0.05
-    <MaxSlidingSpeed>k__BackingField: 60
-    <MinSlidingSpeed>k__BackingField: 30
+    <MaxSlidingSpeed>k__BackingField: 45
+    <StableSlidingSpeed>k__BackingField: 35
+    <MinSlidingSpeed>k__BackingField: 25
     <SlidingAccelerationByInput>k__BackingField: 45
-    <SlidingDirectionByCurrentVelocityThreshold>k__BackingField: 5
+    <SlidingDirectionByCurrentVelocityThreshold>k__BackingField: 4
     <SlidingStopThreshold>k__BackingField: 5
-    <GravityHelpK>k__BackingField: 2
+    <GravityHelpK>k__BackingField: 5
+    <UnstableDecreaseK>k__BackingField: 2
   slamingData:
     <SlamingSpeed>k__BackingField: 50
     <SlamStorageKeepTime>k__BackingField: 1
     <MaxSlamStorage>k__BackingField: 30
     <SlamFlightBackMaxTime>k__BackingField: 2
     <SlamDamageMultiplier>k__BackingField: 10
-    <CancelInAirGraceTime>k__BackingField: 0.05
+    <CancelInAirGraceTime>k__BackingField: 0.01
     <MinCrushPercentage>k__BackingField: 0.3
   miscData:
     <BonusOrientationMethod>k__BackingField: 1
     <BonusOrientationSharpness>k__BackingField: 10
     <CrouchedCapsuleHeight>k__BackingField: 1
-    <DashSpeed>k__BackingField: 150
-    <DashDuration>k__BackingField: 0.1
+    <DashSpeed>k__BackingField: 100
+    <DashDuration>k__BackingField: 0.15
     <DashMaxEnergy>k__BackingField: 100
     <DashCost>k__BackingField: 33
     <DashRechargeRate>k__BackingField: 10
