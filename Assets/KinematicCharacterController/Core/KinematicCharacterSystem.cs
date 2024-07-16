@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using Utils;
 
 namespace KinematicCharacterController
 {
@@ -9,7 +10,7 @@ namespace KinematicCharacterController
     /// The system that manages the simulation of KinematicCharacterMotor and PhysicsMover
     /// </summary>
     [DefaultExecutionOrder(-100)]
-    public class KinematicCharacterSystem : MonoBehaviour
+    public class KinematicCharacterSystem : GamePlayBehaviour
     {
         private static KinematicCharacterSystem _instance;
 

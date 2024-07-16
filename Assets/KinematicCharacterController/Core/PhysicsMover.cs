@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 namespace KinematicCharacterController
 {
@@ -23,7 +24,7 @@ namespace KinematicCharacterController
     /// proper interaction with characters
     /// </summary>
     [RequireComponent(typeof(Rigidbody))]
-    public class PhysicsMover : MonoBehaviour
+    public class PhysicsMover : GamePlayBehaviour
     {
         /// <summary>
         /// The mover's Rigidbody

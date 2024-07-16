@@ -2,10 +2,11 @@
 using KinematicCharacterController.Examples;
 using Player.Data;
 using UnityEngine;
+using Utils;
 
 namespace Player
 {
-    public class Player : MonoBehaviour
+    public class Player : GamePlayBehaviour
     {
         private PlayerData _data;
         private PlayerController _character;

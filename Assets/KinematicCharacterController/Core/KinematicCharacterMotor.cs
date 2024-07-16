@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 namespace KinematicCharacterController
 {
@@ -153,7 +154,7 @@ namespace KinematicCharacterController
     /// Component that manages character collisions and movement solving
     /// </summary>
     [RequireComponent(typeof(CapsuleCollider))]
-    public class KinematicCharacterMotor : MonoBehaviour
+    public class KinematicCharacterMotor : GamePlayBehaviour
     {
 #pragma warning disable 0414
         [Header("Components")]

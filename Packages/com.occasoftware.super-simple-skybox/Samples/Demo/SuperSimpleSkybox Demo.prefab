@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162079df74f2f094ab771f7e0e70151b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationsPerHour: 14
+  rotationsPerHour: 1
   automaticLightIntensity: 1
   maximumLightIntensity: 0.3
 --- !u!1 &5616589529458315297
