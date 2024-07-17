@@ -7,31 +7,47 @@ namespace Guns.General
 {
     public abstract class Gun : GamePlayBehaviour
     {
-        [SerializeField] private BoxCollider pickupCollider;
         protected GunData Data;
         public event Action Shot;
-        public event Action Equip;
-        public event Action Drop;
-        public event Action Activate;
-        public event Action Deactivate;
+        public event Action Equipped;
+        public event Action Activated;
+        public event Action Deactivated;
         
         public void Init(GunData data)
         {
             Data = data;
         }
-        
+
+        private void Update()
+        {
+            Data.fireTimer += Time.deltaTime;
+        }
+
         public void HandleInput(GunInput input)
         {
-            if (input.ShootRequest)
+            if (input.ShootRequest && Data.fireTimer > Data.Config.FireRate)
             {
+                Shoot();
                 Shot?.Invoke();
+                Data.fireTimer = 0;
             }
         }
-        protected abstract void Shoot();
 
-        private void OnTriggerEnter(Collider other)
+        public void Equip()
         {
-            
+            Equipped?.Invoke();
         }
+
+        public void Deactivate()
+        {
+            Deactivated?.Invoke();
+        }
+        
+        public void Activate()
+        {
+            Activated?.Invoke();
+        }
+        
+        protected abstract void Shoot();
     }
 }

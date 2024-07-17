@@ -6475,7 +6475,6 @@ GameObject:
   m_Component:
   - component: {fileID: 526754470}
   - component: {fileID: 526754471}
-  - component: {fileID: 526754472}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -6511,28 +6510,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseable: 1
-  pickupCollider: {fileID: 526754472}
---- !u!65 &526754472
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526754469}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.8517456, y: 1.0943894, z: 1}
-  m_Center: {x: -0.43586406, y: 0.9179498, z: -0.0000000013385142}
 --- !u!1001 &538185537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15537,6 +15514,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd, type: 3}
+    - {fileID: -8700617353114198275, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd, type: 3}
@@ -15685,6 +15663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da87dce6c144d247a6042d8e1d16b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseable: 1
   animator: {fileID: 1771049582}
   holdViewRoot: {fileID: 1651908533}
   propViewRoot: {fileID: 1516173362}
@@ -17141,6 +17120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1356591383}
   - component: {fileID: 1356591384}
+  - component: {fileID: 1356591385}
   m_Layer: 0
   m_Name: Revolver Bootstrap
   m_TagString: Untagged
@@ -17155,8 +17135,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356591382}
-  m_LocalRotation: {x: -0, y: 0.6199793, z: -0, w: 0.7846181}
-  m_LocalPosition: {x: 0.18869781, y: -4.9899073, z: -3.2444506}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -1.98, y: -5.34, z: -3.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17164,7 +17144,7 @@ Transform:
   - {fileID: 526754470}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 76.629, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1356591384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17182,6 +17162,27 @@ MonoBehaviour:
       type: 2}
   gun: {fileID: 526754471}
   view: {fileID: 1226179548}
+--- !u!65 &1356591385
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356591382}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.79, y: 1.822763, z: 0.27}
+  m_Center: {x: -0.47, y: 0.55, z: 0}
 --- !u!1001 &1357347146
 PrefabInstance:
   m_ObjectHideFlags: 0

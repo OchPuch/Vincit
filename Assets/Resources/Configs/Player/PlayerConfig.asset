@@ -35,9 +35,9 @@ MonoBehaviour:
     <StableSlidingSpeed>k__BackingField: 35
     <MinSlidingSpeed>k__BackingField: 25
     <SlidingAccelerationByInput>k__BackingField: 45
-    <SlidingDirectionByCurrentVelocityThreshold>k__BackingField: 4
+    <SlidingDirectionByCurrentVelocityThreshold>k__BackingField: 10
     <SlidingStopThreshold>k__BackingField: 5
-    <GravityHelpK>k__BackingField: 10
+    <GravityHelpK>k__BackingField: 5
     <UnstableDecreaseK>k__BackingField: 2
   slamingData:
     <SlamingSpeed>k__BackingField: 50

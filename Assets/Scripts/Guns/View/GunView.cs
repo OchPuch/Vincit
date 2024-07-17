@@ -1,10 +1,11 @@
 using Guns.Data;
 using Guns.General;
 using UnityEngine;
+using Utils;
 
 namespace Guns.View
 {
-    public class GunView : MonoBehaviour
+    public class GunView : GamePlayBehaviour
     {
         [Header("Hold view")]
         [SerializeField] private Animator animator;
@@ -20,6 +21,26 @@ namespace Guns.View
         public void Init(Gun gun, GunData data)
         {
             gun.Shot += OnGunShot;
+            gun.Activated += OnGunActivated;
+            gun.Deactivated += OnGunDeactivated;
+            gun.Equipped += OnGunEquip;
+            holdViewRoot.SetActive(false);
+            propViewRoot.SetActive(true);
+        }
+
+        private void OnGunEquip()
+        {
+            propViewRoot.SetActive(false);
+        }
+
+        private void OnGunDeactivated()
+        {
+            holdViewRoot.SetActive(false);
+        }
+
+        private void OnGunActivated()
+        {
+            holdViewRoot.SetActive(true);
         }
 
         private void OnGunShot()
@@ -29,11 +50,6 @@ namespace Guns.View
 
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                animator.SetTrigger(Shoot);
-            }
-
             if (Input.GetMouseButtonDown(1))
             {
                 animator.SetBool(IsSpinning, true);

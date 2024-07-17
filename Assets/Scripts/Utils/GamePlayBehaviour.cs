@@ -8,7 +8,7 @@ namespace Utils
     {
         [SerializeField] private bool pauseable = true;
 
-        protected void Start()
+        protected virtual void Start()
         {
             if (!pauseable) return;
             if (PauseManager.Instance == null)
@@ -20,7 +20,7 @@ namespace Utils
             PauseManager.Instance.Resumed += OnResume;
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             if (!pauseable) return;
             if (PauseManager.Instance == null) return;

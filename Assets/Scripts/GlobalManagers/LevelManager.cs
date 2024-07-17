@@ -7,6 +7,4 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
-
-   
 }

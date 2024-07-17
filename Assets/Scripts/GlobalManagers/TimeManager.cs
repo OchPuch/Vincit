@@ -1,10 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace GlobalManagers
 {
     public class TimeManager : MonoBehaviour
     {
         public static TimeManager Instance { get; private set; }
+        public event Action TimeStopped;
+        public event Action TimeContinued;
+        
+        public bool IsTimeStopped { get; private set; }
         
         private float _pausedTimeScale = 1.0f;
 
@@ -19,6 +24,7 @@ namespace GlobalManagers
 
             Instance = this;
             
+            if (PauseManager.Instance is null) return;
             PauseManager.Instance.Paused += OnPause;
             PauseManager.Instance.Resumed += OnResume;
         }
@@ -28,8 +34,21 @@ namespace GlobalManagers
             if (Instance != this) return;
             
             Instance = null;
+            if (PauseManager.Instance is null) return;
             PauseManager.Instance.Paused -= OnPause;
             PauseManager.Instance.Resumed -= OnResume;
+        }
+
+        public void TimeStop()
+        {
+            IsTimeStopped = true;
+            TimeStopped?.Invoke();
+        }
+
+        public void TimeContinue()
+        {
+            IsTimeStopped = false;
+            TimeContinued?.Invoke();
         }
 
         private void OnResume()

@@ -15,5 +15,14 @@ namespace Guns.General
             gun.Init(data);
             view.Init(gun, data);
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent<GunController>(out var gunController))
+            {
+                gunController.EquipGun(gun);
+                enabled = false;
+            }
+        }
     }
 }
