@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Revolver
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 100
-  <FireRate>k__BackingField: 1
+  <FireRate>k__BackingField: 0.5
   <PushPower>k__BackingField: 10

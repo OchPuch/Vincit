@@ -8,6 +8,8 @@ namespace Player
 {
     public class Player : GamePlayBehaviour
     {
+        public static Player Instance { get; private set; }
+        
         private PlayerData _data;
         private PlayerController _character;
         private ExampleCharacterCamera _characterCamera;
@@ -21,11 +23,27 @@ namespace Player
 
         public void Init(PlayerData data, PlayerController character  ,ExampleCharacterCamera characterCamera)
         {
+            if (Instance == this) return;
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+            
             _data = data;
             _character = character;
             _characterCamera = characterCamera;
             if (_data.motor.AttachedRigidbody != null)
                 _physicsMover = _data.motor.AttachedRigidbody.GetComponent<PhysicsMover>();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            if (Instance != this) return;
+            Instance = null;
         }
 
         private void Update()

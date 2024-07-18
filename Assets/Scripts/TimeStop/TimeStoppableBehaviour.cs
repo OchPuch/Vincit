@@ -7,7 +7,6 @@ namespace TimeStop
 {
     public abstract class TimeStoppableBehaviour : GamePlayBehaviour
     {
-        
         [SerializeField] private bool disableOnTimeStop;
 
         protected override void Start()
@@ -26,6 +25,7 @@ namespace TimeStop
         protected override void OnDestroy()
         {
             base.OnDestroy();
+            if (TimeManager.Instance == null) return;
             TimeManager.Instance.TimeStopped -= OnTimeStop;
             TimeManager.Instance.TimeContinued -= OnTimeContinue;
         }

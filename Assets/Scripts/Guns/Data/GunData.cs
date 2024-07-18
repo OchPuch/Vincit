@@ -7,7 +7,7 @@ namespace Guns.Data
     public class GunData
     {
         [field: SerializeField] public GunConfig Config { get; private set; }
-
+        
         public float fireTimer;
     }
 }

@@ -3,7 +3,7 @@ using NaughtyAttributes;
 using Player;
 using UnityEngine;
 
-namespace Enviroment.Triggers
+namespace Environment.Triggers
 {
     public class GravityTrigger : MonoBehaviour
     {

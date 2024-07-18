@@ -1,4 +1,5 @@
 ﻿using System;
+using GlobalManagers;
 
 namespace TimeStop
 {
@@ -7,7 +8,8 @@ namespace TimeStop
     {
         public void Activate()
         {
-            
+            if (TimeManager.Instance.IsTimeStopped) TimeManager.Instance.TimeContinue();
+            else TimeManager.Instance.TimeStop();
         }
     }
 }

@@ -41,6 +41,7 @@ namespace Guns.General
             gun.Equip();
             _activeGun.Activate();
             gun.transform.parent.SetParent(gunRoot);
+            gun.transform.parent.localPosition = Vector3.zero;
         }
     }
 }

@@ -6207,7 +6207,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh37648
+  m_Name: pb_Mesh37936
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -6475,7 +6475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 526754470}
   - component: {fileID: 526754471}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13018,7 +13018,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh37534
+  m_Name: pb_Mesh37822
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -15391,6 +15391,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1226179547}
     m_Modifications:
+    - target: {fileID: -8905134256007573587, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
         type: 3}
       propertyPath: m_RootOrder
@@ -15471,16 +15476,41 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1b898341794b88e468e9b0fc127393ef, type: 2}
+    - target: {fileID: -5770634479784780433, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -5436111346566423630, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1b898341794b88e468e9b0fc127393ef, type: 2}
+    - target: {fileID: -5415423565486100432, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -2888751685368366251, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1b898341794b88e468e9b0fc127393ef, type: 2}
+    - target: {fileID: -2393086411871671637, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1107503247654006049, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -403771112279469226, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 791419091775856660, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -15491,11 +15521,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Revolver Prop Model
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1373817491374147560, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1b898341794b88e468e9b0fc127393ef, type: 2}
+    - target: {fileID: 1917066768431806605, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2133927888532701218, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -15506,6 +15546,26 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1b898341794b88e468e9b0fc127393ef, type: 2}
+    - target: {fileID: 2511283146598092284, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429544662810895410, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159693566373791286, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242669681949083111, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7054597136147000138, guid: 842ada4a6ee8aaa4ca1e25a8fa119cfd,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -15627,7 +15687,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1226179547}
   - component: {fileID: 1226179548}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17121,7 +17181,7 @@ GameObject:
   - component: {fileID: 1356591383}
   - component: {fileID: 1356591384}
   - component: {fileID: 1356591385}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Revolver Bootstrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17160,6 +17220,7 @@ MonoBehaviour:
   data:
     <Config>k__BackingField: {fileID: 11400000, guid: 78b2a8ce83c232649a55ad201cfa47d8,
       type: 2}
+    fireTimer: 0
   gun: {fileID: 526754471}
   view: {fileID: 1226179548}
 --- !u!65 &1356591385
@@ -20921,7 +20982,7 @@ GameObject:
   - component: {fileID: 1651908536}
   - component: {fileID: 1651908535}
   - component: {fileID: 1651908534}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: GunView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22341,7 +22402,7 @@ GameObject:
   - component: {fileID: 1771049584}
   - component: {fileID: 1771049582}
   - component: {fileID: 1771049585}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25720,7 +25781,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh37274
+  m_Name: pb_Mesh37562
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2

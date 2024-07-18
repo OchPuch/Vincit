@@ -4,9 +4,5 @@ namespace Guns.Types
 {
     public class Revolver : Gun
     {
-        protected override void Shoot()
-        {
-            
-        }
     }
 }

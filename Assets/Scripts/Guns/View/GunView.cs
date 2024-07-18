@@ -17,7 +17,8 @@ namespace Guns.View
         private static readonly int IsSpinning = Animator.StringToHash("IsSpinning");
         //Triggers
         private static readonly int Shoot = Animator.StringToHash("Shoot");
-
+        private static readonly int Equip = Animator.StringToHash("Equip");
+        
         public void Init(Gun gun, GunData data)
         {
             gun.Shot += OnGunShot;
@@ -30,6 +31,8 @@ namespace Guns.View
 
         private void OnGunEquip()
         {
+            holdViewRoot.SetActive(true);
+            animator.SetTrigger(Equip);
             propViewRoot.SetActive(false);
         }
 

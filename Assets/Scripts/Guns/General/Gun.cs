@@ -1,4 +1,5 @@
 ﻿using System;
+using Guns.Bullets;
 using Guns.Data;
 using UnityEngine;
 using Utils;
@@ -8,6 +9,7 @@ namespace Guns.General
     public abstract class Gun : GamePlayBehaviour
     {
         protected GunData Data;
+        protected BulletFactory BulletFactory;
         public event Action Shot;
         public event Action Equipped;
         public event Action Activated;
@@ -16,8 +18,9 @@ namespace Guns.General
         public void Init(GunData data)
         {
             Data = data;
+            BulletFactory = new BulletFactory(Data.Config.Projectile, this);
         }
-
+        
         private void Update()
         {
             Data.fireTimer += Time.deltaTime;
@@ -47,7 +50,11 @@ namespace Guns.General
         {
             Activated?.Invoke();
         }
-        
-        protected abstract void Shoot();
+
+        protected virtual void Shoot()
+        {
+            var bullet = BulletFactory.CreateBullet(transform.position);
+            bullet.Init();
+        }
     }
 }
