@@ -45,10 +45,11 @@ namespace Guns.Bullets
             return bullet;
         }
 
-        public Bullet CreateBullet(Vector2 position)
+        public Bullet CreateBullet()
         {
             var bullet = _bulletPool.Get();
-            bullet.transform.position = position;
+            bullet.transform.position = _origin.transform.position;
+            bullet.transform.forward = _origin.transform.forward;
             return bullet;
         }
     }

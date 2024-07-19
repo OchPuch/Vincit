@@ -53,7 +53,7 @@ namespace Guns.General
 
         protected virtual void Shoot()
         {
-            var bullet = BulletFactory.CreateBullet(transform.position);
+            var bullet = BulletFactory.CreateBullet();
             bullet.Init();
         }
     }

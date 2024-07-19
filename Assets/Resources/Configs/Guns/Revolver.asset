@@ -15,3 +15,5 @@ MonoBehaviour:
   <Damage>k__BackingField: 100
   <FireRate>k__BackingField: 0.5
   <PushPower>k__BackingField: 10
+  <Projectile>k__BackingField: {fileID: 4121726910312821292, guid: a990c64c98236af4094cd7f4afb5f093,
+    type: 3}

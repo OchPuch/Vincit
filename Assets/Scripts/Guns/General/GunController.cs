@@ -40,8 +40,12 @@ namespace Guns.General
             _activeGun = gun;
             gun.Equip();
             _activeGun.Activate();
+            
             gun.transform.parent.SetParent(gunRoot);
             gun.transform.parent.localPosition = Vector3.zero;
+            gun.transform.localPosition = Vector3.zero;
+            gun.transform.parent.forward = gunRoot.forward;
+            gun.transform.forward = gunRoot.forward;
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Guns.General
 {
     public class GunBootstrap : MonoBehaviour
     {
+        [SerializeField] private BoxCollider pickUpCollider;
         [SerializeField] private GunData data;
         [SerializeField] private Gun gun;
         [SerializeField] private GunView view;
@@ -22,6 +23,7 @@ namespace Guns.General
             {
                 gunController.EquipGun(gun);
                 enabled = false;
+                pickUpCollider.enabled = false;
             }
         }
     }
