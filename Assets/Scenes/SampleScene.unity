@@ -6207,7 +6207,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh37968
+  m_Name: pb_Mesh38180
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -12973,7 +12973,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh37854
+  m_Name: pb_Mesh38074
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -25203,7 +25203,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh37594
+  m_Name: pb_Mesh37814
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -26889,6 +26889,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Revolver Bootstrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415837258471350219, guid: 5bdc623bd510ed04893dee8700a34781,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4332145874100064720, guid: 5bdc623bd510ed04893dee8700a34781,
         type: 3}

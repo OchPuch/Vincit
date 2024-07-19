@@ -15,7 +15,7 @@ namespace Guns.General
         public event Action Activated;
         public event Action Deactivated;
         
-        public void Init(GunData data)
+        public virtual void Init(GunData data)
         {
             Data = data;
             BulletFactory = new BulletFactory(Data.Config.Projectile, this);
@@ -26,12 +26,12 @@ namespace Guns.General
             Data.fireTimer += Time.deltaTime;
         }
 
-        public void HandleInput(GunInput input)
+        public virtual void HandleInput(GunInput input)
         {
             if (input.ShootRequest && Data.fireTimer > Data.Config.FireRate)
             {
                 Shoot();
-                Shot?.Invoke();
+                InvokeShot();
                 Data.fireTimer = 0;
             }
         }
@@ -51,6 +51,11 @@ namespace Guns.General
             Activated?.Invoke();
         }
 
+        protected void InvokeShot()
+        {
+            Shot?.Invoke();
+        }
+        
         protected virtual void Shoot()
         {
             var bullet = BulletFactory.CreateBullet();

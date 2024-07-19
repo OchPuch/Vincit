@@ -10,11 +10,17 @@ namespace Guns.General
         [SerializeField] private GunData data;
         [SerializeField] private Gun gun;
         [SerializeField] private GunView view;
+        [SerializeField] private bool disableAfterAwake;
 
         private void Awake()
         {
             gun.Init(data);
             view.Init(gun, data);
+            if (disableAfterAwake)
+            {
+                enabled = false;
+                pickUpCollider.enabled = false;
+            }
         }
 
         private void OnTriggerEnter(Collider other)

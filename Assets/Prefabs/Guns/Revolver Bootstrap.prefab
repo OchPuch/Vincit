@@ -98,7 +98,8 @@ MonoBehaviour:
       type: 2}
     fireTimer: 0
   gun: {fileID: 178408991704221983}
-  view: {fileID: 2524955427189870420}
+  view: {fileID: 4560092316361315720}
+  disableAfterAwake: 0
 --- !u!65 &7205622333637398782
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -331,7 +332,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3253545371181220065}
-  - component: {fileID: 2524955427189870420}
+  - component: {fileID: 4560092316361315720}
   m_Layer: 6
   m_Name: View
   m_TagString: Untagged
@@ -356,7 +357,7 @@ Transform:
   m_Father: {fileID: 4332145874100064720}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2524955427189870420
+--- !u!114 &4560092316361315720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -365,7 +366,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6425769033487348088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8da87dce6c144d247a6042d8e1d16b6b, type: 3}
+  m_Script: {fileID: 11500000, guid: 165a4f1590ce46d1963e25c648a09504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pauseable: 1
