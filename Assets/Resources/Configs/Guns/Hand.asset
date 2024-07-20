@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Hand
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 100
-  <FireRate>k__BackingField: 0.5
-  <PushPower>k__BackingField: 10
-  <Projectile>k__BackingField: {fileID: 4121726910312821292, guid: a990c64c98236af4094cd7f4afb5f093,
+  <FireRate>k__BackingField: 0.3
+  <Projectile>k__BackingField: {fileID: 936348442727101248, guid: 5be8a4e4c8866dd4c91c5e4cf0209b94,
     type: 3}

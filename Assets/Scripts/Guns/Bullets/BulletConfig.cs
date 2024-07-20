@@ -6,6 +6,7 @@ namespace Guns.Bullets
     public class BulletConfig : ScriptableObject
     {
         [field: SerializeField] public float DestroyTime { get; private set; }
-        [field: SerializeField] public float StartScaleX { get; private set; }
+        [field: SerializeField] public float StartRadius { get; private set; }
+        [field: SerializeField] public float PushPower { get; private set; } = 10f;
     }
 }

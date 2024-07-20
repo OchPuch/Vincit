@@ -33,7 +33,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _CloudSharpness
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -290,16 +290,16 @@ Material:
     - _CloudWindSpeed: {r: 0.2, g: 0.3, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 1, g: 1, b: 1, a: 0}
+    - _GroundColor: {r: 1, g: 1, b: 1, a: 1}
     - _HorizonColorDay: {r: 1, g: 1, b: 1, a: 1}
-    - _HorizonColorNight: {r: 1, g: 1, b: 1, a: 0}
-    - _MoonColor: {r: 0, g: 0, b: 0, a: 0}
-    - _SkyColorDay: {r: 0, g: 0, b: 0, a: 0}
-    - _SkyColorNight: {r: 1, g: 1, b: 1, a: 0}
+    - _HorizonColorNight: {r: 1, g: 1, b: 1, a: 1}
+    - _MoonColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SkyColorDay: {r: 0, g: 0, b: 0, a: 1}
+    - _SkyColorNight: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Star_Texture_Tint: {r: 41.143448, g: 67.62262, b: 0, a: 1}
-    - _SunColorHorizon: {r: 1.4142135, g: 1.4142135, b: 1.4142135, a: 1}
-    - _SunColorZenith: {r: 1.4142135, g: 1.4142135, b: 1.4142135, a: 1}
+    - _SunColorHorizon: {r: 1, g: 1, b: 1, a: 1}
+    - _SunColorZenith: {r: 1, g: 1, b: 1, a: 1}
     - _WorldSpaceLightPos0: {r: 0, g: 0, b: 0, a: 0}
     - _ZenithColorDay: {r: 1, g: 1, b: 1, a: 1}
     - _ZenithColorNight: {r: 0.1037736, g: 0.01507654, b: 0.1037736, a: 0}

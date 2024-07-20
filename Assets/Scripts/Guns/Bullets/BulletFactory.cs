@@ -52,5 +52,13 @@ namespace Guns.Bullets
             bullet.transform.forward = _origin.transform.forward;
             return bullet;
         }
+
+        public Bullet CreateBullet(Vector3 position)
+        {
+            var bullet = _bulletPool.Get();
+            bullet.transform.position = position;
+            bullet.transform.forward = _origin.transform.forward;
+            return bullet;
+        }
     }
 }

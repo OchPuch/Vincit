@@ -9,13 +9,15 @@ namespace TimeStop
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float timeStoppedDrag;
         [SerializeField] private float timeStoppedAngularDrag;
-
+        
+        private Vector3 _cumulativeForceInStoppedTime;
         private float _bufferedDrag;
         private float _bufferedAngularDrag;
         private Vector3 _bufferedVelocity = Vector3.zero;
         private Vector3 _bufferedAngularVelocity = Vector3.zero;
         private bool _bufferedUseGravity;
         private Vector3 _changedVelocity = Vector3.zero;
+        
         
         protected override void Start()
         {
@@ -61,6 +63,14 @@ namespace TimeStop
             {
                 rb.velocity = _bufferedVelocity;
             }
+            
+            rb.AddForce(_cumulativeForceInStoppedTime, ForceMode.Impulse);
+            _cumulativeForceInStoppedTime = Vector3.zero;
+        }
+
+        public void AddForce(Vector3 force)
+        {
+            _cumulativeForceInStoppedTime += force;
         }
     }
 }

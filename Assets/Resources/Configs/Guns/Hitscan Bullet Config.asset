@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Hitscan Bullet Config
   m_EditorClassIdentifier: 
   <DestroyTime>k__BackingField: 0.1
-  <StartScaleX>k__BackingField: 0.12
+  <StartRadius>k__BackingField: 0.2
+  <PushPower>k__BackingField: 10

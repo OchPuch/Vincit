@@ -13,10 +13,6 @@ namespace Guns.Types.Hand
                 Data.fireTimer = 0;
             }
         }
-
-        protected override void Shoot()
-        {
-            
-        }
+        
     }
 }

@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 8995519550291920698}
   - component: {fileID: 4121726910312821292}
   - component: {fileID: 4575492644176616071}
+  - component: {fileID: 3008648350677219342}
   m_Layer: 8
   m_Name: HitscanBullet
   m_TagString: Untagged
@@ -412,7 +413,28 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2
   m_Height: 1
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3008648350677219342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6451369793157204274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b76232c86154779a315cd1a6000f320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseable: 1
+  bullet: {fileID: 4121726910312821292}
+  lineRenderers:
+  - {fileID: 8233647750354953233}
+  - {fileID: 5883451654254137730}
+  - {fileID: 6619696639267181690}
+  - {fileID: 3524240451076795945}
+  normalColor: {r: 1, g: 0.8049691, b: 0, a: 1}
+  overloadedColor: {r: 1, g: 0.087898776, b: 0, a: 1}

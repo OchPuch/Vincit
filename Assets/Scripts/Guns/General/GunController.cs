@@ -34,7 +34,6 @@ namespace Guns.General
             leftHand.Activate();
             leftHand.transform.parent.SetParent(gunRoot);
             leftHand.transform.parent.localPosition = Vector3.zero;
-            leftHand.transform.localPosition = Vector3.zero;
             leftHand.transform.parent.forward = gunRoot.forward;
             leftHand.transform.forward = gunRoot.forward;
         }

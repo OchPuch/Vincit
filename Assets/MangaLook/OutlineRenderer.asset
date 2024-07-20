@@ -32,9 +32,9 @@ MonoBehaviour:
     probeSamplingDebugTexture: {fileID: 2800000, guid: 24ec0e140fb444a44ab96ee80844e18e,
       type: 3}
   m_RendererFeatures:
-  - {fileID: 8637981216695964180}
   - {fileID: 5946080012276782191}
-  m_RendererFeatureMap: 14d2a88d2646e0776fd4ce7944b88452
+  - {fileID: 8637981216695964180}
+  m_RendererFeatureMap: 6fd4ce7944b8845214d2a88d2646e077
   m_UseNativeRenderPass: 1
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
