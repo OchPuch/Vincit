@@ -85,7 +85,7 @@ namespace Player.States.DefaultState
         public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
             base.UpdateVelocity(ref currentVelocity, deltaTime);
-
+            
             PlayerData.jumpedThisFrame = false;
             PlayerData.timeSinceJumpRequested += deltaTime;
 
@@ -100,6 +100,23 @@ namespace Player.States.DefaultState
             {
                 currentVelocity += PlayerData.internalVelocityAdd;
                 PlayerData.internalVelocityAdd = Vector3.zero;
+            }
+
+            if (PlayerData.pushRequested)
+            {
+                PlayerData.motor.ForceUnground();
+                switch (PlayerData.pushMode)
+                {
+                    case ForceMode.Impulse:
+                        currentVelocity += PlayerData.pushForce;
+                        break;
+                    default:
+                        currentVelocity = PlayerData.pushForce;
+                        break;
+                }
+
+                PlayerData.pushRequested = false;
+                StateMachine.SwitchState<DefaultAirborneState>();
             }
         }
 

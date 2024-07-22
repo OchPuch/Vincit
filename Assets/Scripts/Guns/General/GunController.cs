@@ -18,7 +18,8 @@ namespace Guns.General
         [SerializeField] private Transform gunRoot;
         [SerializeField] private TimeStopAbility ability;
         [SerializeField] private Hand leftHand;
-        
+
+        private Player.Player _owner;
         private readonly List<Gun> _guns = new();
         private Gun _activeGun;
 
@@ -30,7 +31,7 @@ namespace Guns.General
 
         private void InitHand()
         {
-            leftHand.Equip();
+            leftHand.Equip(_owner);
             leftHand.Activate();
             leftHand.transform.parent.SetParent(gunRoot);
             leftHand.transform.parent.localPosition = Vector3.zero;
@@ -44,7 +45,7 @@ namespace Guns.General
             {
                 AbilityRequest = Input.GetKeyDown(KeyCode.Q),
                 ShootRequest = Input.GetMouseButton(0),
-                HandPunchRequest = Input.GetMouseButtonDown(4)
+                HandPunchRequest = Input.GetMouseButtonDown(4),
             };
             
             if (input.AbilityRequest) ability.Activate();
@@ -60,7 +61,7 @@ namespace Guns.General
                 _activeGun.Deactivate();
             }
             _activeGun = gun;
-            gun.Equip();
+            gun.Equip(_owner);
             _activeGun.Activate();
             
             gun.transform.parent.SetParent(gunRoot);
@@ -68,6 +69,11 @@ namespace Guns.General
             gun.transform.localPosition = Vector3.zero;
             gun.transform.parent.forward = gunRoot.forward;
             gun.transform.forward = gunRoot.forward;
+        }
+
+        public void Init(Player.Player player)
+        {
+            _owner = player;
         }
     }
 }

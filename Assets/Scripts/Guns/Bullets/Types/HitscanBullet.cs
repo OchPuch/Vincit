@@ -1,6 +1,7 @@
 ﻿using System;
 using GlobalManagers;
 using Guns.General;
+using RayFire;
 using TimeStop;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Guns.Bullets.Types
 {
     public class HitscanBullet : Bullet
     {
+        [SerializeField] private RayfireGun rayfireGun;
+        
         private Vector3 _endPoint;
         private Vector3 _startPoint;
         private float _destroyTimer;
@@ -21,10 +24,10 @@ namespace Guns.Bullets.Types
             base.Init(origin);
             
             _startPoint = transform.position;
-            _endPoint = transform.position + transform.forward * GameManager.Instance.GameSettings.MaxShootingDistance;
+            _endPoint = transform.position + transform.forward * Config.MaxDistance;
             
             Ray ray = new Ray(transform.position, transform.forward);
-            float maxDistance = GameManager.Instance.GameSettings.MaxShootingDistance;
+            float maxDistance = Config.MaxDistance;
             
             if (Physics.Raycast(ray, out var stopHit, maxDistance, GameManager.Instance.GameSettings.BulletStopMask))
             {
@@ -38,12 +41,15 @@ namespace Guns.Bullets.Types
                 ProcessHit(hit);
             }
             
+            rayfireGun.Shoot();
+            
             UpdateTransform();
         }
 
         private void UpdateTransform()
         {
             float maxDistance = Vector3.Distance(_startPoint, _endPoint);
+            transform.forward = (_endPoint - _startPoint).normalized;
             transform.position = _startPoint + ((_endPoint - _startPoint) / 2f);
             transform.localScale = new Vector3(Config.StartRadius, Config.StartRadius, maxDistance);
         }

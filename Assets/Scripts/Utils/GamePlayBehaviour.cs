@@ -1,5 +1,4 @@
-﻿using System;
-using GlobalManagers;
+﻿using GlobalManagers;
 using UnityEngine;
 
 namespace Utils

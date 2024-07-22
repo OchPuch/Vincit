@@ -67,8 +67,6 @@ namespace RayFire
         public bool debris = true;
         [Space (1)]
         public bool dust = true;
-        [Space (1)]
-        public bool flash = true;
         
         //[HideInInspector] public bool sparks = false;
 
@@ -78,8 +76,6 @@ namespace RayFire
 
         [Header("  Properties")]
         [Space (2)]
-        
-        public RFFlash Flash = new RFFlash();
         
         //[Header("Projectile")]
         //[HideInInspector] public bool projectile = false;
@@ -237,10 +233,6 @@ namespace RayFire
             // Pos and normal info
             Vector3 impactPoint  = hit.point;
             Vector3 impactNormal = hit.normal;
-
-            // Create impact flash
-            VfxFlash (impactPoint, impactNormal);
-
             // Affected components
             RayfireRigid     rigidScr = null;
             RayfireRigidRoot rootScr  = null;
@@ -295,7 +287,6 @@ namespace RayFire
                 if (rigidScr == null && rootScr == null)
                 {
                     rbScr = hit.collider.attachedRigidbody;
-                    
                 }
             }
         }
@@ -326,10 +317,7 @@ namespace RayFire
             // If mesh collider
             // int triId = hit.triangleIndex;
             // Vector3 bar = hit.barycentricCoordinate;
-
-            // Create impact flash
-            VfxFlash(impactPoint, impactNormal);
- 
+            
             // Get rigid from collider or rigid body
             RayfireRigid rigid = hit.collider.attachedRigidbody == null 
                 ? hit.collider.GetComponent<RayfireRigid>() 
@@ -605,32 +593,7 @@ namespace RayFire
         /// /////////////////////////////////////////////////////////
         /// Vfx
         /// /////////////////////////////////////////////////////////
-
-        // Create impact flash
-        void VfxFlash(Vector3 position, Vector3 normal)
-        {
-            if (flash == true)
-            {
-                // Get light position
-                Vector3 lightPos = normal * Flash.distance + position;
-
-                // Create light object
-                GameObject impactFlashGo = new GameObject ("impactFlash");
-                impactFlashGo.transform.position = lightPos;
-
-                // Create light
-                Light lightScr = impactFlashGo.AddComponent<Light>();
-                lightScr.color     = Flash.color;
-                lightScr.intensity = Random.Range (Flash.intensityMin, Flash.intensityMax);
-                lightScr.range     = Random.Range (Flash.rangeMin,     Flash.rangeMax);
-
-                lightScr.shadows = LightShadows.Hard;
-
-                // Destroy with delay
-                Destroy (impactFlashGo, 0.2f);
-            }
-        }
-
+        
         // Impact Debris
         void VfxDebris(List<RayfireDebris> debrisList, Vector3 impactPos, Vector3 impactNormal)
         {

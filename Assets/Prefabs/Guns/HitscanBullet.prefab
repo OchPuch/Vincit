@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 4121726910312821292}
   - component: {fileID: 4575492644176616071}
   - component: {fileID: 3008648350677219342}
+  - component: {fileID: 3838715365608391844}
   m_Layer: 8
   m_Name: HitscanBullet
   m_TagString: Untagged
@@ -394,6 +395,7 @@ MonoBehaviour:
   disableOnTimeStop: 0
   <Config>k__BackingField: {fileID: 11400000, guid: 9cb75750eba35d943bf924850d9845ef,
     type: 2}
+  rayfireGun: {fileID: 3838715365608391844}
 --- !u!136 &4575492644176616071
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -438,3 +440,35 @@ MonoBehaviour:
   - {fileID: 3524240451076795945}
   normalColor: {r: 1, g: 0.8049691, b: 0, a: 1}
   overloadedColor: {r: 1, g: 0.087898776, b: 0, a: 1}
+--- !u!114 &3838715365608391844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6451369793157204274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aae98af4160c3f44a105545f7b49970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axis: 2
+  maxDistance: 100
+  target: {fileID: 0}
+  rounds: 2
+  rate: 0.3
+  strength: 5
+  radius: 1
+  demolishCluster: 1
+  affectInactive: 1
+  rigid: 1
+  rigidRoot: 1
+  rigidBody: 1
+  damage: 1
+  debris: 1
+  dust: 1
+  mask: -1
+  tagFilter: Untagged
+  showRay: 1
+  showHit: 1
+  shooting: 0

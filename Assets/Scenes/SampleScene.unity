@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1006322757}
-  m_IndirectSpecularColor: {r: 0.9566198, g: 0.9566198, b: 0.9566198, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3458,7 +3458,6 @@ Transform:
   - {fileID: 1439704165}
   - {fileID: 2554553635858181228}
   - {fileID: 2100118276}
-  - {fileID: 378020499}
   - {fileID: 2498079064731240033}
   - {fileID: 1617291773842406836}
   - {fileID: 895516144}
@@ -4298,90 +4297,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2768987941459439040, guid: f83f0c1a4504d1140be3bf56395719a8,
     type: 3}
   m_PrefabInstance: {fileID: 351988550}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &378020498
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 289084791}
-    m_Modifications:
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -65.8611
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -106.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -34.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4260885166808705425, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_Name
-      value: Crushable Kinematic Platform Z (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4260885166808705425, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8ed1f7256441d3242ab8d8c67bf41c6a, type: 3}
---- !u!4 &378020499 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-    type: 3}
-  m_PrefabInstance: {fileID: 378020498}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &392542781
 PrefabInstance:
@@ -6207,7 +6122,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38180
+  m_Name: pb_Mesh38298
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -12973,7 +12888,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38074
+  m_Name: pb_Mesh38192
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -25203,7 +25118,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh37814
+  m_Name: pb_Mesh37932
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2

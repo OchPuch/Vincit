@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7069843538230686072}
   - component: {fileID: 5453056911976994459}
   - component: {fileID: 7482521138142011907}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Crushable Kinematic Platform X
   m_TagString: Untagged
   m_Icon: {fileID: 0}

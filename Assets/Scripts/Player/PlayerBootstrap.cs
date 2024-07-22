@@ -1,4 +1,4 @@
-﻿using KinematicCharacterController;
+﻿using Guns.General;
 using KinematicCharacterController.Examples;
 using Player.Data;
 using UnityEngine;
@@ -11,6 +11,7 @@ namespace Player
         public PlayerController character;
         public ExampleCharacterCamera characterCamera;
         public Player player;
+        public GunController gunController;
         
         private void Start()
         {
@@ -25,6 +26,8 @@ namespace Player
             // Ignore the character's collider(s) for camera obstruction checks
             characterCamera.IgnoredColliders.Clear();
             characterCamera.IgnoredColliders.AddRange(character.GetComponentsInChildren<Collider>());
+
+            gunController.Init(player);
         }
     } 
 }

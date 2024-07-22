@@ -1,5 +1,7 @@
 ﻿using GlobalManagers;
 using Guns.General;
+using Guns.Types.Hand;
+using RayFire;
 using TimeStop;
 using UnityEngine;
 
@@ -7,20 +9,69 @@ namespace Guns.Bullets.Types
 {
     public class PunchSphere : Bullet
     {
+        [SerializeField] private float playerPushMultiplier = 0.3f;
+        [SerializeField] private float smallApproveTime = 0.4f;
+        [SerializeField] private RayfireGun rayfireGun;
         private float _destroyTime;
+        private bool _needApprove;
+        private bool _crushWallPunch;
+        private Collider[] _hitColliders;
+        private Hand HandGun => Origin as Hand;
+        
+        
         public override void Init(Gun origin)
         {
             base.Init(origin);
-            var hitColliders = Physics.OverlapSphere(transform.position, Config.StartRadius);
-            foreach (var hitCollider in hitColliders)
+            Vector3 point1 = transform.position;
+            Vector3 point2 = transform.position + transform.forward * Config.MaxDistance;
+            _hitColliders = Physics.OverlapCapsule(point1, point2, Config.StartRadius);
+            foreach (var hitCollider in _hitColliders)
+            {
+                PreProcessHit(hitCollider);
+            }
+            
+            if (_needApprove)
+            {
+                HandGun.PunchApproved += OnPunchApproved;
+                if (_crushWallPunch) HandGun.PunchApproved += CrushWall;
+                HandGun.RequestApprove(smallApproveTime);
+                return;
+            }
+            
+            FinishShoot();
+        }
+
+        private void CrushWall()
+        {
+            HandGun.PunchApproved -= CrushWall;
+            rayfireGun.Shoot();
+            Origin.Owner.RequestPush(-transform.forward * Config.PushPower/5f, ForceMode.Impulse);
+        }
+
+        private void FinishShoot()
+        {
+            foreach (var hitCollider in _hitColliders)
             {
                 ProcessHit(hitCollider);
             }
-
-            if (!TimeManager.Instance.IsTimeStopped)
+            if (!TimeManager.Instance.IsTimeStopped && !_needApprove)
             {
                 DestroyBullet();
             }
+        }
+        
+        private void OnPunchApproved()
+        {
+            _needApprove = false;
+            HandGun.PunchApproved -= OnPunchApproved;
+            FinishShoot();
+        }
+        
+        public override void ResetBullet()
+        {
+            base.ResetBullet();
+            _needApprove = false;
+            _crushWallPunch = false;
         }
 
         private void Update()
@@ -30,6 +81,18 @@ namespace Guns.Bullets.Types
             if (_destroyTime > Config.DestroyTime)
             {
                 DestroyBullet();
+            }
+        }
+        
+        private void PreProcessHit(Collider hitCollider)
+        {
+            if (hitCollider.gameObject.TryGetComponent<RayfireRigid>(out var rayfireRigid))
+            {
+                if (rayfireRigid.limitations.currentDepth == 0)
+                {
+                    _needApprove = true;
+                    _crushWallPunch = true;
+                }
             }
         }
 

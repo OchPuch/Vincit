@@ -37,21 +37,25 @@ namespace Player.States.DefaultState.Grounded
 
         public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
-            base.UpdateVelocity(ref currentVelocity, deltaTime);    
-            float currentVelocityMagnitude = currentVelocity.magnitude;
+            base.UpdateVelocity(ref currentVelocity, deltaTime);
 
-            Vector3 effectiveGroundNormal = PlayerData.motor.GroundingStatus.GroundNormal;
+            if (PlayerData.motor.GroundingStatus.IsStableOnGround)
+            {
+                float currentVelocityMagnitude = currentVelocity.magnitude;
 
-            // Reorient velocity on slope
-            currentVelocity = PlayerData.motor.GetDirectionTangentToSurface(currentVelocity, effectiveGroundNormal) * currentVelocityMagnitude;
+                Vector3 effectiveGroundNormal = PlayerData.motor.GroundingStatus.GroundNormal;
 
-            // Calculate target velocity
-            Vector3 inputRight = Vector3.Cross(PlayerData.moveInputVector, PlayerData.motor.CharacterUp);
-            Vector3 reorientedInput = Vector3.Cross(effectiveGroundNormal, inputRight).normalized * PlayerData.moveInputVector.magnitude;
-            Vector3 targetMovementVelocity = reorientedInput * PlayerData.playerConfig.StableMovementData.MaxStableMoveSpeed;
+                // Reorient velocity on slope
+                currentVelocity = PlayerData.motor.GetDirectionTangentToSurface(currentVelocity, effectiveGroundNormal) * currentVelocityMagnitude;
 
-            // Smooth movement Velocity
-            currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-PlayerData.playerConfig.StableMovementData.StableMovementSharpness * deltaTime));
+                // Calculate target velocity
+                Vector3 inputRight = Vector3.Cross(PlayerData.moveInputVector, PlayerData.motor.CharacterUp);
+                Vector3 reorientedInput = Vector3.Cross(effectiveGroundNormal, inputRight).normalized * PlayerData.moveInputVector.magnitude;
+                Vector3 targetMovementVelocity = reorientedInput * PlayerData.playerConfig.StableMovementData.MaxStableMoveSpeed;
+
+                // Smooth movement Velocity
+                currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-PlayerData.playerConfig.StableMovementData.StableMovementSharpness * deltaTime));
+            }
             
             Jump(ref currentVelocity, deltaTime);
         }

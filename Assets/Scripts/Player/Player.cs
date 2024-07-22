@@ -95,7 +95,7 @@ namespace Player
 #endif
 
             // Apply inputs to the camera
-            _characterCamera.UpdateWithInput(Time.deltaTime, scrollInput, lookInputVector);
+            _characterCamera.UpdateWithInput(Time.unscaledDeltaTime, scrollInput, lookInputVector);
 
             // Handle toggling zoom level
             if (Input.GetMouseButtonDown(1))
@@ -122,5 +122,13 @@ namespace Player
             // Apply inputs to character
             _character.SetInputs(ref characterInputs);
         }
+
+        public void RequestPush(Vector3 pushForce, ForceMode pushMode)
+        {
+            _data.pushForce = pushForce;
+            _data.pushMode = pushMode;
+            _data.pushRequested = true;
+        }
     }
+    
 }

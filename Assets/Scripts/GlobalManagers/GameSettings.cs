@@ -8,6 +8,5 @@ namespace GlobalManagers
         [field: Header("Bullets")]
         [field: SerializeField] public LayerMask BulletHitMask  { get; private set; }
         [field: SerializeField] public LayerMask BulletStopMask { get; private set; }
-        [field: SerializeField] public float MaxShootingDistance { get; private set; }
     }
 }

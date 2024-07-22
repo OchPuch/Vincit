@@ -82,5 +82,9 @@ namespace Player.Data
 
         public Vector3 lastInnerNormal = Vector3.zero;
         public Vector3 lastOuterNormal = Vector3.zero;
+
+        public bool pushRequested;
+        public ForceMode pushMode;
+        public Vector3 pushForce;
     }
 }

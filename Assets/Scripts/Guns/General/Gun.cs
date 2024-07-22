@@ -8,6 +8,7 @@ namespace Guns.General
 {
     public abstract class Gun : GamePlayBehaviour
     {
+        public Player.Player Owner { get; private set; }
         protected GunData Data;
         public BulletFactory BulletFactory { get; private set; }
         public event Action Shot;
@@ -21,7 +22,7 @@ namespace Guns.General
             BulletFactory = new BulletFactory(Data.Config.Projectile, this);
         }
         
-        private void Update()
+        protected virtual void Update()
         {
             Data.fireTimer += Time.deltaTime;
         }
@@ -36,8 +37,9 @@ namespace Guns.General
             }
         }
 
-        public void Equip()
+        public void Equip(Player.Player owner)
         {
+            Owner = owner;
             Equipped?.Invoke();
         }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.10742482, g: 0.10742482, b: 0.10742482, a: 1}
+  m_IndirectSpecularColor: {r: 0.95956635, g: 0.95956635, b: 0.95956635, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -258,14 +258,6 @@ MonoBehaviour:
   damage: 1
   debris: 1
   dust: 1
-  flash: 1
-  Flash:
-    intensityMin: 0.5
-    intensityMax: 0.7
-    rangeMin: 5
-    rangeMax: 7
-    distance: 0.4
-    color: {r: 1, g: 1, b: 0.8, a: 1}
   mask: 1
   tagFilter: Untagged
   showRay: 1
@@ -566,7 +558,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228356054}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2707,7 +2699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242567138}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2852,14 +2844,6 @@ MonoBehaviour:
   damage: 10
   debris: 1
   dust: 1
-  flash: 1
-  Flash:
-    intensityMin: 0.5
-    intensityMax: 0.7
-    rangeMin: 5
-    rangeMax: 7
-    distance: 0.4
-    color: {r: 1, g: 1, b: 0.8, a: 1}
   mask: 1
   tagFilter: Untagged
   showRay: 1
@@ -3460,9 +3444,13 @@ MonoBehaviour:
     - {fileID: 0}
     lastInnerNormal: {x: 0, y: 0, z: 0}
     lastOuterNormal: {x: 0, y: 0, z: 0}
+    pushRequested: 0
+    pushMode: 0
+    pushForce: {x: 0, y: 0, z: 0}
   character: {fileID: 1185531043422071794}
   characterCamera: {fileID: 1426876732}
   player: {fileID: 6177337246465338355}
+  gunController: {fileID: 6177337246465338356}
 --- !u!114 &1483422411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3703,6 +3691,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6babfe004051e72409d5321118266db5, type: 3}
+--- !u!1001 &1822987170
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.918927
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.4873824
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260885166808705425, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
+        type: 3}
+      propertyPath: m_Name
+      value: Crushable Kinematic Platform Z
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ed1f7256441d3242ab8d8c67bf41c6a, type: 3}
 --- !u!1 &1973417737
 GameObject:
   m_ObjectHideFlags: 0

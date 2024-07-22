@@ -23,6 +23,7 @@ namespace Guns.Bullets
 
         protected virtual void DestroyBullet()
         {
+            if (!gameObject.activeSelf) return;
             BulletDestroyed?.Invoke();
         }
     }
