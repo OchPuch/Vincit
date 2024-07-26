@@ -101,7 +101,11 @@ namespace Player.States.DefaultState
                 currentVelocity += PlayerData.internalVelocityAdd;
                 PlayerData.internalVelocityAdd = Vector3.zero;
             }
+        }
 
+        public override void ProcessPushRequests(ref Vector3 currentVelocity, float deltaTime)
+        {
+            base.ProcessPushRequests(ref currentVelocity, deltaTime);
             if (PlayerData.pushRequested)
             {
                 PlayerData.motor.ForceUnground();

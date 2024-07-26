@@ -18,7 +18,6 @@ namespace Guns.Bullets.Types
 
         public event Action Overload;
         
-        
         public override void Init(Gun origin)
         {
             base.Init(origin);

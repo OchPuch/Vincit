@@ -1,13 +1,14 @@
 ﻿using Player.Configs;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Player
+namespace Player.View.Audio
 {
     public class PlayerMovementAudio : MonoBehaviour
     {
-        [Header("Config")] [SerializeField] private PlayerAudioConfig audioConfig;
-        [Space(10)] [SerializeField] private float footstepDelay = 0.5f;
+        [Header("Config")] 
+        [SerializeField] private PlayerAudioConfig audioConfig;
+        [Space(10)] 
+        [SerializeField] private float footstepDelay = 0.5f;
         [SerializeField] private float walkPitchRandomRange = 0.2f;
         [SerializeField] private float wallJumpPitchAddition = 0.2f;
 

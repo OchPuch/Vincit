@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+namespace GlobalManagers
 {
-    void Start()
+    public class LevelManager : MonoBehaviour
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        void Start()
+        {
+            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        }
     }
 }

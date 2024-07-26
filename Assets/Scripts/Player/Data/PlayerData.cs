@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using KinematicCharacterController;
 using Player.Configs;
+using Player.View.Audio;
 using RayFire;
 using UnityEngine;
 using UnityEngine.Serialization;

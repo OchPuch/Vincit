@@ -90,6 +90,10 @@ namespace Player.States
         {
         }
 
-        
+
+        public virtual void ProcessPushRequests(ref Vector3 currentVelocity, float deltaTime)
+        {
+            
+        }
     }
 }

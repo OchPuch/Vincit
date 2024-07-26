@@ -38,14 +38,19 @@ namespace Guns.Bullets.Types
                 return;
             }
             
+            if (_crushWallPunch) CrushWall();
             FinishShoot();
         }
 
         private void CrushWall()
         {
-            HandGun.PunchApproved -= CrushWall;
+            _crushWallPunch = false;
+            if (_needApprove) 
+            {
+                HandGun.PunchApproved -= CrushWall;
+                Origin.Owner.RequestPush(-transform.forward * Config.PushPower/5f, ForceMode.Impulse);
+            }
             rayfireGun.Shoot();
-            Origin.Owner.RequestPush(-transform.forward * Config.PushPower/5f, ForceMode.Impulse);
         }
 
         private void FinishShoot()
@@ -62,7 +67,6 @@ namespace Guns.Bullets.Types
         
         private void OnPunchApproved()
         {
-            _needApprove = false;
             HandGun.PunchApproved -= OnPunchApproved;
             FinishShoot();
         }
@@ -88,10 +92,11 @@ namespace Guns.Bullets.Types
         {
             if (hitCollider.gameObject.TryGetComponent<RayfireRigid>(out var rayfireRigid))
             {
+                _crushWallPunch = true;
+                
                 if (rayfireRigid.limitations.currentDepth == 0)
                 {
                     _needApprove = true;
-                    _crushWallPunch = true;
                 }
             }
         }

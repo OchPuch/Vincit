@@ -64,6 +64,12 @@ namespace Player.States
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
             PlayerState.UpdateVelocity(ref currentVelocity, deltaTime);
+            ProcessPushRequests(ref currentVelocity, deltaTime);
+        }
+
+        private void ProcessPushRequests(ref Vector3 currentVelocity, float deltaTime)
+        {
+            PlayerState.ProcessPushRequests(ref currentVelocity, deltaTime);
         }
 
         public void BeforeCharacterUpdate(float deltaTime)
