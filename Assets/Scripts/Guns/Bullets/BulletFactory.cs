@@ -4,37 +4,37 @@ using UnityEngine.Pool;
 
 namespace Guns.Bullets
 {
-    public class BulletFactory
+    public class BulletFactory<T> where T: Bullet
     {
-        private readonly Bullet _bulletPrefab;
+        private readonly T _bulletPrefab;
         private readonly Gun _origin;
         
-        private readonly ObjectPool<Bullet> _bulletPool;
+        private readonly ObjectPool<T> _bulletPool;
 
-        public BulletFactory(Bullet bullet, Gun origin)
+        public BulletFactory(T bullet, Gun origin)
         {
             _bulletPrefab = bullet;
             _origin = origin;
-            _bulletPool = new ObjectPool<Bullet>(CreateNewBullet, OnTake, OnReturn, OnDestroyBullet, true, 20, 1000);
+            _bulletPool = new ObjectPool<T>(CreateNewBullet, OnTake, OnReturn, OnDestroyBullet, true, 20, 1000);
         }
 
-        private void OnDestroyBullet(Bullet obj)
+        private void OnDestroyBullet(T obj)
         {
             Object.Destroy(obj.gameObject);
         }
 
-        private void OnReturn(Bullet obj)
+        private void OnReturn(T obj)
         {
             obj.gameObject.SetActive(false);
         }
 
-        private void OnTake(Bullet obj)
+        private void OnTake(T obj)
         {
             obj.gameObject.SetActive(true);
             obj.ResetBullet();
         }
 
-        private Bullet CreateNewBullet()
+        private T CreateNewBullet()
         {
             var bullet = Object.Instantiate(_bulletPrefab);
             bullet.gameObject.SetActive(false);
@@ -45,7 +45,7 @@ namespace Guns.Bullets
             return bullet;
         }
 
-        public Bullet CreateBullet()
+        public T CreateBullet()
         {
             var bullet = _bulletPool.Get();
             bullet.transform.position = _origin.transform.position;
@@ -53,11 +53,19 @@ namespace Guns.Bullets
             return bullet;
         }
 
-        public Bullet CreateBullet(Vector3 position)
+        public T CreateBullet(Vector3 position)
         {
             var bullet = _bulletPool.Get();
             bullet.transform.position = position;
             bullet.transform.forward = _origin.transform.forward;
+            return bullet;
+        }
+        
+        public T CreateBullet(Vector3 position, Vector3 lookVector)
+        {
+            var bullet = _bulletPool.Get();
+            bullet.transform.position = position;
+            bullet.transform.forward = lookVector;
             return bullet;
         }
     }

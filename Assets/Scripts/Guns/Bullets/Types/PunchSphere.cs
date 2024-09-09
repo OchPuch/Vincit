@@ -1,4 +1,7 @@
-﻿using GlobalManagers;
+﻿using System;
+using System.Collections.Generic;
+using Entities;
+using GlobalManagers;
 using Guns.General;
 using Guns.Types.Hand;
 using RayFire;
@@ -9,19 +12,29 @@ namespace Guns.Bullets.Types
 {
     public class PunchSphere : Bullet
     {
+        [SerializeField] private WeaklingBullet weakBulletPrefab;
+        [SerializeField] private float maxRayFireRigidShootSize;
         [SerializeField] private float playerPushMultiplier = 0.3f;
         [SerializeField] private float smallApproveTime = 0.4f;
+        [SerializeField] private float maxApproveTime = 0.3f;
+        [SerializeField] private float extraApproveTimePerBullet = 0.025f;
         [SerializeField] private RayfireGun rayfireGun;
+        
+        private Collider[] _hitColliders;
+        private readonly List<HitscanBullet> _bulletsToCombine = new();
+        private readonly List<Vector3> _positionsToSpawnBullets = new();
+
+        private BulletFactory<HitscanBullet> _hitscanBulletFactory;
         private float _destroyTime;
         private bool _needApprove;
         private bool _crushWallPunch;
-        private Collider[] _hitColliders;
         private Hand HandGun => Origin as Hand;
-        
         
         public override void Init(Gun origin)
         {
             base.Init(origin);
+            _hitscanBulletFactory ??= new BulletFactory<HitscanBullet>(weakBulletPrefab, origin);
+            
             Vector3 point1 = transform.position;
             Vector3 point2 = transform.position + transform.forward * Config.MaxDistance;
             _hitColliders = Physics.OverlapCapsule(point1, point2, Config.StartRadius);
@@ -32,9 +45,12 @@ namespace Guns.Bullets.Types
             
             if (_needApprove)
             {
-                HandGun.PunchApproved += OnPunchApproved;
+                float extraApproveTimeForBullets = _bulletsToCombine.Count > 1 ? _bulletsToCombine.Count * extraApproveTimePerBullet : 0;
+                float approveTime = Mathf.Clamp(smallApproveTime + extraApproveTimeForBullets, smallApproveTime, maxApproveTime);
                 if (_crushWallPunch) HandGun.PunchApproved += CrushWall;
-                HandGun.RequestApprove(smallApproveTime);
+                
+                HandGun.PunchApproved += OnPunchApproved;
+                HandGun.RequestApprove(approveTime);
                 return;
             }
             
@@ -55,6 +71,12 @@ namespace Guns.Bullets.Types
 
         private void FinishShoot()
         {
+            CombineBullets();
+            foreach (var spawnPosition in _positionsToSpawnBullets)
+            {
+               var bullet = _hitscanBulletFactory.CreateBullet(spawnPosition, spawnPosition - transform.position);
+               bullet.Init(Origin);
+            }
             foreach (var hitCollider in _hitColliders)
             {
                 ProcessHit(hitCollider);
@@ -64,7 +86,19 @@ namespace Guns.Bullets.Types
                 DestroyBullet();
             }
         }
-        
+
+        private void CombineBullets()
+        {
+            if (_bulletsToCombine.Count > 1)
+            {
+                _bulletsToCombine[0].PunchCurveConsume(transform.position, _bulletsToCombine);
+            }
+            else if (_bulletsToCombine.Count > 0)
+            {
+                _bulletsToCombine[0].PunchCurve(transform.position);
+            }
+        }
+
         private void OnPunchApproved()
         {
             HandGun.PunchApproved -= OnPunchApproved;
@@ -76,6 +110,8 @@ namespace Guns.Bullets.Types
             base.ResetBullet();
             _needApprove = false;
             _crushWallPunch = false;
+            _positionsToSpawnBullets.Clear();
+            _bulletsToCombine.Clear();
         }
 
         private void Update()
@@ -90,24 +126,32 @@ namespace Guns.Bullets.Types
         
         private void PreProcessHit(Collider hitCollider)
         {
+            if (hitCollider.gameObject.TryGetComponent<HitscanBullet>(out var bullet))
+            {
+                if (!bullet.IsOverloaded)
+                {
+                    _bulletsToCombine.Add(bullet);
+                    if (_bulletsToCombine.Count > 1) _needApprove = true;
+                }
+            }
+            
             if (hitCollider.gameObject.TryGetComponent<RayfireRigid>(out var rayfireRigid))
             {
                 _crushWallPunch = true;
-                
                 if (rayfireRigid.limitations.currentDepth == 0)
                 {
                     _needApprove = true;
+                }
+                else if (rayfireRigid.limitations.bboxSize < maxRayFireRigidShootSize)
+                {
+                    _positionsToSpawnBullets.Add(rayfireRigid.transform.position);
+                    Destroy(rayfireRigid);
                 }
             }
         }
 
         private void ProcessHit(Collider hitCollider)
         {
-            if (hitCollider.gameObject.TryGetComponent<HitscanBullet>(out var bullet))
-            {
-                bullet.PunchCurve(transform.position);
-            }
-            
             if (hitCollider.gameObject.TryGetComponent<Rigidbody>(out var rb))
             {
                 rb.AddForce(transform.forward * Config.PushPower, ForceMode.Impulse);
@@ -117,6 +161,14 @@ namespace Guns.Bullets.Types
                     {
                         stoppableRigid.AddForce(transform.forward * Config.PushPower);
                     }
+                }
+            }
+
+            if (hitCollider.gameObject.TryGetComponent<IDamageable>(out var damageable))
+            {
+                if (damageable is not Player.Player)
+                {
+                    damageable.Damage(Config.Damage);
                 }
             }
         }

@@ -10,7 +10,7 @@ namespace Guns.General
     {
         public Player.Player Owner { get; private set; }
         protected GunData Data;
-        public BulletFactory BulletFactory { get; private set; }
+        public BulletFactory<Bullet> BulletFactory { get; private set; }
         public event Action Shot;
         public event Action Equipped;
         public event Action Activated;
@@ -19,7 +19,7 @@ namespace Guns.General
         public virtual void Init(GunData data)
         {
             Data = data;
-            BulletFactory = new BulletFactory(Data.Config.Projectile, this);
+            BulletFactory = new BulletFactory<Bullet>(Data.Config.Projectile, this);
         }
         
         protected virtual void Update()

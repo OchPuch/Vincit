@@ -1,4 +1,5 @@
-﻿using KinematicCharacterController;
+﻿using GlobalManagers;
+using KinematicCharacterController;
 using Player.AdditionalPhysics;
 using Player.Data;
 using Player.States;
@@ -8,6 +9,7 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour, ICharacterController
     {
+        
         public struct PlayerCharacterInputs
         {
             public float MoveAxisForward;
@@ -20,6 +22,7 @@ namespace Player
         }
 
         [Header("Additional Physics")] 
+        [SerializeField] private float timeStopGravityScale = 0.5f;
         [SerializeField] private WallDetector wallDetector;
         public PlayerData PlayerData => _playerData;
         private PlayerData _playerData;
@@ -33,9 +36,24 @@ namespace Player
             _playerData.motor.CharacterController = this;
             _stateMachine = new PlayerStateMachine(this, _playerData);
             wallDetector.Init(_playerData, _stateMachine);
+            TimeManager.Instance.TimeStopped += OnTimeStopped;
+            TimeManager.Instance.TimeContinued += OnTimeContinued;
         }
+        private void OnTimeContinued()
+        {
+            _playerData.gravity /= timeStopGravityScale;
+        }
+
+        private void OnTimeStopped()
+        {
+            _playerData.gravity *= timeStopGravityScale;
+        }
+
         public void SetGravity(Vector3 newGravity)
         {
+            if (TimeManager.Instance.IsTimeStopped) 
+                newGravity *= timeStopGravityScale;
+            
             _playerData.gravity = newGravity;
         }
 

@@ -1,4 +1,5 @@
-﻿using KinematicCharacterController;
+﻿using Entities;
+using KinematicCharacterController;
 using KinematicCharacterController.Examples;
 using Player.Data;
 using UnityEngine;
@@ -6,7 +7,7 @@ using Utils;
 
 namespace Player
 {
-    public class Player : GamePlayBehaviour
+    public class Player : GamePlayBehaviour, IDamageable
     {
         public static Player Instance { get; private set; }
         
@@ -128,6 +129,11 @@ namespace Player
             _data.pushForce = pushForce;
             _data.pushMode = pushMode;
             _data.pushRequested = true;
+        }
+
+        public void Damage(float damage)
+        {
+            
         }
     }
     

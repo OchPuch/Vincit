@@ -48,7 +48,7 @@ namespace Guns.General
                 HandPunchRequest = Input.GetMouseButtonDown(4),
             };
             
-            if (input.AbilityRequest) ability.Activate();
+            if (input.AbilityRequest) ability.SwitchActive();
             if (_activeGun) _activeGun.HandleInput(input);
             leftHand.HandleInput(input);
         }

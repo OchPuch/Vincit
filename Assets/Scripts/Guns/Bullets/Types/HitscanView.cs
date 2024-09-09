@@ -14,8 +14,12 @@ namespace Guns.Bullets.Types
         protected override void Start()
         {
             base.Start();
-            bullet.Overload += OnOverload;
+            bullet.Overloaded += OnOverloaded;
             bullet.BulletDestroyed += OnBulletDestroyed;
+            if (bullet.IsOverloaded)
+            {
+                OnOverloaded();
+            }
         }
 
         private void OnBulletDestroyed()
@@ -26,7 +30,7 @@ namespace Guns.Bullets.Types
             }
         }
 
-        private void OnOverload()
+        private void OnOverloaded()
         {
             foreach (var lineRenderer in lineRenderers)
             {

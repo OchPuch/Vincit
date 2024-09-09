@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace RayFire
 {
@@ -33,6 +35,9 @@ namespace RayFire
         [Space(1)]
         [Tooltip ("Object will be demolished only if it is visible to any camera including scene camera.")]
         public bool visible;
+
+        [Space(1)]
+        public string switchSmallToLayer = "SmallRigid";
         
         //[Tooltip ("")]
         //[Range (1, 100)]

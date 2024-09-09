@@ -169,7 +169,13 @@ MonoBehaviour:
   disableOnTimeStop: 0
   <Config>k__BackingField: {fileID: 11400000, guid: 6955e3f2d53c1144f9429a337cc025ad,
     type: 2}
-  smallApproveTime: 0.2
+  weakBulletPrefab: {fileID: 4121726910312821292, guid: a990c64c98236af4094cd7f4afb5f093,
+    type: 3}
+  maxRayFireRigidShootSize: 5
+  playerPushMultiplier: 0.3
+  smallApproveTime: 0.1
+  maxApproveTime: 0.4
+  extraApproveTimePerBullet: 0.025
   rayfireGun: {fileID: 3893280390341060229}
 --- !u!135 &8050632413124965209
 SphereCollider:
@@ -205,7 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 2
-  maxDistance: 6
+  maxDistance: 10
   target: {fileID: 6661925748801011529}
   rounds: 2
   rate: 0.3

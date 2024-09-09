@@ -251,7 +251,6 @@ namespace Player.States.DefaultState
                     }
                 }
                 
-                
                 PlayerData.jumpRequested = false;
                 PlayerData.jumpConsumed = true;
                 PlayerData.jumpedThisFrame = true;

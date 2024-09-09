@@ -10,44 +10,48 @@ namespace RayFire
     [Serializable]
     public class RFActivation
     {
-        [Header ("  Activation")]
-        [Space (3)]
-        [Tooltip ("Inactive object will be activated when it's velocity will be higher than By Velocity value when pushed by other dynamic objects.")]
+        [Header("  Activation")]
+        [Space(3)]
+        [Tooltip(
+            "Inactive object will be activated when it's velocity will be higher than By Velocity value when pushed by other dynamic objects.")]
         public float byVelocity;
 
-        [Space (1)]
-        [Tooltip ("Inactive object will be activated if will be pushed from it's original position farther than By Offset value.")]
+        [Space(1)]
+        [Tooltip(
+            "Inactive object will be activated if will be pushed from it's original position farther than By Offset value.")]
         public float byOffset;
 
-        [Space (1)]
-        [Tooltip ("Inactive object will be activated if will get total damage higher than this value.")]
+        [Space(1)] [Tooltip("Inactive object will be activated if will get total damage higher than this value.")]
         public float byDamage;
 
-        [Space (1)]
-        [Tooltip ("Inactive object will be activated by overlapping with object with RayFire Activator component.")]
+        [Space(1)]
+        [Tooltip("Inactive object will be activated by overlapping with object with RayFire Activator component.")]
         public bool byActivator;
 
-        [Space (1)]
-        [Tooltip ("Inactive object will be activated when it will be shot by RayFireGun component.")]
+        [Space(1)] [Tooltip("Inactive object will be activated when it will be shot by RayFireGun component.")]
         public bool byImpact;
 
-        [Space (1)]
-        [Tooltip ("Inactive object will be activated by Connectivity component if it will not be connected with Unyielding zone.")]
+        [Space(1)]
+        [Tooltip(
+            "Inactive object will be activated by Connectivity component if it will not be connected with Unyielding zone.")]
         public bool byConnectivity;
 
-        [Header ("  Connectivity")]
-        [Space (3)]
-        [Tooltip ("Allows to define Inactive/Kinematic object as Unyielding to check for connection with other Inactive/Kinematic objects with enabled By Connectivity activation type.")]
+        [Header("  Connectivity")]
+        [Space(3)]
+        [Tooltip(
+            "Allows to define Inactive/Kinematic object as Unyielding to check for connection with other Inactive/Kinematic objects with enabled By Connectivity activation type.")]
         public bool unyielding;
-        [Space (1)]
-        [Tooltip ("Unyielding object can not be activate by default. When On allows to activate Unyielding objects as well.")]
+
+        [Space(1)]
+        [Tooltip(
+            "Unyielding object can not be activate by default. When On allows to activate Unyielding objects as well.")]
         public bool activatable;
 
         // Nom serialized
         [NonSerialized] public RayfireConnectivity connect;
-        [NonSerialized] public List<int>           unyList;
-        [NonSerialized] public bool                activated;
-        [NonSerialized] public bool                inactiveCorState;
+        [NonSerialized] public List<int> unyList;
+        [NonSerialized] public bool activated;
+        [NonSerialized] public bool inactiveCorState;
 
         /// /////////////////////////////////////////////////////////
         /// Constructor
@@ -56,31 +60,31 @@ namespace RayFire
         // Constructor
         public RFActivation()
         {
-            byVelocity     = 0f;
-            byOffset       = 0f;
-            byDamage       = 0f;
-            byActivator    = false;
-            byImpact       = false;
+            byVelocity = 0f;
+            byOffset = 0f;
+            byDamage = 0f;
+            byActivator = false;
+            byImpact = false;
             byConnectivity = false;
-            unyielding     = false;
-            activatable    = false;
-            activated      = false;
+            unyielding = false;
+            activatable = false;
+            activated = false;
 
             // unyList        = new List<int>();
             Reset();
         }
 
         // Copy from
-        public void CopyFrom (RFActivation act)
+        public void CopyFrom(RFActivation act)
         {
-            byActivator    = act.byActivator;
-            byImpact       = act.byImpact;
-            byVelocity     = act.byVelocity;
-            byOffset       = act.byOffset;
-            byDamage       = act.byDamage;
+            byActivator = act.byActivator;
+            byImpact = act.byImpact;
+            byVelocity = act.byVelocity;
+            byOffset = act.byOffset;
+            byDamage = act.byDamage;
             byConnectivity = act.byConnectivity;
-            unyielding     = act.unyielding;
-            activatable    = act.activatable;
+            unyielding = act.unyielding;
+            activatable = act.activatable;
         }
 
         /// /////////////////////////////////////////////////////////
@@ -108,7 +112,7 @@ namespace RayFire
         /// /////////////////////////////////////////////////////////
 
         // Check velocity for activation
-        public IEnumerator ActivationVelocityCor (RayfireRigid scr)
+        public IEnumerator ActivationVelocityCor(RayfireRigid scr)
         {
             while (scr.activation.activated == false && scr.activation.byVelocity > 0)
             {
@@ -119,18 +123,18 @@ namespace RayFire
         }
 
         // Check offset for activation
-        public IEnumerator ActivationOffsetCor (RayfireRigid scr)
+        public IEnumerator ActivationOffsetCor(RayfireRigid scr)
         {
             while (scr.activation.activated == false && scr.activation.byOffset > 0)
             {
-                if (Vector3.Distance (scr.transForm.position, scr.physics.initPosition) > scr.activation.byOffset)
+                if (Vector3.Distance(scr.transForm.position, scr.physics.initPosition) > scr.activation.byOffset)
                     scr.Activate();
                 yield return null;
             }
         }
 
         // Exclude from simulation, move under ground, destroy
-        public IEnumerator InactiveCor (RayfireRigid scr)
+        public IEnumerator InactiveCor(RayfireRigid scr)
         {
             // Stop if running 
             if (inactiveCorState == true)
@@ -144,7 +148,7 @@ namespace RayFire
             {
                 //if (scr.transForm.hasChanged == true)
                 {
-                    scr.physics.rigidBody.velocity        = Vector3.zero;
+                    scr.physics.rigidBody.velocity = Vector3.zero;
                     scr.physics.rigidBody.angularVelocity = Vector3.zero;
                 }
                 yield return null;
@@ -159,7 +163,7 @@ namespace RayFire
         /// /////////////////////////////////////////////////////////
 
         // Activate inactive object
-        public static void ActivateRigid (RayfireRigid scr, bool connCheck = true)
+        public static void ActivateRigid(RayfireRigid scr, bool connCheck = true)
         {
             // Stop if excluded
             if (scr.physics.exclude == true)
@@ -184,12 +188,12 @@ namespace RayFire
                 if (scr.physics.rec == true)
                 {
                     // Set dynamic before copy
-                    scr.simulationType                = SimType.Dynamic;
+                    scr.simulationType = SimType.Dynamic;
                     scr.physics.rigidBody.isKinematic = false;
-                    scr.physics.rigidBody.useGravity  = scr.physics.useGravity;
+                    scr.physics.rigidBody.useGravity = scr.physics.useGravity;
 
                     // Create copy
-                    GameObject inst = UnityEngine.Object.Instantiate (scr.gameObject);
+                    GameObject inst = UnityEngine.Object.Instantiate(scr.gameObject);
                     inst.transform.position = scr.transForm.position;
                     inst.transform.rotation = scr.transForm.rotation;
 
@@ -197,80 +201,88 @@ namespace RayFire
                     Rigidbody rBody = inst.GetComponent<Rigidbody>();
                     if (rBody != null)
                     {
-                        rBody.velocity        = scr.physics.rigidBody.velocity;
+                        rBody.velocity = scr.physics.rigidBody.velocity;
                         rBody.angularVelocity = scr.physics.rigidBody.angularVelocity;
                     }
 
                     // Activate and init rigid
-                    scr.gameObject.SetActive (false);
+                    scr.gameObject.SetActive(false);
                 }
             }
 
             // Connectivity check
             if (connCheck == true)
                 scr.activation.CheckConnectivity();
-            
+
             // Set state
             scr.activation.activated = true;
 
             // Set props
-            scr.simulationType                = SimType.Dynamic;
-            scr.physics.rigidBody.isKinematic = false; // TODO error at manual activation of stressed connectivity structure
-            scr.physics.rigidBody.useGravity  = scr.physics.useGravity;
+            scr.simulationType = SimType.Dynamic;
+            scr.physics.rigidBody.isKinematic =
+                false; // TODO error at manual activation of stressed connectivity structure
+            scr.physics.rigidBody.useGravity = scr.physics.useGravity;
 
             // Fade on activation
-            if (scr.fading.onActivation == true)
+            if (scr.fading.onActivation)
             {
                 // Size check
                 if (scr.fading.sizeFilter > 0 && scr.fading.sizeFilter > scr.limitations.bboxSize)
+                {
+                    if (!string.IsNullOrEmpty(scr.limitations.switchSmallToLayer))
+                        scr.gameObject.layer = LayerMask.NameToLayer(scr.limitations.switchSmallToLayer);
                     scr.Fade();
+                }
                 else
+                {
                     scr.Fade();
+                }
             }
+
 
             // Parent
             if (RayfireMan.inst.parent != null)
             {
                 scr.gameObject.transform.parent = RayfireMan.inst.parent.transform;
             }
-            
+
             // Init particles on activation
-            RFParticles.InitActivationParticles (scr);
+            RFParticles.InitActivationParticles(scr);
 
             // Init sound
-            RFSound.ActivationSound (scr.sound, scr.limitations.bboxSize);
+            RFSound.ActivationSound(scr.sound, scr.limitations.bboxSize);
 
             // Events
-            scr.activationEvent.InvokeLocalEvent (scr);
-            RFActivationEvent.InvokeGlobalEvent (scr);
+            scr.activationEvent.InvokeLocalEvent(scr);
+            RFActivationEvent.InvokeGlobalEvent(scr);
 
             // Add initial rotation if still TODO put in ui
             if (scr.physics.rigidBody.angularVelocity == Vector3.zero)
             {
                 float val = 1.0f;
-                scr.physics.rigidBody.angularVelocity = new Vector3 (
-                    Random.Range (-val, val), Random.Range (-val, val), Random.Range (-val, val));
+                scr.physics.rigidBody.angularVelocity = new Vector3(
+                    Random.Range(-val, val), Random.Range(-val, val), Random.Range(-val, val));
             }
         }
 
         // Activate Rigid Root shard
-        public static void ActivateShard (RFShard shard, RayfireRigidRoot rigidRoot)
+        public static void ActivateShard(RFShard shard, RayfireRigidRoot rigidRoot)
         {
             // Skip not activatable unyielding shards
             if (shard.act == false && shard.uny == true)
                 return;
-            
+
             // Already dynamic
             if (shard.sm == SimType.Dynamic)
                 return;
-            
+
             // Set dynamic sim state
             shard.sm = SimType.Dynamic;
-            
+
             // Activate by Rigid if has rigid
             if (shard.rigid != null)
             {
-                ActivateRigid (shard.rigid);
+                ActivateRigid(shard.rigid);
                 return;
             }
 
@@ -284,13 +296,13 @@ namespace RayFire
             // TODO Fade on activation
             if (rigidRoot.fading.onActivation == true)
             {
-                RFFade.Fade (rigidRoot, shard);
+                RFFade.Fade(rigidRoot, shard);
             }
 
             // Connectivity check if shards was activated: TODO check only neibs of activated?
             if (rigidRoot.activation.byConnectivity == true && rigidRoot.activation.connect != null)
                 rigidRoot.connect.connectivityCheckNeed = true;
-            
+
             // TODO Init particles on activation
             // RFParticles.InitActivationParticles(scr);
 
@@ -298,8 +310,8 @@ namespace RayFire
             // Add initial rotation if still TODO put in ui
             float val = 1.0f;
             if (shard.rb.angularVelocity == Vector3.zero)
-                shard.rb.angularVelocity = new Vector3 (
-                    Random.Range (-val, val), Random.Range (-val, val), Random.Range (-val, val));
+                shard.rb.angularVelocity = new Vector3(
+                    Random.Range(-val, val), Random.Range(-val, val), Random.Range(-val, val));
         }
 
         /// /////////////////////////////////////////////////////////
@@ -307,7 +319,7 @@ namespace RayFire
         /// /////////////////////////////////////////////////////////
 
         // CHeck for overlap with mesh Rigid
-        public static void OverlapActivation (RayfireRigid scr)
+        public static void OverlapActivation(RayfireRigid scr)
         {
             // Only inactive and kinematic
             if (scr.simulationType != SimType.Inactive && scr.simulationType != SimType.Kinematic)
@@ -327,7 +339,7 @@ namespace RayFire
 
             // TODO collect layer mask by all layers -> int finalMask = RayfireUnyielding.ClusterLayerMask(scr);
             int layerMask = 1 << scr.fragments[0].gameObject.layer;
-            
+
             // Overlapped objects: Copy uny, stay kinematic
             List<RayfireRigid> inObjects = new List<RayfireRigid>();
 
@@ -335,33 +347,36 @@ namespace RayFire
             foreach (RFUny uny in RayfireMan.inst.unyList)
             {
                 // Original object in local uny zone
-                if (scr.activation.unyList.Contains (uny.id) == true)
+                if (scr.activation.unyList.Contains(uny.id) == true)
                 {
                     // Get box overlap colliders
-                    Collider[]        colliders = Physics.OverlapBox (uny.center, uny.size, uny.rotation, layerMask);
-                    HashSet<Collider> set       = new HashSet<Collider>(colliders);
-                    
+                    Collider[] colliders = Physics.OverlapBox(uny.center, uny.size, uny.rotation, layerMask);
+                    HashSet<Collider> set = new HashSet<Collider>(colliders);
+
                     // Activate if do not overlap
                     for (int i = 0; i < scr.fragments.Count; i++)
                     {
                         // Activate not overlapped and copy to overlapped
-                        if (set.Contains (scr.fragments[i].physics.meshCollider) == true)
+                        if (set.Contains(scr.fragments[i].physics.meshCollider) == true)
                         {
                             // Copy overlap uny to overlapped object
-                            RayfireUnyielding.SetRigidUnyState (scr.fragments[i], uny.id, scr.activation.unyielding, scr.activation.activatable);
+                            RayfireUnyielding.SetRigidUnyState(scr.fragments[i], uny.id, scr.activation.unyielding,
+                                scr.activation.activatable);
 
                             // Already collected
-                            if (inObjects.Contains (scr.fragments[i]) == true)
+                            if (inObjects.Contains(scr.fragments[i]) == true)
                                 continue;
 
                             // Collect overlapped object
-                            inObjects.Add (scr.fragments[i]);
+                            inObjects.Add(scr.fragments[i]);
 
                             // Set overlapped back to kinematic
                             if (scr.simulationType == SimType.Kinematic)
                             {
                                 scr.fragments[i].simulationType = SimType.Kinematic;
-                                RFPhysic.SetSimulationType (scr.fragments[i].physics.rigidBody, scr.fragments[i].simulationType, scr.objectType, scr.fragments[i].physics.useGravity);
+                                RFPhysic.SetSimulationType(scr.fragments[i].physics.rigidBody,
+                                    scr.fragments[i].simulationType, scr.objectType,
+                                    scr.fragments[i].physics.useGravity);
                             }
                         }
                     }
@@ -370,7 +385,7 @@ namespace RayFire
 
             // Activate all not overlapped fragments
             foreach (var frag in scr.fragments)
-                if (inObjects.Contains (frag) == false)
+                if (inObjects.Contains(frag) == false)
                 {
                     frag.activation.unyielding = false;
                     frag.Activate();
@@ -378,16 +393,16 @@ namespace RayFire
         }
 
         // Copy unyielding component
-        static void CopyUny (RayfireUnyielding source, GameObject target)
+        static void CopyUny(RayfireUnyielding source, GameObject target)
         {
             RayfireUnyielding newUny = target.AddComponent<RayfireUnyielding>();
 
             // Copy position
-            Vector3 globalCenter = source.transform.TransformPoint (source.centerPosition);
-            newUny.centerPosition = newUny.transform.InverseTransformPoint (globalCenter);
+            Vector3 globalCenter = source.transform.TransformPoint(source.centerPosition);
+            newUny.centerPosition = newUny.transform.InverseTransformPoint(globalCenter);
 
             // Copy size
-            newUny.size   =  source.size;
+            newUny.size = source.size;
             newUny.size.x *= source.transform.localScale.x;
             newUny.size.y *= source.transform.localScale.y;
             newUny.size.z *= source.transform.localScale.z;
@@ -398,6 +413,9 @@ namespace RayFire
         /// /////////////////////////////////////////////////////////
 
         // Has uny zones
-        public bool HasUny { get { return unyList != null && unyList.Count > 0; } }
+        public bool HasUny
+        {
+            get { return unyList != null && unyList.Count > 0; }
+        }
     }
 }

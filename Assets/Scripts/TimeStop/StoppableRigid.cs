@@ -18,7 +18,6 @@ namespace TimeStop
         private bool _bufferedUseGravity;
         private Vector3 _changedVelocity = Vector3.zero;
         
-        
         protected override void Start()
         {
             base.Start();
