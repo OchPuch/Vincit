@@ -4,6 +4,7 @@ using UnityEngine;
 using KinematicCharacterController;
 using KinematicCharacterController.Examples;
 using System;
+using KinematicCharacterController.Core;
 
 namespace KinematicCharacterController.Examples
 {

@@ -96,6 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075ccbe9837b0744985e09ba3f015b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseable: 1
+  disableOnTimeStop: 1
   Rigidbody: {fileID: 6524665235046006956}
   MoveWithPhysics: 1
 --- !u!114 &544193428111510593
@@ -110,6 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7edc6957dab9ac4797c1c0912ce3839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseable: 1
+  disableOnTimeStop: 1
   Mover: {fileID: 6735046749909914492}
   TranslationAxis: {x: 0, y: 1, z: 0}
   TranslationPeriod: 5

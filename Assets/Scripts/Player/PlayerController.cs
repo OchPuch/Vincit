@@ -1,16 +1,17 @@
-﻿using GlobalManagers;
+﻿using Entities;
+using GlobalManagers;
 using KinematicCharacterController;
 using Player.AdditionalPhysics;
 using Player.Data;
 using Player.States;
 using UnityEngine;
+using Zenject;
 
 namespace Player
 {
     public class PlayerController : MonoBehaviour, ICharacterController
     {
-        
-        public struct PlayerCharacterInputs
+        public struct PlayerCharacterInputs 
         {
             public float MoveAxisForward;
             public float MoveAxisRight;
@@ -19,16 +20,25 @@ namespace Player
             public bool CrouchDown;
             public bool CrouchUp;
             public bool DashDown;
+            
         }
 
         [Header("Additional Physics")] 
         [SerializeField] private float timeStopGravityScale = 0.5f;
         [SerializeField] private WallDetector wallDetector;
-        public PlayerData PlayerData => _playerData;
+        
         private PlayerData _playerData;
         
         private PlayerStateMachine _stateMachine;
         public global::Player.StateMachine.StateMachine StateMachine => _stateMachine;
+        
+        private ITimeNotifier _timeNotifier;
+
+        [Inject]
+        public void Construct(ITimeNotifier timeNotifier)
+        {
+            _timeNotifier = timeNotifier;
+        }
 
         public void Init(PlayerData data)
         {
@@ -36,8 +46,8 @@ namespace Player
             _playerData.motor.CharacterController = this;
             _stateMachine = new PlayerStateMachine(this, _playerData);
             wallDetector.Init(_playerData, _stateMachine);
-            TimeManager.Instance.TimeStopped += OnTimeStopped;
-            TimeManager.Instance.TimeContinued += OnTimeContinued;
+            _timeNotifier.TimeStopped += OnTimeStopped;
+            _timeNotifier.TimeContinued += OnTimeContinued;
         }
         private void OnTimeContinued()
         {
@@ -51,7 +61,7 @@ namespace Player
 
         public void SetGravity(Vector3 newGravity)
         {
-            if (TimeManager.Instance.IsTimeStopped) 
+            if (_timeNotifier.IsTimeStopped) 
                 newGravity *= timeStopGravityScale;
             
             _playerData.gravity = newGravity;

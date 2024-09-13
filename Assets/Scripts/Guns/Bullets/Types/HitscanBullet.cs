@@ -5,6 +5,7 @@ using Guns.General;
 using RayFire;
 using TimeStop;
 using UnityEngine;
+using Zenject;
 
 namespace Guns.Bullets.Types
 {
@@ -24,23 +25,24 @@ namespace Guns.Bullets.Types
     
     public class HitscanBullet : Bullet
     {
-        public ConsumeData ConsumeData { get; set; }
-
+        public ConsumeData ConsumeData { get; private set; }
+        
         [SerializeField] private RayfireGun rayfireGun;
-
-        protected BulletFactory<HitscanBullet> HitscanBulletFactory;
+        
+        private BulletFactory<HitscanBullet> _hitscanBulletFactory;
         private Vector3 _endPoint;
         private Vector3 _startPoint;
         private float _destroyTimer;
+        
         public bool IsOverloaded { get; private set;}
         public event Action Overloaded;
         
-
+        
         public override void Init(Gun origin)
         {
             base.Init(origin);
 
-            HitscanBulletFactory ??= new BulletFactory<HitscanBullet>(this, origin);
+            _hitscanBulletFactory ??= new BulletFactory<HitscanBullet>(this, origin);
             
             _startPoint = transform.position;
             _endPoint = transform.position + transform.forward * Config.MaxDistance;
@@ -48,13 +50,13 @@ namespace Guns.Bullets.Types
             Ray ray = new Ray(transform.position, transform.forward);
             float maxDistance = Config.MaxDistance;
             
-            if (Physics.Raycast(ray, out var stopHit, maxDistance, GameManager.Instance.GameSettings.BulletStopMask))
+            if (Physics.Raycast(ray, out var stopHit, maxDistance, Config.BulletStopMask))
             {
                 _endPoint = stopHit.point;
                 maxDistance = Vector3.Distance(transform.position, _endPoint) + 1;
             }
             
-            var hits = Physics.RaycastAll(ray, maxDistance, GameManager.Instance.GameSettings.BulletHitMask);
+            var hits = Physics.RaycastAll(ray, maxDistance, Config.BulletHitMask);
             foreach (var hit in hits)
             {
                 ProcessHit(hit);
@@ -94,7 +96,7 @@ namespace Guns.Bullets.Types
             if (hit.collider.TryGetComponent<Rigidbody>(out var rb))
             {
                 rb.AddForce(transform.forward * Config.PushPower, ForceMode.Impulse);
-                if (TimeManager.Instance.IsTimeStopped)
+                if (TimeNotifier.IsTimeStopped)
                 {
                     if (hit.collider.gameObject.TryGetComponent<StoppableRigid>(out var stoppableRigid))
                     {
@@ -112,7 +114,7 @@ namespace Guns.Bullets.Types
         public void PunchCurve(Vector3 punchPoint)
         {
             if (IsOverloaded) return;
-            var bullet = HitscanBulletFactory.CreateBullet(punchPoint);
+            var bullet = _hitscanBulletFactory.CreateBullet(punchPoint);
             bullet.ConsumeData = ConsumeData;
             bullet.Init(Origin);
             OnBulletPunchedWithNewBullet(bullet);
@@ -122,7 +124,7 @@ namespace Guns.Bullets.Types
         public void PunchCurveConsume(Vector3 punchPoint, List<HitscanBullet> bulletsToCombine)
         {
             if (IsOverloaded) return;
-            var bullet = HitscanBulletFactory.CreateBullet(punchPoint);
+            var bullet = _hitscanBulletFactory.CreateBullet(punchPoint);
             bullet.ConsumeData = ConsumeData;
             foreach (HitscanBullet bulletCombine in bulletsToCombine)
             {
@@ -155,7 +157,7 @@ namespace Guns.Bullets.Types
 
         private void Update()
         {
-            if (TimeManager.Instance.IsTimeStopped) return;
+            if (TimeNotifier.IsTimeStopped) return;
             _destroyTimer += Time.deltaTime;
             float scale = Mathf.Lerp(0, Config.StartRadius, Config.DisappearAnimation.Evaluate(_destroyTimer / Config.DestroyTime)) * ConsumeData.Scale;
             transform.localScale = new Vector3(scale, scale, transform.localScale.z);

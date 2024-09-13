@@ -1,6 +1,7 @@
 ﻿using System;
 using GlobalManagers;
 using UnityEngine;
+using Zenject;
 
 namespace TimeStop
 {
@@ -9,23 +10,32 @@ namespace TimeStop
     {
         [SerializeField] private float abilityDuration;
         private float _abilityTimer;
-        
+
+        private TimeController _timeManager;
+        private ITimeNotifier _timeNotifier;
+
+        [Inject]
+        private void Construct(TimeController timeController, ITimeNotifier timeNotifier)
+        {
+            _timeManager = timeController;
+            _timeNotifier = timeNotifier;
+        }
         
         public void SwitchActive()
         {
-            if (TimeManager.Instance.IsTimeStopped)
+            if (_timeNotifier.IsTimeStopped)
             {
-                TimeManager.Instance.TimeContinue();
+                _timeManager.RequestFullTimeContinue();
             }
             else
             {
-                TimeManager.Instance.TimeStop();
+                _timeManager.RequestFullTimeStop();
             }
         }
 
         public void Update()
         {
-            if (TimeManager.Instance.IsTimeStopped)
+            if (_timeNotifier.IsTimeStopped)
             {
                 _abilityTimer += Time.unscaledDeltaTime;
                 if (_abilityTimer > abilityDuration)

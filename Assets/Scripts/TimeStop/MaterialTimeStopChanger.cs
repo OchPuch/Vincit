@@ -1,5 +1,6 @@
 ﻿using GlobalManagers;
 using UnityEngine;
+using Zenject;
 
 namespace TimeStop
 {
@@ -29,10 +30,18 @@ namespace TimeStop
         private static readonly int CloudColorDay = Shader.PropertyToID("_CloudColorDay");
         private static readonly int CloudWindSpeed = Shader.PropertyToID("_CloudWindSpeed");
 
+        private ITimeNotifier _timeNotifier;
+
+        [Inject]
+        public void Construct(ITimeNotifier timeNotifier)
+        {
+            _timeNotifier = timeNotifier;
+        }
+        
         protected override void Start()
         {
             base.Start();
-            if (!TimeManager.Instance.IsTimeStopped)
+            if (!_timeNotifier.IsTimeStopped)
             {
                 PostTimeContinue();
             }

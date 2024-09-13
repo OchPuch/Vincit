@@ -2,32 +2,35 @@
 using GlobalManagers;
 using UnityEngine;
 using Utils;
+using Zenject;
 
 namespace TimeStop
 {
     public abstract class TimeStoppableBehaviour : GamePlayBehaviour
     {
         [SerializeField] private bool disableOnTimeStop;
+        protected ITimeNotifier TimeNotifier;
+
+        [Inject]
+        public void Construct(ITimeNotifier timeNotifier)
+        {
+            TimeNotifier = timeNotifier;
+        }
 
         protected override void Start()
         {
             base.Start();
-            if (TimeManager.Instance == null) 
-            {
-                Debug.LogError("Time Manager is null");
-            }
-            TimeManager.Instance.TimeStopped += OnTimeStop;
-            TimeManager.Instance.TimeContinued += OnTimeContinue;
-            if (TimeManager.Instance.IsTimeStopped) OnTimeStop();
+            TimeNotifier.TimeStopped += OnTimeStop;
+            TimeNotifier.TimeContinued += OnTimeContinue;
+            if (TimeNotifier.IsTimeStopped) OnTimeStop();
 
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            if (TimeManager.Instance == null) return;
-            TimeManager.Instance.TimeStopped -= OnTimeStop;
-            TimeManager.Instance.TimeContinued -= OnTimeContinue;
+            TimeNotifier.TimeStopped -= OnTimeStop;
+            TimeNotifier.TimeContinued -= OnTimeContinue;
         }
 
 

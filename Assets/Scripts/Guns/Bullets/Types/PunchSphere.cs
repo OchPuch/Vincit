@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Entities;
-using GlobalManagers;
 using Guns.General;
 using Guns.Types.Hand;
 using RayFire;
 using TimeStop;
 using UnityEngine;
+using Zenject;
 
 namespace Guns.Bullets.Types
 {
@@ -28,7 +28,14 @@ namespace Guns.Bullets.Types
         private float _destroyTime;
         private bool _needApprove;
         private bool _crushWallPunch;
-        private Hand HandGun => Origin as Hand;
+        private CloseRange CloseRangeGun => Origin as CloseRange;
+        
+        [Inject]
+        private void Construct()
+        {
+            
+        }
+        
         
         public override void Init(Gun origin)
         {
@@ -47,10 +54,10 @@ namespace Guns.Bullets.Types
             {
                 float extraApproveTimeForBullets = _bulletsToCombine.Count > 1 ? _bulletsToCombine.Count * extraApproveTimePerBullet : 0;
                 float approveTime = Mathf.Clamp(smallApproveTime + extraApproveTimeForBullets, smallApproveTime, maxApproveTime);
-                if (_crushWallPunch) HandGun.PunchApproved += CrushWall;
+                if (_crushWallPunch) CloseRangeGun.PunchApproved += CrushWall;
                 
-                HandGun.PunchApproved += OnPunchApproved;
-                HandGun.RequestApprove(approveTime);
+                CloseRangeGun.PunchApproved += OnPunchApproved;
+                CloseRangeGun.RequestApprove(approveTime);
                 return;
             }
             
@@ -63,7 +70,7 @@ namespace Guns.Bullets.Types
             _crushWallPunch = false;
             if (_needApprove) 
             {
-                HandGun.PunchApproved -= CrushWall;
+                CloseRangeGun.PunchApproved -= CrushWall;
                 Origin.Owner.RequestPush(-transform.forward * Config.PushPower/5f, ForceMode.Impulse);
             }
             rayfireGun.Shoot();
@@ -81,7 +88,7 @@ namespace Guns.Bullets.Types
             {
                 ProcessHit(hitCollider);
             }
-            if (!TimeManager.Instance.IsTimeStopped && !_needApprove)
+            if (!TimeNotifier.IsTimeStopped && !_needApprove)
             {
                 DestroyBullet();
             }
@@ -101,7 +108,7 @@ namespace Guns.Bullets.Types
 
         private void OnPunchApproved()
         {
-            HandGun.PunchApproved -= OnPunchApproved;
+            CloseRangeGun.PunchApproved -= OnPunchApproved;
             FinishShoot();
         }
         
@@ -116,7 +123,7 @@ namespace Guns.Bullets.Types
 
         private void Update()
         {
-            if (TimeManager.Instance.IsTimeStopped) return;
+            if (TimeNotifier.IsTimeStopped) return;
             _destroyTime += Time.deltaTime;
             if (_destroyTime > Config.DestroyTime)
             {
@@ -155,7 +162,7 @@ namespace Guns.Bullets.Types
             if (hitCollider.gameObject.TryGetComponent<Rigidbody>(out var rb))
             {
                 rb.AddForce(transform.forward * Config.PushPower, ForceMode.Impulse);
-                if (TimeManager.Instance.IsTimeStopped)
+                if (TimeNotifier.IsTimeStopped)
                 {
                     if (hitCollider.gameObject.TryGetComponent<StoppableRigid>(out var stoppableRigid))
                     {

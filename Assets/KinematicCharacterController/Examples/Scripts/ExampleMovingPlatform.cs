@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using KinematicCharacterController.Core;
+using TimeStop;
 using UnityEngine;
 
 namespace KinematicCharacterController.Examples
 {
-    public class ExampleMovingPlatform : MonoBehaviour, IMoverController
+    public class ExampleMovingPlatform : TimeStoppableBehaviour, IMoverController
     {
         public PhysicsMover Mover;
 
@@ -19,9 +19,12 @@ namespace KinematicCharacterController.Examples
 
         private Vector3 _originalPosition;
         private Quaternion _originalRotation;
+
+        private float _timer;
         
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _originalPosition = Mover.Rigidbody.position;
             _originalRotation = Mover.Rigidbody.rotation;
 
@@ -30,10 +33,10 @@ namespace KinematicCharacterController.Examples
 
         public void UpdateMovement(out Vector3 goalPosition, out Quaternion goalRotation, float deltaTime)
         {
-            goalPosition = (_originalPosition + (TranslationAxis.normalized * Mathf.Sin(Time.time * TranslationSpeed) * TranslationPeriod));
-
-            Quaternion targetRotForOscillation = Quaternion.Euler(OscillationAxis.normalized * (Mathf.Sin(Time.time * OscillationSpeed) * OscillationPeriod)) * _originalRotation;
-            goalRotation = Quaternion.Euler(RotationAxis * RotSpeed * Time.time) * targetRotForOscillation;
+             _timer += deltaTime;
+            goalPosition = (_originalPosition + (TranslationAxis.normalized * (Mathf.Sin(_timer * TranslationSpeed) * TranslationPeriod)));
+            Quaternion targetRotForOscillation = Quaternion.Euler(OscillationAxis.normalized * (Mathf.Sin(_timer * OscillationSpeed) * OscillationPeriod)) * _originalRotation;
+            goalRotation = Quaternion.Euler(RotationAxis * (RotSpeed * _timer)) * targetRotForOscillation;
         }
     }
 }

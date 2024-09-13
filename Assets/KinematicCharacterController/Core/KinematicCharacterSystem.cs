@@ -1,60 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Utils;
+using Zenject;
 
-namespace KinematicCharacterController
+namespace KinematicCharacterController.Core
 {
     /// <summary>
     /// The system that manages the simulation of KinematicCharacterMotor and PhysicsMover
     /// </summary>
     [DefaultExecutionOrder(-100)]
-    public class KinematicCharacterSystem : GamePlayBehaviour
+    public class KinematicCharacterSystem : GamePlayBehaviour, IKccMotorRegister, IKccPhysicsMoverRegister
     {
-        private static KinematicCharacterSystem _instance;
+        public readonly List<KinematicCharacterMotor> CharacterMotors = new List<KinematicCharacterMotor>();
+        public readonly List<PhysicsMover> PhysicsMovers = new List<PhysicsMover>();
 
-        public static List<KinematicCharacterMotor> CharacterMotors = new List<KinematicCharacterMotor>();
-        public static List<PhysicsMover> PhysicsMovers = new List<PhysicsMover>();
+        private float _lastCustomInterpolationStartTime = -1f;
+        private float _lastCustomInterpolationDeltaTime = -1f;
 
-        private static float _lastCustomInterpolationStartTime = -1f;
-        private static float _lastCustomInterpolationDeltaTime = -1f;
-
-        public static KCCSettings Settings;
-
-        /// <summary>
-        /// Creates a KinematicCharacterSystem instance if there isn't already one
-        /// </summary>
-        public static void EnsureCreation()
-        {
-            if (_instance == null)
-            {
-                GameObject systemGameObject = new GameObject("KinematicCharacterSystem");
-                _instance = systemGameObject.AddComponent<KinematicCharacterSystem>();
-
-                systemGameObject.hideFlags = HideFlags.NotEditable;
-                _instance.hideFlags = HideFlags.NotEditable;
-
-                Settings = ScriptableObject.CreateInstance<KCCSettings>();
-
-                GameObject.DontDestroyOnLoad(systemGameObject);
-            }
-        }
-
-        /// <summary>
-        /// Gets the KinematicCharacterSystem instance if any
-        /// </summary>
-        /// <returns></returns>
-        public static KinematicCharacterSystem GetInstance()
-        {
-            return _instance;
-        }
-
+        public KCCSettings settings;
+        
         /// <summary>
         /// Sets the maximum capacity of the character motors list, to prevent allocations when adding characters
         /// </summary>
         /// <param name="capacity"></param>
-        public static void SetCharacterMotorsCapacity(int capacity)
+        public void SetCharacterMotorsCapacity(int capacity)
         {
             if (capacity < CharacterMotors.Count)
             {
@@ -66,7 +35,7 @@ namespace KinematicCharacterController
         /// <summary>
         /// Registers a KinematicCharacterMotor into the system
         /// </summary>
-        public static void RegisterCharacterMotor(KinematicCharacterMotor motor)
+        public void RegisterCharacterMotor(KinematicCharacterMotor motor)
         {
             CharacterMotors.Add(motor);
         }
@@ -74,7 +43,7 @@ namespace KinematicCharacterController
         /// <summary>
         /// Unregisters a KinematicCharacterMotor from the system
         /// </summary>
-        public static void UnregisterCharacterMotor(KinematicCharacterMotor motor)
+        public void UnregisterCharacterMotor(KinematicCharacterMotor motor)
         {
             CharacterMotors.Remove(motor);
         }
@@ -83,7 +52,7 @@ namespace KinematicCharacterController
         /// Sets the maximum capacity of the physics movers list, to prevent allocations when adding movers
         /// </summary>
         /// <param name="capacity"></param>
-        public static void SetPhysicsMoversCapacity(int capacity)
+        public void SetPhysicsMoversCapacity(int capacity)
         {
             if (capacity < PhysicsMovers.Count)
             {
@@ -95,7 +64,7 @@ namespace KinematicCharacterController
         /// <summary>
         /// Registers a PhysicsMover into the system
         /// </summary>
-        public static void RegisterPhysicsMover(PhysicsMover mover)
+        public void RegisterPhysicsMover(PhysicsMover mover)
         {
             PhysicsMovers.Add(mover);
 
@@ -105,45 +74,35 @@ namespace KinematicCharacterController
         /// <summary>
         /// Unregisters a PhysicsMover from the system
         /// </summary>
-        public static void UnregisterPhysicsMover(PhysicsMover mover)
+        public void UnregisterPhysicsMover(PhysicsMover mover)
         {
             PhysicsMovers.Remove(mover);
         }
+        
 
-        // This is to prevent duplicating the singleton gameobject on script recompiles
-        private void OnDisable()
+        public void FixedUpdate()
         {
-            Destroy(this.gameObject);
-        }
-
-        private void Awake()
-        {
-            _instance = this;
-        }
-
-        private void FixedUpdate()
-        {
-            if (Settings.AutoSimulation)
+            if (settings.AutoSimulation)
             {
                 float deltaTime = Time.deltaTime;
 
-                if (Settings.Interpolate)
+                if (settings.Interpolate)
                 {
                     PreSimulationInterpolationUpdate(deltaTime);
                 }
 
                 Simulate(deltaTime, CharacterMotors, PhysicsMovers);
 
-                if (Settings.Interpolate)
+                if (settings.Interpolate)
                 {
                     PostSimulationInterpolationUpdate(deltaTime);
                 }
             }
         }
 
-        private void LateUpdate()
+        public void LateUpdate()
         {
-            if (Settings.Interpolate)
+            if (settings.Interpolate)
             {
                 CustomInterpolationUpdate();
             }
@@ -152,7 +111,7 @@ namespace KinematicCharacterController
         /// <summary>
         /// Remembers the point to interpolate from for KinematicCharacterMotors and PhysicsMovers
         /// </summary>
-        public static void PreSimulationInterpolationUpdate(float deltaTime)
+        public  void PreSimulationInterpolationUpdate(float deltaTime)
         {
             // Save pre-simulation poses and place transform at transient pose
             for (int i = 0; i < CharacterMotors.Count; i++)
@@ -224,7 +183,7 @@ namespace KinematicCharacterController
         /// <summary>
         /// Initiates the interpolation for KinematicCharacterMotors and PhysicsMovers
         /// </summary>
-        public static void PostSimulationInterpolationUpdate(float deltaTime)
+        public  void PostSimulationInterpolationUpdate(float deltaTime)
         {
             _lastCustomInterpolationStartTime = Time.time;
             _lastCustomInterpolationDeltaTime = deltaTime;
@@ -260,7 +219,7 @@ namespace KinematicCharacterController
         /// <summary>
         /// Handles per-frame interpolation
         /// </summary>
-        private static void CustomInterpolationUpdate()
+        private  void CustomInterpolationUpdate()
         {
             float interpolationFactor = Mathf.Clamp01((Time.time - _lastCustomInterpolationStartTime) / _lastCustomInterpolationDeltaTime);
 

@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using Sirenix.OdinInspector;
+using TimeStop;
 using UnityEngine;
 using Utils;
+using Zenject;
 
-namespace KinematicCharacterController
+namespace KinematicCharacterController.Core
 {
     /// <summary>
     /// Represents the entire state of a PhysicsMover that is pertinent for simulation.
     /// Use this to save state or revert to past state
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public struct PhysicsMoverState
     {
         public Vector3 Position;
@@ -24,7 +25,7 @@ namespace KinematicCharacterController
     /// proper interaction with characters
     /// </summary>
     [RequireComponent(typeof(Rigidbody))]
-    public class PhysicsMover : GamePlayBehaviour
+    public class PhysicsMover : TimeStoppableBehaviour
     {
         /// <summary>
         /// The mover's Rigidbody
@@ -130,6 +131,14 @@ namespace KinematicCharacterController
             }
         }
 
+        private IKccPhysicsMoverRegister _kccPhysicsMoverRegister;
+
+        [Inject]
+        private void Construct(IKccPhysicsMoverRegister kccPhysicsMoverRegister)
+        {
+            _kccPhysicsMoverRegister = kccPhysicsMoverRegister;
+        }
+
 
         private void Reset()
         {
@@ -157,13 +166,12 @@ namespace KinematicCharacterController
 
         private void OnEnable()
         {
-            KinematicCharacterSystem.EnsureCreation();
-            KinematicCharacterSystem.RegisterPhysicsMover(this);
+            _kccPhysicsMoverRegister.RegisterPhysicsMover(this);
         }
 
         private void OnDisable()
         {
-            KinematicCharacterSystem.UnregisterPhysicsMover(this);
+            _kccPhysicsMoverRegister.UnregisterPhysicsMover(this);
         }
 
         private void Awake()
@@ -258,5 +266,7 @@ namespace KinematicCharacterController
                 AngularVelocity = (Mathf.Deg2Rad * rotationFromCurrentToGoal.eulerAngles) / deltaTime;
             }
         }
+
+        
     }
 }

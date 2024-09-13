@@ -1,5 +1,5 @@
 ﻿using Entities;
-using KinematicCharacterController;
+using KinematicCharacterController.Core;
 using KinematicCharacterController.Examples;
 using Player.Data;
 using UnityEngine;

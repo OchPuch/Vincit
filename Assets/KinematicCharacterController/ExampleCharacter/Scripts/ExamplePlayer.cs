@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using KinematicCharacterController;
+using KinematicCharacterController.Core;
 using KinematicCharacterController.Examples;
 
 namespace KinematicCharacterController.Examples

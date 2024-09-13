@@ -5,13 +5,21 @@ using UnityEngine;
 
 namespace Guns.Types.Hand
 {
-    public class Hand : Gun
+    public class CloseRange : Gun
     {
         private float _currentApproveTime;
         private bool _approveRequested;
         private float _approveTimer;
-        public event Action PunchApproved;
 
+        private TimeController _timeController;
+        public event Action PunchApproved;
+        
+        public void Construct(TimeController timeController)
+        {
+            _timeController = timeController;
+        }
+        
+        
         protected override void Shoot()
         {
             _approveTimer = 0;
@@ -47,14 +55,14 @@ namespace Guns.Types.Hand
             if (_approveRequested) return;
             _approveRequested = true;
             _currentApproveTime = approveTime;
-            TimeManager.Instance.FreezeTimeEffectStart(approveTime);
+            _timeController.RequestTimeFreezeEffect(approveTime);
         }
 
         private void ApprovePunch()
         {
             if (!_approveRequested) return;
             _approveRequested = false;
-            TimeManager.Instance.StopFreezeTimeEffect();
+            _timeController.RequestTimeUnfreezeEffect();
             PunchApproved?.Invoke();
         }
         

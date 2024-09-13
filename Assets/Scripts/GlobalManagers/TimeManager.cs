@@ -1,47 +1,45 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 namespace GlobalManagers
 {
-    public class TimeManager : MonoBehaviour
-    {
-        public static TimeManager Instance { get; private set; }
+    public class TimeManager : ITimeNotifier
+    { 
+        public bool IsTimeStopped { get; private set; }
         public event Action TimeStopped;
         public event Action TimeContinued;
-        
-        public bool IsTimeStopped { get; private set; }
-        
+
         private float _pausedTimeScale = 1.0f;
         private Coroutine _freezingEffect;
-
-        public void Init()
+        
+        private IPauseNotifier _pauseNotifier;
+        private MonoBehaviour _context;
+        
+        public void Init(MonoBehaviour context)
         {
-            if (Instance == this) return;
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-            
-            if (PauseManager.Instance is null) return;
-            PauseManager.Instance.Paused += OnPause;
-            PauseManager.Instance.Resumed += OnResume;
+            _context = context;
+        }
+        
+        [Inject]
+        public void Construct(IPauseNotifier pauseManager)
+        {
+            pauseManager.Paused += OnPause;
+            pauseManager.Resumed += OnResume;
         }
 
         public void FreezeTimeEffectStart(float effectTime)
         {
-            if (_freezingEffect is not null) StopCoroutine(_freezingEffect);
-            _freezingEffect = StartCoroutine(FreezeTimeForSeconds(effectTime));
+            if (_freezingEffect is not null) _context.StopCoroutine(_freezingEffect);
+            _freezingEffect = _context.StartCoroutine(FreezeTimeForSeconds(effectTime));
         }
 
         public void StopFreezeTimeEffect()
         {
             if (_freezingEffect is not null)
             {
-                if (PauseManager.Instance.IsPaused) _pausedTimeScale = 1.0f;
+                if (_pauseNotifier.IsPaused) _pausedTimeScale = 1.0f;
                 else Time.timeScale = 1.0f;
             }
 
@@ -53,7 +51,7 @@ namespace GlobalManagers
             Time.timeScale = 0;
             while (elapsedTime < time)
             {
-                if (PauseManager.Instance.IsPaused)
+                if (_pauseNotifier.IsPaused)
                 {
                     yield return null;
                     continue;
@@ -68,12 +66,8 @@ namespace GlobalManagers
 
         private void OnDestroy()
         {
-            if (Instance != this) return;
-            
-            Instance = null;
-            if (PauseManager.Instance is null) return;
-            PauseManager.Instance.Paused -= OnPause;
-            PauseManager.Instance.Resumed -= OnResume;
+            _pauseNotifier.Paused -= OnPause;
+            _pauseNotifier.Resumed -= OnResume;
         }
 
         public void TimeStop()

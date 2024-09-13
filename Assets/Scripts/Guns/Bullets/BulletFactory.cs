@@ -1,6 +1,7 @@
 ﻿using Guns.General;
 using UnityEngine;
 using UnityEngine.Pool;
+using Zenject;
 
 namespace Guns.Bullets
 {
@@ -8,7 +9,8 @@ namespace Guns.Bullets
     {
         private readonly T _bulletPrefab;
         private readonly Gun _origin;
-        
+
+        private DiContainer _diContainer;
         private readonly ObjectPool<T> _bulletPool;
 
         public BulletFactory(T bullet, Gun origin)
@@ -16,6 +18,12 @@ namespace Guns.Bullets
             _bulletPrefab = bullet;
             _origin = origin;
             _bulletPool = new ObjectPool<T>(CreateNewBullet, OnTake, OnReturn, OnDestroyBullet, true, 20, 1000);
+        }
+
+        [Inject]
+        public void Construct(DiContainer diContainer)
+        {
+            _diContainer = diContainer;
         }
 
         private void OnDestroyBullet(T obj)
@@ -36,7 +44,7 @@ namespace Guns.Bullets
 
         private T CreateNewBullet()
         {
-            var bullet = Object.Instantiate(_bulletPrefab);
+            var bullet = _diContainer.InstantiatePrefabForComponent<T>(_bulletPrefab);
             bullet.gameObject.SetActive(false);
             bullet.BulletDestroyed += () =>
             {

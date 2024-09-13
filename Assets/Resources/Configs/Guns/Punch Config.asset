@@ -12,7 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2533e11c7149589db2206e44c81a27, type: 3}
   m_Name: Punch Config
   m_EditorClassIdentifier: 
+  <BulletHitMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 769
+  <BulletStopMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 1
+  <Damage>k__BackingField: 0
   <DestroyTime>k__BackingField: 0
   <StartRadius>k__BackingField: 1.5
   <PushPower>k__BackingField: 200
   <MaxDistance>k__BackingField: 5
+  <DisappearAnimation>k__BackingField:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

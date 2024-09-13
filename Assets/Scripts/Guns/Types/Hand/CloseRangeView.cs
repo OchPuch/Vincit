@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Guns.Types.Hand
 {
-    public class HandView : GunView
+    public class CloseRangeView : GunView
     {
         [Header("Hold view")]
         [SerializeField] private Animator animator;

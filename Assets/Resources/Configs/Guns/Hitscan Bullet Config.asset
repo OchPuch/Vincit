@@ -12,6 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2533e11c7149589db2206e44c81a27, type: 3}
   m_Name: Hitscan Bullet Config
   m_EditorClassIdentifier: 
-  <DestroyTime>k__BackingField: 0.1
+  <BulletHitMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 257
+  <BulletStopMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 1
+  <Damage>k__BackingField: 0
+  <DestroyTime>k__BackingField: 0.3
   <StartRadius>k__BackingField: 0.2
   <PushPower>k__BackingField: 10
+  <MaxDistance>k__BackingField: 100
+  <DisappearAnimation>k__BackingField:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.095033295
+      outSlope: -0.095033295
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.27430105
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -3.5330389
+      outSlope: -3.5330389
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.037925184
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

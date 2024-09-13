@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using KinematicCharacterController.Core;
 using UnityEngine;
 using Utils;
+using Zenject;
 
 namespace KinematicCharacterController
 {
@@ -528,17 +530,24 @@ namespace KinematicCharacterController
         public const float CorrelationForVerticalObstruction = 0.01f;
         public const float ExtraSteppingForwardDistance = 0.01f;
         public const float ExtraStepHeightPadding = 0.01f;
-#pragma warning restore 0414 
+#pragma warning restore 0414
 
+        private IKccMotorRegister _kccMotorRegister;
+        
+        [Inject]
+        private void Construct(IKccMotorRegister kccMotorRegister)
+        {
+            _kccMotorRegister = kccMotorRegister;
+        }
+        
         private void OnEnable()
         {
-            KinematicCharacterSystem.EnsureCreation();
-            KinematicCharacterSystem.RegisterCharacterMotor(this);
+            _kccMotorRegister.RegisterCharacterMotor(this);
         }
 
         private void OnDisable()
         {
-            KinematicCharacterSystem.UnregisterCharacterMotor(this);
+            _kccMotorRegister.UnregisterCharacterMotor(this);
         }
 
         private void Reset()

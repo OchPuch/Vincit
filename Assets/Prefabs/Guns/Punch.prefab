@@ -171,7 +171,7 @@ MonoBehaviour:
     type: 2}
   weakBulletPrefab: {fileID: 4121726910312821292, guid: a990c64c98236af4094cd7f4afb5f093,
     type: 3}
-  maxRayFireRigidShootSize: 5
+  maxRayFireRigidShootSize: 2
   playerPushMultiplier: 0.3
   smallApproveTime: 0.1
   maxApproveTime: 0.4

@@ -41,7 +41,7 @@ namespace TimeStop
 
         private void Update()
         {
-            if (!TimeManager.Instance.IsTimeStopped) return;
+            if (!TimeNotifier.IsTimeStopped) return;
             if (rb.velocity.magnitude > _changedVelocity.magnitude)
             {
                 _changedVelocity = rb.velocity;

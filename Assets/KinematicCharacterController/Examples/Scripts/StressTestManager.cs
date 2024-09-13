@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using KinematicCharacterController.Core;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace KinematicCharacterController.Examples
 {
@@ -19,27 +21,33 @@ namespace KinematicCharacterController.Examples
         public int SpawnCount = 100;
         public float SpawnDistance = 2f;
 
+        private KinematicCharacterSystem _kcc;
+        
+        [Inject]
+        private void Construct(KinematicCharacterSystem kinematicCharacterSystem)
+        {
+            _kcc = kinematicCharacterSystem;
+        }
+
         private void Start()
         {
-            KinematicCharacterSystem.EnsureCreation();
             CountField.text = SpawnCount.ToString();
             UpdateOnImages();
 
-            KinematicCharacterSystem.Settings.AutoSimulation = false;
-            KinematicCharacterSystem.Settings.Interpolate = false;
+            _kcc.settings.AutoSimulation = false;
+            _kcc.settings.Interpolate = false;
         }
 
         private void Update()
         {
-
-            KinematicCharacterSystem.Simulate(Time.deltaTime, KinematicCharacterSystem.CharacterMotors, KinematicCharacterSystem.PhysicsMovers);
+            KinematicCharacterSystem.Simulate(Time.deltaTime, _kcc.CharacterMotors, _kcc.PhysicsMovers);
         }
 
         private void UpdateOnImages()
         {
             RenderOn.enabled = Camera.cullingMask == -1;
             SimOn.enabled = Physics.autoSimulation;
-            InterpOn.enabled = KinematicCharacterSystem.Settings.Interpolate;
+            InterpOn.enabled = _kcc.settings.Interpolate;
         }
 
         public void SetSpawnCount(string count)
@@ -71,7 +79,7 @@ namespace KinematicCharacterController.Examples
 
         public void ToggleInterpolation()
         {
-            KinematicCharacterSystem.Settings.Interpolate = !KinematicCharacterSystem.Settings.Interpolate;
+            _kcc.settings.Interpolate = !_kcc.settings.Interpolate;
             UpdateOnImages();
         }
 

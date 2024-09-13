@@ -17,7 +17,7 @@ namespace Guns.General
     {
         [SerializeField] private Transform gunRoot;
         [SerializeField] private TimeStopAbility ability;
-        [SerializeField] private Hand leftHand;
+        [SerializeField] private CloseRange leftHand;
 
         private Player.Player _owner;
         private readonly List<Gun> _guns = new();
