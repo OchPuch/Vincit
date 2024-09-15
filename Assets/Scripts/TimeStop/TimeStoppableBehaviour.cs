@@ -1,7 +1,7 @@
 ﻿using System;
+using General;
 using GlobalManagers;
 using UnityEngine;
-using Utils;
 using Zenject;
 
 namespace TimeStop

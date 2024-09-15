@@ -24,23 +24,21 @@ namespace Guns.Bullets.Types
         private readonly List<HitscanBullet> _bulletsToCombine = new();
         private readonly List<Vector3> _positionsToSpawnBullets = new();
 
-        private BulletFactory<HitscanBullet> _hitscanBulletFactory;
+        private BulletFactory _hitscanBulletFactory;
         private float _destroyTime;
         private bool _needApprove;
         private bool _crushWallPunch;
         private CloseRange CloseRangeGun => Origin as CloseRange;
         
         [Inject]
-        private void Construct()
+        private void Construct(DiContainer diContainer)
         {
-            
+            _hitscanBulletFactory = diContainer.ResolveId<BulletFactory>(weakBulletPrefab.Config.FactoryId);
         }
-        
         
         public override void Init(Gun origin)
         {
             base.Init(origin);
-            _hitscanBulletFactory ??= new BulletFactory<HitscanBullet>(weakBulletPrefab, origin);
             
             Vector3 point1 = transform.position;
             Vector3 point2 = transform.position + transform.forward * Config.MaxDistance;
@@ -98,11 +96,11 @@ namespace Guns.Bullets.Types
         {
             if (_bulletsToCombine.Count > 1)
             {
-                _bulletsToCombine[0].PunchCurveConsume(transform.position, _bulletsToCombine);
+                _bulletsToCombine[0].PunchCurveConsume(transform.position, Origin.transform.forward ,_bulletsToCombine);
             }
             else if (_bulletsToCombine.Count > 0)
             {
-                _bulletsToCombine[0].PunchCurve(transform.position);
+                _bulletsToCombine[0].PunchCurve(transform.position, Origin.transform.forward);
             }
         }
 

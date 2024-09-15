@@ -1140,6 +1140,7 @@ MonoBehaviour:
   gameManager:
     <GameSettings>k__BackingField: {fileID: 0}
   timeController: {fileID: 0}
+  kcc: {fileID: 0}
 --- !u!4 &1294996739
 Transform:
   m_ObjectHideFlags: 0
@@ -1819,10 +1820,10 @@ GameObject:
   - component: {fileID: 4898694636107356}
   - component: {fileID: 6177337246465338355}
   - component: {fileID: 1185531043422071794}
+  - component: {fileID: 6177337246465338356}
   - component: {fileID: 114967586958730556}
   - component: {fileID: 6177337246465338354}
   - component: {fileID: 136457490420538344}
-  - component: {fileID: 6177337246465338356}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player

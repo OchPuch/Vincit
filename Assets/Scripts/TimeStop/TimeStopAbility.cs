@@ -11,13 +11,12 @@ namespace TimeStop
         [SerializeField] private float abilityDuration;
         private float _abilityTimer;
 
-        private TimeController _timeManager;
+        private TimeController _timeController;
         private ITimeNotifier _timeNotifier;
 
-        [Inject]
-        private void Construct(TimeController timeController, ITimeNotifier timeNotifier)
+        public void Init(TimeController timeController, ITimeNotifier timeNotifier)
         {
-            _timeManager = timeController;
+            _timeController = timeController;
             _timeNotifier = timeNotifier;
         }
         
@@ -25,11 +24,11 @@ namespace TimeStop
         {
             if (_timeNotifier.IsTimeStopped)
             {
-                _timeManager.RequestFullTimeContinue();
+                _timeController.RequestFullTimeContinue();
             }
             else
             {
-                _timeManager.RequestFullTimeStop();
+                _timeController.RequestFullTimeStop();
             }
         }
 

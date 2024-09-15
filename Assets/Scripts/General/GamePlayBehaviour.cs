@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Utils
+namespace General
 {
     public abstract class GamePlayBehaviour : MonoBehaviour
     {
@@ -18,15 +18,6 @@ namespace Utils
         protected virtual void Start()
         {
             if (!pauseable) return;
-            if (_pauseNotifier is null)
-            {
-                Debug.Log(gameObject.name +" missing pause notifier");
-                return;
-            }
-            else
-            {
-                Debug.Log(gameObject.name +" is fine");
-            }
             _pauseNotifier.Paused += OnPause;
             _pauseNotifier.Resumed += OnResume;
         }

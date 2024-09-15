@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Guns.Bullets
 {
-    public abstract class Bullet : TimeStoppableBehaviour
+    public class Bullet : TimeStoppableBehaviour
     {
-        [field: SerializeField] protected BulletConfig Config { get; private set; }
+        [field: SerializeField] public BulletConfig Config { get; private set; }
         public event Action BulletDestroyed;
         protected Gun Origin;
         

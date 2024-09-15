@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using General;
+using UnityEngine;
 using Utils;
 
 namespace Guns.Bullets.Types

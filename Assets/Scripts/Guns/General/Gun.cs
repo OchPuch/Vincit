@@ -1,25 +1,34 @@
 ﻿using System;
+using General;
 using Guns.Bullets;
 using Guns.Data;
 using UnityEngine;
 using Utils;
+using Zenject;
 
 namespace Guns.General
 {
     public abstract class Gun : GamePlayBehaviour
     {
+        [field: SerializeField] public Bullet Projectile { get; private set; }
         public Player.Player Owner { get; private set; }
+        public BulletFactory BulletFactory { get; private set; }
+        
         protected GunData Data;
-        public BulletFactory<Bullet> BulletFactory { get; private set; }
         public event Action Shot;
         public event Action Equipped;
         public event Action Activated;
         public event Action Deactivated;
+
+        [Inject]
+        private void Construct(DiContainer diContainer)
+        {
+            BulletFactory = diContainer.ResolveId<BulletFactory>(Projectile.Config.FactoryId);
+        }
         
         public virtual void Init(GunData data)
         {
             Data = data;
-            BulletFactory = new BulletFactory<Bullet>(Data.Config.Projectile, this);
         }
         
         protected virtual void Update()
@@ -60,7 +69,7 @@ namespace Guns.General
         
         protected virtual void Shoot()
         {
-            var bullet = BulletFactory.CreateBullet();
+            var bullet = BulletFactory.CreateBullet(transform.position, transform.forward);
             bullet.Init(this);
         }
     }

@@ -8,6 +8,5 @@ namespace Guns.Data
     {
         [field: SerializeField] public float Damage { get; private set; }
         [field: SerializeField] public float FireRate { get; private set; }
-        [field: SerializeField] public Bullet Projectile { get; private set; }
     }
 }

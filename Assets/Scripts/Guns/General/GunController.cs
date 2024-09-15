@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using General;
+using GlobalManagers;
 using Guns.Types.Hand;
 using TimeStop;
 using UnityEngine;
 using Utils;
+using Zenject;
 
 namespace Guns.General
 {
@@ -23,6 +26,12 @@ namespace Guns.General
         private readonly List<Gun> _guns = new();
         private Gun _activeGun;
 
+        [Inject]
+        private void Construct(TimeController timeController, ITimeNotifier timeNotifier)
+        {
+            ability.Init(timeController,timeNotifier);
+        }
+        
         protected override void Start()
         {
             base.Start();

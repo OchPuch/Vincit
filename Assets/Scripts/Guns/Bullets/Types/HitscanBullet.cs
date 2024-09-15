@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using GlobalManagers;
 using Guns.General;
 using RayFire;
 using TimeStop;
@@ -29,20 +28,25 @@ namespace Guns.Bullets.Types
         
         [SerializeField] private RayfireGun rayfireGun;
         
-        private BulletFactory<HitscanBullet> _hitscanBulletFactory;
+        private BulletFactory _hitscanBulletFactory;
         private Vector3 _endPoint;
         private Vector3 _startPoint;
         private float _destroyTimer;
         
         public bool IsOverloaded { get; private set;}
         public event Action Overloaded;
-        
+
+        [Inject]
+        private void Construct(DiContainer diContainer)
+        {
+            _hitscanBulletFactory = diContainer.ResolveId<BulletFactory>(Config.FactoryId);
+        }
         
         public override void Init(Gun origin)
         {
             base.Init(origin);
 
-            _hitscanBulletFactory ??= new BulletFactory<HitscanBullet>(this, origin);
+            _hitscanBulletFactory ??= new BulletFactory(this);
             
             _startPoint = transform.position;
             _endPoint = transform.position + transform.forward * Config.MaxDistance;
@@ -111,20 +115,20 @@ namespace Guns.Bullets.Types
             bullet.ConsumeData.Overloads += 1;
         }
 
-        public void PunchCurve(Vector3 punchPoint)
+        public void PunchCurve(Vector3 punchPoint, Vector3 forward)
         {
             if (IsOverloaded) return;
-            var bullet = _hitscanBulletFactory.CreateBullet(punchPoint);
+            var bullet = (HitscanBullet) _hitscanBulletFactory.CreateBullet(punchPoint, forward);
             bullet.ConsumeData = ConsumeData;
             bullet.Init(Origin);
             OnBulletPunchedWithNewBullet(bullet);
             OverloadEndPosition(punchPoint);
         }
         
-        public void PunchCurveConsume(Vector3 punchPoint, List<HitscanBullet> bulletsToCombine)
+        public void PunchCurveConsume(Vector3 punchPoint, Vector3 forward ,List<HitscanBullet> bulletsToCombine)
         {
             if (IsOverloaded) return;
-            var bullet = _hitscanBulletFactory.CreateBullet(punchPoint);
+            var bullet = (HitscanBullet) _hitscanBulletFactory.CreateBullet(punchPoint, forward);
             bullet.ConsumeData = ConsumeData;
             foreach (HitscanBullet bulletCombine in bulletsToCombine)
             {

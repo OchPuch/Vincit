@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Guns.Bullets
 {
@@ -13,5 +14,15 @@ namespace Guns.Bullets
         [field: SerializeField] public float PushPower { get; private set; } = 10f;
         [field: SerializeField] public float MaxDistance { get; private set; } = 100f;
         [field: SerializeField] public AnimationCurve DisappearAnimation { get; private set; }
+        [field: SerializeField] public string FactoryId { get; private set; }
+
+        [Button("Generate Factory Id")]
+        private void GenerateFactoryId()
+        {
+            var id = $"{name}_Factory_#{Random.Range(0, 9999):0000}";
+            id = id.Replace("Config", "");
+            id = id.Replace(" ", "_");
+            FactoryId = id;
+        }
     }
 }

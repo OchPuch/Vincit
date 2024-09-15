@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-using Zenject.SpaceFighter;
 
 namespace Guns.Bullets
 {
@@ -14,16 +13,11 @@ namespace Guns.Bullets
         {
             foreach (var bulletPrefab in bulletPrefabs)
             {
-                //TODO: KYS
-                // var bulletType = bulletPrefab.GetType();
-                // var factoryType = typeof(BulletFactory<>).MakeGenericType(bulletType);
-                //
-                // // Bind the bullet type to the prefab instance
-                // Container.Bind(bulletType).FromComponentInNewPrefab(bulletPrefab).AsTransient();
-                //
-                // // Bind the factory type using reflection
-                // var factoryBindingMethod = typeof(DiContainer).GetMethod("BindFactory")?.MakeGenericMethod(bulletType, factoryType);
-                // if (factoryBindingMethod != null) factoryBindingMethod.Invoke(Container, null);
+                // Bind the factory and pass the bulletPrefab as an argument
+                Container.BindFactory<Bullet, BulletFactory>()
+                    .WithId(bulletPrefab.Config.FactoryId) // Use the unique ID for resolution later
+                    .WithFactoryArguments(bulletPrefab); // Pass the prefab as an argument to the factory
+                Debug.Log($"Binding factory with id: {bulletPrefab.Config.FactoryId}");
             }
         }
     }
