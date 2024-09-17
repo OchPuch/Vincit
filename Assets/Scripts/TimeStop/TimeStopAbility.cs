@@ -1,5 +1,5 @@
 ﻿using System;
-using GlobalManagers;
+using General.GlobalManagers;
 using UnityEngine;
 using Zenject;
 

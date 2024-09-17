@@ -2,7 +2,7 @@ using KinematicCharacterController.Core;
 using UnityEngine;
 using Zenject;
 
-namespace GlobalManagers
+namespace General.GlobalManagers
 {
     public class ManagersInstaller : MonoInstaller
     {

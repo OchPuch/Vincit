@@ -1,5 +1,4 @@
-﻿using GlobalManagers;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TimeStop
 {

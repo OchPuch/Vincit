@@ -1,4 +1,4 @@
-﻿using GlobalManagers;
+﻿using General.GlobalManagers;
 using UnityEngine;
 using Zenject;
 
@@ -7,13 +7,7 @@ namespace General
     public abstract class GamePlayBehaviour : MonoBehaviour
     {
         [SerializeField] private bool pauseable = true;
-        private IPauseNotifier _pauseNotifier;
-
-        [Inject]
-        private void Construct(IPauseNotifier pauseNotifier)
-        {
-            _pauseNotifier = pauseNotifier;
-        }
+        [Inject] private IPauseNotifier _pauseNotifier;
         
         protected virtual void Start()
         {

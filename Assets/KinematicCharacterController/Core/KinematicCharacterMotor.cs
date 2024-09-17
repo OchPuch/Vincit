@@ -538,6 +538,7 @@ namespace KinematicCharacterController
         [Inject]
         private void Construct(IKccMotorRegister kccMotorRegister)
         {
+            Debug.Log("hi character motor");
             _kccMotorRegister = kccMotorRegister;
         }
         

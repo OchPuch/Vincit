@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GlobalManagers
+namespace General.GlobalManagers
 {
     public class LevelManager : MonoBehaviour
     {

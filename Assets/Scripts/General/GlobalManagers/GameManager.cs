@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GlobalManagers
+namespace General.GlobalManagers
 {
     [Serializable]
     public class GameManager

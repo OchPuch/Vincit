@@ -1,5 +1,5 @@
 ﻿using Entities;
-using GlobalManagers;
+using General.GlobalManagers;
 using KinematicCharacterController;
 using Player.AdditionalPhysics;
 using Player.Data;

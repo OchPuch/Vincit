@@ -1,7 +1,8 @@
 ﻿using System;
-using GlobalManagers;
+using General.GlobalManagers;
 using Guns.General;
 using UnityEngine;
+using Zenject;
 
 namespace Guns.Types.Hand
 {
@@ -14,6 +15,7 @@ namespace Guns.Types.Hand
         private TimeController _timeController;
         public event Action PunchApproved;
         
+        [Inject]
         public void Construct(TimeController timeController)
         {
             _timeController = timeController;

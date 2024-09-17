@@ -1,6 +1,6 @@
 ﻿using System;
 using General;
-using GlobalManagers;
+using General.GlobalManagers;
 using UnityEngine;
 using Zenject;
 
@@ -9,14 +9,8 @@ namespace TimeStop
     public abstract class TimeStoppableBehaviour : GamePlayBehaviour
     {
         [SerializeField] private bool disableOnTimeStop;
-        protected ITimeNotifier TimeNotifier;
-
-        [Inject]
-        public void Construct(ITimeNotifier timeNotifier)
-        {
-            TimeNotifier = timeNotifier;
-        }
-
+        [Inject] protected ITimeNotifier TimeNotifier;
+        
         protected override void Start()
         {
             base.Start();

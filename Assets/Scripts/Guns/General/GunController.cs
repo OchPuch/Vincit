@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using General;
-using GlobalManagers;
+using General.GlobalManagers;
 using Guns.Types.Hand;
 using TimeStop;
 using UnityEngine;

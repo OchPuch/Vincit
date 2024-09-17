@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GlobalManagers
+namespace General.GlobalManagers
 {
     public class PauseManager : IPauseNotifier
     {

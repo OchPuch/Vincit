@@ -1,4 +1,4 @@
-﻿using GlobalManagers;
+﻿using General.GlobalManagers;
 using UnityEngine;
 using Zenject;
 
