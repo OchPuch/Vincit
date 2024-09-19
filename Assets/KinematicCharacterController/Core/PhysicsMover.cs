@@ -136,7 +136,6 @@ namespace KinematicCharacterController.Core
         [Inject]
         private void Construct(IKccPhysicsMoverRegister kccPhysicsMoverRegister)
         {
-            Debug.Log("hi physics mover");
             _kccPhysicsMoverRegister = kccPhysicsMoverRegister;
         }
 

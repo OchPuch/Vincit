@@ -14,9 +14,8 @@ namespace General.GlobalManagers
         private TimeManager _timeManager;
         public override void InstallBindings()
         {
-            _timeManager = new TimeManager();
             _pauseManager = new PauseManager();
-            _timeManager.Init(timeController);
+            _timeManager = new TimeManager(timeController, _pauseManager);
             Container.BindInterfacesAndSelfTo<GameManager>().FromInstance(gameManager).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PauseManager>().FromInstance(_pauseManager).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<TimeManager>().FromInstance(_timeManager).AsSingle().NonLazy();

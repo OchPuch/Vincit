@@ -14,35 +14,34 @@ namespace General.GlobalManagers
         private float _pausedTimeScale = 1.0f;
         private Coroutine _freezingEffect;
         
-        private IPauseNotifier _pauseNotifier;
-        private MonoBehaviour _context;
+        private readonly IPauseNotifier _pauseNotifier;
+        private readonly MonoBehaviour _context;
         
-        public void Init(MonoBehaviour context)
+        public TimeManager(MonoBehaviour context, IPauseNotifier pauseManager)
         {
             _context = context;
-        }
-        
-        [Inject]
-        public void Construct(IPauseNotifier pauseManager)
-        {
+            _pauseNotifier = pauseManager;
             pauseManager.Paused += OnPause;
             pauseManager.Resumed += OnResume;
         }
+        
 
         public void FreezeTimeEffectStart(float effectTime)
         {
             if (_freezingEffect is not null) _context.StopCoroutine(_freezingEffect);
+            if (_context is null)
+            {
+                Debug.LogError("Context is null");
+                return;
+            }
             _freezingEffect = _context.StartCoroutine(FreezeTimeForSeconds(effectTime));
         }
 
         public void StopFreezeTimeEffect()
         {
-            if (_freezingEffect is not null)
-            {
-                if (_pauseNotifier.IsPaused) _pausedTimeScale = 1.0f;
-                else Time.timeScale = 1.0f;
-            }
-
+            if (_freezingEffect is null) return;
+            if (_pauseNotifier.IsPaused) _pausedTimeScale = 1.0f;
+            else Time.timeScale = 1.0f;
         }
 
         private IEnumerator FreezeTimeForSeconds(float time)
