@@ -2951,7 +2951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseable: 1
-  <Projectile>k__BackingField: {fileID: 936348442727101248, guid: 5be8a4e4c8866dd4c91c5e4cf0209b94,
+  <Projectile>k__BackingField: {fileID: 936348442727101248, guid: 71019d3bbe5093e4190f44ec994f3df5,
     type: 3}
 --- !u!1 &8549724614924943294
 GameObject:

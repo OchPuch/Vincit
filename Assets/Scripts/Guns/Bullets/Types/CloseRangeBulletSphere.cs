@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Entities;
 using Guns.General;
 using Guns.Types.CloseRange;
@@ -20,14 +21,14 @@ namespace Guns.Bullets.Types
         [SerializeField] private RayfireGun rayfireGun;
         
         protected bool NeedApprove;
+        protected bool CrushWallPunch;
         protected readonly List<HitscanBullet> BulletsToCombine = new();
-        
-        private Collider[] _hitColliders;
+
+        private List<Collider> _hitColliders = new();
         private readonly List<Vector3> _positionsToSpawnBullets = new();
         
         private BulletFactory _hitscanBulletFactory;
         private float _destroyTime;
-        private bool _crushWallPunch;
         private CloseRange CloseRangeGun => Origin as CloseRange;
         
         [Inject]
@@ -42,9 +43,14 @@ namespace Guns.Bullets.Types
             
             Vector3 point1 = transform.position;
             Vector3 point2 = transform.position + transform.forward * Config.MaxDistance;
-            _hitColliders = Physics.OverlapCapsule(point1, point2, Config.StartRadius);
-            foreach (var hitCollider in _hitColliders)
+            _hitColliders = Physics.OverlapCapsule(point1, point2, Config.StartRadius).ToList();
+            foreach (var hitCollider in _hitColliders.ToList())
             {
+                if (hitCollider.gameObject.CompareTag("Player"))
+                {
+                    _hitColliders.Remove(hitCollider);
+                    continue;
+                }
                 PreProcessHit(hitCollider);
             }
             
@@ -52,7 +58,7 @@ namespace Guns.Bullets.Types
             {
                 float extraApproveTimeForBullets = BulletsToCombine.Count > 1 ? BulletsToCombine.Count * extraApproveTimePerBullet : 0;
                 float approveTime = Mathf.Clamp(smallApproveTime + extraApproveTimeForBullets, smallApproveTime, maxApproveTime);
-                if (_crushWallPunch)
+                if (CrushWallPunch)
                 {
                     CloseRangeGun.PunchApproved += CrushWall;
                 }
@@ -62,13 +68,14 @@ namespace Guns.Bullets.Types
                 return;
             }
             
-            if (_crushWallPunch) CrushWall();
+            if (CrushWallPunch) CrushWall();
             FinishShoot();
         }
 
         protected virtual void CrushWall()
         {
-            _crushWallPunch = false;
+            CrushWallPunch = false;
+            rayfireGun.Shoot();
             if (NeedApprove) 
             {
                 CloseRangeGun.PunchApproved -= CrushWall;
@@ -115,7 +122,7 @@ namespace Guns.Bullets.Types
         {
             base.ResetBullet();
             NeedApprove = false;
-            _crushWallPunch = false;
+            CrushWallPunch = false;
             _positionsToSpawnBullets.Clear();
             BulletsToCombine.Clear();
         }
@@ -143,7 +150,7 @@ namespace Guns.Bullets.Types
             
             if (hitCollider.gameObject.TryGetComponent<RayfireRigid>(out var rayfireRigid))
             {
-                _crushWallPunch = true;
+                CrushWallPunch = true;
                 if (rayfireRigid.limitations.currentDepth == 0)
                 {
                     NeedApprove = true;
@@ -161,13 +168,16 @@ namespace Guns.Bullets.Types
             if (hitCollider.gameObject.TryGetComponent<Rigidbody>(out var rb))
             {
                 rb.AddForce(transform.forward * Config.PushPower, ForceMode.Impulse);
+                PostProcessRigidbody(rb);
                 if (TimeNotifier.IsTimeStopped)
                 {
                     if (hitCollider.gameObject.TryGetComponent<StoppableRigid>(out var stoppableRigid))
                     {
                         stoppableRigid.AddForce(transform.forward * Config.PushPower);
+                        PostProcessStoppableRigid(stoppableRigid);
                     }
                 }
+                
             }
 
             if (hitCollider.gameObject.TryGetComponent<IDamageable>(out var damageable))
@@ -175,8 +185,31 @@ namespace Guns.Bullets.Types
                 if (damageable is not Player.Player)
                 {
                     damageable.Damage(Config.Damage);
+                    PostProcessDamageable(damageable);
                 }
             }
+            
+            PostProcessCollider(hitCollider);
+        }
+
+        protected virtual void PostProcessRigidbody(Rigidbody rb)
+        {
+            
+        }
+
+        protected virtual void PostProcessStoppableRigid(StoppableRigid stoppableRigid)
+        {
+            
+        }
+
+        protected virtual void PostProcessDamageable(IDamageable damageable)
+        {
+            
+        }
+
+        protected virtual void PostProcessCollider(Collider hitCollider)
+        {
+            
         }
     }
 }

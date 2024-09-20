@@ -17,6 +17,7 @@ namespace Guns.Bullets
                 Container.BindFactory<Bullet, BulletFactory>()
                     .WithId(bulletPrefab.Config.FactoryId) // Use the unique ID for resolution later
                     .WithFactoryArguments(bulletPrefab); // Pass the prefab as an argument to the factory
+                
             }
         }
     }
