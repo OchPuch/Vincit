@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5661182754009421907}
   - component: {fileID: 1483010089422422430}
   - component: {fileID: 6691532791411267770}
-  - component: {fileID: 7069843538230686072}
   - component: {fileID: 5453056911976994459}
+  - component: {fileID: 8498952243113081590}
   - component: {fileID: 7482521138142011907}
   m_Layer: 0
   m_Name: Crushable Kinematic Platform X
@@ -86,27 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7069843538230686072
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7743169149002118853}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5453056911976994459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +133,7 @@ MonoBehaviour:
     time: 0.2
     size: 5
     visible: 0
+    switchSmallToLayer: SmallRigid
     sliceByBlade: 0
     bound:
       m_Center: {x: 0, y: 0, z: 0}
@@ -280,6 +260,28 @@ MonoBehaviour:
   dustList: []
   restriction: {fileID: 0}
   sound: {fileID: 0}
+--- !u!64 &8498952243113081590
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7743169149002118853}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &7482521138142011907
 MonoBehaviour:
   m_ObjectHideFlags: 0

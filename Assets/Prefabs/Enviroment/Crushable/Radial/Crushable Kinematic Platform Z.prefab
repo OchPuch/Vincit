@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2707410868541496549}
   - component: {fileID: 4722880474037562202}
   - component: {fileID: 2311464246256296288}
-  - component: {fileID: 600886212255857092}
   - component: {fileID: 4226301154140378304}
   - component: {fileID: 2139266406048371924}
+  - component: {fileID: 6376335351815796987}
   m_Layer: 0
   m_Name: Crushable Kinematic Platform Z
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4722880474037562202
 MeshFilter:
@@ -86,27 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &600886212255857092
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4260885166808705425}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4226301154140378304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +133,7 @@ MonoBehaviour:
     time: 0.2
     size: 5
     visible: 0
+    switchSmallToLayer: SmallRigid
     sliceByBlade: 0
     bound:
       m_Center: {x: 0, y: 0, z: 0}
@@ -393,3 +373,25 @@ MonoBehaviour:
     m_Center: {x: 74.61, y: -18.13, z: -58.72}
     m_Extent: {x: 10.559902, y: 0.3576, z: 9.396983}
   resetState: 0
+--- !u!64 &6376335351815796987
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4260885166808705425}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}

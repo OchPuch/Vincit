@@ -173,7 +173,7 @@ MonoBehaviour:
     type: 3}
   maxRayFireRigidShootSize: 2
   playerPushMultiplier: 0.3
-  smallApproveTime: 0.1
+  smallApproveTime: 0.2
   maxApproveTime: 0.4
   extraApproveTimePerBullet: 0.025
   rayfireGun: {fileID: 3893280390341060229}

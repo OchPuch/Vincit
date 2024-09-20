@@ -12,7 +12,7 @@ namespace Guns.General
     {
         [field: SerializeField] public Bullet Projectile { get; private set; }
         public Player.Player Owner { get; private set; }
-        public BulletFactory BulletFactory { get; private set; }
+        private BulletFactory BulletFactory { get; set; }
         
         protected GunData Data;
         public event Action Shot;
@@ -35,17 +35,7 @@ namespace Guns.General
         {
             Data.fireTimer += Time.deltaTime;
         }
-
-        public virtual void HandleInput(GunInput input)
-        {
-            if (input.ShootRequest && Data.fireTimer > Data.Config.FireRate)
-            {
-                Shoot();
-                InvokeShot();
-                Data.fireTimer = 0;
-            }
-        }
-
+        
         public void Equip(Player.Player owner)
         {
             Owner = owner;
@@ -67,10 +57,14 @@ namespace Guns.General
             Shot?.Invoke();
         }
         
-        protected virtual void Shoot()
+        public virtual void Shoot()
         {
+            if (Data.fireTimer < Data.Config.FireRate) return;
             var bullet = BulletFactory.CreateBullet(transform.position, transform.forward);
             bullet.Init(this);
+            InvokeShot();
+            Data.fireTimer = 0;
+
         }
     }
 }

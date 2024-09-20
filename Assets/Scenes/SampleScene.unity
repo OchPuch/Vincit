@@ -3631,7 +3631,6 @@ Transform:
   - {fileID: 453630166}
   - {fileID: 1208443798}
   - {fileID: 731330816}
-  - {fileID: 1473935840}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6215,7 +6214,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38126
+  m_Name: pb_Mesh118270
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -13074,7 +13073,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38020
+  m_Name: pb_Mesh118164
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -18706,85 +18705,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4730617090445388662, guid: 3a2d4ce8b192fe74daf9144ef8b0d521,
     type: 3}
   m_PrefabInstance: {fileID: 1470097244}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1473935839
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 289084791}
-    m_Modifications:
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -64.234245
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -106.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -34.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4260885166808705425, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-        type: 3}
-      propertyPath: m_Name
-      value: Crushable Kinematic Platform Z
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8ed1f7256441d3242ab8d8c67bf41c6a, type: 3}
---- !u!4 &1473935840 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2707410868541496549, guid: 8ed1f7256441d3242ab8d8c67bf41c6a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1473935839}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1495756665
 PrefabInstance:
@@ -25377,7 +25297,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh37758
+  m_Name: pb_Mesh117902
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -27131,11 +27051,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Revolver Bootstrap
-      objectReference: {fileID: 0}
-    - target: {fileID: 3415837258471350219, guid: 5bdc623bd510ed04893dee8700a34781,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4332145874100064720, guid: 5bdc623bd510ed04893dee8700a34781,
         type: 3}

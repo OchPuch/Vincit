@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections;
 using General.GlobalManagers;
 using Guns.General;
 using UnityEngine;
 using Zenject;
 
-namespace Guns.Types.Hand
+namespace Guns.Types.CloseRange
 {
     public class CloseRange : Gun
     {
+        private const float NotFreezeTime = 0.05f;
         private float _currentApproveTime;
         private bool _approveRequested;
         private float _approveTimer;
@@ -21,9 +23,9 @@ namespace Guns.Types.Hand
             _timeController = timeController;
         }
         
-        
-        protected override void Shoot()
+        public override void Shoot()
         {
+            if (Data.fireTimer < Data.Config.FireRate) return;
             _approveTimer = 0;
             _approveRequested = false;
             base.Shoot();
@@ -35,28 +37,24 @@ namespace Guns.Types.Hand
             if (_approveRequested)
             {
                 _approveTimer += Time.unscaledDeltaTime;
-                if (_approveTimer > _currentApproveTime)
+                if (_approveTimer > _currentApproveTime + NotFreezeTime)
                 {
                     ApprovePunch();
                 }
             }
         }
         
-        public override void HandleInput(GunInput input)
-        {
-            if (input.HandPunchRequest && Data.fireTimer > Data.Config.FireRate)
-            {
-                Shoot();
-                InvokeShot();
-                Data.fireTimer = 0;
-            }
-        }
-
         public void RequestApprove(float approveTime)
         {
             if (_approveRequested) return;
             _approveRequested = true;
             _currentApproveTime = approveTime;
+            StartCoroutine(ApproveRoutine(approveTime));
+        }
+
+        private IEnumerator ApproveRoutine(float approveTime)
+        {
+            yield return new WaitForSecondsRealtime(NotFreezeTime);
             _timeController.RequestTimeFreezeEffect(approveTime);
         }
 

@@ -1,8 +1,6 @@
 using General;
 using Guns.Data;
 using Guns.General;
-using UnityEngine;
-using Utils;
 
 namespace Guns.View
 {

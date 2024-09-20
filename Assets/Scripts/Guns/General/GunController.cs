@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using General;
 using General.GlobalManagers;
-using Guns.Types.Hand;
+using Guns.Types.CloseRange;
 using TimeStop;
 using UnityEngine;
 using Utils;
@@ -14,6 +14,7 @@ namespace Guns.General
         public bool AbilityRequest;
         public bool ShootRequest;
         public bool HandPunchRequest;
+        public bool LegPunchRequest;
     }
     
     public class GunController : GamePlayBehaviour
@@ -21,6 +22,7 @@ namespace Guns.General
         [SerializeField] private Transform gunRoot;
         [SerializeField] private TimeStopAbility ability;
         [SerializeField] private CloseRange leftHand;
+        [SerializeField] private CloseRange leg;
 
         private Player.Player _owner;
         private readonly List<Gun> _guns = new();
@@ -36,6 +38,7 @@ namespace Guns.General
         {
             base.Start();
             InitHand();
+            InitLeg();
         }
 
         private void InitHand()
@@ -47,6 +50,16 @@ namespace Guns.General
             leftHand.transform.parent.forward = gunRoot.forward;
             leftHand.transform.forward = gunRoot.forward;
         }
+        
+        private void InitLeg()
+        {
+            leg.Equip(_owner);
+            leg.Activate();
+            leg.transform.parent.SetParent(gunRoot);
+            leg.transform.parent.localPosition = Vector3.zero;
+            leg.transform.parent.forward = gunRoot.forward;
+            leg.transform.forward = gunRoot.forward;
+        }
 
         private void Update()
         {
@@ -55,11 +68,13 @@ namespace Guns.General
                 AbilityRequest = Input.GetKeyDown(KeyCode.Q),
                 ShootRequest = Input.GetMouseButton(0),
                 HandPunchRequest = Input.GetMouseButtonDown(4),
+                LegPunchRequest = Input.GetKeyDown(KeyCode.F)
             };
             
             if (input.AbilityRequest) ability.SwitchActive();
-            if (_activeGun) _activeGun.HandleInput(input);
-            leftHand.HandleInput(input);
+            if (_activeGun && input.ShootRequest) _activeGun.Shoot();
+            if (input.HandPunchRequest) leftHand.Shoot();
+            if (input.LegPunchRequest) leg.Shoot();
         }
 
         public void EquipGun(Gun gun)

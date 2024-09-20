@@ -3,7 +3,7 @@ using Guns.General;
 using Guns.View;
 using UnityEngine;
 
-namespace Guns.Types.Hand
+namespace Guns.Types.CloseRange
 {
     public class CloseRangeView : GunView
     {
