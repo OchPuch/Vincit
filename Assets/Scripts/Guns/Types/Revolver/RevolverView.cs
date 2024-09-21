@@ -19,7 +19,6 @@ namespace Guns.Types.Revolver
         private static readonly int Shoot = Animator.StringToHash("Shoot");
         private static readonly int Equip = Animator.StringToHash("Equip");
         
-        
         public override void Init(Gun gun, GunData data)
         {
             gun.Shot += OnGunShot;
@@ -33,8 +32,8 @@ namespace Guns.Types.Revolver
         private void OnGunEquip()
         {
             holdViewRoot.SetActive(true);
-            animator.SetTrigger(Equip);
             propViewRoot.SetActive(false);
+            animator.SetTrigger(Equip);
         }
 
         private void OnGunDeactivated()
@@ -45,6 +44,7 @@ namespace Guns.Types.Revolver
         private void OnGunActivated()
         {
             holdViewRoot.SetActive(true);
+            animator.SetTrigger(Equip);
         }
 
         private void OnGunShot()

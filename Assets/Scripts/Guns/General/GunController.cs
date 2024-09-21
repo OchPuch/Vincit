@@ -4,7 +4,6 @@ using General.GlobalManagers;
 using Guns.Types.CloseRange;
 using TimeStop;
 using UnityEngine;
-using Utils;
 using Zenject;
 
 namespace Guns.General
@@ -16,7 +15,41 @@ namespace Guns.General
         public bool HandPunchRequest;
         public bool LegPunchRequest;
     }
-    
+
+    public class GunSwitchInput
+    {
+        public bool PreciseSwitch { get; private set; }
+        public int PreciseSwitchIndex { get; private set; }
+        public bool ScrollGunUp { get; private set; }
+        public bool ScrollGunDown { get; private set; }
+
+        public bool SwitchRequested()
+        {
+            return PreciseSwitch || ScrollGunDown || ScrollGunUp;
+        }
+
+        private void UpdatePreciseSwitchIndex()
+        {
+            PreciseSwitch = false;
+            //Update index by current number keys input
+            for (int i = 0; i < 9; i++)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+                {
+                    PreciseSwitchIndex = i;
+                    PreciseSwitch = true;
+                }
+            }
+        }
+
+        public void Update()
+        {
+            ScrollGunUp = Input.mouseScrollDelta.y > 0;
+            ScrollGunDown = Input.mouseScrollDelta.y < 0;
+            UpdatePreciseSwitchIndex();
+        }
+    }
+
     public class GunController : GamePlayBehaviour
     {
         [SerializeField] private Transform gunRoot;
@@ -24,16 +57,20 @@ namespace Guns.General
         [SerializeField] private CloseRange leftHand;
         [SerializeField] private CloseRange leg;
 
+        private readonly GunSwitchInput _gunSwitchInput = new();
         private Player.Player _owner;
         private readonly List<Gun> _guns = new();
         private Gun _activeGun;
+        private Gun _lastGun;
+        
+        private List<Gun> HiddenGuns => _guns.FindAll(g => !g.IsActive);
 
         [Inject]
         private void Construct(TimeController timeController, ITimeNotifier timeNotifier)
         {
-            ability.Init(timeController,timeNotifier);
+            ability.Init(timeController, timeNotifier);
         }
-        
+
         protected override void Start()
         {
             base.Start();
@@ -50,7 +87,7 @@ namespace Guns.General
             leftHand.transform.parent.forward = gunRoot.forward;
             leftHand.transform.forward = gunRoot.forward;
         }
-        
+
         private void InitLeg()
         {
             leg.Equip(_owner);
@@ -63,6 +100,15 @@ namespace Guns.General
 
         private void Update()
         {
+            _gunSwitchInput.Update();
+
+            if (_gunSwitchInput.SwitchRequested())
+            {
+                if (_gunSwitchInput.PreciseSwitch) SwitchGun(_gunSwitchInput.PreciseSwitchIndex);
+                else if (_gunSwitchInput.ScrollGunUp) ScrollGun(true);
+                else if (_gunSwitchInput.ScrollGunDown) ScrollGun(false);
+            }
+
             var input = new GunInput
             {
                 AbilityRequest = Input.GetKeyDown(KeyCode.Q),
@@ -70,11 +116,51 @@ namespace Guns.General
                 HandPunchRequest = Input.GetMouseButtonDown(4),
                 LegPunchRequest = Input.GetKeyDown(KeyCode.F)
             };
-            
+
             if (input.AbilityRequest) ability.SwitchActive();
             if (_activeGun && input.ShootRequest) _activeGun.Shoot();
             if (input.HandPunchRequest) leftHand.Shoot();
             if (input.LegPunchRequest) leg.Shoot();
+        }
+
+        private void ScrollGun(bool up)
+        {
+            if (_guns.Count <= 0) return;
+            int nextIndex;
+            if (_activeGun) nextIndex = (_guns.IndexOf(_activeGun));
+            else if (_lastGun) nextIndex = (_guns.IndexOf(_lastGun));
+            else nextIndex = 0;
+            nextIndex = (nextIndex + _guns.Count + (up ? 1 : -1)) % _guns.Count;
+            if (nextIndex < 0) nextIndex = _guns.Count - 1;
+            SwitchGun(nextIndex);
+        }
+
+        private void SwitchGun(int slotIndex)
+        {
+            if (_guns.Count <= 0) return;
+            if (slotIndex < 0 || slotIndex >= _guns.Count) return;
+            var wantedGun = _guns[slotIndex];
+            if (wantedGun is null) return;
+            if (wantedGun == _activeGun)
+            {
+                return;
+            }
+
+            if (HiddenGuns.Contains(wantedGun)) SwitchToGun(_guns[slotIndex]);
+        }
+        
+        private void SwitchToGun(Gun gun)
+        {
+            if (gun is null) return;
+            if (_activeGun)
+            {
+                if (_activeGun == gun) return;
+                _activeGun.Deactivate();
+                _lastGun = _activeGun;
+            }
+
+            _activeGun = gun;
+            gun.Activate();
         }
 
         public void EquipGun(Gun gun)
@@ -84,10 +170,11 @@ namespace Guns.General
             {
                 _activeGun.Deactivate();
             }
+
             _activeGun = gun;
             gun.Equip(_owner);
             _activeGun.Activate();
-            
+
             gun.transform.parent.SetParent(gunRoot);
             gun.transform.parent.localPosition = Vector3.zero;
             gun.transform.localPosition = Vector3.zero;

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Vinchester
+  m_Controller: {fileID: 9100000, guid: 1d074be6713fd3e4486a44991e15aeb8, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 2d0a1cb0a44f6ea4884b421e6da88b39, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5c5300c4d0f59a84295c253847e4005a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: adb36cb6e36d29b449a070e5ab096494, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0004a517289bb304c9720e99bc6cb99c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0eecca1ce42c70049901fc26228695a0, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a5fb1029db071194692fbfe64f6fee6b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ca4fa0d75a99ccf4b90688bdb43ab1c6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a38f987f566770c4db3a5a113f4a6064, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a3adb523534133e499d08a8a16e5aca7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5211d054b58ab064a8483fc316274aa2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 27fd35cd13166d54f940ff35989bd465, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 932dff25edbc8444a99c56edc0fc60f5, type: 2}

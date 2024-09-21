@@ -14,6 +14,8 @@ namespace Guns.General
         public Player.Player Owner { get; private set; }
         private BulletFactory BulletFactory { get; set; }
         
+        public bool IsActive { get; private set; }
+        
         protected GunData Data;
         public event Action Shot;
         public event Action Equipped;
@@ -44,11 +46,15 @@ namespace Guns.General
 
         public void Deactivate()
         {
+            if (!IsActive) return;
+            IsActive = false;
             Deactivated?.Invoke();
         }
         
         public void Activate()
         {
+            if (IsActive) return;
+            IsActive = true;
             Activated?.Invoke();
         }
 
