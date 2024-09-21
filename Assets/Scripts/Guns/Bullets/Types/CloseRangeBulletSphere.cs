@@ -153,14 +153,19 @@ namespace Guns.Bullets.Types
                 CrushWallPunch = true;
                 if (rayfireRigid.limitations.currentDepth == 0)
                 {
-                    NeedApprove = true;
                 }
                 else if (rayfireRigid.limitations.bboxSize < maxRayFireRigidShootSize)
                 {
                     _positionsToSpawnBullets.Add(rayfireRigid.transform.position);
                     Destroy(rayfireRigid);
                 }
+
+                OnPreProcessRayFireRigid(rayfireRigid);
             }
+        }
+
+        protected virtual void OnPreProcessRayFireRigid(RayfireRigid rayfireRigid)
+        {
         }
 
         private void ProcessHit(Collider hitCollider)

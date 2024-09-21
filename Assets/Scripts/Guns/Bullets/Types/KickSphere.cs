@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RayFire;
+using UnityEngine;
 
 
 namespace Guns.Bullets.Types
@@ -50,6 +51,15 @@ namespace Guns.Bullets.Types
             if (!hitCollider.isTrigger)
             {
                 SmallKick();
+            }
+        }
+
+        protected override void OnPreProcessRayFireRigid(RayfireRigid rayfireRigid)
+        {
+            base.OnPreProcessRayFireRigid(rayfireRigid);
+            if (rayfireRigid.limitations.currentDepth == 0)
+            {
+                NeedApprove = true;
             }
         }
 
