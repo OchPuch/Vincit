@@ -3632,7 +3632,7 @@ Transform:
   - {fileID: 1208443798}
   - {fileID: 731330816}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &301492402
 PrefabInstance:
@@ -6214,7 +6214,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38702
+  m_Name: pb_Mesh38710
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -13073,7 +13073,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38596
+  m_Name: pb_Mesh38604
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -25297,7 +25297,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38334
+  m_Name: pb_Mesh38342
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -25710,7 +25710,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2109572484
 GameObject:
@@ -26273,7 +26273,7 @@ PrefabInstance:
     - target: {fileID: 59009422804390213, guid: 9f97af39ce09fe6438f1cb9f46dd1100,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 59009422804390213, guid: 9f97af39ce09fe6438f1cb9f46dd1100,
         type: 3}
@@ -26329,6 +26329,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Vinchester Bootstrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977403392308483373, guid: 9f97af39ce09fe6438f1cb9f46dd1100,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1631.8726
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977403392308483373, guid: 9f97af39ce09fe6438f1cb9f46dd1100,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977403392308483373, guid: 9f97af39ce09fe6438f1cb9f46dd1100,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0000018286
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977403392308483373, guid: 9f97af39ce09fe6438f1cb9f46dd1100,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27133,7 +27153,7 @@ PrefabInstance:
     - target: {fileID: 4332145874100064720, guid: 5bdc623bd510ed04893dee8700a34781,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4332145874100064720, guid: 5bdc623bd510ed04893dee8700a34781,
         type: 3}
