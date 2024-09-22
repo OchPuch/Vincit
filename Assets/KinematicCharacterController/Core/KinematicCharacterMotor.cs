@@ -192,7 +192,7 @@ namespace KinematicCharacterController
         [SerializeField]
         [Tooltip("Physics material of the Character Capsule (Does not affect character movement. Only affects things colliding with it)")]
 #pragma warning disable 0649
-        private PhysicsMaterial CapsulePhysicsMaterial;
+        private PhysicMaterial CapsulePhysicsMaterial;
 #pragma warning restore 0649
 
 

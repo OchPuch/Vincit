@@ -116,7 +116,7 @@ namespace RayFire
         {
             while (scr.activation.activated == false && scr.activation.byVelocity > 0)
             {
-                if (scr.physics.rigidBody.linearVelocity.magnitude > byVelocity)
+                if (scr.physics.rigidBody.velocity.magnitude > byVelocity)
                     scr.Activate();
                 yield return null;
             }
@@ -148,7 +148,7 @@ namespace RayFire
             {
                 //if (scr.transForm.hasChanged == true)
                 {
-                    scr.physics.rigidBody.linearVelocity = Vector3.zero;
+                    scr.physics.rigidBody.velocity = Vector3.zero;
                     scr.physics.rigidBody.angularVelocity = Vector3.zero;
                 }
                 yield return null;
@@ -201,7 +201,7 @@ namespace RayFire
                     Rigidbody rBody = inst.GetComponent<Rigidbody>();
                     if (rBody != null)
                     {
-                        rBody.linearVelocity = scr.physics.rigidBody.linearVelocity;
+                        rBody.velocity = scr.physics.rigidBody.velocity;
                         rBody.angularVelocity = scr.physics.rigidBody.angularVelocity;
                     }
 

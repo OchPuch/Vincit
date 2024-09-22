@@ -194,7 +194,7 @@ namespace Dreamteck.Splines
 #endif
             input.transform.localScale = GetScale(input.transform.localScale);
             input.MovePosition(GetPosition(input.position));
-            input.linearVelocity = HandleVelocity(input.linearVelocity);
+            input.velocity = HandleVelocity(input.velocity);
             input.MoveRotation(GetRotation(input.rotation));
             Vector3 angularVelocity = input.angularVelocity;
             if (applyRotationX)

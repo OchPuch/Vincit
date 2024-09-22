@@ -39,7 +39,7 @@ namespace RayFire
         
         [Tooltip("Physic material which will be used for all objects with this material." + 
                  "If Material is not define then it will be created and defined here at Start using following Frictions and Bounciness properties.")]
-        public PhysicsMaterial material;
+        public PhysicMaterial material;
         [Space (2)]
         [Range(0.01f, 1f)] public float dynamicFriction;
         [Space (2)]
@@ -71,16 +71,16 @@ namespace RayFire
         }
 
         // Get Physic material
-        public PhysicsMaterial Material
+        public PhysicMaterial Material
         {
             get
             {
-                PhysicsMaterial physMat = new PhysicsMaterial();
+                PhysicMaterial physMat = new PhysicMaterial();
                 physMat.name = name;
                 physMat.dynamicFriction = dynamicFriction;
                 physMat.staticFriction = staticFriction;
                 physMat.bounciness = bounciness;
-                physMat.frictionCombine = PhysicsMaterialCombine.Minimum;
+                physMat.frictionCombine = PhysicMaterialCombine.Minimum;
                 return physMat;
             }
         }
@@ -274,7 +274,7 @@ namespace RayFire
             
 
         // Create material by material type
-        public static PhysicsMaterial Material (MaterialType materialType)
+        public static PhysicMaterial Material (MaterialType materialType)
         {
             // Crete new material
             if (materialType == MaterialType.HeavyMetal)

@@ -265,7 +265,7 @@ namespace RayFire
             {
                 if (projectile.rb != null)
                 {
-                    projectile.rb.linearVelocity           = Vector3.zero;
+                    projectile.rb.velocity           = Vector3.zero;
                     projectile.rb.angularVelocity    = Vector3.zero;
                     projectile.rb.transform.position = projectile.positionPivot;
                     projectile.rb.transform.rotation = projectile.rotation;

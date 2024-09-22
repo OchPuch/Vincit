@@ -332,7 +332,7 @@ namespace RayFire
                         //Debug.Log (inactive[i].name);
                         // if (inactive[i].transForm.hasChanged == true)
                         {
-                            inactive[i].physics.rigidBody.linearVelocity        = Vector3.zero;
+                            inactive[i].physics.rigidBody.velocity        = Vector3.zero;
                             inactive[i].physics.rigidBody.angularVelocity = Vector3.zero;
                         }
                     }
