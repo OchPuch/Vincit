@@ -21,45 +21,45 @@ namespace TimeStop
         {
             base.Start();
             _bufferedUseGravity = rb.useGravity;
-            _bufferedDrag = rb.drag;
-            _bufferedAngularDrag = rb.angularDrag;
+            _bufferedDrag = rb.linearDamping;
+            _bufferedAngularDrag = rb.angularDamping;
         }
 
         protected override void PostTimeStop()
         {
-            _bufferedVelocity = rb.velocity;
+            _bufferedVelocity = rb.linearVelocity;
             _bufferedUseGravity = rb.useGravity;
             _bufferedAngularVelocity = rb.angularVelocity;
             
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.useGravity = false;
-            rb.drag = timeStoppedDrag;
-            rb.angularDrag = timeStoppedAngularDrag;
+            rb.linearDamping = timeStoppedDrag;
+            rb.angularDamping = timeStoppedAngularDrag;
             _changedVelocity = Vector3.zero;
         }
 
         private void Update()
         {
             if (!TimeNotifier.IsTimeStopped) return;
-            if (rb.velocity.magnitude > _changedVelocity.magnitude)
+            if (rb.linearVelocity.magnitude > _changedVelocity.magnitude)
             {
-                _changedVelocity = rb.velocity;
+                _changedVelocity = rb.linearVelocity;
             }
         }
 
         protected override void PostTimeContinue()
         {
-            rb.drag = _bufferedDrag;
-            rb.angularDrag = _bufferedAngularDrag;
+            rb.linearDamping = _bufferedDrag;
+            rb.angularDamping = _bufferedAngularDrag;
             rb.useGravity = _bufferedUseGravity;
             rb.angularVelocity = _bufferedAngularVelocity;
             if (_changedVelocity != Vector3.zero)
             {
-                rb.velocity = _changedVelocity + _changedVelocity.normalized * _bufferedVelocity.magnitude;
+                rb.linearVelocity = _changedVelocity + _changedVelocity.normalized * _bufferedVelocity.magnitude;
             }
             else
             {
-                rb.velocity = _bufferedVelocity;
+                rb.linearVelocity = _bufferedVelocity;
             }
             
             rb.AddForce(_cumulativeForceInStoppedTime, ForceMode.Impulse);

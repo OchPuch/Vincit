@@ -419,7 +419,7 @@ namespace RayFire
                     for (int i = inactiveShards.Count - 1; i >= 0; i--)
                     {
                         if (inactiveShards[i].tm.hasChanged == true)
-                            if (inactiveShards[i].rb.velocity.magnitude > activation.byVelocity)
+                            if (inactiveShards[i].rb.linearVelocity.magnitude > activation.byVelocity)
                             {
                                 RFActivation.ActivateShard (inactiveShards[i], this);
                                 inactiveShards.RemoveAt (i);
@@ -454,7 +454,7 @@ namespace RayFire
                 {
                     if (inactiveShards[i].tm.hasChanged == true)
                     {
-                        inactiveShards[i].rb.velocity        = Vector3.zero;
+                        inactiveShards[i].rb.linearVelocity        = Vector3.zero;
                         inactiveShards[i].rb.angularVelocity = Vector3.zero;
                         inactiveShards[i].tm.hasChanged      = false;
                     }
