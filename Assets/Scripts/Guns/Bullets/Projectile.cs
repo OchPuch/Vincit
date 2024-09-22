@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Guns.Bullets
 {
-    public class Bullet : TimeStoppableBehaviour
+    public class Projectile : TimeStoppableBehaviour
     {
-        [field: SerializeField] public BulletConfig Config { get; private set; }
+        [field: SerializeField] public ProjectileConfig Config { get; private set; }
         public event Action BulletDestroyed;
         protected Gun Origin;
         
@@ -21,7 +21,7 @@ namespace Guns.Bullets
             
         }
 
-        public virtual void DestroyBullet()
+        public virtual void DestroyProjectile()
         {
             if (!gameObject.activeSelf) return;
             BulletDestroyed?.Invoke();

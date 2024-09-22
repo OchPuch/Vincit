@@ -285,22 +285,22 @@ Material:
     - Vector2_0b65553d60624b139dec448bc178e727: {r: -1, g: -0.2, b: 0, a: 0}
     - Vector2_e2851918c56a42e886f043f816a05d48: {r: 3, g: 2, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CloudColorDay: {r: 1, g: 1, b: 1, a: 1}
-    - _CloudColorNight: {r: 0, g: 0, b: 0, a: 1}
+    - _CloudColorDay: {r: 0, g: 0, b: 0, a: 1}
+    - _CloudColorNight: {r: 1, g: 1, b: 1, a: 1}
     - _CloudScale: {r: 2, g: -1, b: 0, a: 0}
-    - _CloudWindSpeed: {r: 0.2, g: 0.3, b: 0, a: 0}
+    - _CloudWindSpeed: {r: 5, g: 0.2, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 1, g: 1, b: 1, a: 1}
-    - _HorizonColorDay: {r: 1, g: 1, b: 1, a: 1}
-    - _HorizonColorNight: {r: 1, g: 1, b: 1, a: 1}
-    - _MoonColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SkyColorDay: {r: 0, g: 0, b: 0, a: 1}
-    - _SkyColorNight: {r: 0, g: 0, b: 0, a: 1}
+    - _GroundColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HorizonColorDay: {r: 0, g: 0, b: 0, a: 1}
+    - _HorizonColorNight: {r: 0, g: 0, b: 0, a: 1}
+    - _MoonColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SkyColorDay: {r: 1, g: 1, b: 1, a: 1}
+    - _SkyColorNight: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Star_Texture_Tint: {r: 41.143448, g: 67.62262, b: 0, a: 1}
-    - _SunColorHorizon: {r: 1, g: 1, b: 1, a: 1}
-    - _SunColorZenith: {r: 1, g: 1, b: 1, a: 1}
+    - _SunColorHorizon: {r: 0, g: 0, b: 0, a: 1}
+    - _SunColorZenith: {r: 0, g: 0, b: 0, a: 1}
     - _WorldSpaceLightPos0: {r: 0, g: 0, b: 0, a: 0}
     - _ZenithColorDay: {r: 1, g: 1, b: 1, a: 1}
     - _ZenithColorNight: {r: 0.1037736, g: 0.01507654, b: 0.1037736, a: 0}

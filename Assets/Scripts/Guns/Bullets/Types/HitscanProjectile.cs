@@ -22,13 +22,13 @@ namespace Guns.Bullets.Types
         }
     }
     
-    public class HitscanBullet : Bullet
+    public class HitscanProjectile : Projectile
     {
         public ConsumeData ConsumeData { get; private set; }
         
         [SerializeField] private RayfireGun rayfireGun;
         
-        private BulletFactory _hitscanBulletFactory;
+        private ProjectileFactory _hitscanProjectileFactory;
         private Vector3 _endPoint;
         private Vector3 _startPoint;
         private float _destroyTimer;
@@ -39,14 +39,14 @@ namespace Guns.Bullets.Types
         [Inject]
         private void Construct(DiContainer diContainer)
         {
-            _hitscanBulletFactory = diContainer.ResolveId<BulletFactory>(Config.FactoryId);
+            _hitscanProjectileFactory = diContainer.ResolveId<ProjectileFactory>(Config.FactoryId);
         }
         
         public override void Init(Gun origin)
         {
             base.Init(origin);
 
-            _hitscanBulletFactory ??= new BulletFactory(this);
+            _hitscanProjectileFactory ??= new ProjectileFactory(this);
             
             _startPoint = transform.position;
             _endPoint = transform.position + transform.forward * Config.MaxDistance;
@@ -110,27 +110,27 @@ namespace Guns.Bullets.Types
             }
         }
 
-        protected virtual void OnBulletPunchedWithNewBullet(HitscanBullet bullet)
+        protected virtual void OnBulletPunchedWithNewBullet(HitscanProjectile projectile)
         {
-            bullet.ConsumeData.Overloads += 1;
+            projectile.ConsumeData.Overloads += 1;
         }
 
         public void PunchCurve(Vector3 punchPoint, Vector3 forward)
         {
             if (IsOverloaded) return;
-            var bullet = (HitscanBullet) _hitscanBulletFactory.CreateBullet(punchPoint, forward);
+            var bullet = (HitscanProjectile) _hitscanProjectileFactory.CreateProjectile(punchPoint, forward);
             bullet.ConsumeData = ConsumeData;
             bullet.Init(Origin);
             OnBulletPunchedWithNewBullet(bullet);
             OverloadEndPosition(punchPoint);
         }
         
-        public void PunchCurveConsume(Vector3 punchPoint, Vector3 forward ,List<HitscanBullet> bulletsToCombine)
+        public void PunchCurveConsume(Vector3 punchPoint, Vector3 forward ,List<HitscanProjectile> bulletsToCombine)
         {
             if (IsOverloaded) return;
-            var bullet = (HitscanBullet) _hitscanBulletFactory.CreateBullet(punchPoint, forward);
+            var bullet = (HitscanProjectile) _hitscanProjectileFactory.CreateProjectile(punchPoint, forward);
             bullet.ConsumeData = ConsumeData;
-            foreach (HitscanBullet bulletCombine in bulletsToCombine)
+            foreach (HitscanProjectile bulletCombine in bulletsToCombine)
             {
                 bulletCombine.OverloadEndPosition(punchPoint);
                 if (bulletCombine == this)
@@ -166,7 +166,7 @@ namespace Guns.Bullets.Types
             float scale = Mathf.Lerp(0, Config.StartRadius, Config.DisappearAnimation.Evaluate(_destroyTimer / Config.DestroyTime)) * ConsumeData.Scale;
             transform.localScale = new Vector3(scale, scale, transform.localScale.z);
             if (_destroyTimer > Config.DestroyTime) {
-                DestroyBullet();
+                DestroyProjectile();
             }
         }
 

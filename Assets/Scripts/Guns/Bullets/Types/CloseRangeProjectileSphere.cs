@@ -6,13 +6,14 @@ using Guns.Types.CloseRange;
 using RayFire;
 using TimeStop;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Guns.Bullets.Types
 {
-    public class CloseRangeBulletSphere : Bullet
+    public class CloseRangeProjectileSphere : Projectile
     {
-        [SerializeField] private WeaklingBullet weakBulletPrefab;
+        [FormerlySerializedAs("weakBulletPrefab")] [SerializeField] private WeaklingProjectile weakProjectilePrefab;
         [SerializeField] private float maxRayFireRigidShootSize;
         [SerializeField] private float playerPushMultiplier = 0.3f;
         [SerializeField] private float smallApproveTime = 0.4f;
@@ -22,19 +23,19 @@ namespace Guns.Bullets.Types
         
         protected bool NeedApprove;
         protected bool CrushWallPunch;
-        protected readonly List<HitscanBullet> BulletsToCombine = new();
+        protected readonly List<HitscanProjectile> BulletsToCombine = new();
 
         private List<Collider> _hitColliders = new();
         private readonly List<Vector3> _positionsToSpawnBullets = new();
         
-        private BulletFactory _hitscanBulletFactory;
+        private ProjectileFactory _hitscanProjectileFactory;
         private float _destroyTime;
         private CloseRange CloseRangeGun => Origin as CloseRange;
         
         [Inject]
         private void Construct(DiContainer diContainer)
         {
-            _hitscanBulletFactory = diContainer.ResolveId<BulletFactory>(weakBulletPrefab.Config.FactoryId);
+            _hitscanProjectileFactory = diContainer.ResolveId<ProjectileFactory>(weakProjectilePrefab.Config.FactoryId);
         }
         
         public override void Init(Gun origin)
@@ -87,7 +88,7 @@ namespace Guns.Bullets.Types
             CombineBullets();
             foreach (var spawnPosition in _positionsToSpawnBullets)
             {
-               var bullet = _hitscanBulletFactory.CreateBullet(spawnPosition, spawnPosition - transform.position);
+               var bullet = _hitscanProjectileFactory.CreateProjectile(spawnPosition, spawnPosition - transform.position);
                bullet.Init(Origin);
             }
             foreach (var hitCollider in _hitColliders)
@@ -96,7 +97,7 @@ namespace Guns.Bullets.Types
             }
             if (!TimeNotifier.IsTimeStopped && !NeedApprove)
             {
-                DestroyBullet();
+                DestroyProjectile();
             }
         }
 
@@ -133,13 +134,13 @@ namespace Guns.Bullets.Types
             _destroyTime += Time.deltaTime;
             if (_destroyTime > Config.DestroyTime)
             {
-                DestroyBullet();
+                DestroyProjectile();
             }
         }
         
         private void PreProcessHit(Collider hitCollider)
         {
-            if (hitCollider.gameObject.TryGetComponent<HitscanBullet>(out var bullet))
+            if (hitCollider.gameObject.TryGetComponent<HitscanProjectile>(out var bullet))
             {
                 if (!bullet.IsOverloaded)
                 {

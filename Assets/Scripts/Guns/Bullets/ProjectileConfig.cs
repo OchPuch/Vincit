@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Guns.Bullets
 {
     [CreateAssetMenu(menuName = "Guns/Bullet Config", fileName = "New Bullet Config")]
-    public class BulletConfig : ScriptableObject
+    public class ProjectileConfig : ScriptableObject
     {
         [field: SerializeField] public LayerMask BulletHitMask  { get; private set; }
         [field: SerializeField] public LayerMask BulletStopMask { get; private set; }

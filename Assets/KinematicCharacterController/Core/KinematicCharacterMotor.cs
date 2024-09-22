@@ -1867,7 +1867,7 @@ namespace KinematicCharacterController
                         bool hitBodyIsDynamic = !bodyHit.Rigidbody.isKinematic;
                         float hitBodyMass = bodyHit.Rigidbody.mass;
                         float hitBodyMassAtPoint = bodyHit.Rigidbody.mass; // todo
-                        Vector3 hitBodyVelocity = bodyHit.Rigidbody.linearVelocity;
+                        Vector3 hitBodyVelocity = bodyHit.Rigidbody.velocity;
                         if (hitBodyIsCharacter)
                         {
                             hitBodyMass = hitCharacterMotor.SimulatedCharacterMass;
@@ -2300,7 +2300,7 @@ namespace KinematicCharacterController
         {
             if (deltaTime > 0f)
             {
-                linearVelocity = interactiveRigidbody.linearVelocity;
+                linearVelocity = interactiveRigidbody.velocity;
                 angularVelocity = interactiveRigidbody.angularVelocity;
                 if(interactiveRigidbody.isKinematic)
                 {

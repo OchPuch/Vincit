@@ -1,12 +1,13 @@
 ﻿using General;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utils;
 
 namespace Guns.Bullets.Types
 {
     public class HitscanView : GamePlayBehaviour
     {
-        [SerializeField] private HitscanBullet bullet;
+        [FormerlySerializedAs("bullet")] [SerializeField] private HitscanProjectile projectile;
         [SerializeField] private SpriteRenderer[] lineRenderers;
         [SerializeField] private Color normalColor;
         [SerializeField] private Color overloadedColor;
@@ -15,15 +16,15 @@ namespace Guns.Bullets.Types
         protected override void Start()
         {
             base.Start();
-            bullet.Overloaded += OnOverloaded;
-            bullet.BulletDestroyed += OnBulletDestroyed;
-            if (bullet.IsOverloaded)
+            projectile.Overloaded += OnOverloaded;
+            projectile.BulletDestroyed += OnProjectileDestroyed;
+            if (projectile.IsOverloaded)
             {
                 OnOverloaded();
             }
         }
 
-        private void OnBulletDestroyed()
+        private void OnProjectileDestroyed()
         {
             foreach (var lineRenderer in lineRenderers)
             {

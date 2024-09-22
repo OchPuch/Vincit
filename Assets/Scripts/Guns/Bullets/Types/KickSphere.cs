@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Guns.Bullets.Types
 {
-    public class KickSphere : CloseRangeBulletSphere
+    public class KickSphere : CloseRangeProjectileSphere
     {
         [SerializeField] private float seriousKickForceMultiplier = 0.2f;
         [SerializeField] private float mediumKickForceMultiplier = 0.09f;

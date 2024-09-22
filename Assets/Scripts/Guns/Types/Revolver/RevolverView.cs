@@ -1,6 +1,8 @@
-﻿using Guns.Data;
+﻿using System;
+using Guns.Data;
 using Guns.General;
 using Guns.View;
+using UniRx;
 using UnityEngine;
 
 namespace Guns.Types.Revolver
@@ -15,6 +17,7 @@ namespace Guns.Types.Revolver
         
         //Bools
         private static readonly int IsSpinning = Animator.StringToHash("IsSpinning");
+        private static readonly int IsLost = Animator.StringToHash("Lost");
         //Triggers
         private static readonly int Shoot = Animator.StringToHash("Shoot");
         private static readonly int Equip = Animator.StringToHash("Equip");
@@ -25,6 +28,7 @@ namespace Guns.Types.Revolver
             gun.Activated += OnGunActivated;
             gun.Deactivated += OnGunDeactivated;
             gun.Equipped += OnGunEquip;
+            
             holdViewRoot.SetActive(false);
             propViewRoot.SetActive(true);
         }
@@ -64,5 +68,7 @@ namespace Guns.Types.Revolver
                 animator.SetBool(IsSpinning, false);
             }
         }
+
+      
     }
 }

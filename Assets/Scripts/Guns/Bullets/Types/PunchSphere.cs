@@ -2,7 +2,7 @@
 
 namespace Guns.Bullets.Types
 {
-    public class PunchSphere : CloseRangeBulletSphere
+    public class PunchSphere : CloseRangeProjectileSphere
     {
        
     }
