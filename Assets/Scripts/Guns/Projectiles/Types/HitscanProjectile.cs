@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Guns.General;
+using Guns.Projectiles.Interactions;
 using RayFire;
 using TimeStop;
 using UnityEngine;
 using Zenject;
 
-namespace Guns.Bullets.Types
+namespace Guns.Projectiles.Types
 {
     public class ConsumeData
     {
@@ -22,10 +23,8 @@ namespace Guns.Bullets.Types
         }
     }
     
-    public class HitscanProjectile : Projectile
+    public class HitscanProjectile : Projectile, IOverloadable
     {
-        public ConsumeData ConsumeData { get; private set; }
-        
         [SerializeField] private RayfireGun rayfireGun;
         
         private ProjectileFactory _hitscanProjectileFactory;
@@ -110,7 +109,7 @@ namespace Guns.Bullets.Types
             }
         }
 
-        protected virtual void OnBulletPunchedWithNewBullet(HitscanProjectile projectile)
+        protected virtual void OnBulletPunchedWithNewBullet(Projectile projectile)
         {
             projectile.ConsumeData.Overloads += 1;
         }
@@ -128,7 +127,7 @@ namespace Guns.Bullets.Types
         public void PunchCurveConsume(Vector3 punchPoint, Vector3 forward ,List<HitscanProjectile> bulletsToCombine)
         {
             if (IsOverloaded) return;
-            var bullet = (HitscanProjectile) _hitscanProjectileFactory.CreateProjectile(punchPoint, forward);
+            var bullet =  _hitscanProjectileFactory.CreateProjectile(punchPoint, forward);
             bullet.ConsumeData = ConsumeData;
             foreach (HitscanProjectile bulletCombine in bulletsToCombine)
             {

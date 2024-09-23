@@ -33,7 +33,7 @@ Transform:
   - {fileID: 3942440393917171413}
   - {fileID: 4285069853221245125}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &416748390465642203
 MonoBehaviour:
@@ -49,9 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpCollider: {fileID: 5392292130954428741}
   data:
-    <Config>k__BackingField: {fileID: 11400000, guid: 78b2a8ce83c232649a55ad201cfa47d8,
+    <Config>k__BackingField: {fileID: 11400000, guid: 45ae272cdf61b3144a7ac124203b165b,
       type: 2}
+    <GunPunchCollider>k__BackingField: {fileID: 5112878382650932995}
     fireTimer: 0
+    spinTimer: 0
   gun: {fileID: 1744728046535418590}
   view: {fileID: 7100354290712203122}
   disableAfterAwake: 0
@@ -256,7 +258,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3834623733175166956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0000018286}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -265,8 +267,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 94, y: 376.5}
-  m_SizeDelta: {x: 2048, y: 753}
+  m_AnchoredPosition: {x: 94, y: 300}
+  m_SizeDelta: {x: 1631.8726, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1667719167750023731
 CanvasRenderer:
@@ -338,6 +340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4285069853221245125}
   - component: {fileID: 1744728046535418590}
+  - component: {fileID: 5112878382650932995}
   m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
@@ -375,6 +378,29 @@ MonoBehaviour:
   pauseable: 1
   <Projectile>k__BackingField: {fileID: 4121726910312821292, guid: a990c64c98236af4094cd7f4afb5f093,
     type: 3}
+  gunSpinContainer: {fileID: 5961025327152476407, guid: ec9366563b8cf5f4bad86e470fe45bcd,
+    type: 3}
+--- !u!135 &5112878382650932995
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143622419824649104}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1990004076168056582
 PrefabInstance:
   m_ObjectHideFlags: 0

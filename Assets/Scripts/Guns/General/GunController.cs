@@ -14,6 +14,8 @@ namespace Guns.General
         public bool ShootRequest;
         public bool HandPunchRequest;
         public bool LegPunchRequest;
+        public bool StartSpinRequest;
+        public bool EndSpinRequest;
     }
 
     public class GunSwitchInput
@@ -70,10 +72,10 @@ namespace Guns.General
         {
             ability.Init(timeController, timeNotifier);
         }
-
-        protected override void Start()
+        
+        public void Init(Player.Player player)
         {
-            base.Start();
+            _owner = player;
             InitHand();
             InitLeg();
         }
@@ -114,13 +116,21 @@ namespace Guns.General
                 AbilityRequest = Input.GetKeyDown(KeyCode.Q),
                 ShootRequest = Input.GetMouseButton(0),
                 HandPunchRequest = Input.GetMouseButtonDown(4),
-                LegPunchRequest = Input.GetKeyDown(KeyCode.F)
+                LegPunchRequest = Input.GetKeyDown(KeyCode.F),
+                StartSpinRequest =  Input.GetMouseButtonDown(1),
+                EndSpinRequest = Input.GetMouseButtonUp(1)
             };
 
             if (input.AbilityRequest) ability.SwitchActive();
             if (_activeGun && input.ShootRequest) _activeGun.Shoot();
             if (input.HandPunchRequest) leftHand.Shoot();
             if (input.LegPunchRequest) leg.Shoot();
+            if (_activeGun is ISpinnableGun spinnableGun)
+            {
+                if (input.StartSpinRequest  ) spinnableGun.StartSpin();
+                if (input.EndSpinRequest) spinnableGun.EndSpin();
+            }
+            
         }
 
         private void ScrollGun(bool up)
@@ -182,9 +192,6 @@ namespace Guns.General
             gun.transform.forward = gunRoot.forward;
         }
 
-        public void Init(Player.Player player)
-        {
-            _owner = player;
-        }
+        
     }
 }

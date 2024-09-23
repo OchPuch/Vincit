@@ -1,13 +1,10 @@
-﻿using System;
-using Guns.Data;
+﻿using Guns.Data;
 using Guns.General;
-using Guns.View;
-using UniRx;
 using UnityEngine;
 
-namespace Guns.Types.Revolver
+namespace Guns.View
 {
-    public class RevolverView : GunView
+    public class GeneralGunView : GunView
     {
         [Header("Hold view")]
         [SerializeField] private Animator animator;
@@ -28,11 +25,44 @@ namespace Guns.Types.Revolver
             gun.Activated += OnGunActivated;
             gun.Deactivated += OnGunDeactivated;
             gun.Equipped += OnGunEquip;
+
+            if (gun is IThrowableGun throwableGun)
+            {
+                throwableGun.OnLost += OnGunLost;
+                throwableGun.OnObtained += OnGunObtained;
+            }
+            
+            if (gun is ISpinnableGun spinnableGun)
+            {
+                spinnableGun.SpinStarted += OnGunSpinStarted;
+                spinnableGun.SpinEnded += OnGunSpinEnded;
+            }
+            
             
             holdViewRoot.SetActive(false);
             propViewRoot.SetActive(true);
         }
-        
+
+        private void OnGunSpinEnded()
+        {
+            animator.SetBool(IsSpinning, false);
+        }
+
+        private void OnGunSpinStarted()
+        {
+            animator.SetBool(IsSpinning, true);
+        }
+
+        private void OnGunObtained()
+        {
+            animator.SetBool(IsLost, false);
+        }
+
+        private void OnGunLost()
+        {
+            animator.SetBool(IsLost, true);
+        }
+
         private void OnGunEquip()
         {
             holdViewRoot.SetActive(true);
@@ -55,20 +85,5 @@ namespace Guns.Types.Revolver
         {
             animator.SetTrigger(Shoot);
         }
-
-        void Update()
-        {
-            if (Input.GetMouseButtonDown(1))
-            {
-                animator.SetBool(IsSpinning, true);
-            }
-
-            if (Input.GetMouseButtonUp(1))
-            {
-                animator.SetBool(IsSpinning, false);
-            }
-        }
-
-      
     }
 }

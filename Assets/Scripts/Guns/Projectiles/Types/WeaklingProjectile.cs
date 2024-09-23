@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using Guns.Projectiles.Interactions;
+using UnityEngine;
 
-namespace Guns.Bullets.Types
+namespace Guns.Projectiles.Types
 {
     public class WeaklingProjectile : HitscanProjectile
     {
         [SerializeField][Min(1)] private int maxOverloads;
         [SerializeField] private float minBulletSize;
         
-        protected override void OnBulletPunchedWithNewBullet(HitscanProjectile projectile)
+        protected override void OnBulletPunchedWithNewBullet(Projectile projectile)
         {
             base.OnBulletPunchedWithNewBullet(projectile);
             if (projectile.ConsumeData.Overloads < maxOverloads)
@@ -16,9 +17,9 @@ namespace Guns.Bullets.Types
                     ConsumeData.Scale * (1 - (float)projectile.ConsumeData.Overloads / maxOverloads);
                 if (projectile.ConsumeData.Scale < minBulletSize) projectile.ConsumeData.Scale = minBulletSize;
             }
-            else
+            else if (projectile is IOverloadable overloadable)
             {
-                projectile.Overload();
+                overloadable.Overload();
             }
         }
     }

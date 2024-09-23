@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Guns.Bullets
+namespace Guns.Projectiles
 {
     public class BulletInstaller : MonoInstaller
     {

@@ -2,7 +2,7 @@
 using UnityEngine.Pool;
 using Zenject;
 
-namespace Guns.Bullets
+namespace Guns.Projectiles
 {
     public class ProjectileFactory : PlaceholderFactory<Projectile>
     {

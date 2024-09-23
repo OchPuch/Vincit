@@ -1,8 +1,9 @@
-﻿using Guns.General;
+﻿using System;
+using Guns.General;
 
 namespace Guns.Types.Revolver
 {
-    public class Revolver : Gun
+    public class Revolver : SpinThrowGun
     {
     }
 }

@@ -1,10 +1,8 @@
 ﻿using System;
 using General;
-using Guns.Bullets;
 using Guns.Data;
-using UniRx;
+using Guns.Projectiles;
 using UnityEngine;
-using Utils;
 using Zenject;
 
 namespace Guns.General
@@ -15,16 +13,14 @@ namespace Guns.General
         public Player.Player Owner { get; private set; }
         private ProjectileFactory ProjectileFactory { get; set; }
         
+        //TODO: Replace with reactive bools
         public bool IsActive { get; private set; }
-        public bool IsLost { get; private set; }
         
         protected GunData Data;
         public event Action Shot;
         public event Action Equipped;
         public event Action Activated;
         public event Action Deactivated;
-        public event Action OnLost;
-        public event Action OnObtained;
 
         [Inject]
         private void Construct(DiContainer diContainer)
@@ -62,7 +58,7 @@ namespace Guns.General
             Activated?.Invoke();
         }
 
-        protected void InvokeShot()
+        private void InvokeShot()
         {
             Shot?.Invoke();
         }
@@ -76,15 +72,8 @@ namespace Guns.General
             Data.fireTimer = 0;
         }
 
-        protected virtual void Throw()
-        {
-            
-        }
-
-        protected virtual void Catch()
-        {
-            
-        }
+        
+        
         
         
     }

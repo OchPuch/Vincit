@@ -1,5 +1,4 @@
-﻿using Guns.Bullets;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Guns.Data
 {
@@ -8,5 +7,11 @@ namespace Guns.Data
     {
         [field: SerializeField] public float Damage { get; private set; }
         [field: SerializeField] public float FireRate { get; private set; }
+        
+        [field: SerializeField] public float HelicopterForce { get; private set; }
+        
+        [field: SerializeField] public float AddScaleAtStart { get; private set; }
+        
+        [field: SerializeField] public float TimeBeforeAbleToThrow { get; private set; }
     }
 }

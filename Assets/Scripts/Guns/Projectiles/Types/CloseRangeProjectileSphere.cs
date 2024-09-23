@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
 
-namespace Guns.Bullets.Types
+namespace Guns.Projectiles.Types
 {
     public class CloseRangeProjectileSphere : Projectile
     {

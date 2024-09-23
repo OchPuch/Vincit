@@ -7,20 +7,21 @@ namespace General
     public abstract class GamePlayBehaviour : MonoBehaviour
     {
         [SerializeField] private bool pauseable = true;
-        [Inject] private IPauseNotifier _pauseNotifier;
+        [Inject] protected IPauseNotifier PauseNotifier;
         
         protected virtual void Start()
         {
             if (!pauseable) return;
-            _pauseNotifier.Paused += OnPause;
-            _pauseNotifier.Resumed += OnResume;
+            PauseNotifier.Paused += OnPause;
+            PauseNotifier.Resumed += OnResume;
         }
 
         protected virtual void OnDestroy()
         {
             if (!pauseable) return;
-            _pauseNotifier.Paused -= OnPause;
-            _pauseNotifier.Resumed -= OnResume;
+            if (PauseNotifier is null) return;
+            PauseNotifier.Paused -= OnPause;
+            PauseNotifier.Resumed -= OnResume;
         }
 
         private void OnPause()

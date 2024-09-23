@@ -47,6 +47,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3321293636426304752}
   - component: {fileID: 178408991704221983}
+  - component: {fileID: 1371433975054623677}
   m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
@@ -84,6 +85,29 @@ MonoBehaviour:
   pauseable: 1
   <Projectile>k__BackingField: {fileID: 4121726910312821292, guid: a990c64c98236af4094cd7f4afb5f093,
     type: 3}
+  gunSpinContainer: {fileID: 5961025327152476407, guid: ec9366563b8cf5f4bad86e470fe45bcd,
+    type: 3}
+--- !u!135 &1371433975054623677
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2771617650235005933}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3415837258471350219
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +141,7 @@ Transform:
   - {fileID: 3253545371181220065}
   - {fileID: 3321293636426304752}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &5923211425138890182
 MonoBehaviour:
@@ -135,7 +159,9 @@ MonoBehaviour:
   data:
     <Config>k__BackingField: {fileID: 11400000, guid: 78b2a8ce83c232649a55ad201cfa47d8,
       type: 2}
+    <GunPunchCollider>k__BackingField: {fileID: 1371433975054623677}
     fireTimer: 0
+    spinTimer: 0
   gun: {fileID: 178408991704221983}
   view: {fileID: 4560092316361315720}
   disableAfterAwake: 0

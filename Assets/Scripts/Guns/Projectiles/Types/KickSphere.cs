@@ -1,8 +1,8 @@
-﻿using RayFire;
+﻿using Guns.Projectiles.Interactions;
+using RayFire;
 using UnityEngine;
 
-
-namespace Guns.Bullets.Types
+namespace Guns.Projectiles.Types
 {
     public class KickSphere : CloseRangeProjectileSphere
     {
@@ -48,6 +48,11 @@ namespace Guns.Bullets.Types
         protected override void PostProcessCollider(Collider hitCollider)
         {
             base.PostProcessCollider(hitCollider);
+            if (hitCollider.TryGetComponent(out IKickable kickable))
+            {
+                kickable.Kick();
+            }
+            
             if (!hitCollider.isTrigger)
             {
                 SmallKick();

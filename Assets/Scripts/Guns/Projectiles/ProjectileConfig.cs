@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Guns.Bullets
+namespace Guns.Projectiles
 {
     [CreateAssetMenu(menuName = "Guns/Bullet Config", fileName = "New Bullet Config")]
     public class ProjectileConfig : ScriptableObject

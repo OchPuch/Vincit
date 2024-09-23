@@ -1,15 +1,17 @@
 ﻿using System;
 using Guns.General;
+using Guns.Projectiles.Types;
 using TimeStop;
 using UnityEngine;
 
-namespace Guns.Bullets
+namespace Guns.Projectiles
 {
     public class Projectile : TimeStoppableBehaviour
     {
         [field: SerializeField] public ProjectileConfig Config { get; private set; }
         public event Action BulletDestroyed;
         protected Gun Origin;
+        public ConsumeData ConsumeData { get; set; }
         
         public virtual void Init(Gun origin)
         {
@@ -26,5 +28,7 @@ namespace Guns.Bullets
             if (!gameObject.activeSelf) return;
             BulletDestroyed?.Invoke();
         }
+
+       
     }
 }

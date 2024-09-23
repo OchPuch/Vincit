@@ -1,9 +1,8 @@
 ﻿using General;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Utils;
 
-namespace Guns.Bullets.Types
+namespace Guns.Projectiles.Types
 {
     public class HitscanView : GamePlayBehaviour
     {

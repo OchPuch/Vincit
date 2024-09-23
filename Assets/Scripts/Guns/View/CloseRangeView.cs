@@ -1,9 +1,8 @@
 ﻿using Guns.Data;
 using Guns.General;
-using Guns.View;
 using UnityEngine;
 
-namespace Guns.Types.CloseRange
+namespace Guns.View
 {
     public class CloseRangeView : GunView
     {
