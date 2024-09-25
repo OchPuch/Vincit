@@ -21,7 +21,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 0
   <DestroyTime>k__BackingField: 0.3
   <StartRadius>k__BackingField: 0.2
-  <PushPower>k__BackingField: 20
+  <PushPower>k__BackingField: 150
   <MaxDistance>k__BackingField: 200
   <DisappearAnimation>k__BackingField:
     serializedVersion: 2

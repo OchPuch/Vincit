@@ -82,11 +82,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91cca5af81464f78846f5f53e2d85c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 7400000, guid: 27fd35cd13166d54f940ff35989bd465, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: animationsAndSpinThresholds
+      Entry: 7
+      Data: 0|UnityEngine.Rendering.SerializedDictionary`2[[UnityEngine.AnimationClip,
+        UnityEngine.AnimationModule],[UnityEngine.Vector2, UnityEngine.CoreModule]],
+        Unity.RenderPipelines.Core.Runtime
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[UnityEngine.AnimationClip,
+        UnityEngine.AnimationModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 26
+    - Name: 
+      Entry: 4
+      Data: 42
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   pauseable: 1
   <Projectile>k__BackingField: {fileID: 4121726910312821292, guid: a990c64c98236af4094cd7f4afb5f093,
     type: 3}
   gunSpinContainer: {fileID: 5961025327152476407, guid: ec9366563b8cf5f4bad86e470fe45bcd,
     type: 3}
+  animator: {fileID: 5299124800659400261}
 --- !u!135 &1371433975054623677
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -161,7 +214,6 @@ MonoBehaviour:
       type: 2}
     <GunPunchCollider>k__BackingField: {fileID: 1371433975054623677}
     fireTimer: 0
-    spinTimer: 0
   gun: {fileID: 178408991704221983}
   view: {fileID: 4560092316361315720}
   disableAfterAwake: 0
@@ -434,6 +486,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165a4f1590ce46d1963e25c648a09504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   pauseable: 1
   animator: {fileID: 5299124800659400261}
   holdViewRoot: {fileID: 5601496912063445271}

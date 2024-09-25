@@ -7,11 +7,13 @@ namespace Guns.Projectiles.Types
     {
         protected override void PostProcessCollider(Collider hitCollider)
         {
-            base.PostProcessCollider(hitCollider);
             if (hitCollider.TryGetComponent(out IPunchable punchable))
             {
-                punchable.Punch();
+                punchable.Punch(Origin.transform.forward * Config.PushPower);
+                return;
             }
+            base.PostProcessCollider(hitCollider);
         }
+        
     }
 }

@@ -1,10 +1,11 @@
 ﻿using General.GlobalManagers;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
 namespace General
 {
-    public abstract class GamePlayBehaviour : MonoBehaviour
+    public abstract class GamePlayBehaviour : SerializedMonoBehaviour
     {
         [SerializeField] private bool pauseable = true;
         [Inject] protected IPauseNotifier PauseNotifier;

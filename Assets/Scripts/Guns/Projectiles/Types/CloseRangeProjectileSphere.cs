@@ -171,21 +171,6 @@ namespace Guns.Projectiles.Types
 
         private void ProcessHit(Collider hitCollider)
         {
-            if (hitCollider.gameObject.TryGetComponent<Rigidbody>(out var rb))
-            {
-                rb.AddForce(transform.forward * Config.PushPower, ForceMode.Impulse);
-                PostProcessRigidbody(rb);
-                if (TimeNotifier.IsTimeStopped)
-                {
-                    if (hitCollider.gameObject.TryGetComponent<StoppableRigid>(out var stoppableRigid))
-                    {
-                        stoppableRigid.AddForce(transform.forward * Config.PushPower);
-                        PostProcessStoppableRigid(stoppableRigid);
-                    }
-                }
-                
-            }
-
             if (hitCollider.gameObject.TryGetComponent<IDamageable>(out var damageable))
             {
                 if (damageable is not Player.Player)
@@ -198,6 +183,7 @@ namespace Guns.Projectiles.Types
             PostProcessCollider(hitCollider);
         }
 
+    
         protected virtual void PostProcessRigidbody(Rigidbody rb)
         {
             
@@ -215,7 +201,17 @@ namespace Guns.Projectiles.Types
 
         protected virtual void PostProcessCollider(Collider hitCollider)
         {
-            
+            if (!hitCollider.gameObject.TryGetComponent<Rigidbody>(out var rb)) return;
+            rb.AddForce(transform.forward * Config.PushPower, ForceMode.Impulse);
+            PostProcessRigidbody(rb);
+            if (TimeNotifier.IsTimeStopped)
+            {
+                if (hitCollider.gameObject.TryGetComponent<StoppableRigid>(out var stoppableRigid))
+                {
+                    stoppableRigid.AddForce(transform.forward * Config.PushPower);
+                    PostProcessStoppableRigid(stoppableRigid);
+                }
+            }
         }
     }
 }

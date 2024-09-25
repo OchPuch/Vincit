@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
-using Guns.General;
+﻿using Guns.General;
 using Guns.Projectiles.Interactions;
 using UnityEngine;
+using Utils;
 
 namespace Guns.Projectiles.Types
 {
@@ -10,84 +9,91 @@ namespace Guns.Projectiles.Types
     {
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Collider spinCollider;
-        [SerializeField] private Collider pickupCollider;
-        [Header("Timings")] 
+        [Header("Returning")] 
+        [SerializeField] private float distanceForLeavingPlayer;
         [SerializeField] private float lameSpeed;
+        [SerializeField] private float maxSpeed;
         [SerializeField] private float coolReturnTime;
-        private Coroutine _returnRoutine;
         private bool _collided;
+        private bool _leavedPlayer;
+        private bool _forceReturn;
+
+        private bool MustReturn => DistanceToGun > Config.MaxDistance|| (_collided && _leavedPlayer) || _forceReturn;
+        private bool ReadyToReturn => ((_collided || TimeNotifier.IsTimeStopped) && _leavedPlayer) || _forceReturn;
+        private Vector3 DirectionToOrigin => Origin.transform.position - transform.position;
         private float DistanceToGun => Vector3.Distance(transform.position, Origin.transform.position);
         
         public override void Init(Gun origin)
         {
             base.Init(origin);
+            spinCollider.enabled = false;
             rb.velocity = transform.forward * Config.PushPower;
+            rb.velocity += Origin.Owner.Data.motor.Velocity;
         }
 
         public override void ResetBullet()
         {
             base.ResetBullet();
-            pickupCollider.enabled = true;
-            pickupCollider.isTrigger = true;
+            _forceReturn = false;
+            _collided = false;
+            _leavedPlayer = false;
             spinCollider.enabled = true;
             spinCollider.isTrigger = false;
-            if (_returnRoutine is not null) StopCoroutine(_returnRoutine);
-            _returnRoutine = null;
             rb.velocity = Vector3.zero;
         }
-
-        private float GetLameTime()
+        
+        private void OnCollisionEnter(Collision other)
         {
-            return DistanceToGun / lameSpeed;
+            if (LayerUtils.IsInLayerMask(other.gameObject.layer, Config.BulletStopMask))
+            {
+                if (_leavedPlayer)
+                {
+                    _collided = true;
+                    StartReturn();
+                }
+            }
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.TryGetComponent(out Player.Player player))
             {
                 Return();
             }
         }
 
-        private void OnCollisionEnter(Collision other)
+        private void OnTriggerExit(Collider other)
         {
-            if (_returnRoutine is not null) return;
-            _returnRoutine = StartCoroutine(ReturnRoutine(GetLameTime()));
-        }
-
-        private IEnumerator ReturnRoutine(float time)
-        {
-            spinCollider.isTrigger = true;
-            float elapsedTime = 0f;
-            Vector3 startPosition = transform.position;
-            while (elapsedTime < time)
+            if (_leavedPlayer) return;
+            if (other.TryGetComponent(out Player.Player player))
             {
-                if (PauseNotifier.IsPaused)
-                {
-                    yield return null;
-                    continue;
-                }
-                transform.forward = Origin.transform.position - transform.position;
-                transform.position = Vector3.Lerp(startPosition, Origin.transform.position, elapsedTime / time);
-                yield return null;
-                elapsedTime += Time.deltaTime;
+                LeavePlayer();
             }
-            Return();
         }
 
         private void FixedUpdate()
         {
-            if (DistanceToGun > Config.MaxDistance)
+            if (DistanceToGun > 5)
             {
-                _returnRoutine = StartCoroutine(ReturnRoutine(GetLameTime()));
+                LeavePlayer();
             }
+            
+            if (MustReturn)
+            {
+                ForceStartReturn();
+                var speed = lameSpeed * DirectionToOrigin;
+                if (speed.magnitude < lameSpeed) speed = speed.normalized * lameSpeed;
+                rb.velocity = speed;
+            }
+            
+            if (rb.velocity.magnitude > maxSpeed) rb.velocity = rb.velocity.normalized * maxSpeed;
+
         }
 
         private void Return()
         {
+            if (!ReadyToReturn) return;
             if (!gameObject.activeSelf) return;
-            if (!_collided) return;
-            if (_returnRoutine is not null) StopCoroutine(_returnRoutine);
             if (Origin is IThrowableGun throwableGun)
             {
                 throwableGun.Catch();
@@ -95,10 +101,36 @@ namespace Guns.Projectiles.Types
             DestroyProjectile();
         }
 
-        public void Punch()
+        public void Punch(Vector3 force)
         {
+            if (!ReadyToReturn) return;
+            transform.forward = force;
             ResetBullet();
             Init(Origin);
         }
+
+        private void ForceStartReturn()
+        {
+            _forceReturn = true;
+            StartReturn();
+        }
+
+        private void StartReturn()
+        {
+            spinCollider.enabled = false;
+        }
+
+        private void InstantReturn()
+        {
+            
+        }
+        
+        private void LeavePlayer()
+        {
+            if (_leavedPlayer) return;
+            _leavedPlayer = true;
+            spinCollider.enabled = true;
+        }
+        
     }
 }

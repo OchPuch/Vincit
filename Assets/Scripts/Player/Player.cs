@@ -12,7 +12,7 @@ namespace Player
     {
         public static Player Instance { get; private set; }
         
-        private PlayerData _data;
+        public PlayerData Data { get; private set; }
         private PlayerController _character;
         private ExampleCharacterCamera _characterCamera;
         private PhysicsMover _physicsMover;
@@ -34,11 +34,11 @@ namespace Player
 
             Instance = this;
             
-            _data = data;
+            Data = data;
             _character = character;
             _characterCamera = characterCamera;
-            if (_data.motor.AttachedRigidbody != null)
-                _physicsMover = _data.motor.AttachedRigidbody.GetComponent<PhysicsMover>();
+            if (Data.motor.AttachedRigidbody != null)
+                _physicsMover = Data.motor.AttachedRigidbody.GetComponent<PhysicsMover>();
         }
 
         protected override void OnDestroy()
@@ -63,15 +63,15 @@ namespace Player
             // Handle rotating the camera along with physics movers
             if (_characterCamera.RotateWithPhysicsMover)
             {
-                if (_data.motor.AttachedRigidbody && !_physicsMover)
+                if (Data.motor.AttachedRigidbody && !_physicsMover)
                 {
-                    _physicsMover = _data.motor.AttachedRigidbody.GetComponent<PhysicsMover>();
+                    _physicsMover = Data.motor.AttachedRigidbody.GetComponent<PhysicsMover>();
                 }
 
                 _characterCamera.PlanarDirection =
                     _physicsMover.RotationDeltaFromInterpolation * _characterCamera.PlanarDirection;
                 _characterCamera.PlanarDirection = Vector3
-                    .ProjectOnPlane(_characterCamera.PlanarDirection, _data.motor.CharacterUp).normalized;
+                    .ProjectOnPlane(_characterCamera.PlanarDirection, Data.motor.CharacterUp).normalized;
             }
 
             HandleCameraInput();
@@ -127,9 +127,9 @@ namespace Player
 
         public void RequestPush(Vector3 pushForce, ForceMode pushMode)
         {
-            _data.pushForce = pushForce;
-            _data.pushMode = pushMode;
-            _data.pushRequested = true;
+            Data.pushForce = pushForce;
+            Data.pushMode = pushMode;
+            Data.pushRequested = true;
         }
 
         public void Damage(float damage)

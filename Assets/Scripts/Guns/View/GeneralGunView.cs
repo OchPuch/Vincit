@@ -1,5 +1,6 @@
 ﻿using Guns.Data;
 using Guns.General;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace Guns.View
@@ -11,6 +12,8 @@ namespace Guns.View
         [SerializeField] private GameObject holdViewRoot;
         [Header("PropView")]
         [SerializeField] private GameObject propViewRoot;
+
+        private Gun _gun;
         
         //Bools
         private static readonly int IsSpinning = Animator.StringToHash("IsSpinning");
@@ -21,6 +24,8 @@ namespace Guns.View
         
         public override void Init(Gun gun, GunData data)
         {
+            _gun = gun;
+            
             gun.Shot += OnGunShot;
             gun.Activated += OnGunActivated;
             gun.Deactivated += OnGunDeactivated;
@@ -79,6 +84,14 @@ namespace Guns.View
         {
             holdViewRoot.SetActive(true);
             animator.SetTrigger(Equip);
+            if (_gun is ISpinnableGun spinnableGun)
+            {
+                animator.SetBool(IsSpinning, spinnableGun.IsSpinning);
+            }
+            if (_gun is IThrowableGun throwableGun)
+            {
+                animator.SetBool(IsLost, throwableGun.IsLost);
+            }
         }
 
         private void OnGunShot()

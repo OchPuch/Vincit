@@ -1,7 +1,9 @@
-﻿namespace Guns.Projectiles.Interactions
+﻿using UnityEngine;
+
+namespace Guns.Projectiles.Interactions
 {
     public interface IPunchable
     {
-        public void Punch();
+        public void Punch(Vector3 force);
     }
 }

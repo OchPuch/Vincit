@@ -78,7 +78,7 @@ TrailRenderer:
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 3
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -91,6 +91,15 @@ TrailRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.9381817
+        value: 0
+        inSlope: -0.91731215
+        outSlope: -0.91731215
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.07076115
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -148,7 +157,8 @@ GameObject:
   - component: {fileID: 7812276007610711663}
   - component: {fileID: 5961025327152476407}
   - component: {fileID: 4889626753285415633}
-  - component: {fileID: 4415969791156021557}
+  - component: {fileID: 7394453331849317086}
+  - component: {fileID: 1942145665447938602}
   m_Layer: 0
   m_Name: SpinnableContainer
   m_TagString: Untagged
@@ -186,10 +196,10 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
@@ -207,14 +217,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ee1c7ea1164c50a088bc53d6f52a0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   pauseable: 1
   disableOnTimeStop: 0
   <Config>k__BackingField: {fileID: 11400000, guid: d075934ad7218d546b6554950a544319,
     type: 2}
   rb: {fileID: 4889626753285415633}
   spinCollider: {fileID: 7812276007610711663}
-  pickupCollider: {fileID: 4415969791156021557}
-  lameSpeed: 10
+  distanceForLeavingPlayer: 3
+  lameSpeed: 5
+  maxSpeed: 150
   coolReturnTime: 0.2
 --- !u!54 &4889626753285415633
 Rigidbody:
@@ -226,7 +246,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 10
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -240,10 +260,10 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!135 &4415969791156021557
+  m_CollisionDetection: 1
+--- !u!135 &7394453331849317086
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,8 +282,34 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.7385073
+  m_Radius: 1.3821285
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1942145665447938602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8252252317674544107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7884221d84484d258b99baac218ad725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  pauseable: 1
+  disableOnTimeStop: 0
+  rb: {fileID: 4889626753285415633}
+  timeStoppedDrag: 5
+  timeStoppedAngularDrag: 1
 --- !u!1001 &3942913963736682666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -336,7 +382,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 1b898341794b88e468e9b0fc127393ef, type: 2}
+      objectReference: {fileID: 2100000, guid: 945f9fbb1f403a44da91b033c79b7988, type: 2}
     - target: {fileID: -7511558181221131132, guid: c07bf20889b6ffd43bb9f5cac9439eb8,
         type: 3}
       propertyPath: 'm_Materials.Array.data[1]'

@@ -44,17 +44,19 @@ namespace Guns.General
             Equipped?.Invoke();
         }
 
-        public void Deactivate()
+        public virtual void Deactivate()
         {
             if (!IsActive) return;
             IsActive = false;
+            if (Data.GunPunchCollider) Data.GunPunchCollider.enabled = false;
             Deactivated?.Invoke();
         }
         
-        public void Activate()
+        public virtual void Activate()
         {
             if (IsActive) return;
             IsActive = true;
+            if (Data.GunPunchCollider) Data.GunPunchCollider.enabled = true;
             Activated?.Invoke();
         }
 
