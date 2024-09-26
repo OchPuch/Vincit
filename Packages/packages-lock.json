@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.kyrylokuzyk.primetween": {
+      "version": "file:../Assets/Plugins/PrimeTween/internal/com.kyrylokuzyk.primetween.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {}
+    },
     "com.occasoftware.super-simple-skybox": {
       "version": "file:com.occasoftware.super-simple-skybox",
       "depth": 0,
@@ -45,8 +51,8 @@
       "source": "registry",
       "dependencies": {
         "com.unity.burst": "1.8.4",
-        "com.unity.modules.unityanalytics": "1.0.0",
-        "com.unity.nuget.mono-cecil": "1.11.4"
+        "com.unity.nuget.mono-cecil": "1.11.4",
+        "com.unity.modules.unityanalytics": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
@@ -56,16 +62,16 @@
       "source": "registry",
       "dependencies": {
         "com.unity.burst": "1.8.8",
-        "com.unity.serialization": "3.1.1",
         "com.unity.collections": "2.1.4",
         "com.unity.mathematics": "1.2.6",
-        "com.unity.modules.assetbundle": "1.0.0",
         "com.unity.modules.audio": "1.0.0",
-        "com.unity.modules.unitywebrequest": "1.0.0",
-        "com.unity.test-framework.performance": "3.0.2",
+        "com.unity.serialization": "3.1.1",
+        "com.unity.profiling.core": "1.0.2",
         "com.unity.nuget.mono-cecil": "1.11.4",
+        "com.unity.modules.assetbundle": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0",
         "com.unity.scriptablebuildpipeline": "1.20.2",
-        "com.unity.profiling.core": "1.0.2"
+        "com.unity.test-framework.performance": "3.0.2"
       },
       "url": "https://packages.unity.com"
     },
@@ -75,8 +81,8 @@
       "source": "registry",
       "dependencies": {
         "com.unity.entities": "1.0.16",
-        "com.unity.modules.particlesystem": "1.0.0",
-        "com.unity.render-pipelines.core": "14.0.7"
+        "com.unity.render-pipelines.core": "14.0.7",
+        "com.unity.modules.particlesystem": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
@@ -131,9 +137,9 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.settings-manager": "1.0.3",
+        "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.physics": "1.0.0",
-        "com.unity.modules.imgui": "1.0.0"
+        "com.unity.settings-manager": "1.0.3"
       },
       "url": "https://packages.unity.com"
     },
@@ -186,8 +192,8 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.collections": "2.1.4",
-        "com.unity.burst": "1.7.2"
+        "com.unity.burst": "1.7.2",
+        "com.unity.collections": "2.1.4"
       },
       "url": "https://packages.unity.com"
     },
@@ -242,9 +248,9 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {
+        "com.unity.modules.audio": "1.0.0",
         "com.unity.modules.director": "1.0.0",
         "com.unity.modules.animation": "1.0.0",
-        "com.unity.modules.audio": "1.0.0",
         "com.unity.modules.particlesystem": "1.0.0"
       },
       "url": "https://packages.unity.com"

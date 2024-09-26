@@ -56,7 +56,6 @@ namespace Guns.General
         {
             if (!IsSpinning) return;
             IsSpinning = false;
-            
             SpinEnded?.Invoke();
         }
 
@@ -70,15 +69,13 @@ namespace Guns.General
         public void Throw()
         {
             if (IsLost) return;
-            if (CanBeThrown())
-            {
-                EndSpin();
-                IsLost = true;
-                if (IsActive) Data.GunPunchCollider.enabled = false;
-                var spinContainer= _gunSpinContainerFactory.CreateProjectile(transform.position, transform.forward);
-                spinContainer.Init(this);
-                OnLost?.Invoke();
-            }
+            if (!CanBeThrown()) return;
+            EndSpin();
+            IsLost = true;
+            if (IsActive) Data.GunPunchCollider.enabled = false;
+            var spinContainer= _gunSpinContainerFactory.CreateProjectile(transform.position, transform.forward);
+            spinContainer.Init(this);
+            OnLost?.Invoke();
         }
 
         public void Catch()
@@ -104,7 +101,5 @@ namespace Guns.General
             Vector2 animationThresholds = animationsAndSpinThresholds[clipInfo.clip];
             return animationThresholds.x <= currentFrame && animationThresholds.y >= currentFrame;
         }
-
-       
     }
 }

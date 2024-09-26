@@ -232,7 +232,8 @@ MonoBehaviour:
     type: 2}
   rb: {fileID: 4889626753285415633}
   spinCollider: {fileID: 7812276007610711663}
-  distanceForLeavingPlayer: 3
+  minTimeToFlyForward: 0.1
+  maxTimeToFlyForward: 5
   lameSpeed: 5
   maxSpeed: 150
   coolReturnTime: 0.2

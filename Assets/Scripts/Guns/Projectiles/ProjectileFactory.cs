@@ -54,8 +54,20 @@ namespace Guns.Projectiles
         public Projectile CreateProjectile(Vector3 position, Vector3 lookVector)
         {
             var bullet = _projectilePool.Get();
+            bullet.transform.rotation = Quaternion.identity;
             bullet.transform.position = position;
             bullet.transform.forward = lookVector;
+            return bullet;
+        }
+        
+        public Projectile CreateProjectile(Transform copyFrom)
+        {
+            var bullet = _projectilePool.Get();
+            bullet.transform.rotation = copyFrom.rotation;
+            bullet.transform.position = copyFrom.position;
+            bullet.transform.forward = copyFrom.forward;
+            bullet.transform.up = copyFrom.up;
+            bullet.transform.right = copyFrom.right;
             return bullet;
         }
     }

@@ -118,7 +118,7 @@ namespace Guns.General
                 HandPunchRequest = Input.GetMouseButtonDown(4),
                 LegPunchRequest = Input.GetKeyDown(KeyCode.F),
                 StartSpinRequest =  Input.GetMouseButtonDown(1),
-                EndSpinRequest = Input.GetMouseButtonUp(1)
+                EndSpinRequest = !Input.GetMouseButton(1)
             };
 
             if (input.AbilityRequest) ability.SwitchActive();
