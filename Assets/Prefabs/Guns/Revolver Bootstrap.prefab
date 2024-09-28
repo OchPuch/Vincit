@@ -453,6 +453,7 @@ GameObject:
   - component: {fileID: 4560092316361315720}
   - component: {fileID: 5901429361521599024}
   - component: {fileID: 8331258746841987499}
+  - component: {fileID: 6319669042141256615}
   m_Layer: 6
   m_Name: View
   m_TagString: Untagged
@@ -542,7 +543,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   pauseable: 1
-  shotEmitter: {fileID: 0}
+  shotEmitter: {fileID: 6319669042141256615}
   activateEmitter: {fileID: 0}
   deactivateEmitter: {fileID: 0}
   equipEmitter: {fileID: 0}
@@ -550,6 +551,37 @@ MonoBehaviour:
   catchEmitter: {fileID: 0}
   spinStartEmitter: {fileID: 0}
   spinEndEmitter: {fileID: 0}
+--- !u!114 &6319669042141256615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425769033487348088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -286549645
+      Data2: 1222756568
+      Data3: -721544556
+      Data4: -2027854372
+    Path: event:/Revolver_shot
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &925514395879354657
 PrefabInstance:
   m_ObjectHideFlags: 0
