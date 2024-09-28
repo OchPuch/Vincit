@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{eeeb9973-c8d8-48e1-941a-fed4dc652187}">
 		<property name="name">
-			<value>New Event</value>
+			<value>Revolver_shot</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -30,6 +30,9 @@
 		</relationship>
 		<relationship name="parameters">
 			<destination>{564833ce-8038-4ca7-9f54-48fbaf74e52a}</destination>
+		</relationship>
+		<relationship name="banks">
+			<destination>{1ffdda44-33f3-4236-b4aa-cd83e59d5748}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{75b4d405-3a37-4fbc-9d23-2bce9c93dd40}">
