@@ -88,3 +88,13 @@ crashlytics-build.properties
 # If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
 # Log files can be ignored.
 fmod_editor.log
+Assets/Plugins/Zenject/OptionalExtras/Signals/Zenject-Signals.csproj.meta
+Assets/Plugins/Zenject/Source/Zenject.csproj.meta
+Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Zenject-ReflectionBaking.csproj.meta
+Assets/Plugins/Sirenix/Demos/Sample - RPG Editor.unitypackage.meta
+Assets/Plugins/Sirenix/Demos/Editor Windows.unitypackage.meta
+Assets/Plugins/Sirenix/Demos/Custom Drawers.unitypackage.meta
+Assets/Plugins/Sirenix/Demos/Custom Attribute Processors.unitypackage.meta
+Assets/Dreamteck/Splines/TMPro.unitypackage.meta
+Assets/Dreamteck/Splines/PlaymakerActions.unitypackage.meta
+Assets/Dreamteck/Splines/Examples.unitypackage.meta

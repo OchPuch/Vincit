@@ -190,6 +190,10 @@ namespace Guns.General
             gun.transform.localPosition = Vector3.zero;
             gun.transform.parent.forward = gunRoot.forward;
             gun.transform.forward = gunRoot.forward;
+            
+            gun.Data.ViewTransform.SetParent(gunRoot);
+            gun.Data.ViewTransform.localPosition = Vector3.zero;
+            
         }
 
         

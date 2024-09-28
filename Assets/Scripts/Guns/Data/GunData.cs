@@ -6,6 +6,7 @@ namespace Guns.Data
     [Serializable]
     public class GunData
     {
+        [field: SerializeField] public Transform ViewTransform { get; private set; }
         [field: SerializeField] public GunConfig Config { get; private set; }
         [field: SerializeField] public SphereCollider GunPunchCollider {get; private set; }
         public float fireTimer;

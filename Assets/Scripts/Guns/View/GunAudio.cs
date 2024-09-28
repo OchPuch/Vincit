@@ -8,20 +8,17 @@ namespace Guns.View
 {
     public class GunAudio : GamePlayBehaviour
     {
-        [Header("General")]
-        [SerializeField] private StudioEventEmitter shotEmitter;
+        [Header("General")] [SerializeField] private StudioEventEmitter shotEmitter;
         [SerializeField] private StudioEventEmitter activateEmitter;
         [SerializeField] private StudioEventEmitter deactivateEmitter;
         [SerializeField] private StudioEventEmitter equipEmitter;
-        [Header("Throw")]
-        [SerializeField] private StudioEventEmitter lostEmitter;
+        [Header("Throw")] [SerializeField] private StudioEventEmitter lostEmitter;
         [SerializeField] private StudioEventEmitter catchEmitter;
-        [Header("Spin")]
-        [SerializeField] private StudioEventEmitter spinStartEmitter;
+        [Header("Spin")] [SerializeField] private StudioEventEmitter spinStartEmitter;
         [SerializeField] private StudioEventEmitter spinEndEmitter;
-        
+
         private Gun _gun;
-        
+
         public void Init(Gun gun, GunData data)
         {
             _gun = gun;
@@ -35,7 +32,7 @@ namespace Guns.View
                 throwableGun.OnLost += OnGunLost;
                 throwableGun.OnObtained += OnGunObtained;
             }
-            
+
             if (gun is ISpinnableGun spinnableGun)
             {
                 spinnableGun.SpinStarted += OnGunSpinStarted;
@@ -56,7 +53,7 @@ namespace Guns.View
                 throwableGun.OnLost -= OnGunLost;
                 throwableGun.OnObtained -= OnGunObtained;
             }
-            
+
             if (_gun is ISpinnableGun spinnableGun)
             {
                 spinnableGun.SpinStarted -= OnGunSpinStarted;
@@ -66,44 +63,42 @@ namespace Guns.View
 
         private void OnGunSpinEnded()
         {
-            spinEndEmitter.Play();
+            if (spinEndEmitter) spinEndEmitter.Play();
         }
 
         private void OnGunSpinStarted()
         {
-            spinStartEmitter.Play();
+            if (spinStartEmitter) spinStartEmitter.Play();
         }
 
         private void OnGunObtained()
         {
-            catchEmitter.Play();
+            if (catchEmitter) catchEmitter.Play();
         }
 
         private void OnGunLost()
         {
-            lostEmitter.Play();
+            if (lostEmitter) lostEmitter.Play();
         }
 
         private void OnGunEquip()
         {
-            equipEmitter.Play();
+            if (equipEmitter) equipEmitter.Play();
         }
 
         private void OnGunDeactivated()
         {
-            deactivateEmitter.Play();
+            if (deactivateEmitter) deactivateEmitter.Play();
         }
 
         private void OnGunActivated()
         {
-            activateEmitter.Play();
+            if (activateEmitter) activateEmitter.Play();
         }
-        
+
         private void OnGunShot()
         {
-            shotEmitter.Play();
+            if (shotEmitter) shotEmitter.Play();
         }
-        
-        
     }
 }

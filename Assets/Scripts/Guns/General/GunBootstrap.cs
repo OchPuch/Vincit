@@ -10,9 +10,10 @@ namespace Guns.General
         private bool disableAfterAwake;
         [SerializeField] private BoxCollider pickUpCollider;
 
-        [Header("General components")] [SerializeField]
-        private GunData data;
+        [Header("General components")] 
+        [SerializeField] private GunData data;
         [SerializeField] private Gun gun;
+        [SerializeField] private Transform viewTransform;
 
         [Header("View components")]
         [SerializeField] private GunAudio gunAudio;
