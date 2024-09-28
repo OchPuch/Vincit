@@ -1,4 +1,5 @@
-﻿using Player.Data;
+﻿using KinematicCharacterController.Examples;
+using Player.Data;
 using Player.States.DefaultState.Airborne;
 using Player.States.DefaultState.Grounded;
 using StateMachine;
@@ -42,6 +43,13 @@ namespace Player.States.DefaultState.Special
         {
             base.UpdateVelocity(ref currentVelocity, deltaTime);
 
+
+            if (PlayerData.motor.GroundingStatus is { FoundAnyGround: true, IsStableOnGround: false })
+            {
+                PlayerData.bonusOrientationMethod = BonusOrientationMethod.TowardsGroundSlopeAndGravity;
+            }
+            
+
             if (PlayerData.motor.GroundingStatus.IsStableOnGround && !_stopped)
             {
                 Vector3 currentVelocityOnPlane =
@@ -59,7 +67,8 @@ namespace Player.States.DefaultState.Special
                                           PlayerData.playerConfig.SlidingData.MaxSlidingSpeed;
                 }
 
-                if (slidingSpeedOnPlane.magnitude > PlayerData.playerConfig.SlidingData.SlidingDirectionByCurrentVelocityThreshold)
+                if (slidingSpeedOnPlane.magnitude >
+                    PlayerData.playerConfig.SlidingData.SlidingDirectionByCurrentVelocityThreshold)
                 {
                     currentVelocity = slidingSpeedOnPlane;
                     if (currentVelocity.magnitude <= PlayerData.playerConfig.SlidingData.MinSlidingSpeed)
@@ -75,7 +84,9 @@ namespace Player.States.DefaultState.Special
                         Vector3 effectiveGroundNormal = PlayerData.motor.GroundingStatus.GroundNormal;
 
                         // Reorient velocity on slope
-                        currentVelocity = PlayerData.motor.GetDirectionTangentToSurface(currentVelocity, effectiveGroundNormal) * currentVelocity.magnitude;
+                        currentVelocity =
+                            PlayerData.motor.GetDirectionTangentToSurface(currentVelocity, effectiveGroundNormal) *
+                            currentVelocity.magnitude;
 
                         // Calculate target velocity
                         Vector3 inputRight = Vector3.Cross(PlayerData.moveInputVector, PlayerData.motor.CharacterUp);
@@ -104,7 +115,8 @@ namespace Player.States.DefaultState.Special
 
             if (_stopped)
             {
-                Vector3 velocityOnPlane = Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
+                Vector3 velocityOnPlane =
+                    Vector3.ProjectOnPlane(currentVelocity, PlayerData.motor.GroundingStatus.GroundNormal);
                 if (velocityOnPlane.magnitude >= PlayerData.playerConfig.SlidingData.MinSlidingSpeed)
                 {
                     _stopped = false;
@@ -120,12 +132,14 @@ namespace Player.States.DefaultState.Special
                     currentVelocity += gravityHelp * (PlayerData.playerConfig.SlidingData.GravityHelpK * deltaTime);
                     if (currentVelocity.magnitude > PlayerData.playerConfig.SlidingData.MaxSlidingSpeed)
                     {
-                        currentVelocity = currentVelocity.normalized * PlayerData.playerConfig.SlidingData.MaxSlidingSpeed;
+                        currentVelocity = currentVelocity.normalized *
+                                          PlayerData.playerConfig.SlidingData.MaxSlidingSpeed;
                     }
 
                     if (currentVelocity.magnitude > PlayerData.playerConfig.SlidingData.StableSlidingSpeed)
                     {
-                        currentVelocity += -currentVelocity.normalized * (PlayerData.playerConfig.SlidingData.UnstableDecreaseK * deltaTime);
+                        currentVelocity += -currentVelocity.normalized *
+                                           (PlayerData.playerConfig.SlidingData.UnstableDecreaseK * deltaTime);
                     }
                 }
             }
@@ -149,7 +163,7 @@ namespace Player.States.DefaultState.Special
                 // Drag
                 currentVelocity *= (1f / (1f + (PlayerData.playerConfig.AirMovementData.Drag * deltaTime)));
             }
-            
+
             if (!Jump(ref currentVelocity, deltaTime))
                 WallJump(ref currentVelocity, deltaTime);
         }
@@ -184,6 +198,7 @@ namespace Player.States.DefaultState.Special
         public override void Exit()
         {
             base.Exit();
+            PlayerData.bonusOrientationMethod = BonusOrientationMethod.TowardsGravity;
             PlayerData.isSliding = false;
             PlayerData.motor.SetCapsuleDimensions(0.5f, 2f, 1f);
             if (PlayerData.motor.CharacterOverlap(

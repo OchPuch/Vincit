@@ -436,7 +436,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   pauseable: 1
-  <Projectile>k__BackingField: {fileID: 4121726910312821292, guid: a990c64c98236af4094cd7f4afb5f093,
+  <Projectile>k__BackingField: {fileID: 4121726910312821292, guid: 64c30bcaa785d7a4e95a72a4ba11db50,
     type: 3}
   gunSpinContainer: {fileID: 5961025327152476407, guid: ec9366563b8cf5f4bad86e470fe45bcd,
     type: 3}

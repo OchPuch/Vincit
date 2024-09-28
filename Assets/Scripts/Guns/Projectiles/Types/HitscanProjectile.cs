@@ -44,8 +44,6 @@ namespace Guns.Projectiles.Types
         public override void Init(Gun origin)
         {
             base.Init(origin);
-
-            _hitscanProjectileFactory ??= new ProjectileFactory(this);
             
             _startPoint = transform.position;
             _endPoint = transform.position + transform.forward * Config.MaxDistance;
@@ -83,7 +81,13 @@ namespace Guns.Projectiles.Types
         {
             if (IsOverloaded) return;
             IsOverloaded = true;
+            OnOverload();
             Overloaded?.Invoke();
+        }
+
+        protected virtual void OnOverload()
+        {
+            
         }
 
         public void UpdateTransform()
@@ -108,13 +112,22 @@ namespace Guns.Projectiles.Types
                 }
             }
         }
-
+        
+        /// <summary>
+        /// When projectile is being punched (by hand) 
+        /// </summary>
+        /// <param name="projectile"> new projectile produced by punch </param>
         protected virtual void OnBulletPunchedWithNewBullet(Projectile projectile)
         {
             projectile.ConsumeData.Overloads += 1;
         }
 
-        public void PunchCurve(Vector3 punchPoint, Vector3 forward)
+        /// <summary>
+        ///  Punch projectile
+        /// </summary>
+        /// <param name="punchPoint"> point at which it will be overloaded</param>
+        /// <param name="forward"> direction of overload</param>
+        public virtual void PunchCurve(Vector3 punchPoint, Vector3 forward)
         {
             if (IsOverloaded) return;
             var bullet = (HitscanProjectile) _hitscanProjectileFactory.CreateProjectile(punchPoint, forward);
@@ -124,7 +137,13 @@ namespace Guns.Projectiles.Types
             OverloadEndPosition(punchPoint);
         }
         
-        public void PunchCurveConsume(Vector3 punchPoint, Vector3 forward ,List<HitscanProjectile> bulletsToCombine)
+        /// <summary>
+        ///  Punch projectile and merge it with other punched projectiles 
+        /// </summary>
+        /// <param name="punchPoint"> point at which it will be overloaded</param>
+        /// <param name="forward"> direction of overload</param>
+        /// <param name="bulletsToCombine"> list of bullets whose were punched</param>
+        public virtual void PunchCurveConsume(Vector3 punchPoint, Vector3 forward ,List<HitscanProjectile> bulletsToCombine)
         {
             if (IsOverloaded) return;
             var bullet =  _hitscanProjectileFactory.CreateProjectile(punchPoint, forward);

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <BulletHitMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 769
+    m_Bits: 2817
   <BulletStopMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 1

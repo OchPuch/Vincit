@@ -9,6 +9,7 @@ namespace Guns.Projectiles
     public class Projectile : TimeStoppableBehaviour
     {
         [field: SerializeField] public ProjectileConfig Config { get; private set; }
+        [field: SerializeField] protected Collider BulletCollider { get; private set; }
         public event Action BulletDestroyed;
         protected Gun Origin;
         public ConsumeData ConsumeData { get; set; }

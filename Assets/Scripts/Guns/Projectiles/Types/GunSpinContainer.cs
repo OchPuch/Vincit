@@ -36,7 +36,7 @@ namespace Guns.Projectiles.Types
             }
 
             float timeForward = Mathf.Clamp(Vector3.Distance(transform.position, _endPoint) / Config.PushPower, minTimeToFlyForward, maxTimeToFlyForward);
-            _flyingSequence = Sequence.Create().Chain(Tween.Position(transform, _endPoint, timeForward, Ease.OutExpo).OnComplete(StartFlyingBack));
+            _flyingSequence = Sequence.Create().Chain(Tween.Position(transform, _endPoint, timeForward, Ease.OutBounce).OnComplete(StartFlyingBack));
         }
 
         public override void ResetBullet()
@@ -64,7 +64,7 @@ namespace Guns.Projectiles.Types
         
         private void FixedUpdate()
         {
-            if (_returning)
+            if (_returning && !TimeNotifier.IsTimeStopped)
             {
                 var speed = lameSpeed * DirectionToOrigin;
                 if (speed.magnitude < lameSpeed) speed = speed.normalized * lameSpeed;
@@ -91,5 +91,6 @@ namespace Guns.Projectiles.Types
             ResetBullet();
             Init(Origin);
         }
+        
     }
 }

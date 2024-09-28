@@ -9,8 +9,8 @@ namespace Guns.Projectiles.Types
         [SerializeField] private float seriousKickForceMultiplier = 0.2f;
         [SerializeField] private float mediumKickForceMultiplier = 0.09f;
         [SerializeField] private float smallKickForceMultiplier = 0.01f;
-
         private bool _kicked;
+
 
         public override void ResetBullet()
         {
@@ -24,13 +24,14 @@ namespace Guns.Projectiles.Types
             {
                 SeriousKick();
             }
+
             base.CrushWall();
         }
 
         protected override void CombineBullets()
         {
             base.CombineBullets();
-            if (BulletsToCombine.Count > 1) 
+            if (BulletsToCombine.Count > 1)
                 SeriousKick();
             else if (BulletsToCombine.Count > 0)
                 MediumKick();
@@ -45,6 +46,7 @@ namespace Guns.Projectiles.Types
             }
         }
 
+
         protected override void PostProcessCollider(Collider hitCollider)
         {
             base.PostProcessCollider(hitCollider);
@@ -52,40 +54,45 @@ namespace Guns.Projectiles.Types
             {
                 kickable.Kick();
             }
-            
+
             if (!hitCollider.isTrigger)
             {
                 SmallKick();
             }
         }
 
-        protected override void OnPreProcessRayFireRigid(RayfireRigid rayfireRigid)
+        protected override void OnPreProcessRayFireRigid(Collider hitCollider, RayfireRigid rayfireRigid)
         {
-            base.OnPreProcessRayFireRigid(rayfireRigid);
+            base.OnPreProcessRayFireRigid(hitCollider, rayfireRigid);
+
             if (rayfireRigid.limitations.currentDepth == 0)
             {
                 NeedApprove = true;
             }
         }
 
+
         private void SmallKick()
         {
             if (_kicked) return;
-            Origin.Owner.RequestPush(-transform.forward * (Config.PushPower * smallKickForceMultiplier), ForceMode.Impulse);
-            _kicked = true; 
+            Origin.Owner.RequestPush(-transform.forward * (Config.PushPower * smallKickForceMultiplier),
+                ForceMode.Impulse);
+            _kicked = true;
         }
-        
+
         private void MediumKick()
         {
             if (_kicked) return;
-            Origin.Owner.RequestPush(-transform.forward * (Config.PushPower * mediumKickForceMultiplier), ForceMode.Impulse);
-            _kicked = true; 
+            Origin.Owner.RequestPush(-transform.forward * (Config.PushPower * mediumKickForceMultiplier),
+                ForceMode.Impulse);
+            _kicked = true;
         }
 
         private void SeriousKick()
         {
             if (_kicked) return;
-            Origin.Owner.RequestPush(-transform.forward * (Config.PushPower * seriousKickForceMultiplier), ForceMode.Impulse);
+            Origin.Owner.RequestPush(-transform.forward * (Config.PushPower * seriousKickForceMultiplier),
+                ForceMode.Impulse);
             _kicked = true;
         }
     }

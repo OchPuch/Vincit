@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <BulletHitMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 2305
   <BulletStopMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2049
   <Damage>k__BackingField: 0
   <DestroyTime>k__BackingField: 0.3
   <StartRadius>k__BackingField: 0.2

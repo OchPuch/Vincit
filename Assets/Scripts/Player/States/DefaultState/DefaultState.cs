@@ -36,7 +36,7 @@ namespace Player.States.DefaultState
             }
 
             Vector3 currentUp = (currentRotation * Vector3.up);
-            switch (PlayerData.playerConfig.MiscData.BonusOrientationMethod)
+            switch (PlayerData.bonusOrientationMethod)
             {
                 case BonusOrientationMethod.TowardsGravity:
                 {

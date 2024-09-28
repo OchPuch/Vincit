@@ -83,7 +83,6 @@ namespace Player.Configs
         [Serializable]
         public class Misc
         {
-            [field: SerializeField] public BonusOrientationMethod BonusOrientationMethod { get; private set; } = BonusOrientationMethod.None;
             [field: SerializeField] public float BonusOrientationSharpness { get; private set; } = 10f;
             [field: SerializeField] public float CrouchedCapsuleHeight { get; private set; } = 1f;
             [field: SerializeField] public float DashSpeed { get; private set; }

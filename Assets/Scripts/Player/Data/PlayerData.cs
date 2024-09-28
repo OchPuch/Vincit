@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using KinematicCharacterController;
+using KinematicCharacterController.Examples;
 using Player.Configs;
 using Player.View.Audio;
 using RayFire;
@@ -23,6 +24,7 @@ namespace Player.Data
         public Transform cameraFollowPoint;
         [Space(10)] public LayerMask levelLayerMask;
         public List<Collider> IgnoredColliders = new List<Collider>();
+        public BonusOrientationMethod bonusOrientationMethod = BonusOrientationMethod.TowardsGravity;
 
         #region input
 

@@ -6,15 +6,12 @@ using Guns.Types.CloseRange;
 using RayFire;
 using TimeStop;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Zenject;
+
 
 namespace Guns.Projectiles.Types
 {
     public class CloseRangeProjectileSphere : Projectile
     {
-        [FormerlySerializedAs("weakBulletPrefab")] [SerializeField] private WeaklingProjectile weakProjectilePrefab;
-        [SerializeField] private float maxRayFireRigidShootSize;
         [SerializeField] private float playerPushMultiplier = 0.3f;
         [SerializeField] private float smallApproveTime = 0.4f;
         [SerializeField] private float maxApproveTime = 0.3f;
@@ -25,18 +22,12 @@ namespace Guns.Projectiles.Types
         protected bool CrushWallPunch;
         protected readonly List<HitscanProjectile> BulletsToCombine = new();
 
-        private List<Collider> _hitColliders = new();
-        private readonly List<Vector3> _positionsToSpawnBullets = new();
+        protected List<Collider> HitColliders = new();
         
-        private ProjectileFactory _hitscanProjectileFactory;
         private float _destroyTime;
         private CloseRange CloseRangeGun => Origin as CloseRange;
         
-        [Inject]
-        private void Construct(DiContainer diContainer)
-        {
-            _hitscanProjectileFactory = diContainer.ResolveId<ProjectileFactory>(weakProjectilePrefab.Config.FactoryId);
-        }
+     
         
         public override void Init(Gun origin)
         {
@@ -44,12 +35,12 @@ namespace Guns.Projectiles.Types
             
             Vector3 point1 = transform.position;
             Vector3 point2 = transform.position + transform.forward * Config.MaxDistance;
-            _hitColliders = Physics.OverlapCapsule(point1, point2, Config.StartRadius).ToList();
-            foreach (var hitCollider in _hitColliders.ToList())
+            HitColliders = Physics.OverlapCapsule(point1, point2, Config.StartRadius).ToList();
+            foreach (var hitCollider in HitColliders.ToList())
             {
                 if (hitCollider.gameObject.CompareTag("Player"))
                 {
-                    _hitColliders.Remove(hitCollider);
+                    HitColliders.Remove(hitCollider);
                     continue;
                 }
                 PreProcessHit(hitCollider);
@@ -86,19 +77,22 @@ namespace Guns.Projectiles.Types
         private void FinishShoot()
         {
             CombineBullets();
-            foreach (var spawnPosition in _positionsToSpawnBullets)
+            foreach (var hitCollider in HitColliders.ToList())
             {
-               var bullet = _hitscanProjectileFactory.CreateProjectile(spawnPosition, spawnPosition - transform.position);
-               bullet.Init(Origin);
-            }
-            foreach (var hitCollider in _hitColliders)
-            {
+                if (hitCollider is null) continue;
+                if (hitCollider.gameObject == null) continue;
                 ProcessHit(hitCollider);
             }
+            OnFinishShot();
             if (!TimeNotifier.IsTimeStopped && !NeedApprove)
             {
                 DestroyProjectile();
             }
+
+        }
+
+        protected virtual void OnFinishShot()
+        {
         }
 
         protected virtual void CombineBullets()
@@ -124,7 +118,6 @@ namespace Guns.Projectiles.Types
             base.ResetBullet();
             NeedApprove = false;
             CrushWallPunch = false;
-            _positionsToSpawnBullets.Clear();
             BulletsToCombine.Clear();
         }
 
@@ -152,21 +145,13 @@ namespace Guns.Projectiles.Types
             if (hitCollider.gameObject.TryGetComponent<RayfireRigid>(out var rayfireRigid))
             {
                 CrushWallPunch = true;
-                if (rayfireRigid.limitations.currentDepth == 0)
-                {
-                }
-                else if (rayfireRigid.limitations.bboxSize < maxRayFireRigidShootSize)
-                {
-                    _positionsToSpawnBullets.Add(rayfireRigid.transform.position);
-                    Destroy(rayfireRigid);
-                }
-
-                OnPreProcessRayFireRigid(rayfireRigid);
+                OnPreProcessRayFireRigid(hitCollider, rayfireRigid);
             }
         }
 
-        protected virtual void OnPreProcessRayFireRigid(RayfireRigid rayfireRigid)
+        protected virtual void OnPreProcessRayFireRigid(Collider hitCollider , RayfireRigid rayfireRigid)
         {
+            
         }
 
         private void ProcessHit(Collider hitCollider)

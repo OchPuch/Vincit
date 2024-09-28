@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1149,7 +1149,7 @@ MonoBehaviour:
   ObstructionCheckRadius: 0.2
   ObstructionLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4087
   ObstructionSharpness: 10000
   IgnoredColliders: []
 --- !u!114 &1426876733
@@ -1269,6 +1269,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 1
     IgnoredColliders: []
+    bonusOrientationMethod: 1
     moveInputVector: {x: 0, y: 0, z: 0}
     lookInputVector: {x: 0, y: 0, z: 0}
     jumpRequested: 0
@@ -1950,6 +1951,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1bc5515e3ab954e80599c538834774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   pauseable: 1
   Capsule: {fileID: 136457490420538344}
   CapsuleRadius: 0.5
@@ -2243,7 +2253,6 @@ MonoBehaviour:
       type: 2}
     <GunPunchCollider>k__BackingField: {fileID: 0}
     fireTimer: 0
-    spinTimer: 0
   gun: {fileID: 8376276934815465176}
   view: {fileID: 8161699537793488132}
   disableAfterAwake: 1
@@ -2313,7 +2322,6 @@ MonoBehaviour:
       type: 2}
     <GunPunchCollider>k__BackingField: {fileID: 0}
     fireTimer: 0
-    spinTimer: 0
   gun: {fileID: 4719204338400173887}
   view: {fileID: 4901981643336365283}
   disableAfterAwake: 1
@@ -2482,6 +2490,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccfdbc5c7a6740278af6061406d0f4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   pauseable: 1
   <Projectile>k__BackingField: {fileID: 936348442727101248, guid: 5be8a4e4c8866dd4c91c5e4cf0209b94,
     type: 3}
@@ -2534,6 +2551,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8370c9b9d00f47d1b625e010d4e1cdd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   pauseable: 1
   animator: {fileID: 5621756859682503962}
   holdViewRoot: {fileID: 6046769902710719816}
@@ -2646,6 +2672,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ce69bf5c7b4ac4be79f232ad146578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   pauseable: 1
 --- !u!114 &6177337246465338356
 MonoBehaviour:
@@ -2659,6 +2694,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d3db0f4eb64e1479755cb455bad3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   pauseable: 1
   gunRoot: {fileID: 1242567139}
   ability:
@@ -2824,6 +2868,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8370c9b9d00f47d1b625e010d4e1cdd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   pauseable: 1
   animator: {fileID: 8883075651655408893}
   holdViewRoot: {fileID: 7397453870117594287}
@@ -2839,6 +2892,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccfdbc5c7a6740278af6061406d0f4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   pauseable: 1
   <Projectile>k__BackingField: {fileID: 936348442727101248, guid: 71019d3bbe5093e4190f44ec994f3df5,
     type: 3}
