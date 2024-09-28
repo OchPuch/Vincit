@@ -211,11 +211,13 @@ MonoBehaviour:
   disableAfterAwake: 0
   pickUpCollider: {fileID: 7205622333637398782}
   data:
+    <ViewTransform>k__BackingField: {fileID: 3253545371181220065}
     <Config>k__BackingField: {fileID: 11400000, guid: 78b2a8ce83c232649a55ad201cfa47d8,
       type: 2}
     <GunPunchCollider>k__BackingField: {fileID: 1371433975054623677}
     fireTimer: 0
   gun: {fileID: 178408991704221983}
+  viewTransform: {fileID: 0}
   gunAudio: {fileID: 8331258746841987499}
   view: {fileID: 4560092316361315720}
 --- !u!65 &7205622333637398782

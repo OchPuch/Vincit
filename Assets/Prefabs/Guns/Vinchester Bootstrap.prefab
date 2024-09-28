@@ -50,11 +50,13 @@ MonoBehaviour:
   disableAfterAwake: 0
   pickUpCollider: {fileID: 5392292130954428741}
   data:
+    <ViewTransform>k__BackingField: {fileID: 3942440393917171413}
     <Config>k__BackingField: {fileID: 11400000, guid: 45ae272cdf61b3144a7ac124203b165b,
       type: 2}
     <GunPunchCollider>k__BackingField: {fileID: 5112878382650932995}
     fireTimer: 0
   gun: {fileID: 1744728046535418590}
+  viewTransform: {fileID: 0}
   gunAudio: {fileID: 5421603448657530649}
   view: {fileID: 7100354290712203122}
 --- !u!65 &5392292130954428741
@@ -162,7 +164,14 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   pauseable: 1
-  studioEventEmitter: {fileID: 2960087691583396525}
+  shotEmitter: {fileID: 0}
+  activateEmitter: {fileID: 0}
+  deactivateEmitter: {fileID: 0}
+  equipEmitter: {fileID: 0}
+  lostEmitter: {fileID: 0}
+  catchEmitter: {fileID: 0}
+  spinStartEmitter: {fileID: 0}
+  spinEndEmitter: {fileID: 0}
 --- !u!114 &2960087691583396525
 MonoBehaviour:
   m_ObjectHideFlags: 0

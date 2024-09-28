@@ -15,8 +15,7 @@ namespace Guns.General
         
         //TODO: Replace with reactive bools
         public bool IsActive { get; private set; }
-        
-        protected GunData Data;
+        public GunData Data { get; private set; }
         public event Action Shot;
         public event Action Equipped;
         public event Action Activated;
