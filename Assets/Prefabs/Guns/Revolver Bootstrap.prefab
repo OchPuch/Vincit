@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e5d16696a34a038b6620ec0660bb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableAfterAwake: 0
   pickUpCollider: {fileID: 7205622333637398782}
   data:
     <Config>k__BackingField: {fileID: 11400000, guid: 78b2a8ce83c232649a55ad201cfa47d8,
@@ -215,8 +216,8 @@ MonoBehaviour:
     <GunPunchCollider>k__BackingField: {fileID: 1371433975054623677}
     fireTimer: 0
   gun: {fileID: 178408991704221983}
+  gunAudio: {fileID: 8331258746841987499}
   view: {fileID: 4560092316361315720}
-  disableAfterAwake: 0
 --- !u!65 &7205622333637398782
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -450,6 +451,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3253545371181220065}
   - component: {fileID: 4560092316361315720}
+  - component: {fileID: 5901429361521599024}
+  - component: {fileID: 8331258746841987499}
+  - component: {fileID: 4443028550323976024}
   m_Layer: 6
   m_Name: View
   m_TagString: Untagged
@@ -499,6 +503,78 @@ MonoBehaviour:
   animator: {fileID: 5299124800659400261}
   holdViewRoot: {fileID: 5601496912063445271}
   propViewRoot: {fileID: 7177205577354352}
+--- !u!114 &5901429361521599024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425769033487348088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadEvent: 1
+  UnloadEvent: 2
+  Banks:
+  - Revolver
+  CollisionTag: 
+  PreloadSamples: 0
+--- !u!114 &8331258746841987499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425769033487348088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef8ace8b9814d089a774ad222750436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  pauseable: 1
+  studioEventEmitter: {fileID: 4443028550323976024}
+--- !u!114 &4443028550323976024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425769033487348088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -286549645
+      Data2: 1222756568
+      Data3: -721544556
+      Data4: -2027854372
+    Path: event:/Revolver_shot
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &925514395879354657
 PrefabInstance:
   m_ObjectHideFlags: 0

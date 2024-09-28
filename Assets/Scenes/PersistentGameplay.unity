@@ -339,9 +339,9 @@ GameObject:
   m_Component:
   - component: {fileID: 330585546}
   - component: {fileID: 330585545}
-  - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
+  - component: {fileID: 330585549}
   m_Layer: 11
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -349,14 +349,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &330585544
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
@@ -501,6 +493,19 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &330585549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &516826280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,7 +1224,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1483422409}
   - component: {fileID: 1483422410}
-  - component: {fileID: 1483422412}
   - component: {fileID: 1483422411}
   m_Layer: 0
   m_Name: Player Bootstrap
@@ -1322,107 +1326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee8a57d6c47a4b72ac7cda1e45c3e466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioConfig: {fileID: 11400000, guid: 0b2d628fdec72864aa420e3cd177ddda, type: 2}
-  footstepDelay: 0.5
-  walkPitchRandomRange: 0.2
   wallJumpPitchAddition: 0.2
-  audioSource: {fileID: 1483422412}
---- !u!82 &1483422412
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483422407}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1001 &1555504075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2247,6 +2151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e5d16696a34a038b6620ec0660bb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableAfterAwake: 1
   pickUpCollider: {fileID: 1073255663511652720}
   data:
     <Config>k__BackingField: {fileID: 11400000, guid: 67f9ae250d8c77a45819c6b03ba44897,
@@ -2254,8 +2159,8 @@ MonoBehaviour:
     <GunPunchCollider>k__BackingField: {fileID: 0}
     fireTimer: 0
   gun: {fileID: 8376276934815465176}
+  gunAudio: {fileID: 0}
   view: {fileID: 8161699537793488132}
-  disableAfterAwake: 1
 --- !u!222 &2212815532217615266
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2316,6 +2221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e5d16696a34a038b6620ec0660bb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableAfterAwake: 1
   pickUpCollider: {fileID: 4298545654241945751}
   data:
     <Config>k__BackingField: {fileID: 11400000, guid: f301c6fcd3a9b524d93cb31a0b85977b,
@@ -2323,8 +2229,8 @@ MonoBehaviour:
     <GunPunchCollider>k__BackingField: {fileID: 0}
     fireTimer: 0
   gun: {fileID: 4719204338400173887}
+  gunAudio: {fileID: 0}
   view: {fileID: 4901981643336365283}
-  disableAfterAwake: 1
 --- !u!222 &3167992243489759813
 CanvasRenderer:
   m_ObjectHideFlags: 0

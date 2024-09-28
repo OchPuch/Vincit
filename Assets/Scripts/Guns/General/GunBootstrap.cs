@@ -6,16 +6,23 @@ namespace Guns.General
 {
     public class GunBootstrap : MonoBehaviour
     {
+        [Header("Bootstrap Settings")] [SerializeField]
+        private bool disableAfterAwake;
         [SerializeField] private BoxCollider pickUpCollider;
-        [SerializeField] private GunData data;
+
+        [Header("General components")] [SerializeField]
+        private GunData data;
         [SerializeField] private Gun gun;
+
+        [Header("View components")]
+        [SerializeField] private GunAudio gunAudio;
         [SerializeField] private GunView view;
-        [SerializeField] private bool disableAfterAwake;
 
         private void Awake()
         {
             gun.Init(data);
             view.Init(gun, data);
+            if (gunAudio) gunAudio.Init(gun, data);
             if (disableAfterAwake)
             {
                 enabled = false;
