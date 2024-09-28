@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{0c6324a1-6e0f-49c4-8d48-cf66237cf94a}">
+		<property name="name">
+			<value>Slowmo</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3cb90bf3-239e-4092-bb94-6274884d521c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{39ca5fc9-3da4-4ba9-bdd0-93a2d3b93c62}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{39ca5fc9-3da4-4ba9-bdd0-93a2d3b93c62}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
