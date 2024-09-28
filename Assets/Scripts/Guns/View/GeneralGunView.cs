@@ -1,6 +1,5 @@
 ﻿using Guns.Data;
 using Guns.General;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace Guns.View
@@ -46,6 +45,27 @@ namespace Guns.View
             
             holdViewRoot.SetActive(false);
             propViewRoot.SetActive(true);
+        }
+        
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            _gun.Shot -= OnGunShot;
+            _gun.Activated -= OnGunActivated;
+            _gun.Deactivated -= OnGunDeactivated;
+            _gun.Equipped -= OnGunEquip;
+
+            if (_gun is IThrowableGun throwableGun)
+            {
+                throwableGun.OnLost -= OnGunLost;
+                throwableGun.OnObtained -= OnGunObtained;
+            }
+            
+            if (_gun is ISpinnableGun spinnableGun)
+            {
+                spinnableGun.SpinStarted -= OnGunSpinStarted;
+                spinnableGun.SpinEnded -= OnGunSpinEnded;
+            }
         }
 
         private void OnGunSpinEnded()
