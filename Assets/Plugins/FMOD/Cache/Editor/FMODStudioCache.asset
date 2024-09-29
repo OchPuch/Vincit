@@ -43,10 +43,10 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638632146555170056
+  lastModified: 638632096668780425
   FileSizes:
   - Name: Desktop
-    Value: 2146
+    Value: 2412
   Exists: 1
 --- !u!114 &-5803075374321309738
 MonoBehaviour:
@@ -63,10 +63,10 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638632146555194899
+  lastModified: 638632096668790600
   FileSizes:
   - Name: Desktop
-    Value: 954
+    Value: 1036
   Exists: 1
 --- !u!114 &-4455938175467518672
 MonoBehaviour:
@@ -92,6 +92,26 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-2064347475661551198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/audio/vincit_fmod/Build/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638632096668790600
+  FileSizes:
+  - Name: Desktop
+    Value: 494
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +128,7 @@ MonoBehaviour:
   - {fileID: -5803075374321309738}
   - {fileID: -7696515657746314371}
   - {fileID: 4123482444454778266}
+  - {fileID: -2064347475661551198}
   EditorEvents:
   - {fileID: -8316369453937504736}
   EditorParameters:
@@ -116,7 +137,7 @@ MonoBehaviour:
   - {fileID: -7696515657746314371}
   StringsBanks:
   - {fileID: -5803075374321309738}
-  cacheTime: 638632146555534475
+  cacheTime: 638632096668800519
   cacheVersion: 131619
 --- !u!114 &4123482444454778266
 MonoBehaviour:
@@ -133,10 +154,10 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Revolver.bank
   Name: Revolver
   StudioPath: bank:/Weapons/Revolver
-  lastModified: 638632146555534475
+  lastModified: 638632096668800519
   FileSizes:
   - Name: Desktop
-    Value: 17024
+    Value: 17152
   Exists: 1
 --- !u!114 &7866622188924462825
 MonoBehaviour:
