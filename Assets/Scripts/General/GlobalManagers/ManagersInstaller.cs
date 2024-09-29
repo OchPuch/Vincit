@@ -1,9 +1,8 @@
-using General.GlobalManagers;
 using KinematicCharacterController.Core;
 using UnityEngine;
 using Zenject;
 
-namespace General
+namespace General.GlobalManagers
 {
     public class ManagersInstaller : MonoInstaller
     {
@@ -11,6 +10,7 @@ namespace General
         [SerializeField] private TimeController timeController;
         [SerializeField] private KinematicCharacterSystem kcc;
         [SerializeField] private AudioManager audioManager;
+        [SerializeField] private MusicManager musicManager;
         
         private PauseManager _pauseManager;
         private TimeManager _timeManager;
@@ -24,6 +24,8 @@ namespace General
             Container.BindInterfacesAndSelfTo<TimeController>().FromInstance(timeController).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<KinematicCharacterSystem>().FromInstance(kcc).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AudioManager>().FromInstance(audioManager).AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<MusicManager>().FromInstance(musicManager).AsSingle().NonLazy();
+
         }
         
     }

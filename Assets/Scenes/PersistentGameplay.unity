@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.95995384, g: 0.95995384, b: 0.95995384, a: 1}
+  m_IndirectSpecularColor: {r: 0.107926786, g: 0.107926786, b: 0.107926786, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2154,11 +2154,13 @@ MonoBehaviour:
   disableAfterAwake: 1
   pickUpCollider: {fileID: 1073255663511652720}
   data:
+    <ViewTransform>k__BackingField: {fileID: 0}
     <Config>k__BackingField: {fileID: 11400000, guid: 67f9ae250d8c77a45819c6b03ba44897,
       type: 2}
     <GunPunchCollider>k__BackingField: {fileID: 0}
     fireTimer: 0
   gun: {fileID: 8376276934815465176}
+  viewTransform: {fileID: 0}
   gunAudio: {fileID: 0}
   view: {fileID: 8161699537793488132}
 --- !u!222 &2212815532217615266
@@ -2224,11 +2226,13 @@ MonoBehaviour:
   disableAfterAwake: 1
   pickUpCollider: {fileID: 4298545654241945751}
   data:
+    <ViewTransform>k__BackingField: {fileID: 0}
     <Config>k__BackingField: {fileID: 11400000, guid: f301c6fcd3a9b524d93cb31a0b85977b,
       type: 2}
     <GunPunchCollider>k__BackingField: {fileID: 0}
     fireTimer: 0
   gun: {fileID: 4719204338400173887}
+  viewTransform: {fileID: 0}
   gunAudio: {fileID: 0}
   view: {fileID: 4901981643336365283}
 --- !u!222 &3167992243489759813
