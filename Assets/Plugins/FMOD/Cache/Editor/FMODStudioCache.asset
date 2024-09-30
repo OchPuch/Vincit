@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Revolver.bank
   Name: Revolver
   StudioPath: bank:/Weapons/Revolver
-  lastModified: 638632096668800519
+  lastModified: 638632169228503331
   FileSizes:
   - Name: Desktop
     Value: 17152
@@ -83,7 +83,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638632096668780425
+  lastModified: 638632218425387685
   FileSizes:
   - Name: Desktop
     Value: 2412
@@ -103,7 +103,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638632155702497213
+  lastModified: 638632237008670540
   FileSizes:
   - Name: Desktop
     Value: 5966336
@@ -159,7 +159,7 @@ MonoBehaviour:
   - {fileID: -7371263444240766851}
   StringsBanks:
   - {fileID: 1690666074525807516}
-  cacheTime: 638632155702497213
+  cacheTime: 638632237008670540
   cacheVersion: 131619
 --- !u!114 &915024094233861564
 MonoBehaviour:
@@ -204,7 +204,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638632155701613783
+  lastModified: 638632218425403022
   FileSizes:
   - Name: Desktop
     Value: 1190

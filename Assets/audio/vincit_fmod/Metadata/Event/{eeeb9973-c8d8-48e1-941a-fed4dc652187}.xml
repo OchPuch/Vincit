@@ -106,7 +106,6 @@
 			<destination>{af1866a4-c009-49ca-be7d-0c49ea6ad6fa}</destination>
 			<destination>{297d82f3-649c-4fc1-bcca-5943c690910a}</destination>
 			<destination>{5d7e0303-3114-46a7-8dcf-dc5bd530c60f}</destination>
-			<destination>{58099669-68b4-4be9-bad1-bbeac8b220fa}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{ffdcff48-5990-4b3c-b086-4c924f1d0e29}" />
@@ -132,17 +131,6 @@
 	</object>
 	<object class="MixerBusFader" id="{297d82f3-649c-4fc1-bcca-5943c690910a}" />
 	<object class="SpatialiserEffect" id="{5d7e0303-3114-46a7-8dcf-dc5bd530c60f}" />
-	<object class="CompressorEffect" id="{58099669-68b4-4be9-bad1-bbeac8b220fa}">
-		<property name="threshold">
-			<value>-12</value>
-		</property>
-		<property name="releaseTime">
-			<value>86</value>
-		</property>
-		<property name="gain">
-			<value>3</value>
-		</property>
-	</object>
 	<object class="Automator" id="{757ec48d-1580-48cf-8c3d-91dcbe2db505}">
 		<property name="nameOfPropertyBeingAutomated">
 			<value>pitch</value>

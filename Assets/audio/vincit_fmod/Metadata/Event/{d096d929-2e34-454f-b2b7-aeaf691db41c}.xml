@@ -146,10 +146,13 @@
 	<object class="SpatialiserEffect" id="{4dd84e5a-b075-40fc-b4ce-2c20a84279db}" />
 	<object class="SFXReverbEffect" id="{194bd97f-f56f-456d-b2e5-a0e8ff497470}">
 		<property name="decayTime">
-			<value>20000</value>
+			<value>4600</value>
+		</property>
+		<property name="lowShelfGain">
+			<value>-18.5</value>
 		</property>
 		<property name="wetLevel">
-			<value>10</value>
+			<value>0</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{8c56e43e-027a-4c4d-8cff-84becba7df6c}" />
