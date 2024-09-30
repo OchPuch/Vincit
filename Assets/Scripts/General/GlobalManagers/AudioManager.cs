@@ -1,5 +1,5 @@
 using FMODUnity;
-using PrimeTween;
+using Music;
 using UnityEngine;
 using Zenject;
 
@@ -7,48 +7,65 @@ namespace General.GlobalManagers
 {
     public class AudioManager : MonoBehaviour
     {
-        //TODO: Move to scriptable object
-        [Header("Slowmo")]
-        [ParamRef][SerializeField] private string slowMoParameter;
-        [SerializeField] private float slowMoDefaultValue;
-        [SerializeField] private TweenSettings<float> introSlowmo;
-        [SerializeField] private TweenSettings<float> outroSlowmo;
+        [Header("Mixer Groups")]
+        [SerializeField] private FmodAnimatedGlobalParameter master;
+        [SerializeField] private FmodAnimatedGlobalParameter sfx;
+        [SerializeField] private FmodAnimatedGlobalParameter music;
         
-        private ITimeNotifier _timeNotifier;
+        [Header("Effects")]
+        [SerializeField] private FmodAnimatedGlobalParameter slowMoConfig;
+        [SerializeField] private StudioEventEmitter pauseSnapshotEmitter;
+
         
         [Inject]
-        private void Construct(ITimeNotifier timeNotifier)
+        private void Construct(ITimeNotifier timeNotifier, IPauseNotifier pauseNotifier)
         {
-            _timeNotifier = timeNotifier;
+            timeNotifier.TimeContinued += slowMoConfig.PlayOutro;
+            timeNotifier.TimeStopped += slowMoConfig.PlayIntro;
 
-            _timeNotifier.TimeContinued += OnTimeContinue;
-            _timeNotifier.TimeStopped += OnTimeStopped;
+            pauseNotifier.Paused += pauseSnapshotEmitter.Play;
+            pauseNotifier.Resumed += pauseSnapshotEmitter.Stop;
         }
 
         private void Start()
         {
-            SetSlowmoParameter(slowMoDefaultValue);
+            slowMoConfig.SetDefault();
+            sfx.SetParameter(GetSoundEffectsVolume01());
+            music.SetParameter(GetMusicVolume01());
+            master.SetParameter(GetMasterVolume01());
+        }
+      
+        public void UpdateMasterVolume(float value)
+        {
+            master.SetParameter(value);
+            PlayerPrefs.SetFloat(master.Parameter, value);
+        }
+        
+        public void UpdateSfxVolume(float value)
+        { 
+            sfx.SetParameter(value);
+            PlayerPrefs.SetFloat(sfx.Parameter, value);
         }
 
-        private void OnDestroy()
-        {
-            _timeNotifier.TimeStopped -= OnTimeContinue;
-            _timeNotifier.TimeStopped -= OnTimeStopped;
+        public void UpdateMusicVolume(float value)
+        { 
+            music.SetParameter(value);
+            PlayerPrefs.SetFloat(music.Parameter, value);
         }
 
-        private void OnTimeStopped()
+        public float GetMasterVolume01()
         {
-            Tween.Custom(introSlowmo, onValueChange: SetSlowmoParameter);
+            return PlayerPrefs.GetFloat(master.Parameter, 0.5f);
         }
-
-        private void OnTimeContinue()
+        
+        public float GetSoundEffectsVolume01()
         {
-            Tween.Custom(outroSlowmo, onValueChange: SetSlowmoParameter);
+            return PlayerPrefs.GetFloat(sfx.Parameter, 0.5f);
         }
-
-        private void SetSlowmoParameter(float value)
+        
+        public float GetMusicVolume01()
         {
-            RuntimeManager.StudioSystem.setParameterByName(slowMoParameter, value);
+            return PlayerPrefs.GetFloat(music.Parameter, 0.5f);
         }
     }
 }
