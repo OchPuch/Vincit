@@ -91,8 +91,10 @@ GameObject:
   - component: {fileID: 3942440393917171413}
   - component: {fileID: 7100354290712203122}
   - component: {fileID: 5421603448657530649}
-  - component: {fileID: 2960087691583396525}
   - component: {fileID: 3925557555490080510}
+  - component: {fileID: 2960087691583396525}
+  - component: {fileID: 1078960304439627745}
+  - component: {fileID: 5142907539777938838}
   m_Layer: 6
   m_Name: View
   m_TagString: Untagged
@@ -166,13 +168,31 @@ MonoBehaviour:
   pauseable: 1
   disableOnTimeStop: 0
   shotEmitter: {fileID: 2960087691583396525}
-  activateEmitter: {fileID: 0}
+  activateEmitter: {fileID: 1078960304439627745}
   deactivateEmitter: {fileID: 0}
-  equipEmitter: {fileID: 0}
+  equipEmitter: {fileID: 5142907539777938838}
   lostEmitter: {fileID: 0}
   catchEmitter: {fileID: 0}
   spinStartEmitter: {fileID: 0}
   spinEndEmitter: {fileID: 0}
+--- !u!114 &3925557555490080510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932951323346385454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadEvent: 0
+  UnloadEvent: 0
+  Banks:
+  - Winchester
+  CollisionTag: 
+  PreloadSamples: 0
 --- !u!114 &2960087691583396525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +212,7 @@ MonoBehaviour:
       Data2: 1107034322
       Data3: 2117650585
       Data4: 2000751024
-    Path: event:/Winchesrer_shot
+    Path: event:/Weapons/Winchester/Winchesrer_shot
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -204,7 +224,7 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!114 &3925557555490080510
+--- !u!114 &1078960304439627745
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,15 +233,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 1932951323346385454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadEvent: 0
-  UnloadEvent: 0
-  Banks:
-  - Winchester
   CollisionTag: 
-  PreloadSamples: 0
+  EventReference:
+    Guid:
+      Data1: -1784363157
+      Data2: 1084808152
+      Data3: -296817490
+      Data4: 1667318033
+    Path: event:/Weapons/Winchester/Take_Winchester
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &5142907539777938838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932951323346385454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -942925430
+      Data2: 1321156352
+      Data3: 1864245666
+      Data4: -1085789341
+    Path: event:/Weapons/Winchester/Grab_Winchester
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2491280641055857613
 GameObject:
   m_ObjectHideFlags: 0

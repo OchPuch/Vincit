@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9060016526470533908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Weapons/Revolver/Revolver_shot
+  m_EditorClassIdentifier: 
+  Path: event:/Weapons/Revolver/Revolver_shot
+  Guid:
+    Data1: -286549645
+    Data2: 1222756568
+    Data3: -721544556
+    Data4: -2027854372
+  Banks:
+  - {fileID: -8658357137152322175}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 1030562797946939016}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-8658357137152322175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,12 +43,12 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Revolver.bank
   Name: Revolver
   StudioPath: bank:/Weapons/Revolver
-  lastModified: 638633025748250163
+  lastModified: 638633296123107026
   FileSizes:
   - Name: Desktop
-    Value: 17024
+    Value: 26240
   Exists: 1
---- !u!114 &-7450058647653126682
+--- !u!114 &-7573335942669411712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29,21 +57,52 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Revolver_shot/Slowmo
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Weapons/Winchester/Winchesrer_shot
   m_EditorClassIdentifier: 
-  Name: Slowmo
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3158518654
-    data2: 1453052261
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
+  Path: event:/Weapons/Winchester/Winchesrer_shot
+  Guid:
+    Data1: 170170872
+    Data2: 1107034322
+    Data3: 2117650585
+    Data4: 2000751024
+  Banks:
+  - {fileID: -5378378342186680020}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 1841558744240587137}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7534223287814523307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Weapons/Winchester/Take_Winchester
+  m_EditorClassIdentifier: 
+  Path: event:/Weapons/Winchester/Take_Winchester
+  Guid:
+    Data1: -1784363157
+    Data2: 1084808152
+    Data3: -296817490
+    Data4: 1667318033
+  Banks:
+  - {fileID: -5378378342186680020}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-7371263444240766851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,34 +118,10 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638633055082371026
+  lastModified: 638633296122551956
   FileSizes:
   - Name: Desktop
-    Value: 6344
-  Exists: 1
---- !u!114 &-6255844174969989414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Winchesrer_shot/Slowmo
-  m_EditorClassIdentifier: 
-  Name: Slowmo
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3158518654
-    data2: 1453052261
-  Type: 0
-  IsGlobal: 1
-  Labels: []
+    Value: 6494
   Exists: 1
 --- !u!114 &-5378378342186680020
 MonoBehaviour:
@@ -103,10 +138,10 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Winchester.bank
   Name: Winchester
   StudioPath: bank:/Weapons/Winchester
-  lastModified: 638633025748250163
+  lastModified: 638633296123122102
   FileSizes:
   - Name: Desktop
-    Value: 52864
+    Value: 80608
   Exists: 1
 --- !u!114 &-4892426959438129468
 MonoBehaviour:
@@ -150,7 +185,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638633055083136865
+  lastModified: 638633296123090856
   FileSizes:
   - Name: Desktop
     Value: 7209056
@@ -246,11 +281,15 @@ MonoBehaviour:
   - {fileID: -8658357137152322175}
   - {fileID: -5378378342186680020}
   EditorEvents:
-  - {fileID: 6621077055869608573}
-  - {fileID: 6976770251784813999}
-  - {fileID: 915024094233861564}
-  - {fileID: 2305581203200420618}
   - {fileID: -4892426959438129468}
+  - {fileID: 6752695890657958980}
+  - {fileID: 3353588972134383490}
+  - {fileID: 5257041688469914255}
+  - {fileID: -9060016526470533908}
+  - {fileID: -7534223287814523307}
+  - {fileID: 4220858713223955132}
+  - {fileID: 5483038686578883883}
+  - {fileID: -7573335942669411712}
   EditorParameters:
   - {fileID: -2695452436830607841}
   - {fileID: -1328047060028893801}
@@ -260,9 +299,9 @@ MonoBehaviour:
   - {fileID: -7371263444240766851}
   StringsBanks:
   - {fileID: 1690666074525807516}
-  cacheTime: 638633055083136865
+  cacheTime: 638633296123122102
   cacheVersion: 131619
---- !u!114 &915024094233861564
+--- !u!114 &1030562797946939016
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,25 +310,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Revolver_shot
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Revolver_shot/Slowmo
   m_EditorClassIdentifier: 
-  Path: event:/Revolver_shot
-  Guid:
-    Data1: -286549645
-    Data2: 1222756568
-    Data3: -721544556
-    Data4: -2027854372
-  Banks:
-  - {fileID: -8658357137152322175}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters:
-  - {fileID: -7450058647653126682}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  Name: Slowmo
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3158518654
+    data2: 1453052261
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &1237630847639121324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,12 +364,36 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638633055082381105
+  lastModified: 638633296122551956
   FileSizes:
   - Name: Desktop
-    Value: 1538
+    Value: 1788
   Exists: 1
---- !u!114 &2305581203200420618
+--- !u!114 &1841558744240587137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Winchesrer_shot/Slowmo
+  m_EditorClassIdentifier: 
+  Name: Slowmo
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3158518654
+    data2: 1453052261
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &3353588972134383490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -344,64 +403,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Winchesrer_shot
+  m_Name: event:/Music/Song_Test_2
   m_EditorClassIdentifier: 
-  Path: event:/Winchesrer_shot
-  Guid:
-    Data1: 170170872
-    Data2: 1107034322
-    Data3: 2117650585
-    Data4: 2000751024
-  Banks:
-  - {fileID: -5378378342186680020}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters:
-  - {fileID: -6255844174969989414}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &6621077055869608573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Song_Test
-  m_EditorClassIdentifier: 
-  Path: event:/Song_Test
-  Guid:
-    Data1: -795420375
-    Data2: 1162817076
-    Data3: -1347504206
-    Data4: 481566057
-  Banks:
-  - {fileID: -3580961046643051772}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 237322
---- !u!114 &6976770251784813999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Song_Test_2
-  m_EditorClassIdentifier: 
-  Path: event:/Song_Test_2
+  Path: event:/Music/Song_Test_2
   Guid:
     Data1: -1583977828
     Data2: 1136896833
@@ -416,3 +420,111 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 285048
+--- !u!114 &4220858713223955132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Weapons/Winchester/Grab_Winchester
+  m_EditorClassIdentifier: 
+  Path: event:/Weapons/Winchester/Grab_Winchester
+  Guid:
+    Data1: -942925430
+    Data2: 1321156352
+    Data3: 1864245666
+    Data4: -1085789341
+  Banks:
+  - {fileID: -5378378342186680020}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5257041688469914255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Weapons/Revolver/Grab_Revolver
+  m_EditorClassIdentifier: 
+  Path: event:/Weapons/Revolver/Grab_Revolver
+  Guid:
+    Data1: -1651887262
+    Data2: 1319392902
+    Data3: 765856444
+    Data4: -504069264
+  Banks:
+  - {fileID: -8658357137152322175}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5483038686578883883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Weapons/Revolver/Take_Revolver
+  m_EditorClassIdentifier: 
+  Path: event:/Weapons/Revolver/Take_Revolver
+  Guid:
+    Data1: -1873533514
+    Data2: 1155897252
+    Data3: 794637970
+    Data4: -1575400694
+  Banks:
+  - {fileID: -5378378342186680020}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6752695890657958980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Song_Test
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Song_Test
+  Guid:
+    Data1: -795420375
+    Data2: 1162817076
+    Data3: -1347504206
+    Data4: 481566057
+  Banks:
+  - {fileID: -3580961046643051772}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 237322
