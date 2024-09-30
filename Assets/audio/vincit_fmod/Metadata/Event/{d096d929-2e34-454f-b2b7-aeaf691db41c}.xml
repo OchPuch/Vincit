@@ -53,7 +53,7 @@
 			<destination>{70059599-ae78-449a-b8e3-d04731f6b0f5}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{b8d7be46-02ed-4c70-bc89-b4e6639d85c2}</destination>
+			<destination>{fa57c875-630f-43bd-9f61-842670eeceb0}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{73054f12-38f3-4de9-a34a-d4bd9064e350}" />
@@ -156,10 +156,10 @@
 	</object>
 	<object class="SFXReverbEffect" id="{194bd97f-f56f-456d-b2e5-a0e8ff497470}">
 		<property name="decayTime">
-			<value>4600</value>
+			<value>3400</value>
 		</property>
 		<property name="lowShelfGain">
-			<value>-18.5</value>
+			<value>-18</value>
 		</property>
 		<property name="wetLevel">
 			<value>0</value>
