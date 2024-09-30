@@ -10,7 +10,6 @@ namespace General.GlobalManagers
         [SerializeField] private TimeController timeController;
         [SerializeField] private KinematicCharacterSystem kcc;
         [SerializeField] private AudioManager audioManager;
-        [SerializeField] private MusicManager musicManager;
         
         private PauseManager _pauseManager;
         private TimeManager _timeManager;
@@ -24,7 +23,6 @@ namespace General.GlobalManagers
             Container.BindInterfacesAndSelfTo<TimeController>().FromInstance(timeController).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<KinematicCharacterSystem>().FromInstance(kcc).AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AudioManager>().FromInstance(audioManager).AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<MusicManager>().FromInstance(musicManager).AsSingle().NonLazy();
 
         }
         
