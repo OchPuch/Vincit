@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,7 +10,7 @@ namespace RayFire
     // Gun script
     [AddComponentMenu("RayFire/Rayfire Gun")]
     [HelpURL("http://rayfirestudios.com/unity-online-help/unity-gun-component/")]
-    public class RayfireGun : MonoBehaviour
+    public class RayfireGun : SerializedMonoBehaviour
     {
         [Header("  Properties")]
         [Space (3)]
