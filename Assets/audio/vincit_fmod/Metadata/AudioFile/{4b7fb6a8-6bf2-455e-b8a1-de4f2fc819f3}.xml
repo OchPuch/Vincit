@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{4b7fb6a8-6bf2-455e-b8a1-de4f2fc819f3}">
+		<property name="assetPath">
+			<value>first take weapon1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.5357142857142857</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{90915f39-0f21-4f67-8725-e741d70b1a68}</destination>
+		</relationship>
+	</object>
+</objects>

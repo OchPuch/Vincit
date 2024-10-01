@@ -1,20 +1,23 @@
 ﻿using FMODUnity;
-using General;
 using Guns.Data;
 using Guns.General;
+using TimeStop;
 using UnityEngine;
 
 namespace Guns.View
 {
-    public class GunAudio : GamePlayBehaviour
+    public class GunAudio : TimeStoppableBehaviour
     {
-        [Header("General")] [SerializeField] private StudioEventEmitter shotEmitter;
+        [Header("General")] 
+        [SerializeField] private StudioEventEmitter shotEmitter;
         [SerializeField] private StudioEventEmitter activateEmitter;
         [SerializeField] private StudioEventEmitter deactivateEmitter;
         [SerializeField] private StudioEventEmitter equipEmitter;
-        [Header("Throw")] [SerializeField] private StudioEventEmitter lostEmitter;
+        [Header("Throw")] 
+        [SerializeField] private StudioEventEmitter lostEmitter;
         [SerializeField] private StudioEventEmitter catchEmitter;
-        [Header("Spin")] [SerializeField] private StudioEventEmitter spinStartEmitter;
+        [Header("Spin")] 
+        [SerializeField] private StudioEventEmitter spinStartEmitter;
         [SerializeField] private StudioEventEmitter spinEndEmitter;
 
         private Gun _gun;
@@ -100,5 +103,6 @@ namespace Guns.View
         {
             if (shotEmitter) shotEmitter.Play();
         }
+        
     }
 }

@@ -33,6 +33,7 @@ Transform:
   m_Children:
   - {fileID: 5326627222212315229}
   - {fileID: 1203699780161203875}
+  - {fileID: 6409766249961994477}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -83,6 +84,7 @@ MonoBehaviour:
       type: 2}
   timeController: {fileID: 5997380685863012384}
   kcc: {fileID: 6613791783369742690}
+  audioManager: {fileID: 1605019820478269195}
 --- !u!114 &-2085529885696691998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +177,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2066c535efb4b5f83408e2fe58e7bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5870263728612766653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6409766249961994477}
+  - component: {fileID: 1605019820478269195}
+  - component: {fileID: 3957480681400916361}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6409766249961994477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870263728612766653}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 256.48676, y: 44.37056, z: -68.095406}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8986084296397477219}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1605019820478269195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870263728612766653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0010e8f9631f02f42b469a5238a68e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  master: {fileID: 11400000, guid: aa5b3c760a02700478202a23c5b5083e, type: 2}
+  sfx: {fileID: 11400000, guid: 734e54a9abac88e41bde7889def2623c, type: 2}
+  music: {fileID: 11400000, guid: cd1938451a7a5f84289c43a486865bd8, type: 2}
+  slowMoConfig: {fileID: 11400000, guid: bd029459dec81e3499837108317bf24d, type: 2}
+  pauseSnapshotEmitter: {fileID: 3957480681400916361}
+--- !u!114 &3957480681400916361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870263728612766653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -812143191
+      Data2: 1220804261
+      Data3: -648460913
+      Data4: 890041914
+    Path: snapshot:/Pause
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1 &8634791088217312957
 GameObject:
   m_ObjectHideFlags: 0

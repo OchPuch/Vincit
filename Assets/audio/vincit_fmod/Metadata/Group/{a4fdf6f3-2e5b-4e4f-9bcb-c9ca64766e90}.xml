@@ -4,6 +4,9 @@
 		<property name="name">
 			<value>Weapons</value>
 		</property>
+		<relationship name="automators">
+			<destination>{c7de9167-8851-46fb-8612-795f7ae39345}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{9f975f8f-613a-4a1c-970b-bf32c7ec0ed9}</destination>
 		</relationship>
@@ -14,11 +17,24 @@
 			<destination>{cc5c6f6c-77b5-4046-835a-8bc8a6dc0793}</destination>
 		</relationship>
 	</object>
+	<object class="Automator" id="{c7de9167-8851-46fb-8612-795f7ae39345}">
+		<property name="nameOfPropertyBeingAutomated">
+			<value>volume</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{9f975f8f-613a-4a1c-970b-bf32c7ec0ed9}">
 		<relationship name="effects">
 			<destination>{305d2dab-b42b-4d49-994c-ddc42ae7d8d1}</destination>
+			<destination>{d1037c75-d267-4409-acd0-9e76ab734965}</destination>
+			<destination>{f25960f8-606e-4697-ba99-d875d78083aa}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e11de31d-0e77-4314-af5e-0310760da0c1}" />
 	<object class="MixerBusFader" id="{305d2dab-b42b-4d49-994c-ddc42ae7d8d1}" />
+	<object class="CompressorEffect" id="{d1037c75-d267-4409-acd0-9e76ab734965}">
+		<property name="threshold">
+			<value>-6</value>
+		</property>
+	</object>
+	<object class="Sidechain" id="{f25960f8-606e-4697-ba99-d875d78083aa}" />
 </objects>

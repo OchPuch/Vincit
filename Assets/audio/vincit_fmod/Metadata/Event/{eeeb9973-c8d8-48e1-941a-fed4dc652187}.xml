@@ -8,7 +8,7 @@
 			<value>2</value>
 		</property>
 		<relationship name="folder">
-			<destination>{81a0be61-93ca-4878-9769-16c78ce3915f}</destination>
+			<destination>{d4dc5a70-c1b5-481c-a5c2-75c557627f9a}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{75b4d405-3a37-4fbc-9d23-2bce9c93dd40}</destination>
@@ -120,7 +120,7 @@
 	<object class="MixerBusFader" id="{6ef41836-4a38-444d-b33a-f9eb3f0b661e}" />
 	<object class="MixerSend" id="{af1866a4-c009-49ca-be7d-0c49ea6ad6fa}">
 		<property name="level">
-			<value>-9</value>
+			<value>-37</value>
 		</property>
 		<property name="inputFormat">
 			<value>1</value>
