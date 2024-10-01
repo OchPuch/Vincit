@@ -67,6 +67,7 @@ namespace Guns.Projectiles.Types
             
             UpdateTransform();
         }
+        
 
         public void OverloadEndPosition(Vector3 endPoint)
         {

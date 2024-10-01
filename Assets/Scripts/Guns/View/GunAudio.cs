@@ -91,6 +91,7 @@ namespace Guns.View
 
         private void OnGunDeactivated()
         {
+            if (activateEmitter) activateEmitter.Stop();
             if (deactivateEmitter) deactivateEmitter.Play();
         }
 

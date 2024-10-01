@@ -181,8 +181,16 @@ namespace RayFire
             Vector3 shootPosition = transform.position;
 
             // Shoot
-            Shoot(shootPosition, shootVector);
+            RaycastHit hit;
+            bool hitState = Physics.Raycast(shootPosition, shootVector, out hit, maxDistance, mask, QueryTriggerInteraction.Ignore);
+            
+            // No hits
+            if (hitState == false)
+                return;
+            
+            ProcessHit(shootPosition, shootVector, hit.point, hit.normal, hit.collider);
         }
+        
         
         // Shoot over axis
         public void Burst()
@@ -213,27 +221,16 @@ namespace RayFire
         /// /////////////////////////////////////////////////////////
         
         // Shoot over axis
-        public void Shoot (Vector3 shootPos, Vector3 shootVector)
+        public void ProcessHit (Vector3 shootPos, Vector3 shootVector, Vector3 impactPoint, Vector3 impactNormal, Collider hit)
         {
             // Event
             shotEvent.InvokeLocalEvent(this);
             RFShotEvent.InvokeGlobalEvent(this);
             
-            // Get intersection collider
-            RaycastHit hit;
-            bool hitState = Physics.Raycast(shootPos, shootVector, out hit, maxDistance, mask, QueryTriggerInteraction.Ignore);
-            
-            // No hits
-            if (hitState == false)
-                return;
-
             // Check for tag
             if (tagFilter != untagged && CompareTag (hit.transform.tag) == false)
                 return;
             
-            // Pos and normal info
-            Vector3 impactPoint  = hit.point;
-            Vector3 impactNormal = hit.normal;
             // Affected components
             RayfireRigid     rigidScr = null;
             RayfireRigidRoot rootScr  = null;
@@ -243,9 +240,9 @@ namespace RayFire
             if (rigid == true)
             {
                 // Get rigid from collider or rigid body
-                rigidScr = hit.collider.attachedRigidbody == null 
-                    ? hit.collider.GetComponent<RayfireRigid>() 
-                    : hit.collider.attachedRigidbody.transform.GetComponent<RayfireRigid>();
+                rigidScr = hit.attachedRigidbody == null 
+                    ? hit.GetComponent<RayfireRigid>() 
+                    : hit.attachedRigidbody.transform.GetComponent<RayfireRigid>();
                 
                 // Target is Rigid
                 if (rigidScr != null)
@@ -266,7 +263,7 @@ namespace RayFire
             if (rigidRoot == true)
             {
                 // Get rigid from collider or rigid body
-                rootScr = hit.collider.GetComponentInParent<RayfireRigidRoot>();
+                rootScr = hit.GetComponentInParent<RayfireRigidRoot>();
                 
                 // Target is Rigid Root
                 if (rootScr != null)
@@ -287,70 +284,18 @@ namespace RayFire
             {
                 if (rigidScr == null && rootScr == null)
                 {
-                    rbScr = hit.collider.attachedRigidbody;
+                    rbScr = hit.attachedRigidbody;
                 }
             }
         }
         
-        // Shoot over axis
-        public void ShootOld (Vector3 shootPos, Vector3 shootVector)
-        {
-            // Event
-            shotEvent.InvokeLocalEvent(this);
-            RFShotEvent.InvokeGlobalEvent(this);
-            
-            // Get intersection collider
-            RaycastHit hit;
-            bool hitState = Physics.Raycast(shootPos, shootVector, out hit, maxDistance, mask, QueryTriggerInteraction.Ignore);
-            
-            // No hits
-            if (hitState == false)
-                return;
-
-            // Check for tag
-            if (tagFilter != untagged && CompareTag (hit.transform.tag) == false)
-                return;
-            
-            // Pos and normal info
-            Vector3 impactPoint  = hit.point;
-            Vector3 impactNormal = hit.normal;
-
-            // If mesh collider
-            // int triId = hit.triangleIndex;
-            // Vector3 bar = hit.barycentricCoordinate;
-            
-            // Get rigid from collider or rigid body
-            RayfireRigid rigid = hit.collider.attachedRigidbody == null 
-                ? hit.collider.GetComponent<RayfireRigid>() 
-                : hit.collider.attachedRigidbody.transform.GetComponent<RayfireRigid>();
-            
-            // Collider has Rigid
-            if (rigid != null)
-            {
-                // Impact Debris and dust
-                VfxDebris (rigid.debrisList, impactPoint, impactNormal);
-
-                // Impact Dust
-                VfxDust (rigid.dustList, impactPoint, impactNormal);
-
-                // Apply damage and return new demolished rigid fragment 
-                rigid = ApplyDamage (rigid, hit, shootPos, shootVector, impactPoint);
-            }
-
-            // No Rigid script. TODO impact with object without rigid. get Rigid bodies around impact radius
-            if (rigid == null)
-                return;
-            
-            // Impact hit to rigid bodies. Activated inactive, detach clusters
-            ImpactRigid(rigid, hit, impactPoint, shootVector);
-        }
         
         /// /////////////////////////////////////////////////////////
         /// Impact
         /// /////////////////////////////////////////////////////////
         
         // Impact hit to rigid bodies. Activated inactive, detach clusters
-        void ImpactRigid(RayfireRigid rigidScr, RaycastHit hit, Vector3 impactPoint, Vector3 shootVector)
+        void ImpactRigid(RayfireRigid rigidScr, Collider hit, Vector3 impactPoint, Vector3 shootVector)
         {
             // Prepare impact list
             List<Rigidbody> impactRbList = new List<Rigidbody>();
@@ -367,7 +312,7 @@ namespace RayFire
                 // Connected cluster one fragment detach
                 if (rigidScr.objectType == ObjectType.ConnectedCluster)
                     if (demolishCluster == true)
-                        RFDemolitionCluster.DemolishConnectedCluster (rigidScr, new[] {hit.collider});
+                        RFDemolitionCluster.DemolishConnectedCluster (rigidScr, new[] {hit});
 
                 // Collect for impact
                 if (strength > 0)
@@ -376,7 +321,7 @@ namespace RayFire
                     if (rigidScr.simulationType == SimType.Inactive && affectInactive == false)
                         return;
                     
-                    impactRbList.Add (hit.collider.attachedRigidbody);
+                    impactRbList.Add (hit.attachedRigidbody);
                 }
             }
             
@@ -454,7 +399,7 @@ namespace RayFire
         }
         
          // Impact hit to rigid bodies. Activated inactive, detach clusters
-        void ImpactRoot(RayfireRigidRoot rootScr, RaycastHit hit, Vector3 impactPoint, Vector3 shootVector)
+        void ImpactRoot(RayfireRigidRoot rootScr, Collider hit, Vector3 impactPoint, Vector3 shootVector)
         {
             // Prepare impact list
             List<Rigidbody> impactRbList = new List<Rigidbody>();
@@ -463,7 +408,7 @@ namespace RayFire
             if (radius == 0)
             {
                 // Get impact shard
-                RFShard hitShard = RFShard.GetShardByCollider(rootScr.cluster.shards, hit.collider);
+                RFShard hitShard = RFShard.GetShardByCollider(rootScr.cluster.shards, hit);
                 if (hitShard == null)
                     return;;
                 
@@ -558,7 +503,7 @@ namespace RayFire
         /// /////////////////////////////////////////////////////////
         
         // Apply damage. Return new rigid
-        RayfireRigid ApplyDamage (RayfireRigid scrRigid, RaycastHit hit, Vector3 shootPos, Vector3 shootVector, Vector3 impactPoint)
+        RayfireRigid ApplyDamage (RayfireRigid scrRigid, Collider hit, Vector3 shootPos, Vector3 shootVector, Vector3 impactPoint)
         {
             // No damage or damage disabled
             if (damage == 0 || scrRigid.damage.enable == false)
@@ -575,16 +520,16 @@ namespace RayFire
             if (scrRigid.HasFragments == true)
             {
                 // Get new fragment target
-                bool dmlHitState = Physics.Raycast(shootPos, shootVector, out hit, maxDistance, mask, QueryTriggerInteraction.Ignore);
+                bool dmlHitState = Physics.Raycast(shootPos, shootVector, out var hitScan, maxDistance, mask, QueryTriggerInteraction.Ignore);
                 
                 // Get new hit rigid
                 if (dmlHitState == true)
                 {
-                    if (hit.collider.attachedRigidbody != null)
-                        return hit.collider.attachedRigidbody.transform.GetComponent<RayfireRigid>();
+                    if (hitScan.collider.attachedRigidbody != null)
+                        return hitScan.collider.attachedRigidbody.transform.GetComponent<RayfireRigid>();
                     
-                    if (hit.collider != null)
-                        return hit.collider.transform.GetComponent<RayfireRigid>();
+                    if (hit != null)
+                        return hit.transform.GetComponent<RayfireRigid>();
                 }
             }
             
