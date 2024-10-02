@@ -42,7 +42,6 @@ namespace Guns.View
                 spinnableGun.SpinEnded += OnGunSpinEnded;
             }
             
-            
             holdViewRoot.SetActive(false);
             propViewRoot.SetActive(true);
         }
@@ -88,7 +87,7 @@ namespace Guns.View
             animator.SetBool(IsLost, true);
         }
 
-        private void OnGunEquip()
+        private void OnGunEquip(Player.Player player)
         {
             holdViewRoot.SetActive(true);
             propViewRoot.SetActive(false);

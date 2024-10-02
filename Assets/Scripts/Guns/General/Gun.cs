@@ -17,7 +17,7 @@ namespace Guns.General
         public bool IsActive { get; private set; }
         public GunData Data { get; private set; }
         public event Action Shot;
-        public event Action Equipped;
+        public event Action<Player.Player> Equipped;
         public event Action Activated;
         public event Action Deactivated;
 
@@ -40,7 +40,7 @@ namespace Guns.General
         public void Equip(Player.Player owner)
         {
             Owner = owner;
-            Equipped?.Invoke();
+            Equipped?.Invoke(owner);
         }
 
         public virtual void Deactivate()

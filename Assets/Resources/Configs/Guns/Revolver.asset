@@ -16,4 +16,5 @@ MonoBehaviour:
   <FireRate>k__BackingField: 0.5
   <HelicopterForce>k__BackingField: 0
   <AddScaleAtStart>k__BackingField: 0
-  <TimeBeforeAbleToThrow>k__BackingField: 0.5
+  <SpinSpeed>k__BackingField: 1000
+  <SpinStopTime>k__BackingField: 0.5

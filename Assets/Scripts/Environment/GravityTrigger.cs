@@ -1,6 +1,6 @@
 using System;
-using NaughtyAttributes;
 using Player;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Environment.Triggers

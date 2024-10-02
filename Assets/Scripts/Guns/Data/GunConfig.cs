@@ -12,6 +12,9 @@ namespace Guns.Data
         
         [field: SerializeField] public float AddScaleAtStart { get; private set; }
         
-        [field: SerializeField] public float TimeBeforeAbleToThrow { get; private set; }
+        [field: SerializeField] public float SpinSpeed { get; private set; }
+        
+        [field: SerializeField] public float SpinStopTime { get; private set; }
+
     }
 }

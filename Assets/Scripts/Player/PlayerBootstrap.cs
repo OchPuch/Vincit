@@ -1,6 +1,7 @@
 ﻿using Guns.General;
 using KinematicCharacterController.Examples;
 using Player.Data;
+using Player.View;
 using UnityEngine;
 
 namespace Player
@@ -12,6 +13,9 @@ namespace Player
         public ExampleCharacterCamera characterCamera;
         public Player player;
         public GunController gunController;
+
+        [Header("View")] 
+        [SerializeField] private PlayerStateUI playerStateUI;
         
         private void Start()
         {
@@ -28,6 +32,8 @@ namespace Player
             characterCamera.IgnoredColliders.AddRange(character.GetComponentsInChildren<Collider>());
 
             gunController.Init(player);
+            playerStateUI.Init(player);
+
         }
     } 
 }

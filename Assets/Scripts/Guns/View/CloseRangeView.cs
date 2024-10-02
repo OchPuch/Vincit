@@ -22,7 +22,7 @@ namespace Guns.View
             holdViewRoot.SetActive(false);
         }
 
-        private void OnGunEquip()
+        private void OnGunEquip(Player.Player player)
         {
             holdViewRoot.SetActive(true);
             animator.SetTrigger(Equip);

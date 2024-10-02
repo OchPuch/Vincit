@@ -84,7 +84,7 @@ namespace Guns.View
             if (lostEmitter) lostEmitter.Play();
         }
 
-        private void OnGunEquip()
+        private void OnGunEquip(Player.Player player)
         {
             if (equipEmitter) equipEmitter.Play();
         }

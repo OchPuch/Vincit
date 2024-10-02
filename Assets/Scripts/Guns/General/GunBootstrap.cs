@@ -1,10 +1,11 @@
 ﻿using Guns.Data;
 using Guns.View;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Guns.General
 {
-    public class GunBootstrap : MonoBehaviour
+    public class GunBootstrap : SerializedMonoBehaviour
     {
         [Header("Bootstrap Settings")] [SerializeField]
         private bool disableAfterAwake;
@@ -13,16 +14,17 @@ namespace Guns.General
         [Header("General components")] 
         [SerializeField] private GunData data;
         [SerializeField] private Gun gun;
-        [SerializeField] private Transform viewTransform;
 
         [Header("View components")]
         [SerializeField] private GunAudio gunAudio;
         [SerializeField] private GunView view;
-
+        [SerializeField] private GunStateUI gunStateUI;
+        
         private void Awake()
         {
             gun.Init(data);
             view.Init(gun, data);
+            if (gunStateUI) gunStateUI.Init(gun, data);
             if (gunAudio) gunAudio.Init(gun, data);
             if (disableAfterAwake)
             {
