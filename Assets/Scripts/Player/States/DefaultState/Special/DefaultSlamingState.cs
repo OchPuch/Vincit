@@ -55,7 +55,7 @@ namespace Player.States.DefaultState.Special
             if (!pushRequest.forceUngroundOnPush) return;
             if (pushRequest.pushMode == ForceMode.Force) return;
             currentVelocity = Vector3.zero;
-            base.ProcessPushRequests(ref currentVelocity, deltaTime);
+            base.ProcessPushRequest(pushRequest ,ref currentVelocity, deltaTime);
             StateMachine.SwitchState<DefaultAirborneState>();
         }
 

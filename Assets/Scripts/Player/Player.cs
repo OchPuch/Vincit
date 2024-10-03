@@ -9,13 +9,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public enum PushBasedOnGroundStatus
-    {
-        OnlyIfUnstable,
-        OnlyIfStable,
-        Any
-    }
-    
+   
     public class Player : GamePlayBehaviour, IDamageable
     {
         public PlayerData Data { get; private set; }
@@ -37,8 +31,6 @@ namespace Player
             if (Data.motor.AttachedRigidbody != null)
                 _physicsMover = Data.motor.AttachedRigidbody.GetComponent<PhysicsMover>();
         }
-
-  
 
         private void Update()
         {

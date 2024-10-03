@@ -17,6 +17,13 @@ namespace Player.Data
         public bool forceUngroundOnPush;
         public PushBasedOnGroundStatus pushBasedOnGroundStatus;
     }
+    
+    public enum PushBasedOnGroundStatus
+    {
+        OnlyIfUnstable,
+        OnlyIfStable,
+        Any
+    }
         
     [Serializable]
     public class PlayerData

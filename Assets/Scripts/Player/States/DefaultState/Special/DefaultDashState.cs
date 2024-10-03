@@ -79,7 +79,7 @@ namespace Player.States.DefaultState.Special
         public override void ProcessPushRequest(PushRequest pushRequest ,ref Vector3 currentVelocity, float deltaTime)
         {
             if (pushRequest.pushMode == ForceMode.Force) return;
-            base.ProcessPushRequests(ref currentVelocity, deltaTime);
+            base.ProcessPushRequest(pushRequest, ref currentVelocity, deltaTime);
         }
     }
 }

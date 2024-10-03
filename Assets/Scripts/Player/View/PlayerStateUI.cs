@@ -27,9 +27,8 @@ namespace Player.View
                 Mathf.Clamp(_player.Data.motor.Velocity.magnitude * offsetBySpeedMultiplier, 0, maxOffsetBySpeed);
 
             var newTargetPosition = _startRenderPosition;
-            var lookVector = -_player.Data.cameraFollowPoint.forward;
-            var rotatedVector = Quaternion.LookRotation(lookVector * (VectorUtils.AreCodirected(playerSpeedAdd, lookVector) ? -1 : 1)) * playerSpeedAdd;
-           newTargetPosition += rotatedVector;
+            var rotatedVector = _player.Data.cameraFollowPoint.InverseTransformVector(playerSpeedAdd);
+             newTargetPosition += rotatedVector;
             
             renderTransform.localPosition = Vector3.SmoothDamp(
                 renderTransform.localPosition, 

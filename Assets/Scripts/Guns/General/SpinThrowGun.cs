@@ -5,6 +5,7 @@ using Guns.Projectiles;
 using Guns.Projectiles.Interactions;
 using Guns.Projectiles.Types;
 using Player;
+using Player.Data;
 using UnityEngine;
 using Utils;
 using Zenject;
@@ -43,13 +44,20 @@ namespace Guns.General
             base.Update();
             if (IsSpinning)
             {
-                Owner.RequestPush(Owner.Data.motor.CharacterUp * Data.Config.HelicopterForce, ForceMode.Force, false, PushBasedOnGroundStatus.OnlyIfUnstable);
                 Data.fireTimer += Data.Config.SpinFireSpeedAdd * Time.deltaTime;
             }
             else
             {
                 Data.currentSpinSpeed -= Data.Config.SpinSpeed / Data.Config.SpinStopTime * Time.deltaTime;
                 if (Data.currentSpinSpeed <= 0) Data.currentSpinSpeed = 0;
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            if (IsSpinning)
+            {
+                Owner.RequestPush(Owner.Data.motor.CharacterUp * Data.Config.HelicopterForce, ForceMode.Force, false, PushBasedOnGroundStatus.OnlyIfUnstable);
             }
         }
 

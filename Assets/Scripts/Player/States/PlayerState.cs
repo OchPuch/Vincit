@@ -94,11 +94,11 @@ namespace Player.States
 
         public void ProcessPushRequests(ref Vector3 currentVelocity, float deltaTime)
         {
-            foreach (var pushRequest in PlayerData.PushRequests.ToList())
+            foreach (var pushRequest in PlayerData.PushRequests)
             {
                 ProcessPushRequest(pushRequest, ref currentVelocity, deltaTime);
-                PlayerData.PushRequests.Remove(pushRequest);
             }
+            PlayerData.PushRequests.Clear();
         }
 
         public virtual void ProcessPushRequest(PushRequest pushRequest, ref Vector3 currentVelocity, float deltaTime)
