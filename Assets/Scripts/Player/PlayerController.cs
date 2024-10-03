@@ -35,13 +35,9 @@ namespace Player
         private ITimeNotifier _timeNotifier;
 
         [Inject]
-        public void Construct(ITimeNotifier timeNotifier)
+        public void Construct(ITimeNotifier timeNotifier, PlayerData data)
         {
-            _timeNotifier = timeNotifier;
-        }
-
-        public void Init(PlayerData data)
-        {
+            _timeNotifier = timeNotifier; 
             _playerData = data;
             _playerData.motor.CharacterController = this;
             _stateMachine = new PlayerStateMachine(this, _playerData);

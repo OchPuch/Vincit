@@ -12,6 +12,7 @@ namespace Guns.General
     {
         public bool AbilityRequest;
         public bool ShootRequest;
+        public bool ReloadRequest;
         public bool HandPunchRequest;
         public bool LegPunchRequest;
         public bool StartSpinRequest;
@@ -68,13 +69,9 @@ namespace Guns.General
         private List<Gun> HiddenGuns => _guns.FindAll(g => !g.IsActive);
 
         [Inject]
-        private void Construct(TimeController timeController, ITimeNotifier timeNotifier)
+        private void Construct(TimeController timeController, ITimeNotifier timeNotifier, Player.Player player)
         {
             ability.Init(timeController, timeNotifier);
-        }
-        
-        public void Init(Player.Player player)
-        {
             _owner = player;
             InitHand();
             InitLeg();
@@ -115,6 +112,7 @@ namespace Guns.General
             {
                 AbilityRequest = Input.GetKeyDown(KeyCode.Q),
                 ShootRequest = Input.GetMouseButton(0),
+                ReloadRequest = Input.GetKeyDown(KeyCode.R),
                 HandPunchRequest = Input.GetMouseButtonDown(4),
                 LegPunchRequest = Input.GetKeyDown(KeyCode.F),
                 StartSpinRequest =  Input.GetMouseButtonDown(1),
@@ -123,6 +121,7 @@ namespace Guns.General
 
             if (input.AbilityRequest) ability.SwitchActive();
             if (_activeGun && input.ShootRequest) _activeGun.Shoot();
+            if (_activeGun && input.ReloadRequest) _activeGun.Reload();
             if (input.HandPunchRequest) leftHand.Shoot();
             if (input.LegPunchRequest) leg.Shoot();
             if (_activeGun is ISpinnableGun spinnableGun)

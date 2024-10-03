@@ -1,6 +1,7 @@
 ﻿using General;
 using UnityEngine;
 using Utils;
+using Zenject;
 
 namespace Player.View
 {
@@ -15,7 +16,8 @@ namespace Player.View
         private Vector3 _startRenderPosition;
         private Player _player;
 
-        public void Init(Player player)
+        [Inject]
+        private void Construct(Player player)
         {
             _player = player;
             _startRenderPosition = renderTransform.localPosition;

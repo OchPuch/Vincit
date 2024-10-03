@@ -2,6 +2,7 @@
 using General;
 using Guns.Data;
 using Guns.General;
+using Guns.Projectiles;
 using UnityEngine;
 using Zenject;
 
@@ -106,7 +107,7 @@ namespace Guns.View
             rootPanel.gameObject.SetActive(true);
         }
 
-        protected virtual void OnGunShot()
+        protected virtual void OnGunShot(ProjectileConfig projectileConfig)
         {
         }
     }

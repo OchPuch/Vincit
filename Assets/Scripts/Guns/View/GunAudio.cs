@@ -1,6 +1,7 @@
 ﻿using FMODUnity;
 using Guns.Data;
 using Guns.General;
+using Guns.Projectiles;
 using TimeStop;
 using UnityEngine;
 using Zenject;
@@ -102,7 +103,7 @@ namespace Guns.View
             if (activateEmitter) activateEmitter.Play();
         }
 
-        private void OnGunShot()
+        private void OnGunShot(ProjectileConfig projectileConfig)
         {
             if (shotEmitter) shotEmitter.Play();
         }

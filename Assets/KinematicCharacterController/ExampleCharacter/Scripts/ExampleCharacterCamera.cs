@@ -70,6 +70,7 @@ namespace KinematicCharacterController.Examples
             _targetVerticalAngle = 0f;
 
             PlanarDirection = Vector3.forward;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         // Set the transform that the camera will orbit around

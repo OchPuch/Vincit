@@ -1,5 +1,6 @@
 ﻿using Guns.Data;
 using Guns.General;
+using Guns.Projectiles;
 using UnityEngine;
 using Zenject;
 
@@ -40,7 +41,7 @@ namespace Guns.View
             holdViewRoot.SetActive(true);
         }
 
-        private void OnGunShot()
+        private void OnGunShot(ProjectileConfig projectileConfig)
         {
             animator.SetTrigger(Shoot);
         }

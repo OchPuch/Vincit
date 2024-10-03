@@ -3,27 +3,26 @@ using KinematicCharacterController.Examples;
 using Player.Data;
 using Player.View;
 using UnityEngine;
+using Zenject;
 
 namespace Player
 {
-    public class PlayerBootstrap : MonoBehaviour
+    public class PlayerBootstrap : MonoInstaller
     {
         public PlayerData playerData = new PlayerData();
         public PlayerController character;
         public ExampleCharacterCamera characterCamera;
         public Player player;
-        public GunController gunController;
 
-        [Header("View")] 
-        [SerializeField] private PlayerStateUI playerStateUI;
         
-        private void Start()
-        {
-            character.Init(playerData);
+        public override void InstallBindings()
+        { 
             player.Init(playerData, character, characterCamera);
             
-            Cursor.lockState = CursorLockMode.Locked;
-
+            Container.Bind<PlayerData>().FromInstance(playerData);
+            Container.Bind<Player>().FromInstance(player);
+            
+            
             // Tell camera to follow transform
             characterCamera.SetFollowTransform(playerData.cameraFollowPoint);
 
@@ -31,8 +30,6 @@ namespace Player
             characterCamera.IgnoredColliders.Clear();
             characterCamera.IgnoredColliders.AddRange(character.GetComponentsInChildren<Collider>());
 
-            gunController.Init(player);
-            playerStateUI.Init(player);
 
         }
     } 

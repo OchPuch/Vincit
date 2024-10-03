@@ -1800,8 +1800,6 @@ MonoBehaviour:
   character: {fileID: 1185531043422071794}
   characterCamera: {fileID: 1426876732}
   player: {fileID: 6177337246465338355}
-  gunController: {fileID: 6177337246465338356}
-  playerStateUI: {fileID: 1809632711}
 --- !u!114 &1483422411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2659,7 +2657,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 1483422410}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:

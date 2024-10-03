@@ -16,7 +16,8 @@ namespace Guns.General
         //TODO: Replace with reactive bools
         public bool IsActive { get; private set; }
         public GunData Data { get; private set; }
-        public event Action Shot;
+        public event Action<ProjectileConfig> Shot;
+        public event Action Reloaded;
         public event Action<Player.Player> Equipped;
         public event Action Activated;
         public event Action Deactivated;
@@ -56,9 +57,15 @@ namespace Guns.General
             Activated?.Invoke();
         }
 
+        public virtual void Reload()
+        {
+            Reloaded?.Invoke();
+        }
+        
+
         private void InvokeShot()
         {
-            Shot?.Invoke();
+            Shot?.Invoke(Projectile.Config);
         }
         
         public virtual void Shoot()
