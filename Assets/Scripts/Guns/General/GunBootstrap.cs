@@ -1,31 +1,27 @@
 ﻿using Guns.Data;
-using Guns.View;
-using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace Guns.General
 {
-    public class GunBootstrap : SerializedMonoBehaviour
+    public class GunBootstrap : MonoInstaller
     {
-        [Header("Bootstrap Settings")] [SerializeField]
-        private bool disableAfterAwake;
+        [Header("Bootstrap Settings")] 
+        [SerializeField] private bool disableAfterAwake;
         [SerializeField] private BoxCollider pickUpCollider;
 
         [Header("General components")] 
         [SerializeField] private GunData data;
         [SerializeField] private Gun gun;
-
-        [Header("View components")]
-        [SerializeField] private GunAudio gunAudio;
-        [SerializeField] private GunView view;
-        [SerializeField] private GunStateUI gunStateUI;
         
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesAndSelfTo<Gun>().FromInstance(gun);
+            Container.BindInterfacesAndSelfTo<GunData>().FromInstance(data);
+        }
+
         private void Awake()
         {
-            gun.Init(data);
-            view.Init(gun, data);
-            if (gunStateUI) gunStateUI.Init(gun, data);
-            if (gunAudio) gunAudio.Init(gun, data);
             if (disableAfterAwake)
             {
                 enabled = false;

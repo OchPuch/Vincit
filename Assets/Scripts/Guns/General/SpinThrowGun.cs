@@ -4,6 +4,7 @@ using System.Linq;
 using Guns.Projectiles;
 using Guns.Projectiles.Interactions;
 using Guns.Projectiles.Types;
+using Player;
 using UnityEngine;
 using Utils;
 using Zenject;
@@ -40,7 +41,12 @@ namespace Guns.General
         {
             if (IsLost) return;
             base.Update();
-            if (!IsSpinning)
+            if (IsSpinning)
+            {
+                Owner.RequestPush(Owner.Data.motor.CharacterUp * Data.Config.HelicopterForce, ForceMode.Force, false, PushBasedOnGroundStatus.OnlyIfUnstable);
+                Data.fireTimer += Data.Config.SpinFireSpeedAdd * Time.deltaTime;
+            }
+            else
             {
                 Data.currentSpinSpeed -= Data.Config.SpinSpeed / Data.Config.SpinStopTime * Time.deltaTime;
                 if (Data.currentSpinSpeed <= 0) Data.currentSpinSpeed = 0;
@@ -88,6 +94,7 @@ namespace Guns.General
             if (!IsLost) return;
             IsLost = false;
             if (IsActive) Data.GunPunchCollider.enabled = true;
+            Data.fireTimer = 0;
             OnObtained?.Invoke();
         }
 

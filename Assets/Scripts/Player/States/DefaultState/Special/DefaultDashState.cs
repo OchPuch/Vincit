@@ -75,6 +75,11 @@ namespace Player.States.DefaultState.Special
 
             currentVelocity = _dashDirection * PlayerData.playerConfig.MiscData.DashSpeed;
         }
-        
+
+        public override void ProcessPushRequest(PushRequest pushRequest ,ref Vector3 currentVelocity, float deltaTime)
+        {
+            if (pushRequest.pushMode == ForceMode.Force) return;
+            base.ProcessPushRequests(ref currentVelocity, deltaTime);
+        }
     }
 }

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 59009422804390213}
+  - component: {fileID: 1821814212145818817}
   - component: {fileID: 416748390465642203}
   - component: {fileID: 5392292130954428741}
   m_Layer: 6
@@ -35,6 +36,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1821814212145818817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553496656998536935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 416748390465642203}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
 --- !u!114 &416748390465642203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,11 +74,8 @@ MonoBehaviour:
       type: 2}
     <GunPunchCollider>k__BackingField: {fileID: 5112878382650932995}
     fireTimer: 0
+    currentSpinSpeed: 0
   gun: {fileID: 1744728046535418590}
-  viewTransform: {fileID: 0}
-  gunAudio: {fileID: 5421603448657530649}
-  view: {fileID: 7100354290712203122}
-  gunStateUI: {fileID: 4384392350937944151}
 --- !u!65 &5392292130954428741
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -158,6 +174,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4eb24ecbfcb412bb1afcc682de75b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  pauseable: 1
   rootPanel: {fileID: 3940614630961274020}
 --- !u!114 &5421603448657530649
 MonoBehaviour:

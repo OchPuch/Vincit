@@ -6,9 +6,6 @@ namespace Guns.View
 {
     public class GunView : GamePlayBehaviour
     {
-        public virtual void Init(Gun gun, GunData data)
-        {
-            
-        }
+        
     }
 }

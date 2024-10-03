@@ -22,15 +22,12 @@ namespace Guns.General
         public event Action Deactivated;
 
         [Inject]
-        private void Construct(DiContainer diContainer)
+        private void Construct(DiContainer diContainer, GunData data)
         {
+            Data = data;
             ProjectileFactory = diContainer.ResolveId<ProjectileFactory>(Projectile.Config.FactoryId);
         }
         
-        public virtual void Init(GunData data)
-        {
-            Data = data;
-        }
         
         protected virtual void Update()
         {

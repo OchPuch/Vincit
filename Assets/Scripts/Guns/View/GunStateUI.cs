@@ -3,6 +3,7 @@ using General;
 using Guns.Data;
 using Guns.General;
 using UnityEngine;
+using Zenject;
 
 namespace Guns.View
 {
@@ -10,16 +11,11 @@ namespace Guns.View
     {
         [SerializeField] private RectTransform rootPanel;
         
-
         protected GunData Data;
         protected Gun Gun;
-        protected IThrowableGun ThrowableGun; //Will be null if gun does not inherit IThrowableGun
-        protected ISpinnableGun SpinnableGun; //Will be null if gun does not inherit ISpinnableGun
-
-        private Action _updated;
-
-
-        public void Init(Gun gun, GunData data)
+        
+        [Inject]
+        private void Construct(Gun gun, GunData data)
         {
             Gun = gun;
             Data = data;
@@ -33,18 +29,14 @@ namespace Guns.View
 
             if (gun is IThrowableGun throwableGun)
             {
-                ThrowableGun = throwableGun;
                 throwableGun.OnLost += OnGunLost;
                 throwableGun.OnObtained += OnGunObtained;
-                _updated += ThrowableUpdate;
             }
 
             if (gun is ISpinnableGun spinnableGun)
             {
-                SpinnableGun = spinnableGun;
                 spinnableGun.SpinStarted += OnGunSpinStarted;
                 spinnableGun.SpinEnded += OnGunSpinEnded;
-                _updated += SpinnableUpdate;
             }
         }
 
@@ -67,26 +59,6 @@ namespace Guns.View
                 spinnableGun.SpinStarted -= OnGunSpinStarted;
                 spinnableGun.SpinEnded -= OnGunSpinEnded;
             }
-        }
-
-        /// <summary>
-        /// Used if gun is spinnable (ISpinnableGun)
-        /// </summary>
-        protected virtual void SpinnableUpdate()
-        {
-        }
-
-        /// <summary>
-        /// Used if gun is throwable (IThrowableGun)
-        /// </summary>
-        protected virtual void ThrowableUpdate()
-        {
-        }
-
-
-        private void Update()
-        {
-            _updated.Invoke();
         }
 
         protected virtual void OnGunSpinEnded()

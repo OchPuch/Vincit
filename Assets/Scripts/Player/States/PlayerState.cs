@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using KinematicCharacterController;
 using Player.Data;
 using Player.StateMachine;
@@ -18,8 +19,8 @@ namespace Player.States
         public PlayerState(PlayerController controller, IStateSwitcher stateMachine, PlayerData playerData)
         {
             PlayerController = controller;
-            this.StateMachine = stateMachine;
-            this.PlayerData = playerData;
+            StateMachine = stateMachine;
+            PlayerData = playerData;
         }
         
         public virtual void Enter()
@@ -91,7 +92,16 @@ namespace Player.States
         }
 
 
-        public virtual void ProcessPushRequests(ref Vector3 currentVelocity, float deltaTime)
+        public void ProcessPushRequests(ref Vector3 currentVelocity, float deltaTime)
+        {
+            foreach (var pushRequest in PlayerData.PushRequests.ToList())
+            {
+                ProcessPushRequest(pushRequest, ref currentVelocity, deltaTime);
+                PlayerData.PushRequests.Remove(pushRequest);
+            }
+        }
+
+        public virtual void ProcessPushRequest(PushRequest pushRequest, ref Vector3 currentVelocity, float deltaTime)
         {
             
         }

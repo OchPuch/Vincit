@@ -10,6 +10,14 @@ using UnityEngine.Serialization;
 
 namespace Player.Data
 {
+    public struct PushRequest
+    {
+        public ForceMode pushMode;
+        public Vector3 pushForce;
+        public bool forceUngroundOnPush;
+        public PushBasedOnGroundStatus pushBasedOnGroundStatus;
+    }
+        
     [Serializable]
     public class PlayerData
     {
@@ -93,8 +101,8 @@ namespace Player.Data
         public Vector3 lastInnerNormal = Vector3.zero;
         public Vector3 lastOuterNormal = Vector3.zero;
 
-        public bool pushRequested;
-        public ForceMode pushMode;
-        public Vector3 pushForce;
+        public List<PushRequest> PushRequests = new List<PushRequest>();
+        
+        
     }
 }

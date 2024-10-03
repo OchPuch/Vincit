@@ -3,6 +3,7 @@ using Guns.Data;
 using Guns.General;
 using TimeStop;
 using UnityEngine;
+using Zenject;
 
 namespace Guns.View
 {
@@ -22,7 +23,8 @@ namespace Guns.View
 
         private Gun _gun;
 
-        public void Init(Gun gun, GunData data)
+        [Inject]
+        private void Construct(Gun gun, GunData data)
         {
             _gun = gun;
             gun.Shot += OnGunShot;

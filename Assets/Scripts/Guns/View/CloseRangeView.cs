@@ -1,6 +1,7 @@
 ﻿using Guns.Data;
 using Guns.General;
 using UnityEngine;
+using Zenject;
 
 namespace Guns.View
 {
@@ -13,7 +14,8 @@ namespace Guns.View
         private static readonly int Shoot = Animator.StringToHash("Shoot");
         private static readonly int Equip = Animator.StringToHash("Equip");
         
-        public override void Init(Gun gun, GunData data)
+        [Inject]
+        private void Construct(Gun gun, GunData data)
         {
             gun.Shot += OnGunShot;
             gun.Activated += OnGunActivated;

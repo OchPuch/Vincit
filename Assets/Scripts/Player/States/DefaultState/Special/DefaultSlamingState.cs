@@ -1,6 +1,7 @@
 ﻿
 
 using Player.Data;
+using Player.States.DefaultState.Airborne;
 using Player.States.DefaultState.Grounded;
 using StateMachine;
 using UnityEngine;
@@ -47,6 +48,15 @@ namespace Player.States.DefaultState.Special
                 PlayerData.playerMovementAudio.PlaySlamSound();
                 StateMachine.SwitchState<DefaultGroundedState>();
             }
+        }
+
+        public override void ProcessPushRequest(PushRequest pushRequest,ref Vector3 currentVelocity, float deltaTime)
+        {
+            if (!pushRequest.forceUngroundOnPush) return;
+            if (pushRequest.pushMode == ForceMode.Force) return;
+            currentVelocity = Vector3.zero;
+            base.ProcessPushRequests(ref currentVelocity, deltaTime);
+            StateMachine.SwitchState<DefaultAirborneState>();
         }
 
         public override void Exit()

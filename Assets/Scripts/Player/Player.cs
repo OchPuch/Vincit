@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using System;
+using Entities;
 using General;
 using KinematicCharacterController.Core;
 using KinematicCharacterController.Examples;
@@ -8,6 +9,13 @@ using UnityEngine;
 
 namespace Player
 {
+    public enum PushBasedOnGroundStatus
+    {
+        OnlyIfUnstable,
+        OnlyIfStable,
+        Any
+    }
+    
     public class Player : GamePlayBehaviour, IDamageable
     {
         public PlayerData Data { get; private set; }
@@ -109,11 +117,17 @@ namespace Player
             _character.SetInputs(ref characterInputs);
         }
 
-        public void RequestPush(Vector3 pushForce, ForceMode pushMode)
+        public void RequestPush(Vector3 pushForce, ForceMode pushMode, bool forceUnground = true, PushBasedOnGroundStatus pushBasedOnGroundStatus = PushBasedOnGroundStatus.Any)
         {
-            Data.pushForce = pushForce;
-            Data.pushMode = pushMode;
-            Data.pushRequested = true;
+            var pushRequest = new PushRequest()
+            {
+                pushForce = pushForce,
+                pushMode = pushMode,
+                forceUngroundOnPush = forceUnground,
+                pushBasedOnGroundStatus = pushBasedOnGroundStatus,
+            };
+            
+            Data.PushRequests.Add(pushRequest);
         }
 
         public void Damage(float damage)

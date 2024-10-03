@@ -9,6 +9,8 @@ namespace Guns.Types.Revolver
         [SerializeField] private Transform baraban;
         [SerializeField] private Ease barabanStopSpinEase;
 
+        private Revolver _revolver;
+        
         private Quaternion _barabanStartRotation;
         private Tween _spinStopTween;
 
@@ -16,11 +18,19 @@ namespace Guns.Types.Revolver
         {
             base.Start();
             _barabanStartRotation = baraban.rotation;
+            if (Gun is Revolver revolver)
+            {
+                _revolver = revolver;
+            }
+            else
+            {
+                Debug.LogError("Gun is not revolver");
+            }
         }
 
-        protected override void SpinnableUpdate()
+        private void Update()
         {
-            if (!SpinnableGun.IsSpinning) return;
+            if (!_revolver.IsSpinning) return;
             baraban.Rotate(0,0, Data.currentSpinSpeed * Time.deltaTime);
         }
 
