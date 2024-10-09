@@ -1,12 +1,9 @@
-﻿using Guns.Data;
-using Guns.General;
-using Guns.Projectiles;
+﻿using Guns.Projectiles;
 using UnityEngine;
-using Zenject;
 
 namespace Guns.View
 {
-    public class CloseRangeView : GunView
+    public class CloseRangeView : GeneralGunView
     {
         [Header("Hold view")]
         [SerializeField] private Animator animator;
@@ -14,34 +11,29 @@ namespace Guns.View
         
         private static readonly int Shoot = Animator.StringToHash("Shoot");
         private static readonly int Equip = Animator.StringToHash("Equip");
-        
-        [Inject]
-        private void Construct(Gun gun, GunData data)
+
+        private void Awake()
         {
-            gun.Shot += OnGunShot;
-            gun.Activated += OnGunActivated;
-            gun.Deactivated += OnGunDeactivated;
-            gun.Equipped += OnGunEquip;
             holdViewRoot.SetActive(false);
         }
 
-        private void OnGunEquip(Player.Player player)
+        public override void OnGunEquip(Transform root)
         {
             holdViewRoot.SetActive(true);
             animator.SetTrigger(Equip);
         }
 
-        private void OnGunDeactivated()
+        public override void OnGunDeactivated()
         {
             holdViewRoot.SetActive(false);
         }
 
-        private void OnGunActivated()
+        public override void OnGunActivated()
         {
             holdViewRoot.SetActive(true);
         }
 
-        private void OnGunShot(ProjectileConfig projectileConfig)
+        public override void OnGunShot(ProjectileConfig projectileConfig)
         {
             animator.SetTrigger(Shoot);
         }

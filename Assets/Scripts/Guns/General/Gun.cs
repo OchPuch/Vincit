@@ -22,13 +22,17 @@ namespace Guns.General
         public event Action Activated;
         public event Action Deactivated;
 
+        public virtual void BindGun(DiContainer container)
+        {
+            container.Bind<Gun>().FromInstance(this);
+        }
+        
         [Inject]
         private void Construct(DiContainer diContainer, GunData data)
         {
             Data = data;
             ProjectileFactory = diContainer.ResolveId<ProjectileFactory>(Projectile.Config.FactoryId);
         }
-        
         
         protected virtual void Update()
         {
@@ -63,7 +67,7 @@ namespace Guns.General
         }
         
 
-        private void InvokeShot()
+        protected void InvokeShot()
         {
             Shot?.Invoke(Projectile.Config);
         }
