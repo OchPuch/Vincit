@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using General;
 using General.GlobalManagers;
 using Guns.Types.CloseRange;
+using Guns.Types.SpinThrowGun;
 using TimeStop;
 using UnityEngine;
 using Zenject;

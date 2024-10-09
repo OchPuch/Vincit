@@ -1,6 +1,4 @@
-﻿using Guns.General;
-
-namespace Guns.Types.Winchester
+﻿namespace Guns.Types.SpinThrowGun.Winchester
 {
     public class Winchester : SpinThrowGun
     {

@@ -16,7 +16,7 @@ namespace Guns.General
         
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<Gun>().FromInstance(gun);
+            gun.BindGun(Container);
             Container.BindInterfacesAndSelfTo<GunData>().FromInstance(data);
         }
 

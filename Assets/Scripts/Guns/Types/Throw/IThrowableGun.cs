@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Guns.General
+namespace Guns.Types.SpinThrowGun
 {
     public interface IThrowableGun
     {

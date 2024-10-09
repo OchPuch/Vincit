@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Guns.General;
 using Guns.Projectiles;
 using Guns.Projectiles.Interactions;
 using Guns.Projectiles.Types;
-using Player;
 using Player.Data;
 using UnityEngine;
 using Utils;
 using Zenject;
 
-namespace Guns.General
+namespace Guns.Types.SpinThrowGun
 {
-    public class SpinThrowGun : Gun, ISpinnableGun, IThrowableGun, IPunchable
+    public class SpinThrowGun : Gun, IPunchable, ISpinnableGun, IThrowableGun
     {
         [SerializeField] private GunSpinContainer gunSpinContainer;
         [SerializeField] private Animator animator;
         [SerializeField] private Dictionary<AnimationClip, Vector2> animationsAndSpinThresholds;
-        public bool IsSpinning { get; private set; }
+        public bool IsSecondAbilityActive { get; private set; }
         public bool IsLost { get; private set; }
+        public bool IsSpinning { get; private set; }
         public event Action OnLost;
         public event Action OnObtained;
         public event Action SpinStarted;
@@ -42,7 +43,7 @@ namespace Guns.General
         {
             if (IsLost) return;
             base.Update();
-            if (IsSpinning)
+            if (IsSecondAbilityActive)
             {
                 Data.fireTimer += Data.Config.SpinFireSpeedAdd * Time.deltaTime;
             }
@@ -55,17 +56,18 @@ namespace Guns.General
 
         private void FixedUpdate()
         {
-            if (IsSpinning)
+            if (IsSecondAbilityActive)
             {
                 Owner.RequestPush(Owner.Data.motor.CharacterUp * Data.Config.HelicopterForce, ForceMode.Force, false, PushBasedOnGroundStatus.OnlyIfUnstable);
             }
         }
+        
 
         public void StartSpin()
         {
             if (IsLost) return;
-            if (IsSpinning) return;
-            IsSpinning = true;
+            if (IsSecondAbilityActive) return;
+            IsSecondAbilityActive = true;
             Data.currentSpinSpeed = Data.Config.SpinSpeed;
             
             SpinStarted?.Invoke();
@@ -73,8 +75,8 @@ namespace Guns.General
 
         public void EndSpin()
         {
-            if (!IsSpinning) return;
-            IsSpinning = false;
+            if (!IsSecondAbilityActive) return;
+            IsSecondAbilityActive = false;
             SpinEnded?.Invoke();
         }
 

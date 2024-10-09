@@ -1,5 +1,6 @@
 ﻿using Guns.General;
 using Guns.Projectiles.Interactions;
+using Guns.Types.SpinThrowGun;
 using PrimeTween;
 using UnityEngine;
 
