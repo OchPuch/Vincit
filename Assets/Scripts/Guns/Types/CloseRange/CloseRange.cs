@@ -23,12 +23,11 @@ namespace Guns.Types.CloseRange
             _timeController = timeController;
         }
         
-        public override void Shoot()
+        protected override void OnShot()
         {
-            if (Data.FireTimer < Data.Config.FireRate) return;
             _approveTimer = 0;
             _approveRequested = false;
-            base.Shoot();
+            base.OnShot();
         }
 
         protected override void Update()

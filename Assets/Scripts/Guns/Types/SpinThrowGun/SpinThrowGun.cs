@@ -19,9 +19,8 @@ namespace Guns.Types.SpinThrowGun
         [SerializeField] private GunSpinContainer gunSpinContainer;
         [SerializeField] private Animator animator;
         [SerializeField] private Dictionary<AnimationClip, Vector2> animationsAndSpinThresholds;
-        public bool IsSecondAbilityActive { get; private set; }
-        public bool IsLost { get; private set; }
         public bool IsSpinning { get; private set; }
+        public bool IsLost { get; private set; }
         public event Action OnLost;
         public event Action OnObtained;
         public event Action SpinStarted;
@@ -35,50 +34,49 @@ namespace Guns.Types.SpinThrowGun
             _gunSpinContainerFactory = diContainer.ResolveId<ProjectileFactory>(gunSpinContainer.Config.FactoryId);
         }
 
-        public override void Shoot()
+        protected override bool CanShot()
         {
-            if (IsLost) return;
-            base.Shoot();
+            return base.CanShot() && !IsLost;
         }
 
         protected override void Update()
         {
             if (IsLost) return;
             base.Update();
-            if (IsSecondAbilityActive)
+            if (IsSpinning)
             {
                 Data.FireTimer += Data.Config.SpinFireSpeedAdd * Time.deltaTime;
+                Data.CurrentSpinSpeed += Data.Config.SpinAcceleration * Time.deltaTime;
             }
             else
             {
-                Data.CurrentSpinSpeed -= Data.Config.SpinSpeed / Data.Config.SpinStopTime * Time.deltaTime;
+                Data.CurrentSpinSpeed -= Data.Config.SpinDeacceleration * Time.deltaTime;
                 if (Data.CurrentSpinSpeed <= 0) Data.CurrentSpinSpeed = 0;
             }
         }
 
         private void FixedUpdate()
         {
-            if (IsSecondAbilityActive)
+            if (IsSpinning)
             {
                 Owner.RequestPush(Owner.Data.motor.CharacterUp * Data.Config.HelicopterForce, ForceMode.Force, false, PushBasedOnGroundStatus.OnlyIfUnstable);
             }
         }
-        
 
         public void StartSpin()
         {
             if (IsLost) return;
-            if (IsSecondAbilityActive) return;
-            IsSecondAbilityActive = true;
-            Data.CurrentSpinSpeed = Data.Config.SpinSpeed;
+            if (IsSpinning) return;
+            IsSpinning = true;
+            Data.CurrentSpinSpeed = Data.Config.SpinMaxSpeed;
             
             SpinStarted?.Invoke();
         }
 
         public void EndSpin()
         {
-            if (!IsSecondAbilityActive) return;
-            IsSecondAbilityActive = false;
+            if (!IsSpinning) return;
+            IsSpinning = false;
             SpinEnded?.Invoke();
         }
 

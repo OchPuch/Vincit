@@ -1,10 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using Guns.Interfaces.Spin;
+using UnityEngine;
+using Zenject;
 
 namespace Guns.Types.SpinThrowGun.Revolver
 {
     public sealed class RevolverMediator : SpinThrowGunViewMediator
     {
         [SerializeField] private RevolverStateUI _revolverStateUI;
+
+        private Revolver _revolver;
+        
+        [Inject]
+        private void Construct(Revolver revolver)
+        {
+            _revolver = revolver;
+        }
+        
+        private void Update()
+        {
+            _revolverStateUI.UpdateSpinState(new SpinReport()
+            {
+                IsSpinning = _revolver.IsSpinning,
+                SpinSpeed = _revolver.Data.CurrentSpinSpeed
+            });
+        }
 
         protected override void OnGunEquip(Player.Player obj)
         {

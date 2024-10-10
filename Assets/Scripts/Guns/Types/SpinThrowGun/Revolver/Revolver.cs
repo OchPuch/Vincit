@@ -21,10 +21,8 @@ namespace Guns.Types.SpinThrowGun.Revolver
             }
         }
 
-        public override void Shoot()
+        protected override void OnShot()
         {
-            if (IsLost) return;
-            if (Data.FireTimer < Data.Config.FireRate) return;
             try
             {
                 var capsuleHolder = Data.CapsuleHolders.First(x => x.IsLoaded);

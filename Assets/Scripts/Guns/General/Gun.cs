@@ -3,6 +3,7 @@ using General;
 using Guns.Data;
 using Guns.Projectiles;
 using UnityEngine;
+using UnityEngine.Video;
 using Zenject;
 
 namespace Guns.General
@@ -67,13 +68,23 @@ namespace Guns.General
             Shot?.Invoke(Projectile.Config);
         }
         
-        public virtual void Shoot()
+        public void Shoot()
         {
-            if (Data.FireTimer < Data.Config.FireRate) return;
-            var bullet = ProjectileFactory.CreateProjectile(transform.position, transform.forward);
-            bullet.Init(this);
+            if (!CanShot()) return;
+            OnShot();
             InvokeShot();
             Data.FireTimer = 0;
+        }
+
+        protected virtual bool CanShot()
+        {
+            return !(Data.FireTimer < Data.Config.FireRate);
+        }
+
+        protected virtual void OnShot()
+        {
+            var bullet = ProjectileFactory.CreateProjectile(transform.position, transform.forward);
+            bullet.Init(this);
         }
 
         

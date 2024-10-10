@@ -37,8 +37,7 @@ namespace Guns.Types.SpinThrowGun.Revolver
         
         private void Update()
         {
-            if (_lastSpinReport.IsSpinning) 
-                _baraban.Rotate(0,0, _lastSpinReport.SpinSpeed * Time.deltaTime);
+            _baraban.Rotate(0,0, _lastSpinReport.SpinSpeed * Time.deltaTime);
         }
 
         public override void OnGunShot(ProjectileConfig projectileConfig)
@@ -50,7 +49,7 @@ namespace Guns.Types.SpinThrowGun.Revolver
         private void RotateToTarget()
         {
             _spinStopTween.Stop();
-            _spinStopTween = Tween.LocalRotation(_baraban, TargetRotation, _config.SpinStopTime, _barabanStopSpinEase);
+            //spinStopTween = Tween.RotationAtSpeed(_baraban, TargetRotation, _lastSpinReport.SpinSpeed, _barabanStopSpinEase);
         }
         
         public void OnSpinStarted()
