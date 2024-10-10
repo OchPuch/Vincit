@@ -9,7 +9,7 @@ namespace Player
 {
     public class PlayerBootstrap : MonoInstaller
     {
-        public PlayerData playerData = new PlayerData();
+        public PlayerData playerData = new();
         public PlayerController character;
         public ExampleCharacterCamera characterCamera;
         public Player player;
@@ -19,8 +19,10 @@ namespace Player
         { 
             player.Init(playerData, character, characterCamera);
             
+            
             Container.Bind<PlayerData>().FromInstance(playerData);
             Container.Bind<Player>().FromInstance(player);
+            Container.Bind<PlayerController>().FromInstance(character);
             
             
             // Tell camera to follow transform

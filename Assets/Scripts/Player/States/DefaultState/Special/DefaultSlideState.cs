@@ -42,12 +42,13 @@ namespace Player.States.DefaultState.Special
         public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
             base.UpdateVelocity(ref currentVelocity, deltaTime);
-
-
-            if (PlayerData.motor.GroundingStatus is { FoundAnyGround: true, IsStableOnGround: false })
+            
+            if (Vector3.Angle(PlayerData.motor.CharacterUp, PlayerData.motor.GroundingStatus.OuterGroundNormal) >=
+                PlayerData.playerConfig.SlidingData.MinAngleToSnap && PlayerData.motor.GroundingStatus.FoundAnyGround)
             {
                 PlayerData.bonusOrientationMethod = BonusOrientationMethod.TowardsGroundSlopeAndGravity;
             }
+
             
 
             if (PlayerData.motor.GroundingStatus.IsStableOnGround && !_stopped)

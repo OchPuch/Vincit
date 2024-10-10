@@ -54,7 +54,7 @@ namespace Guns.Types.CloseRange
         private IEnumerator ApproveRoutine(float approveTime)
         {
             yield return new WaitForSecondsRealtime(NotFreezeTime);
-            _timeController.RequestTimeFreezeEffect(approveTime);
+            _timeController.RequestTimeFreezeEffect(approveTime, 0.01f);
         }
 
         private void ApprovePunch()

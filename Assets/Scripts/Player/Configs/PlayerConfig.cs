@@ -63,7 +63,9 @@ namespace Player.Configs
             [field: SerializeField] public float SlidingStopThreshold { get; private set; } = 0.1f;
             [field: SerializeField] public float GravityHelpK { get; private set; } = 5f;
             [field: SerializeField] public float UnstableDecreaseK { get; private set; } = 2f;
-            
+
+            [field: SerializeField] public float MinAngleToSnap { get; private set; } = 60;
+
         }
 
         [Serializable]

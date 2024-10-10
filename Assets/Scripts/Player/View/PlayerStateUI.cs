@@ -1,6 +1,5 @@
 ﻿using General;
 using UnityEngine;
-using Utils;
 using Zenject;
 
 namespace Player.View

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using Zenject;
 
 namespace General.GlobalManagers
 {
@@ -26,7 +25,7 @@ namespace General.GlobalManagers
         }
         
 
-        public void FreezeTimeEffectStart(float effectTime)
+        public void FreezeTimeEffectStart(float effectTime, float timescale)
         {
             if (_freezingEffect is not null) _context.StopCoroutine(_freezingEffect);
             if (_context is null)
@@ -34,7 +33,7 @@ namespace General.GlobalManagers
                 Debug.LogError("Context is null");
                 return;
             }
-            _freezingEffect = _context.StartCoroutine(FreezeTimeForSeconds(effectTime));
+            _freezingEffect = _context.StartCoroutine(FreezeTimeForSeconds(effectTime, timescale));
         }
 
         public void StopFreezeTimeEffect()
@@ -44,10 +43,10 @@ namespace General.GlobalManagers
             else Time.timeScale = 1.0f;
         }
 
-        private IEnumerator FreezeTimeForSeconds(float time)
+        private IEnumerator FreezeTimeForSeconds(float time, float timeScale)
         {
             float elapsedTime = 0;
-            Time.timeScale = 0;
+            Time.timeScale = timeScale;
             while (elapsedTime < time)
             {
                 if (_pauseNotifier.IsPaused)
