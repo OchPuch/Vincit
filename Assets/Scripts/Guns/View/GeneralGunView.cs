@@ -6,6 +6,8 @@ namespace Guns.View
 {
     public abstract class GeneralGunView : GamePlayBehaviour
     {
+        
+        
         public abstract void OnGunEquip(Transform root);
         public abstract void OnGunDeactivated();
         public abstract void OnGunActivated();

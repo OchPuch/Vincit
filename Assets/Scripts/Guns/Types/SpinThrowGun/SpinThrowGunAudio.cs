@@ -1,9 +1,10 @@
 ﻿using FMODUnity;
-using Guns.Types.SpinThrowGun;
+using Guns.Interfaces.Spin;
+using Guns.Interfaces.Throw;
 using Guns.View;
 using UnityEngine;
 
-namespace Guns.Types.Revolver
+namespace Guns.Types.SpinThrowGun
 {
     public class SpinThrowGunAudio : GunAudio, ISpinObserver, IThrowObserver
     {

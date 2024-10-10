@@ -1,7 +1,8 @@
-﻿namespace Guns.Types.SpinThrowGun.Winchester
+﻿
+namespace Guns.Types.SpinThrowGun.Winchester
 {
     public class Winchester : SpinThrowGun
     {
-        
+      
     }
 }

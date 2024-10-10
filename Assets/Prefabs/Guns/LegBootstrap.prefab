@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6691036180082715330}
-  - component: {fileID: 2646001662115582555}
+  - component: {fileID: 5771836780839434400}
   m_Layer: 6
   m_Name: View
   m_TagString: Untagged
@@ -129,10 +129,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3998648174456947064}
+  - {fileID: 5221290875403154040}
   m_Father: {fileID: 8915348135456038194}
   m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2646001662115582555
+--- !u!114 &5771836780839434400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,21 +142,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4022005970761129297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8370c9b9d00f47d1b625e010d4e1cdd3, type: 3}
+  m_Script: {fileID: 11500000, guid: a8bbb236280f4bf8bab6e945756d727f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  pauseable: 1
-  animator: {fileID: 7086221136079563384}
-  holdViewRoot: {fileID: 6216428509285035803}
+  _gunAnimationView: {fileID: 4566885679191259136}
+  _gunAudio: {fileID: 7948240206340131152}
 --- !u!1 &4391894231944783502
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +215,7 @@ GameObject:
   - component: {fileID: 2121558655244677804}
   - component: {fileID: 7785909500730817922}
   - component: {fileID: 3759888370977701964}
+  - component: {fileID: 4566885679191259136}
   m_Layer: 6
   m_Name: LegView
   m_TagString: Untagged
@@ -315,6 +307,89 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 503
+--- !u!114 &4566885679191259136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6216428509285035803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8370c9b9d00f47d1b625e010d4e1cdd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  pauseable: 1
+  Animator: {fileID: 7086221136079563384}
+  holdViewRoot: {fileID: 6216428509285035803}
+  propViewRoot: {fileID: 0}
+--- !u!1 &7812259483659067206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5221290875403154040}
+  - component: {fileID: 7948240206340131152}
+  m_Layer: 6
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5221290875403154040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7812259483659067206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6691036180082715330}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7948240206340131152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7812259483659067206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef8ace8b9814d089a774ad222750436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  pauseable: 1
+  _shotEmitter: {fileID: 0}
+  _activateEmitter: {fileID: 0}
+  _deactivateEmitter: {fileID: 0}
+  _equipEmitter: {fileID: 0}
 --- !u!1 &9008945642448961652
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,16 +456,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e5d16696a34a038b6620ec0660bb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableAfterAwake: 1
-  pickUpCollider: {fileID: 5538967519467599241}
-  data:
-    <ViewTransform>k__BackingField: {fileID: 0}
+  _disableAfterAwake: 0
+  _pickUpCollider: {fileID: 5538967519467599241}
+  _data:
     <Config>k__BackingField: {fileID: 11400000, guid: 67f9ae250d8c77a45819c6b03ba44897,
       type: 2}
+    <ViewTransform>k__BackingField: {fileID: 6691036180082715330}
     <GunPunchCollider>k__BackingField: {fileID: 0}
-    fireTimer: 0
-    currentSpinSpeed: 0
-  gun: {fileID: 6163678009862138278}
+    FireTimer: 0
+    CurrentSpinSpeed: 0
+  Gun: {fileID: 6163678009862138278}
 --- !u!65 &5538967519467599241
 BoxCollider:
   m_ObjectHideFlags: 0

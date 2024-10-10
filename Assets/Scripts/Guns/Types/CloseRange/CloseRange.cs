@@ -25,7 +25,7 @@ namespace Guns.Types.CloseRange
         
         public override void Shoot()
         {
-            if (Data.fireTimer < Data.Config.FireRate) return;
+            if (Data.FireTimer < Data.Config.FireRate) return;
             _approveTimer = 0;
             _approveRequested = false;
             base.Shoot();

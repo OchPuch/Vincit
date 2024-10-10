@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using General;
 using General.GlobalManagers;
+using Guns.Interfaces.Spin;
 using Guns.Types.CloseRange;
 using Guns.Types.SpinThrowGun;
 using TimeStop;

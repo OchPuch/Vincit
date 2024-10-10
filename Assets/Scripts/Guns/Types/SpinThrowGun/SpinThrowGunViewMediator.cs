@@ -1,4 +1,5 @@
-﻿using Guns.Projectiles;
+﻿using Guns.Interfaces.Spin;
+using Guns.Projectiles;
 using Guns.Types.Revolver;
 using Guns.View;
 using UnityEngine;
@@ -75,14 +76,14 @@ namespace Guns.Types.SpinThrowGun
             _spinThrowAnimationView.UpdateSpinState(new SpinReport()
             {
                 IsSpinning = _spinThrowGun.IsSpinning,
-                SpinSpeed = _spinThrowGun.Data.currentSpinSpeed
+                SpinSpeed = _spinThrowGun.Data.CurrentSpinSpeed
             });
         }
 
         protected override void OnGunShot(ProjectileConfig obj)
         {
-            _spinThrowAnimationView.OnGunDeactivated();
-            _spinThrowGunAudio.OnGunDeactivated();
+            _spinThrowAnimationView.OnGunShot(obj);
+            _spinThrowGunAudio.OnGunShot(obj);
         }
     }
 }

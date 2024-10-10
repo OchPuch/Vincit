@@ -1,4 +1,6 @@
-﻿using Guns.Types.SpinThrowGun;
+﻿using Guns.Interfaces.Spin;
+using Guns.Interfaces.Throw;
+using Guns.Types.SpinThrowGun;
 using Guns.View;
 using UnityEngine;
 

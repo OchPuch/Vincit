@@ -21,11 +21,6 @@ namespace Guns.General
         public event Action<Player.Player> Equipped;
         public event Action Activated;
         public event Action Deactivated;
-
-        public virtual void BindGun(DiContainer container)
-        {
-            container.Bind<Gun>().FromInstance(this);
-        }
         
         [Inject]
         private void Construct(DiContainer diContainer, GunData data)
@@ -36,7 +31,7 @@ namespace Guns.General
         
         protected virtual void Update()
         {
-            Data.fireTimer += Time.deltaTime;
+            Data.FireTimer += Time.deltaTime;
         }
         
         public void Equip(Player.Player owner)
@@ -74,11 +69,11 @@ namespace Guns.General
         
         public virtual void Shoot()
         {
-            if (Data.fireTimer < Data.Config.FireRate) return;
+            if (Data.FireTimer < Data.Config.FireRate) return;
             var bullet = ProjectileFactory.CreateProjectile(transform.position, transform.forward);
             bullet.Init(this);
             InvokeShot();
-            Data.fireTimer = 0;
+            Data.FireTimer = 0;
         }
 
         

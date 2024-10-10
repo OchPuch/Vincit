@@ -2,7 +2,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace Guns.Types.SpinThrowGun.Revolver
+namespace Guns.General
 {
     public class CapsuleHolder
     {

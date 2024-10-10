@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Guns.General;
+using Guns.Interfaces.Spin;
+using Guns.Interfaces.Throw;
 using Guns.Projectiles;
 using Guns.Projectiles.Interactions;
 using Guns.Projectiles.Types;
@@ -45,12 +47,12 @@ namespace Guns.Types.SpinThrowGun
             base.Update();
             if (IsSecondAbilityActive)
             {
-                Data.fireTimer += Data.Config.SpinFireSpeedAdd * Time.deltaTime;
+                Data.FireTimer += Data.Config.SpinFireSpeedAdd * Time.deltaTime;
             }
             else
             {
-                Data.currentSpinSpeed -= Data.Config.SpinSpeed / Data.Config.SpinStopTime * Time.deltaTime;
-                if (Data.currentSpinSpeed <= 0) Data.currentSpinSpeed = 0;
+                Data.CurrentSpinSpeed -= Data.Config.SpinSpeed / Data.Config.SpinStopTime * Time.deltaTime;
+                if (Data.CurrentSpinSpeed <= 0) Data.CurrentSpinSpeed = 0;
             }
         }
 
@@ -68,7 +70,7 @@ namespace Guns.Types.SpinThrowGun
             if (IsLost) return;
             if (IsSecondAbilityActive) return;
             IsSecondAbilityActive = true;
-            Data.currentSpinSpeed = Data.Config.SpinSpeed;
+            Data.CurrentSpinSpeed = Data.Config.SpinSpeed;
             
             SpinStarted?.Invoke();
         }
@@ -104,7 +106,7 @@ namespace Guns.Types.SpinThrowGun
             if (!IsLost) return;
             IsLost = false;
             if (IsActive) Data.GunPunchCollider.enabled = true;
-            Data.fireTimer = 0;
+            Data.FireTimer = 0;
             OnObtained?.Invoke();
         }
 

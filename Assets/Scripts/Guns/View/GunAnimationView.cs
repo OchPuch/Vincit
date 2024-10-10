@@ -1,7 +1,5 @@
 ﻿using Guns.Projectiles;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Zenject;
 
 namespace Guns.View
 {
@@ -13,22 +11,24 @@ namespace Guns.View
         [Header("PropView")]
         [SerializeField] private GameObject propViewRoot;
         
-        
         //Triggers
         private static readonly int Shoot = Animator.StringToHash("Shoot");
         private static readonly int Equip = Animator.StringToHash("Equip");
 
-        [Inject]
+        private bool _isEquipped;
+        
         private void Awake()
         {
+            if (_isEquipped) return;
             holdViewRoot.SetActive(false);
-            propViewRoot.SetActive(true);
+            if (propViewRoot) propViewRoot.SetActive(true);
         }
         
         public override void OnGunEquip(Transform root)
         {
+            _isEquipped = true;
             holdViewRoot.SetActive(true);
-            propViewRoot.SetActive(false);
+            if (propViewRoot) propViewRoot.SetActive(false);
             Animator.SetTrigger(Equip);
         }
 
@@ -41,14 +41,6 @@ namespace Guns.View
         {
             holdViewRoot.SetActive(true);
             Animator.SetTrigger(Equip);
-            // if (Gun is ISpinnableGun spinnableGun)
-            // {
-            //     animator.SetBool(IsSpinning, spinnableGun.IsSpinning);
-            // }
-            // if (Gun is IThrowableGun throwableGun)
-            // {
-            //     animator.SetBool(IsLost, throwableGun.IsLost);
-            // }
         }
 
         public override void OnGunShot(ProjectileConfig projectileConfig)

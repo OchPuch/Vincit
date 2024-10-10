@@ -6,30 +6,31 @@ namespace Guns.View
 {
     public class GunAudio : GeneralGunView
     {
-        [Header("General")] [SerializeField] private StudioEventEmitter shotEmitter;
-        [SerializeField] private StudioEventEmitter activateEmitter;
-        [SerializeField] private StudioEventEmitter deactivateEmitter;
-        [SerializeField] private StudioEventEmitter equipEmitter;
+        [Header("General")] 
+        [SerializeField] private StudioEventEmitter _shotEmitter;
+        [SerializeField] private StudioEventEmitter _activateEmitter;
+        [SerializeField] private StudioEventEmitter _deactivateEmitter;
+        [SerializeField] private StudioEventEmitter _equipEmitter;
        
         public override void OnGunEquip(Transform root)
         {
-            if (equipEmitter) equipEmitter.Play();
+            if (_equipEmitter) _equipEmitter.Play();
         }
 
         public override void OnGunDeactivated()
         {
-            if (activateEmitter) activateEmitter.Stop();
-            if (deactivateEmitter) deactivateEmitter.Play();
+            if (_activateEmitter) _activateEmitter.Stop();
+            if (_deactivateEmitter) _deactivateEmitter.Play();
         }
 
         public override void OnGunActivated()
         {
-            if (activateEmitter) activateEmitter.Play();
+            if (_activateEmitter) _activateEmitter.Play();
         }
 
         public override void OnGunShot(ProjectileConfig projectileConfig)
         {
-            if (shotEmitter) shotEmitter.Play();
+            if (_shotEmitter) _shotEmitter.Play();
         }
     }
 }

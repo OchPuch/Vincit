@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2069571481572959781}
+  - component: {fileID: 2287585231553430350}
   m_Layer: 6
-  m_Name: GameObject
+  m_Name: GunAnimationRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,6 +38,31 @@ RectTransform:
   m_AnchoredPosition: {x: -60, y: 0}
   m_SizeDelta: {x: 1066, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2287585231553430350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816593529420437898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d1102be25d47eab284fb6e07d67b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  pauseable: 1
+  Animator: {fileID: 5299124800659400261}
+  holdViewRoot: {fileID: 816593529420437898}
+  propViewRoot: {fileID: 7177205577354352}
 --- !u!1 &928236626786875608
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +243,7 @@ MonoBehaviour:
   gunSpinContainer: {fileID: 5961025327152476407, guid: ec9366563b8cf5f4bad86e470fe45bcd,
     type: 3}
   animator: {fileID: 5299124800659400261}
+  _availableProjectiles: []
 --- !u!135 &1371433975054623677
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -460,19 +487,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3415837258471350219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19e5d16696a34a038b6620ec0660bb9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ed7561e7334483ca64908122d8bca61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableAfterAwake: 0
-  pickUpCollider: {fileID: 7205622333637398782}
-  data:
-    <ViewTransform>k__BackingField: {fileID: 3253545371181220065}
+  _disableAfterAwake: 0
+  _pickUpCollider: {fileID: 7205622333637398782}
+  _data:
     <Config>k__BackingField: {fileID: 11400000, guid: 78b2a8ce83c232649a55ad201cfa47d8,
       type: 2}
+    <ViewTransform>k__BackingField: {fileID: 935267723218483907}
     <GunPunchCollider>k__BackingField: {fileID: 1371433975054623677}
-    fireTimer: 0
-    currentSpinSpeed: 0
-  gun: {fileID: 178408991704221983}
+    FireTimer: 0
+    CurrentSpinSpeed: 0
+  Gun: {fileID: 178408991704221983}
 --- !u!65 &7205622333637398782
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -937,13 +964,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3253545371181220065}
-  - component: {fileID: 4560092316361315720}
-  - component: {fileID: 5901429361521599024}
-  - component: {fileID: 8331258746841987499}
-  - component: {fileID: 6319669042141256615}
-  - component: {fileID: 4481889797334530769}
-  - component: {fileID: 8039599450427659024}
-  - component: {fileID: 7386681635985771665}
+  - component: {fileID: 195730140831728480}
   m_Layer: 6
   m_Name: View
   m_TagString: Untagged
@@ -964,11 +985,12 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 815906957144315594}
+  - {fileID: 9172300771206730653}
   - {fileID: 935267723218483907}
   m_Father: {fileID: 4332145874100064720}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4560092316361315720
+--- !u!114 &195730140831728480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -977,189 +999,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6425769033487348088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 165a4f1590ce46d1963e25c648a09504, type: 3}
+  m_Script: {fileID: 11500000, guid: d8a8cae2fdb9451f956d96ab66ef4e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  pauseable: 1
-  animator: {fileID: 5299124800659400261}
-  holdViewRoot: {fileID: 5601496912063445271}
-  propViewRoot: {fileID: 7177205577354352}
---- !u!114 &5901429361521599024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6425769033487348088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoadEvent: 1
-  UnloadEvent: 2
-  Banks:
-  - Revolver
-  CollisionTag: 
-  PreloadSamples: 0
---- !u!114 &8331258746841987499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6425769033487348088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ef8ace8b9814d089a774ad222750436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  pauseable: 1
-  disableOnTimeStop: 0
-  shotEmitter: {fileID: 6319669042141256615}
-  activateEmitter: {fileID: 4481889797334530769}
-  deactivateEmitter: {fileID: 0}
-  equipEmitter: {fileID: 8039599450427659024}
-  lostEmitter: {fileID: 0}
-  catchEmitter: {fileID: 0}
-  spinStartEmitter: {fileID: 0}
-  spinEndEmitter: {fileID: 0}
---- !u!114 &6319669042141256615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6425769033487348088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -286549645
-      Data2: 1222756568
-      Data3: -721544556
-      Data4: -2027854372
-    Path: event:/Weapons/Revolver/Revolver_shot
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!114 &4481889797334530769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6425769033487348088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -1873533514
-      Data2: 1155897252
-      Data3: 794637970
-      Data4: -1575400694
-    Path: event:/Weapons/Revolver/Take_Revolver
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!114 &8039599450427659024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6425769033487348088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -1651887262
-      Data2: 1319392902
-      Data3: 765856444
-      Data4: -504069264
-    Path: event:/Weapons/Revolver/Grab_Revolver
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!114 &7386681635985771665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6425769033487348088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e294f82507ac4c84ae1be4dffabe5a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  pauseable: 1
-  rootPanel: {fileID: 2918584063593585442}
-  baraban: {fileID: 2724754771509011692}
-  barabanStopSpinEase: 30
+  _spinThrowAnimationView: {fileID: 2287585231553430350}
+  _spinThrowGunAudio: {fileID: 2492225393937545946}
+  _revolverStateUI: {fileID: 2436888086154555056}
 --- !u!1 &6778173200744514752
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,6 +1082,183 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7534219969038916299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9172300771206730653}
+  - component: {fileID: 2492225393937545946}
+  - component: {fileID: 5127825837694195202}
+  - component: {fileID: 9134161385676748380}
+  - component: {fileID: 2371809014048763042}
+  - component: {fileID: 4299952968129558926}
+  m_Layer: 6
+  m_Name: GunAuido
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9172300771206730653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534219969038916299}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3253545371181220065}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2492225393937545946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534219969038916299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753672e417f74e14a8fc6c230bd76993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  pauseable: 1
+  _shotEmitter: {fileID: 4299952968129558926}
+  _activateEmitter: {fileID: 2371809014048763042}
+  _deactivateEmitter: {fileID: 0}
+  _equipEmitter: {fileID: 9134161385676748380}
+  _lostEmitter: {fileID: 0}
+  _catchEmitter: {fileID: 0}
+  _spinStartEmitter: {fileID: 0}
+  _spinEndEmitter: {fileID: 0}
+--- !u!114 &5127825837694195202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534219969038916299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadEvent: 1
+  UnloadEvent: 2
+  Banks:
+  - Revolver
+  CollisionTag: 
+  PreloadSamples: 0
+--- !u!114 &9134161385676748380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534219969038916299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1651887262
+      Data2: 1319392902
+      Data3: 765856444
+      Data4: -504069264
+    Path: event:/Weapons/Revolver/Grab_Revolver
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &2371809014048763042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534219969038916299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1873533514
+      Data2: 1155897252
+      Data3: 794637970
+      Data4: -1575400694
+    Path: event:/Weapons/Revolver/Take_Revolver
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &4299952968129558926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534219969038916299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -286549645
+      Data2: 1222756568
+      Data3: -721544556
+      Data4: -2027854372
+    Path: event:/Weapons/Revolver/Revolver_shot
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &7729466367406756359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,6 +1270,7 @@ GameObject:
   - component: {fileID: 2918584063593585442}
   - component: {fileID: 6499332086020419251}
   - component: {fileID: 5152401685128528977}
+  - component: {fileID: 2436888086154555056}
   m_Layer: 3
   m_Name: GunUIState
   m_TagString: Untagged
@@ -1314,6 +1337,31 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2436888086154555056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7729466367406756359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e294f82507ac4c84ae1be4dffabe5a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  pauseable: 1
+  rootPanel: {fileID: 2918584063593585442}
+  _baraban: {fileID: 2724754771509011692}
+  _barabanStopSpinEase: 0
 --- !u!1001 &422543717753870696
 PrefabInstance:
   m_ObjectHideFlags: 0

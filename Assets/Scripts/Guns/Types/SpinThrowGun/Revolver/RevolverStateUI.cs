@@ -1,4 +1,5 @@
 ﻿using Guns.Data;
+using Guns.Interfaces.Spin;
 using Guns.Projectiles;
 using Guns.View;
 using PrimeTween;
@@ -9,7 +10,7 @@ namespace Guns.Types.SpinThrowGun.Revolver
 {
     public class RevolverStateUI :  GunStateUI, ISpinObserver, ISpinReportListener
     {
-        [SerializeField] private Transform _baraban;
+        [SerializeField] private RectTransform _baraban;
         [SerializeField] private Ease _barabanStopSpinEase;
 
         private GunConfig _config;

@@ -79,8 +79,6 @@ namespace Guns.Projectiles.Types
             CombineBullets();
             foreach (var hitCollider in HitColliders.ToList())
             {
-                if (hitCollider is null) continue;
-                if (hitCollider.gameObject == null) continue;
                 ProcessHit(hitCollider);
             }
             OnFinishShot();
@@ -164,10 +162,8 @@ namespace Guns.Projectiles.Types
                     PostProcessDamageable(damageable);
                 }
             }
-            
             PostProcessCollider(hitCollider);
         }
-
     
         protected virtual void PostProcessRigidbody(Rigidbody rb)
         {

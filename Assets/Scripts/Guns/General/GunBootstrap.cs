@@ -7,25 +7,31 @@ namespace Guns.General
     public class GunBootstrap : MonoInstaller
     {
         [Header("Bootstrap Settings")] 
-        [SerializeField] private bool disableAfterAwake;
-        [SerializeField] private BoxCollider pickUpCollider;
+        [SerializeField] private bool _disableAfterAwake;
+        [SerializeField] private BoxCollider _pickUpCollider;
 
         [Header("General components")] 
-        [SerializeField] private GunData data;
-        [SerializeField] private Gun gun;
+        [SerializeField] private GunData _data;
+        [SerializeField] protected Gun Gun;
         
         public override void InstallBindings()
         {
-            gun.BindGun(Container);
-            Container.BindInterfacesAndSelfTo<GunData>().FromInstance(data);
+            Container.BindInterfacesAndSelfTo<GunConfig>().FromInstance(_data.Config);
+            Container.BindInterfacesAndSelfTo<GunData>().FromInstance(_data);
+            BindGun();
+        }
+
+        protected virtual void BindGun()
+        {
+            Container.BindInterfacesAndSelfTo<Gun>().FromInstance(Gun);
         }
 
         private void Awake()
         {
-            if (disableAfterAwake)
+            if (_disableAfterAwake)
             {
                 enabled = false;
-                pickUpCollider.enabled = false;
+                _pickUpCollider.enabled = false;
             }
         }
 
@@ -33,9 +39,9 @@ namespace Guns.General
         {
             if (other.TryGetComponent<GunController>(out var gunController))
             {
-                gunController.EquipGun(gun);
+                gunController.EquipGun(Gun);
                 enabled = false;
-                pickUpCollider.enabled = false;
+                _pickUpCollider.enabled = false;
             }
         }
     }

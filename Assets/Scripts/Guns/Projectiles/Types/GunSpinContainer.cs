@@ -1,4 +1,5 @@
 ﻿using Guns.General;
+using Guns.Interfaces.Throw;
 using Guns.Projectiles.Interactions;
 using Guns.Types.SpinThrowGun;
 using PrimeTween;
