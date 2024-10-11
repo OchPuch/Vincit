@@ -291,6 +291,7 @@ MonoBehaviour:
   Animator: {fileID: 5305012853261641121}
   holdViewRoot: {fileID: 4066529397711511323}
   propViewRoot: {fileID: 0}
+  _approvePunchForce: 5
 --- !u!1 &7237313664479975502
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +491,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9004494156498673332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19e5d16696a34a038b6620ec0660bb9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f918afae4874347a594b51a166b1da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _disableAfterAwake: 0
