@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: Winchester
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 100
+  <MagSize>k__BackingField: 3
   <FireRate>k__BackingField: 0.5
-  <HelicopterForce>k__BackingField: 0
+  <ReloadTIme>k__BackingField: 3
+  <SpinFireSpeedAdd>k__BackingField: 0
   <AddScaleAtStart>k__BackingField: 0
-  <TimeBeforeAbleToThrow>k__BackingField: 0.5
+  <HelicopterForce>k__BackingField: 0
+  <SpinMaxSpeed>k__BackingField: 0
+  <SpinAcceleration>k__BackingField: 0
+  <SpinDeacceleration>k__BackingField: 0
