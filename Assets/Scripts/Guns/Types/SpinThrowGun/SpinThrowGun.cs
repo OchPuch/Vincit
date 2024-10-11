@@ -43,7 +43,11 @@ namespace Guns.Types.SpinThrowGun
         {
             if (IsLost) return;
             base.Update();
-            Data.FireTimer += Data.Config.SpinFireSpeedAdd * Data.CurrentSpinSpeed/Data.Config.SpinMaxSpeed  * Time.deltaTime;
+            if (Data.Config.SpinMaxSpeed > 0)
+            {
+                Data.FireTimer += Data.Config.SpinFireSpeedAdd * Data.CurrentSpinSpeed/Data.Config.SpinMaxSpeed  * Time.deltaTime;
+            }
+            
             if (IsSpinning)
             {
                 Data.CurrentSpinSpeed += Data.Config.SpinAcceleration * Time.deltaTime;
