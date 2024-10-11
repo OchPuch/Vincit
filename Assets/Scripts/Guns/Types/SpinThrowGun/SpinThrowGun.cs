@@ -44,12 +44,16 @@ namespace Guns.Types.SpinThrowGun
         {
             if (IsLost) return;
             base.Update();
-            if (Data.Config.SpinMaxSpeed > 0)
+            ProcessSpinRequest(_spinRequest);
+            if (Data.Config.SpinMaxSpeed > 0 && Data.FireTimer >= 0)
             {
                 Data.FireTimer += Data.Config.SpinFireSpeedAdd * Data.CurrentSpinSpeed/Data.Config.SpinMaxSpeed  * Time.deltaTime;
             }
-            
-            if (_spinRequest)
+        }
+
+        protected virtual void ProcessSpinRequest(bool spinRequest)
+        {
+            if (spinRequest)
             {
                 Data.CurrentSpinSpeed += Data.Config.SpinAcceleration * Time.deltaTime;
                 if (Data.CurrentSpinSpeed >= Data.Config.SpinMaxSpeed) Data.CurrentSpinSpeed = Data.Config.SpinMaxSpeed;
@@ -72,7 +76,6 @@ namespace Guns.Types.SpinThrowGun
         public void StartSpin()
         {
             if (IsLost) return;
-            if (IsSpinning) return;
             _spinRequest = true;
             Data.CurrentSpinSpeed = Data.Config.SpinMaxSpeed;
             SpinStarted?.Invoke();

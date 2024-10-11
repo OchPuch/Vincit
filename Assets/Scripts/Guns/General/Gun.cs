@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using General;
@@ -14,6 +15,8 @@ namespace Guns.General
         public Player.Player Owner { get; private set; }
         
         private Dictionary<ProjectileConfig ,ProjectileFactory> _availableFactories = new();
+
+        private Coroutine _reloadRoutine;
         
         //TODO: Replace with reactive bools
         public bool IsActive { get; private set; }
@@ -75,17 +78,24 @@ namespace Guns.General
         public void Reload()
         {
             OnReload();
+            Data.FireTimer = -Data.Config.ReloadTIme;
             Reloaded?.Invoke();
         }
 
-        private void OnReload()
+        protected virtual void OnReload()
         {
+            if (_reloadRoutine is not null) StopCoroutine(_reloadRoutine);
+            StartCoroutine(ReloadRoutine());
+        }
+
+        protected virtual IEnumerator ReloadRoutine()
+        {
+            float waitTime = Mathf.Abs(Data.FireTimer) / Data.Config.MagSize;
             foreach (var capsuleHolder in Data.CapsuleHolders)
             {
+                yield return new WaitForSeconds(waitTime);
                 capsuleHolder.ReloadSame();
             }
-
-            Data.FireTimer = -Data.Config.ReloadTIme;
         }
 
         private void InvokeShot(ProjectileConfig config)
@@ -104,6 +114,12 @@ namespace Guns.General
 
         protected virtual bool CanShot()
         {
+            var loadedHolders = Data.CapsuleHolders.Where(x => x.IsLoaded).ToList();
+            if (loadedHolders.Count <= 0)
+            {
+                Reload();
+                return false;   
+            }
             return !(Data.FireTimer < Data.Config.FireRate);
         }
 

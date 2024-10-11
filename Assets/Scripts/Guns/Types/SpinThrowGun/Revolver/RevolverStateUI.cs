@@ -16,13 +16,8 @@ namespace Guns.Types.SpinThrowGun.Revolver
         [SerializeField] private Ease _barabanStopSpinEase;
 
         private SpinReport _lastSpinReport;
-
-        private Quaternion _barabanOffsetRotation;
-        private Quaternion _barabanStartRotation;
         private Tween _spinStopTween;
         
-        private Quaternion TargetRotation => _barabanStartRotation * _barabanOffsetRotation;
-
         public void InitCapsuleHolderViews(List<CapsuleHolder> capsuleHolders)
         {
             for (int i = 0; i < capsuleHolders.Count; i++)
@@ -30,7 +25,7 @@ namespace Guns.Types.SpinThrowGun.Revolver
                 _capsuleHolderViews[i].Init(capsuleHolders[i]);
             }
         }
-
+        
         protected override void Start()
         {
             base.Start();
@@ -39,7 +34,6 @@ namespace Guns.Types.SpinThrowGun.Revolver
                 IsSpinning = false,
                 SpinSpeed =  0
             };
-            _barabanStartRotation = _baraban.rotation;
         }
         
         private void Update()
