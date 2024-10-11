@@ -243,7 +243,8 @@ MonoBehaviour:
   gunSpinContainer: {fileID: 5961025327152476407, guid: ec9366563b8cf5f4bad86e470fe45bcd,
     type: 3}
   animator: {fileID: 5299124800659400261}
-  _availableProjectiles: []
+  _availableProjectiles:
+  - {fileID: 11400000, guid: 9cb75750eba35d943bf924850d9845ef, type: 2}
 --- !u!135 &1371433975054623677
 SphereCollider:
   m_ObjectHideFlags: 0

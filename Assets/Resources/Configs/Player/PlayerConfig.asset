@@ -39,6 +39,7 @@ MonoBehaviour:
     <SlidingStopThreshold>k__BackingField: 5
     <GravityHelpK>k__BackingField: 5
     <UnstableDecreaseK>k__BackingField: 2
+    <MinAngleToSnap>k__BackingField: 50
   slamingData:
     <SlamingSpeed>k__BackingField: 50
     <SlamStorageKeepTime>k__BackingField: 1
@@ -48,7 +49,6 @@ MonoBehaviour:
     <CancelInAirGraceTime>k__BackingField: 0.01
     <MinCrushPercentage>k__BackingField: 0.3
   miscData:
-    <BonusOrientationMethod>k__BackingField: 1
     <BonusOrientationSharpness>k__BackingField: 10
     <CrouchedCapsuleHeight>k__BackingField: 1
     <DashSpeed>k__BackingField: 100

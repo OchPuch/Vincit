@@ -32,9 +32,9 @@ MonoBehaviour:
     probeSamplingDebugTexture: {fileID: 2800000, guid: 24ec0e140fb444a44ab96ee80844e18e,
       type: 3}
   m_RendererFeatures:
-  - {fileID: 5946080012276782191}
   - {fileID: 8637981216695964180}
-  m_RendererFeatureMap: 6fd4ce7944b8845214d2a88d2646e077
+  - {fileID: 5946080012276782191}
+  m_RendererFeatureMap: 14d2a88d2646e0776fd4ce7944b88452
   m_UseNativeRenderPass: 1
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -99,7 +99,7 @@ MonoBehaviour:
       RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
-        m_Bits: 4294967295
+        m_Bits: 2561
       PassNames: []
     overrideMaterial: {fileID: 2100000, guid: bb1c87f09d4ccc94bb6990207a358e46, type: 2}
     overrideMaterialPassIndex: 0
@@ -135,6 +135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   passMaterial: {fileID: 2100000, guid: 0589f565e19d4404b965cd373d581c3b, type: 2}
-  injectionPoint: 550
+  injectionPoint: 600
   requirements: -1
   passIndex: 0

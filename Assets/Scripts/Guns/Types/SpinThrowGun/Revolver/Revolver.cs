@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Guns.General;
 using Guns.Projectiles;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -21,20 +23,32 @@ namespace Guns.Types.SpinThrowGun.Revolver
             }
         }
 
-        protected override void OnShot()
+        private void Awake()
+        {
+            for (int i = 0; i < Data.Config.MagSize; i++)
+            {
+                var capsuleHolder = new CapsuleHolder();
+                capsuleHolder.Reload(_availableFactories[_availableProjectiles[0]]);
+                Data.CapsuleHolders.Add(capsuleHolder);
+            }
+        }
+        
+
+        protected override ProjectileConfig OnShot()
         {
             try
             {
                 var capsuleHolder = Data.CapsuleHolders.First(x => x.IsLoaded);
                 var bullet = capsuleHolder.Shoot(transform.position, transform.forward);
+                if (bullet is null) return null;
                 bullet.Init(this);
-                InvokeShot();
-                Data.FireTimer = 0;
-                
+                return bullet.Config;
+
             }
             catch (Exception)
             {
                 Reload();
+                return null;
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using Guns.Interfaces.Spin;
+﻿using Guns.Interfaces.Spin;
 using UnityEngine;
 using Zenject;
 

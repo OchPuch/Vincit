@@ -1,10 +1,8 @@
-﻿using Guns.Data;
-using Guns.Interfaces.Spin;
+﻿using Guns.Interfaces.Spin;
 using Guns.Projectiles;
 using Guns.View;
 using PrimeTween;
 using UnityEngine;
-using Zenject;
 
 namespace Guns.Types.SpinThrowGun.Revolver
 {
@@ -13,7 +11,6 @@ namespace Guns.Types.SpinThrowGun.Revolver
         [SerializeField] private RectTransform _baraban;
         [SerializeField] private Ease _barabanStopSpinEase;
 
-        private GunConfig _config;
         private SpinReport _lastSpinReport;
 
         private Quaternion _barabanOffsetRotation;
@@ -22,16 +19,14 @@ namespace Guns.Types.SpinThrowGun.Revolver
         
         private Quaternion TargetRotation => _barabanStartRotation * _barabanOffsetRotation;
 
-        
-        [Inject]
-        private void Construct(GunConfig config)
-        {
-            _config = config;
-        }
-
         protected override void Start()
         {
             base.Start();
+            _lastSpinReport = new SpinReport()
+            {
+                IsSpinning = false,
+                SpinSpeed =  0
+            };
             _barabanStartRotation = _baraban.rotation;
         }
         
@@ -43,25 +38,25 @@ namespace Guns.Types.SpinThrowGun.Revolver
         public override void OnGunShot(ProjectileConfig projectileConfig)
         {
             _spinStopTween.Complete();
-            RotateToTarget();
+           // RotateToTarget();
         }
         
         private void RotateToTarget()
         {
-            _spinStopTween.Stop();
+            //_spinStopTween.Stop();
             //spinStopTween = Tween.RotationAtSpeed(_baraban, TargetRotation, _lastSpinReport.SpinSpeed, _barabanStopSpinEase);
         }
         
         public void OnSpinStarted()
         {
-            _spinStopTween.Stop();
+            //_spinStopTween.Stop();
             
         }
 
         public void OnSpinEnded()
         {
-            _spinStopTween.Stop();
-            RotateToTarget();
+            //_spinStopTween.Stop();
+            //RotateToTarget();
         }
 
         public void UpdateSpinState(SpinReport spinReport)

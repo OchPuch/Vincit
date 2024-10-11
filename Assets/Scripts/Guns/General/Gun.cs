@@ -3,7 +3,6 @@ using General;
 using Guns.Data;
 using Guns.Projectiles;
 using UnityEngine;
-using UnityEngine.Video;
 using Zenject;
 
 namespace Guns.General
@@ -45,6 +44,7 @@ namespace Guns.General
         {
             if (!IsActive) return;
             IsActive = false;
+            enabled = false;
             if (Data.GunPunchCollider) Data.GunPunchCollider.enabled = false;
             Deactivated?.Invoke();
         }
@@ -53,26 +53,36 @@ namespace Guns.General
         {
             if (IsActive) return;
             IsActive = true;
+            enabled = true;
             if (Data.GunPunchCollider) Data.GunPunchCollider.enabled = true;
             Activated?.Invoke();
         }
 
-        public virtual void Reload()
+        public void Reload()
         {
+            OnReload();
             Reloaded?.Invoke();
         }
-        
 
-        protected void InvokeShot()
+        protected virtual void OnReload()
         {
-            Shot?.Invoke(Projectile.Config);
+            foreach (var capsuleHolder in Data.CapsuleHolders)
+            {
+                capsuleHolder.ReloadSame();
+            }
+        }
+
+        private void InvokeShot(ProjectileConfig config)
+        {
+            Shot?.Invoke(config);
         }
         
         public void Shoot()
         {
             if (!CanShot()) return;
-            OnShot();
-            InvokeShot();
+            var bulletConfig = OnShot();
+            if (bulletConfig is null) return;
+            InvokeShot(bulletConfig);
             Data.FireTimer = 0;
         }
 
@@ -81,10 +91,11 @@ namespace Guns.General
             return !(Data.FireTimer < Data.Config.FireRate);
         }
 
-        protected virtual void OnShot()
+        protected virtual ProjectileConfig OnShot()
         {
             var bullet = ProjectileFactory.CreateProjectile(transform.position, transform.forward);
             bullet.Init(this);
+            return bullet.Config;
         }
 
         

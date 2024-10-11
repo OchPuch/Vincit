@@ -8,7 +8,7 @@ namespace Guns.Data
         [field: SerializeField] public float Damage { get; private set; }
         [field: Min(1)][field: SerializeField] public int MagSize { get; private set; } = 6;
         [field: SerializeField] public float FireRate { get; private set; }
-        
+        [field: SerializeField] public float ReloadTIme { get; private set; } = 3f;
         
         [field: SerializeField] public float SpinFireSpeedAdd { get; private set; }
         [field: SerializeField] public float AddScaleAtStart { get; private set; }

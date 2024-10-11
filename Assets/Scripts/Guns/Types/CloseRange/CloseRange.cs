@@ -2,6 +2,7 @@
 using System.Collections;
 using General.GlobalManagers;
 using Guns.General;
+using Guns.Projectiles;
 using UnityEngine;
 using Zenject;
 
@@ -31,11 +32,11 @@ namespace Guns.Types.CloseRange
             _camera = Camera.main;
         }
 
-        protected override void OnShot()
+        protected override ProjectileConfig OnShot()
         {
             _approveTimer = 0;
             _approveRequested = false;
-            base.OnShot();
+            return base.OnShot();
         }
 
         protected override void Update()

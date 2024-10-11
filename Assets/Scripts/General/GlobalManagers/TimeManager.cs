@@ -46,6 +46,7 @@ namespace General.GlobalManagers
         private IEnumerator FreezeTimeForSeconds(float time, float timeScale)
         {
             float elapsedTime = 0;
+            float startTimeScale = Time.timeScale;
             Time.timeScale = timeScale;
             while (elapsedTime < time)
             {
@@ -58,7 +59,7 @@ namespace General.GlobalManagers
                 yield return null;
             }
 
-            Time.timeScale = 1.0f;
+            Time.timeScale = startTimeScale;
             _freezingEffect = null;
         }
 
