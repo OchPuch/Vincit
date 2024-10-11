@@ -1,4 +1,6 @@
-﻿using Guns.Interfaces.Spin;
+﻿using System.Collections.Generic;
+using Guns.General;
+using Guns.Interfaces.Spin;
 using Guns.Projectiles;
 using Guns.View;
 using PrimeTween;
@@ -8,6 +10,8 @@ namespace Guns.Types.SpinThrowGun.Revolver
 {
     public class RevolverStateUI :  GunStateUI, ISpinObserver, ISpinReportListener
     {
+        [SerializeField] private List<CapsuleHolderView> _capsuleHolderViews;
+        
         [SerializeField] private RectTransform _baraban;
         [SerializeField] private Ease _barabanStopSpinEase;
 
@@ -18,6 +22,14 @@ namespace Guns.Types.SpinThrowGun.Revolver
         private Tween _spinStopTween;
         
         private Quaternion TargetRotation => _barabanStartRotation * _barabanOffsetRotation;
+
+        public void InitCapsuleHolderViews(List<CapsuleHolder> capsuleHolders)
+        {
+            for (int i = 0; i < capsuleHolders.Count; i++)
+            {
+                _capsuleHolderViews[i].Init(capsuleHolders[i]);
+            }
+        }
 
         protected override void Start()
         {
@@ -33,6 +45,11 @@ namespace Guns.Types.SpinThrowGun.Revolver
         private void Update()
         {
             _baraban.Rotate(0,0, _lastSpinReport.SpinSpeed * Time.deltaTime);
+        }
+
+        public override void OnGunReloaded()
+        {
+            
         }
 
         public override void OnGunShot(ProjectileConfig projectileConfig)

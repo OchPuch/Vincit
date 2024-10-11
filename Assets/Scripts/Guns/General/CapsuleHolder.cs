@@ -1,4 +1,6 @@
-﻿using Guns.Projectiles;
+﻿using System;
+using Guns.Projectiles;
+using TMPro;
 using UniRx;
 using UnityEngine;
 
@@ -8,32 +10,39 @@ namespace Guns.General
     {
         private ProjectileFactory _projectileFactory; 
         public bool IsLoaded { get; private set; }
+        
+        public ProjectileConfig ProjectileConfig { get; private set; }
 
         private BoolReactiveProperty _isLoaded;
+        public event Action<ProjectileConfig> Reloaded;
+
+        public event Action Shot;
 
         public void Reload(ProjectileFactory projectileFactory)
         {
             _projectileFactory = projectileFactory;
+            ProjectileConfig = projectileFactory.ProjectileConfig;
             IsLoaded = true;
+            Reloaded?.Invoke(projectileFactory.ProjectileConfig);
         }
 
         public void ReloadSame()
         {
-            IsLoaded = true;
+            Reload(_projectileFactory);
         }
 
         public Projectile Shoot(Vector3 position, Vector3 forward)
         {
             if (!IsLoaded) return null;
             IsLoaded = false;
-            return _projectileFactory.CreateProjectile(position, forward);
+            var projectile = _projectileFactory.CreateProjectile(position, forward);
+            Shot?.Invoke();
+            return projectile;
         }
 
         public void Shoot(Transform copyFrom)
         {
-            if (!IsLoaded) return;
-            _projectileFactory.CreateProjectile(copyFrom);
-            IsLoaded = false;
+            Shoot(copyFrom.position, copyFrom.forward);
         }
     }
 }

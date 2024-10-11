@@ -11,7 +11,13 @@ namespace Guns.View
         [SerializeField] private StudioEventEmitter _activateEmitter;
         [SerializeField] private StudioEventEmitter _deactivateEmitter;
         [SerializeField] private StudioEventEmitter _equipEmitter;
-       
+        [SerializeField] private StudioEventEmitter _reloadEmitter;
+        
+        public override void OnGunReloaded()
+        {
+            if (_reloadEmitter) _reloadEmitter.Play();
+        }
+
         public override void OnGunEquip(Transform root)
         {
             if (_equipEmitter) _equipEmitter.Play();

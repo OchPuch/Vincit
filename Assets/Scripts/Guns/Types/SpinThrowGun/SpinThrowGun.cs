@@ -19,7 +19,8 @@ namespace Guns.Types.SpinThrowGun
         [SerializeField] private GunSpinContainer gunSpinContainer;
         [SerializeField] private Animator animator;
         [SerializeField] private Dictionary<AnimationClip, Vector2> animationsAndSpinThresholds;
-        public bool IsSpinning { get; private set; }
+        public bool IsSpinning => Data.CurrentSpinSpeed > 0;
+        private bool _spinRequest;
         public bool IsLost { get; private set; }
         public event Action OnLost;
         public event Action OnObtained;
@@ -48,7 +49,7 @@ namespace Guns.Types.SpinThrowGun
                 Data.FireTimer += Data.Config.SpinFireSpeedAdd * Data.CurrentSpinSpeed/Data.Config.SpinMaxSpeed  * Time.deltaTime;
             }
             
-            if (IsSpinning)
+            if (_spinRequest)
             {
                 Data.CurrentSpinSpeed += Data.Config.SpinAcceleration * Time.deltaTime;
                 if (Data.CurrentSpinSpeed >= Data.Config.SpinMaxSpeed) Data.CurrentSpinSpeed = Data.Config.SpinMaxSpeed;
@@ -62,26 +63,24 @@ namespace Guns.Types.SpinThrowGun
 
         private void FixedUpdate()
         {
-            if (IsSpinning)
-            {
-                Owner.RequestPush(Owner.Data.motor.CharacterUp * Data.Config.HelicopterForce, ForceMode.Force, false, PushBasedOnGroundStatus.OnlyIfUnstable);
-            }
+            if (!(Data.Config.SpinMaxSpeed > 0)) return;
+            if (!IsSpinning) return;
+            Owner.RequestPush(Owner.Data.motor.CharacterUp * (Data.Config.HelicopterForce * Data.CurrentSpinSpeed/Data.Config.SpinMaxSpeed), ForceMode.Force, false, PushBasedOnGroundStatus.OnlyIfUnstable);
+
         }
 
         public void StartSpin()
         {
             if (IsLost) return;
             if (IsSpinning) return;
-            IsSpinning = true;
+            _spinRequest = true;
             Data.CurrentSpinSpeed = Data.Config.SpinMaxSpeed;
-            
             SpinStarted?.Invoke();
         }
 
         public void EndSpin()
         {
-            if (!IsSpinning) return;
-            IsSpinning = false;
+            _spinRequest = false;
             SpinEnded?.Invoke();
         }
 

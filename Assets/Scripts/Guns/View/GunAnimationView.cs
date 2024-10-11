@@ -14,6 +14,7 @@ namespace Guns.View
         //Triggers
         private static readonly int Shoot = Animator.StringToHash("Shoot");
         private static readonly int Equip = Animator.StringToHash("Equip");
+        private static readonly int Reload = Animator.StringToHash("Reload");
 
         private bool _isEquipped;
         
@@ -24,6 +25,7 @@ namespace Guns.View
             if (propViewRoot) propViewRoot.SetActive(true);
         }
         
+
         public override void OnGunEquip(Transform root)
         {
             _isEquipped = true;
@@ -32,6 +34,11 @@ namespace Guns.View
             Animator.SetTrigger(Equip);
         }
 
+        public override void OnGunReloaded()
+        {
+            Animator.SetTrigger(Reload);
+        }
+        
         public override void OnGunDeactivated()
         {
             holdViewRoot.SetActive(false);

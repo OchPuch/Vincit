@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Guns.General;
+using Guns.Projectiles;
 using Guns.Types.Revolver;
 using Guns.Types.SpinThrowGun.Revolver;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace Guns.Data
         [field: SerializeField] public GunConfig Config { get; private set; }
         [field: SerializeField] public Transform ViewTransform { get; private set; }
         [field: SerializeField] public SphereCollider GunPunchCollider {get; private set; }
+
+        [field: SerializeField] public List<ProjectileConfig> AvailableProjectiles { get; private set; }
         public List<CapsuleHolder> CapsuleHolders { get; private set; } = new();
         
         public float FireTimer;

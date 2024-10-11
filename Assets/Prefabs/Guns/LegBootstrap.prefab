@@ -201,8 +201,6 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   pauseable: 1
-  <Projectile>k__BackingField: {fileID: 936348442727101248, guid: 71019d3bbe5093e4190f44ec994f3df5,
-    type: 3}
 --- !u!1 &6216428509285035803
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +389,7 @@ MonoBehaviour:
   _activateEmitter: {fileID: 0}
   _deactivateEmitter: {fileID: 0}
   _equipEmitter: {fileID: 0}
+  _reloadEmitter: {fileID: 0}
 --- !u!1 &9008945642448961652
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,6 +463,8 @@ MonoBehaviour:
       type: 2}
     <ViewTransform>k__BackingField: {fileID: 6691036180082715330}
     <GunPunchCollider>k__BackingField: {fileID: 0}
+    <AvailableProjectiles>k__BackingField:
+    - {fileID: 11400000, guid: 4db914952c4fb5b4c9df6e413e459f60, type: 2}
     FireTimer: 0
     CurrentSpinSpeed: 0
   Gun: {fileID: 6163678009862138278}

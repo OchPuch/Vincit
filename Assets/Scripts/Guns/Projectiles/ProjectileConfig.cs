@@ -14,7 +14,9 @@ namespace Guns.Projectiles
         [field: SerializeField] public float PushPower { get; private set; } = 10f;
         [field: SerializeField] public float MaxDistance { get; private set; } = 100f;
         [field: SerializeField] public AnimationCurve DisappearAnimation { get; private set; }
+        [field: SerializeField] public Color DisplayColor { get; private set; } = Color.white;
         [field: SerializeField] public string FactoryId { get; private set; }
+        
 
         [Button("Generate Factory Id")]
         private void GenerateFactoryId()

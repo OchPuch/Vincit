@@ -30,6 +30,7 @@ namespace Guns.Types.CloseRange
         private void Awake()
         {
             _camera = Camera.main;
+            Shot += (_) => Reload();
         }
 
         protected override ProjectileConfig OnShot()

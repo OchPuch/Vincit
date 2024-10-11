@@ -73,6 +73,8 @@ MonoBehaviour:
       type: 2}
     <ViewTransform>k__BackingField: {fileID: 3942440393917171413}
     <GunPunchCollider>k__BackingField: {fileID: 5112878382650932995}
+    <AvailableProjectiles>k__BackingField:
+    - {fileID: 11400000, guid: f150a2cb3222eba48bbd08732e18a658, type: 2}
     FireTimer: 0
     CurrentSpinSpeed: 0
   Gun: {fileID: 1744728046535418590}
@@ -159,6 +161,7 @@ MonoBehaviour:
   _activateEmitter: {fileID: 3492162159183945140}
   _deactivateEmitter: {fileID: 0}
   _equipEmitter: {fileID: 3724750287548790643}
+  _reloadEmitter: {fileID: 0}
   _lostEmitter: {fileID: 0}
   _catchEmitter: {fileID: 0}
   _spinStartEmitter: {fileID: 0}
@@ -727,8 +730,6 @@ MonoBehaviour:
       Entry: 8
       Data: 
   pauseable: 1
-  <Projectile>k__BackingField: {fileID: 4121726910312821292, guid: 64c30bcaa785d7a4e95a72a4ba11db50,
-    type: 3}
   gunSpinContainer: {fileID: 5961025327152476407, guid: ec9366563b8cf5f4bad86e470fe45bcd,
     type: 3}
   animator: {fileID: 5818739523576314256}

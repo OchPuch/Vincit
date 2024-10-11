@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Guns.View
 {
-    public class GunStateUI : GeneralGunView
+    public abstract class GunStateUI : GeneralGunView
     {
         [SerializeField] private RectTransform rootPanel;
 
@@ -40,10 +40,6 @@ namespace Guns.View
             enabled = true;
             rootPanel.gameObject.SetActive(true);
         }
-
-        public override void OnGunShot(ProjectileConfig projectileConfig)
-        {
-            
-        }
+        
     }
 }

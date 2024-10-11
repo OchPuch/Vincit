@@ -1,4 +1,5 @@
-﻿using Guns.Interfaces.Spin;
+﻿using System;
+using Guns.Interfaces.Spin;
 using UnityEngine;
 using Zenject;
 
@@ -15,7 +16,12 @@ namespace Guns.Types.SpinThrowGun.Revolver
         {
             _revolver = revolver;
         }
-        
+
+        private void Start()
+        {
+            _revolverStateUI.InitCapsuleHolderViews(_revolver.Data.CapsuleHolders);
+        }
+
         private void Update()
         {
             _revolverStateUI.UpdateSpinState(new SpinReport()

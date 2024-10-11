@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using General;
 using Guns.Data;
 using Guns.Projectiles;
@@ -9,9 +11,9 @@ namespace Guns.General
 {
     public abstract class Gun : GamePlayBehaviour
     {
-        [field: SerializeField] public Projectile Projectile { get; private set; }
         public Player.Player Owner { get; private set; }
-        private ProjectileFactory ProjectileFactory { get; set; }
+        
+        private Dictionary<ProjectileConfig ,ProjectileFactory> _availableFactories = new();
         
         //TODO: Replace with reactive bools
         public bool IsActive { get; private set; }
@@ -26,7 +28,19 @@ namespace Guns.General
         private void Construct(DiContainer diContainer, GunData data)
         {
             Data = data;
-            ProjectileFactory = diContainer.ResolveId<ProjectileFactory>(Projectile.Config.FactoryId);
+            
+            foreach (var projectileConfig in Data.AvailableProjectiles)                                                                
+            {                                                                                                                      
+                _availableFactories.Add(projectileConfig, diContainer.ResolveId<ProjectileFactory>(projectileConfig.FactoryId));     
+            }                                                                                                                      
+
+            for (int i = 0; i < Data.Config.MagSize; i++)
+            {
+                var capsuleHolder = new CapsuleHolder();
+                capsuleHolder.Reload(_availableFactories[Data.AvailableProjectiles[0]]);
+                Data.CapsuleHolders.Add(capsuleHolder);
+            }
+            
         }
         
         protected virtual void Update()
@@ -64,12 +78,14 @@ namespace Guns.General
             Reloaded?.Invoke();
         }
 
-        protected virtual void OnReload()
+        private void OnReload()
         {
             foreach (var capsuleHolder in Data.CapsuleHolders)
             {
                 capsuleHolder.ReloadSame();
             }
+
+            Data.FireTimer = -Data.Config.ReloadTIme;
         }
 
         private void InvokeShot(ProjectileConfig config)
@@ -93,9 +109,20 @@ namespace Guns.General
 
         protected virtual ProjectileConfig OnShot()
         {
-            var bullet = ProjectileFactory.CreateProjectile(transform.position, transform.forward);
-            bullet.Init(this);
-            return bullet.Config;
+            try
+            {
+                var capsuleHolder = Data.CapsuleHolders.First(x => x.IsLoaded);
+                var bullet = capsuleHolder.Shoot(transform.position, transform.forward);
+                if (bullet is null) return null;
+                bullet.Init(this);
+                return bullet.Config;
+
+            }
+            catch (Exception)
+            {
+                Reload();
+                return null;
+            }
         }
 
         
