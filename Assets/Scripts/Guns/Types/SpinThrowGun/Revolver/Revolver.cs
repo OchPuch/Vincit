@@ -17,7 +17,7 @@ namespace Guns.Types.SpinThrowGun.Revolver
             try
             {
                 var loadedHolders = Data.CapsuleHolders.Where(x => x.IsLoaded).ToList();
-                _spinDeaccelerationDebuffByBullets = Mathf.Clamp01((float) loadedHolders.Count / Data.Config.MagSize);
+                _spinDeaccelerationDebuffByBullets = Mathf.Clamp01((float) (loadedHolders.Count - 1) / Data.Config.MagSize);
                 if (loadedHolders.Count <= 0)
                 {
                     Reload();

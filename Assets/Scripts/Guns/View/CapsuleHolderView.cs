@@ -10,27 +10,35 @@ namespace Guns.View
     {
         [SerializeField] private Image _image;
         private CapsuleHolder _capsuleHolder;
-        
+
         public void Init(CapsuleHolder capsuleHolder)
         {
             _capsuleHolder = capsuleHolder;
             _image.color = _capsuleHolder.IsLoaded ? _capsuleHolder.ProjectileConfig.DisplayColor : Color.black;
             capsuleHolder.Reloaded += OnReload;
             capsuleHolder.Shot += OnShot;
+            capsuleHolder.Unloaded += OnUnload;
         }
+
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
             _capsuleHolder.Reloaded -= OnReload;
             _capsuleHolder.Shot -= OnShot;
+            _capsuleHolder.Unloaded -= OnUnload;
         }
-        
+
+        private void OnUnload()
+        {
+            _image.color = Color.black;
+        }
+
         private void OnShot()
         {
             _image.color = Color.black;
         }
-        
+
 
         private void OnReload(ProjectileConfig obj)
         {

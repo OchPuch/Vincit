@@ -1,6 +1,5 @@
 ﻿using Guns.Interfaces.Spin;
 using Guns.Projectiles;
-using Guns.Types.Revolver;
 using Guns.View;
 using UnityEngine;
 using Zenject;
@@ -32,6 +31,11 @@ namespace Guns.Types.SpinThrowGun
             _spinThrowGun.OnObtained -= OnObtained;
         }
 
+        protected override void OnCapsuleReload(ProjectileConfig obj)
+        {
+            _spinThrowAnimationView.OnShellLoaded();
+        }
+
         protected virtual void OnObtained()
         {
             _spinThrowAnimationView.OnCatch();
@@ -58,6 +62,7 @@ namespace Guns.Types.SpinThrowGun
 
         protected override void OnGunEquip(Player.Player obj)
         {
+            base.OnGunEquip(obj);
             _spinThrowGunAudio.OnGunEquip(obj.transform);
             _spinThrowAnimationView.OnGunEquip(obj.transform);
         }
@@ -72,12 +77,23 @@ namespace Guns.Types.SpinThrowGun
         {
             _spinThrowAnimationView.OnGunActivated();
             _spinThrowGunAudio.OnGunActivated();
+            if (_spinThrowGun.Data.FireTimer <0) _spinThrowAnimationView.OnGunReloaded();
             
             _spinThrowAnimationView.UpdateSpinState(new SpinReport()
             {
                 IsSpinning = _spinThrowGun.IsSpinning,
                 SpinSpeed = _spinThrowGun.Data.CurrentSpinSpeed
             });
+        }
+
+        protected override void OnStopReload()
+        {
+            _spinThrowAnimationView.StopReload();
+        }
+
+        protected override void OnReload()
+        {
+            _spinThrowAnimationView.OnGunReloaded();
         }
 
         protected override void OnGunShot(ProjectileConfig obj)

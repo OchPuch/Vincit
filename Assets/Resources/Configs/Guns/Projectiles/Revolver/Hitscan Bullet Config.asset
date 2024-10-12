@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf2533e11c7149589db2206e44c81a27, type: 3}
-  m_Name: Hitscan Power Bullet Config
+  m_Name: Hitscan Bullet Config
   m_EditorClassIdentifier: 
   <BulletHitMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 2305
   <BulletStopMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2049
   <Damage>k__BackingField: 0
   <DestroyTime>k__BackingField: 0.3
   <StartRadius>k__BackingField: 0.2
-  <PushPower>k__BackingField: 50
+  <PushPower>k__BackingField: 10
   <MaxDistance>k__BackingField: 100
   <DisappearAnimation>k__BackingField:
     serializedVersion: 2
@@ -29,12 +29,12 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0.3620009
-      outSlope: 0.3620009
+      inSlope: -0.095033295
+      outSlope: -0.095033295
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.35833332
+      outWeight: 0.27430105
     - serializedVersion: 3
       time: 1
       value: 0
@@ -47,4 +47,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <FactoryId>k__BackingField: Hitscan_Power_Bullet__Factory_#9438
+  <DisplayColor>k__BackingField: {r: 1, g: 0.8307333, b: 0, a: 1}
+  <FactoryId>k__BackingField: Hitscan_Bullet__Factory_#5532

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Guns.General;
@@ -40,10 +41,37 @@ namespace Guns.Types.SpinThrowGun
             return base.CanShot() && !IsLost;
         }
 
+        protected override IEnumerator ReloadRoutine()
+        {
+            var waitTime = Data.Config.ReloadTIme / Data.Config.MagSize;
+            if (Data.FireTimer < 0)
+            {
+                waitTime = Mathf.Abs(Data.FireTimer) / Data.Config.MagSize;
+            }
+
+            foreach (var capsuleHolder in Data.CapsuleHolders)
+            {
+                float elapsedTime = 0;
+                while (elapsedTime < waitTime)
+                {
+                    if (IsSpinning)
+                    {
+                        yield return null;
+                        continue;
+                    }
+                    elapsedTime += Time.deltaTime;
+                    yield return null;
+                }
+                capsuleHolder.ReloadSame();
+            }
+            
+            InvokeStopReload();
+        }
+
         protected override void Update()
         {
             if (IsLost) return;
-            base.Update();
+            if (Data.FireTimer >= 0 || !IsSpinning) base.Update();
             ProcessSpinRequest(_spinRequest);
             if (Data.Config.SpinMaxSpeed > 0 && Data.FireTimer >= 0)
             {

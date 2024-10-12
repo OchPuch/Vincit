@@ -15,7 +15,7 @@ namespace Guns.General
 
         private BoolReactiveProperty _isLoaded;
         public event Action<ProjectileConfig> Reloaded;
-
+        public event Action Unloaded;
         public event Action Shot;
 
         public void Reload(ProjectileFactory projectileFactory)
@@ -24,6 +24,12 @@ namespace Guns.General
             ProjectileConfig = projectileFactory.ProjectileConfig;
             IsLoaded = true;
             Reloaded?.Invoke(projectileFactory.ProjectileConfig);
+        }
+
+        public void Unload()
+        {
+            IsLoaded = false;
+            Unloaded?.Invoke();
         }
 
         public void ReloadSame()

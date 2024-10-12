@@ -10,12 +10,13 @@ namespace Guns.View
         [SerializeField] private GameObject holdViewRoot;
         [Header("PropView")]
         [SerializeField] private GameObject propViewRoot;
-        
+
+        private static readonly int Reload = Animator.StringToHash("IsReloading");
         //Triggers
         private static readonly int Shoot = Animator.StringToHash("Shoot");
         private static readonly int Equip = Animator.StringToHash("Equip");
-        private static readonly int Reload = Animator.StringToHash("Reload");
-
+        private static readonly int ShellLoaded = Animator.StringToHash("ShellLoaded");
+        
         private bool _isEquipped;
         
         private void Awake()
@@ -36,7 +37,12 @@ namespace Guns.View
 
         public override void OnGunReloaded()
         {
-            Animator.SetTrigger(Reload);
+            Animator.SetBool(Reload, true);
+        }
+
+        public void StopReload()
+        {
+            Animator.SetBool(Reload, false);
         }
         
         public override void OnGunDeactivated()
@@ -53,6 +59,11 @@ namespace Guns.View
         public override void OnGunShot(ProjectileConfig projectileConfig)
         {
             Animator.SetTrigger(Shoot);
+        }
+        
+        public virtual void OnShellLoaded()
+        {
+            Animator.SetTrigger(ShellLoaded);
         }
     }
 }

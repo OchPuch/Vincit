@@ -58,12 +58,14 @@ namespace Player.View
             switch (obj)
             {
                 case DefaultDashState:
+                    if (PlayerVelocityDirection == Vector3.zero) break;
                     _dashLines.Activate(PlayerPosition, PlayerVelocityDirection);
                     break;
                 case DefaultSlamingState:
                     _groundSlamLines.Activate(PlayerPosition, -PlayerUp);
                     break;
                 case DefaultSlideState:
+                    if (PlayerVelocityDirection == Vector3.zero) break;
                     _slideLines.Activate(PlayerPosition, PlayerVelocityDirection);
                     break;
             }

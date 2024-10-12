@@ -17,7 +17,10 @@ namespace Guns.View
             gun.Activated += OnGunActivated;
             gun.Deactivated += OnGunDeactivated;
             gun.Equipped += OnGunEquip;
+            gun.Reloaded += OnReload;
+            gun.StopReload += OnStopReload;
         }
+        
 
         private void OnDestroy()
         {
@@ -25,9 +28,23 @@ namespace Guns.View
            _gun.Activated -= OnGunActivated;
            _gun.Deactivated -= OnGunDeactivated;
            _gun.Equipped -= OnGunEquip;
+           _gun.Reloaded -= OnReload;
+           _gun.StopReload -= OnStopReload;
+           foreach (var capsuleHolder in _gun.Data.CapsuleHolders)
+           {
+               capsuleHolder.Reloaded -= OnCapsuleReload;
+           }
         }
 
-        protected abstract void OnGunEquip(Player.Player obj);
+        protected abstract void OnCapsuleReload(ProjectileConfig obj);
+
+        protected virtual void OnGunEquip(Player.Player obj)
+        {
+            foreach (var capsuleHolder in _gun.Data.CapsuleHolders)
+            {
+                capsuleHolder.Reloaded += OnCapsuleReload;
+            }
+        }
         
         protected abstract void OnGunShot(ProjectileConfig obj);
         
@@ -40,5 +57,10 @@ namespace Guns.View
         {
             enabled = true;
         }
+
+        protected abstract void OnStopReload();
+
+        protected abstract void OnReload();
+
     }
 }

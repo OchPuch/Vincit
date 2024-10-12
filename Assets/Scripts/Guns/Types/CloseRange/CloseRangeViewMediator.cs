@@ -23,9 +23,15 @@ namespace Guns.Types.CloseRange
         {
             _closeRange.PunchApproved -= OnPunchApproved;
         }
-        
+
+        protected override void OnCapsuleReload(ProjectileConfig obj)
+        {
+            //HAHA ISP can go fuck himself im JAMMING
+        }
+
         protected override void OnGunEquip(Player.Player obj)
         {
+            base.OnGunEquip(obj);
             _gunAnimationView.OnGunEquip(obj.transform);
             _gunAudio.OnGunEquip(obj.transform);
         }
@@ -41,6 +47,15 @@ namespace Guns.Types.CloseRange
             base.OnGunActivated();
             _gunAnimationView.OnGunActivated();
             _gunAudio.OnGunActivated();
+        }
+
+        protected override void OnStopReload()
+        {
+            
+        }
+
+        protected override void OnReload()
+        {
         }
 
         protected override void OnGunDeactivated()

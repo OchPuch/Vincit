@@ -1,10 +1,9 @@
 ﻿using Guns.Interfaces.Spin;
 using Guns.Interfaces.Throw;
-using Guns.Types.SpinThrowGun;
 using Guns.View;
 using UnityEngine;
 
-namespace Guns.Types.Revolver
+namespace Guns.Types.SpinThrowGun
 {
     public class SpinThrowAnimationView : GunAnimationView, ISpinObserver, IThrowObserver, ISpinReportListener
     {

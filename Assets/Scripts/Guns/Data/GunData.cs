@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Guns.General;
 using Guns.Projectiles;
-using Guns.Types.Revolver;
 using Guns.Types.SpinThrowGun.Revolver;
 using UnityEngine;
 using UnityEngine.Serialization;
