@@ -11,9 +11,12 @@ namespace Guns.View
         [SerializeField] private Image _image;
         private CapsuleHolder _capsuleHolder;
 
+        public bool IsLoaded => _capsuleHolder.IsLoaded;
+        
         public void Init(CapsuleHolder capsuleHolder)
         {
             _capsuleHolder = capsuleHolder;
+            transform.up = transform.localPosition;
             _image.color = _capsuleHolder.IsLoaded ? _capsuleHolder.ProjectileConfig.DisplayColor : Color.black;
             capsuleHolder.Reloaded += OnReload;
             capsuleHolder.Shot += OnShot;

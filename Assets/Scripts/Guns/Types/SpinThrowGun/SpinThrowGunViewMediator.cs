@@ -77,7 +77,8 @@ namespace Guns.Types.SpinThrowGun
         {
             _spinThrowAnimationView.OnGunActivated();
             _spinThrowGunAudio.OnGunActivated();
-            if (_spinThrowGun.Data.FireTimer <0) _spinThrowAnimationView.OnGunReloaded();
+            if (_spinThrowGun.Data.FireTimer < 0) _spinThrowAnimationView.OnGunReloaded();
+            else _spinThrowAnimationView.StopReload();
             
             _spinThrowAnimationView.UpdateSpinState(new SpinReport()
             {

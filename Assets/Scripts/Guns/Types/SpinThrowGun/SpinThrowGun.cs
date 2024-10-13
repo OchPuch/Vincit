@@ -54,7 +54,7 @@ namespace Guns.Types.SpinThrowGun
                 float elapsedTime = 0;
                 while (elapsedTime < waitTime)
                 {
-                    if (IsSpinning)
+                    if (IsSpinning || !IsActive || IsLost)
                     {
                         yield return null;
                         continue;
@@ -111,6 +111,7 @@ namespace Guns.Types.SpinThrowGun
 
         public void EndSpin()
         {
+            if (!_spinRequest) return;
             _spinRequest = false;
             SpinEnded?.Invoke();
         }

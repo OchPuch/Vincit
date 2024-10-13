@@ -127,7 +127,6 @@ namespace Guns.Projectiles.Types
         
         public override void ResetBullet()
         {
-            base.ResetBullet();
             NeedApprove = false;
             CrushWallPunch = false;
             BulletsToCombine.Clear();

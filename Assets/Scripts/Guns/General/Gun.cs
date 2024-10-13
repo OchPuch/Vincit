@@ -104,7 +104,17 @@ namespace Guns.General
 
             foreach (var capsuleHolder in Data.CapsuleHolders)
             {
-                yield return new WaitForSeconds(waitTime);
+                float elapsedTime = 0;
+                while (elapsedTime < waitTime)
+                {
+                    if (!IsActive)
+                    {
+                        yield return null;
+                        continue;
+                    }
+                    elapsedTime += Time.deltaTime;
+                    yield return null;
+                }
                 capsuleHolder.ReloadSame();
             }
             
