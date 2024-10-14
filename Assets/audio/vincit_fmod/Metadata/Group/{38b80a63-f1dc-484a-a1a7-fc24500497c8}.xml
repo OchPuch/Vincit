@@ -18,6 +18,7 @@
 		<relationship name="effects">
 			<destination>{29e4cddc-0bba-40f4-aa45-4023f473b8c7}</destination>
 			<destination>{aeec3568-ff83-4fc1-ab28-8aa669ca9506}</destination>
+			<destination>{927f506b-74f3-49ee-bca5-6c261c447da6}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{0b3370cf-9a32-4ce6-afcf-9df2cbbb04f8}" />
@@ -25,6 +26,11 @@
 	<object class="GainEffect" id="{aeec3568-ff83-4fc1-ab28-8aa669ca9506}">
 		<relationship name="modulators">
 			<destination>{e8e78218-9b0b-496b-b4c4-0d2118a458a7}</destination>
+		</relationship>
+	</object>
+	<object class="GainEffect" id="{927f506b-74f3-49ee-bca5-6c261c447da6}">
+		<relationship name="modulators">
+			<destination>{184694bb-1797-4c81-b804-f60feeea26ac}</destination>
 		</relationship>
 	</object>
 	<object class="SidechainModulator" id="{e8e78218-9b0b-496b-b4c4-0d2118a458a7}">
@@ -48,6 +54,26 @@
 		</property>
 		<relationship name="sidechains">
 			<destination>{3e059a8a-6926-44a7-97c4-d2a21c98ca60}</destination>
+		</relationship>
+	</object>
+	<object class="SidechainModulator" id="{184694bb-1797-4c81-b804-f60feeea26ac}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>gain</value>
+		</property>
+		<property name="amount">
+			<value>23</value>
+		</property>
+		<property name="attackTime">
+			<value>73</value>
+		</property>
+		<property name="minimumThreshold">
+			<value>-80</value>
+		</property>
+		<property name="maximumThreshold">
+			<value>10</value>
+		</property>
+		<relationship name="sidechains">
+			<destination>{0b693353-c6ed-4808-8cc7-c0b42be0f0a7}</destination>
 		</relationship>
 	</object>
 </objects>
