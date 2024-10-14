@@ -22,12 +22,16 @@ namespace General.GlobalManagers
                 Instance = this;
                 transform.SetParent(null);
                 DontDestroyOnLoad(this);
-                LoadNewLevel(startScene);
             }
             else if (Instance != this)
             {
                 Destroy(gameObject);
             }
+        }
+
+        private void Start()
+        {
+            LoadNewLevel(startScene);
         }
 
         private void OnDestroy()

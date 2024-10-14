@@ -1,12 +1,11 @@
-﻿using UnityEngine;
+﻿using FMODUnity;
+using UnityEngine;
 
 namespace Player.View.Audio
 {
     public class PlayerMovementAudio : MonoBehaviour
     {
-        [Header("Config")] 
-        [Space(10)] 
-        [SerializeField] private float wallJumpPitchAddition = 0.2f;
+        [SerializeField] private StudioEventEmitter jumpEmitter;
         
         public void UpdateFootstepSound()
         {
@@ -24,7 +23,7 @@ namespace Player.View.Audio
 
         public void PlayJumpSound()
         {
-         
+            if (jumpEmitter) jumpEmitter.Play();
         }
 
         public void PlayLandSound()

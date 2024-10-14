@@ -634,7 +634,10 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
+  - Ambient
+  - Environment
   - Music
+  - Player_movement
   - Revolver
   - Winchester
   BanksToLoad: []
