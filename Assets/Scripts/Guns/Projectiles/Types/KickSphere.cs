@@ -18,14 +18,14 @@ namespace Guns.Projectiles.Types
             _kicked = false;
         }
 
-        protected override void CrushWall()
+        protected override void CrushWall(float f)
         {
             if (NeedApprove)
             {
                 SeriousKick();
             }
 
-            base.CrushWall();
+            base.CrushWall(f);
         }
 
         protected override void CombineBullets()

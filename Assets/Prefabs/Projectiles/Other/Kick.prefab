@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 8995519550291920698}
   - component: {fileID: 936348442727101248}
   - component: {fileID: 8050632413124965209}
-  - component: {fileID: 3893280390341060229}
+  - component: {fileID: 4453921372053201525}
   m_Layer: 8
   m_Name: Kick
   m_TagString: Untagged
@@ -165,18 +165,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc0923ec536a4d37a8ef9d757ace2a3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   pauseable: 1
   disableOnTimeStop: 0
   <Config>k__BackingField: {fileID: 11400000, guid: 4db914952c4fb5b4c9df6e413e459f60,
     type: 2}
-  weakBulletPrefab: {fileID: 4121726910312821292, guid: a990c64c98236af4094cd7f4afb5f093,
-    type: 3}
-  maxRayFireRigidShootSize: 2
+  <BulletCollider>k__BackingField: {fileID: 0}
   playerPushMultiplier: 0.3
   smallApproveTime: 0.2
   maxApproveTime: 0.4
   extraApproveTimePerBullet: 0.025
-  rayfireGun: {fileID: 3893280390341060229}
+  rayfireGun: {fileID: 4453921372053201525}
   seriousKickForceMultiplier: 0.2
   mediumKickForceMultiplier: 0.06
   smallKickForceMultiplier: 0.03
@@ -201,7 +208,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3893280390341060229
+--- !u!114 &4453921372053201525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,6 +220,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aae98af4160c3f44a105545f7b49970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: shotEvent
+      Entry: 7
+      Data: 0|RayFire.RFShotEvent, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
   axis: 2
   maxDistance: 5
   target: {fileID: 6661925748801011529}
@@ -228,7 +250,7 @@ MonoBehaviour:
   damage: 1
   debris: 1
   dust: 1
-  mask: 1
+  mask: 2048
   tagFilter: Untagged
   showRay: 1
   showHit: 1

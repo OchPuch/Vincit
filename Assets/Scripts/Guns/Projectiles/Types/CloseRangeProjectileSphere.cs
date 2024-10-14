@@ -23,6 +23,7 @@ namespace Guns.Projectiles.Types
         protected readonly List<HitscanProjectile> BulletsToCombine = new();
 
         protected List<Collider> HitColliders = new();
+        protected Queue<GameObject> DestroySchedule = new();
         
         private float _destroyTime;
         private CloseRange CloseRangeGun => Origin as CloseRange;
@@ -45,26 +46,28 @@ namespace Guns.Projectiles.Types
                 }
                 PreProcessHit(hitCollider);
             }
-            
+
+            float approveForce = BulletsToCombine.Count * 0.2f;
             if (NeedApprove)
             {
                 float extraApproveTimeForBullets = BulletsToCombine.Count > 1 ? BulletsToCombine.Count * extraApproveTimePerBullet : 0;
                 float approveTime = Mathf.Clamp(smallApproveTime + extraApproveTimeForBullets, smallApproveTime, maxApproveTime);
                 if (CrushWallPunch)
                 {
+                    approveForce += 1f;
                     CloseRangeGun.PunchApproved += CrushWall;
                 }
                 
                 CloseRangeGun.PunchApproved += OnPunchApproved;
-                CloseRangeGun.RequestApprove(approveTime);
+                CloseRangeGun.RequestApprove(approveTime, approveForce);
                 return;
             }
             
-            if (CrushWallPunch) CrushWall();
+            if (CrushWallPunch) CrushWall(approveForce);
             FinishShoot();
         }
 
-        protected virtual void CrushWall()
+        protected virtual void CrushWall(float f)
         {
             CrushWallPunch = false;
             rayfireGun.Shoot();
@@ -79,8 +82,6 @@ namespace Guns.Projectiles.Types
             CombineBullets();
             foreach (var hitCollider in HitColliders.ToList())
             {
-                if (hitCollider is null) continue;
-                if (hitCollider.gameObject == null) continue;
                 ProcessHit(hitCollider);
             }
             OnFinishShot();
@@ -93,6 +94,17 @@ namespace Guns.Projectiles.Types
 
         protected virtual void OnFinishShot()
         {
+            for (int i = 0; i < DestroySchedule.Count; i++)
+            {
+                if (DestroySchedule.TryDequeue(out var objectToDestroy))
+                {
+                    Destroy(objectToDestroy);
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
 
         protected virtual void CombineBullets()
@@ -107,7 +119,7 @@ namespace Guns.Projectiles.Types
             }
         }
 
-        private void OnPunchApproved()
+        private void OnPunchApproved(float f)
         {
             CloseRangeGun.PunchApproved -= OnPunchApproved;
             FinishShoot();
@@ -115,7 +127,6 @@ namespace Guns.Projectiles.Types
         
         public override void ResetBullet()
         {
-            base.ResetBullet();
             NeedApprove = false;
             CrushWallPunch = false;
             BulletsToCombine.Clear();
@@ -164,10 +175,8 @@ namespace Guns.Projectiles.Types
                     PostProcessDamageable(damageable);
                 }
             }
-            
             PostProcessCollider(hitCollider);
         }
-
     
         protected virtual void PostProcessRigidbody(Rigidbody rb)
         {

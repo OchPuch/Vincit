@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using General;
 using General.GlobalManagers;
+using Guns.Interfaces.Spin;
 using Guns.Types.CloseRange;
+using Guns.Types.SpinThrowGun;
 using TimeStop;
 using UnityEngine;
 using Zenject;
@@ -12,6 +14,7 @@ namespace Guns.General
     {
         public bool AbilityRequest;
         public bool ShootRequest;
+        public bool ReloadRequest;
         public bool HandPunchRequest;
         public bool LegPunchRequest;
         public bool StartSpinRequest;
@@ -54,11 +57,12 @@ namespace Guns.General
 
     public class GunController : GamePlayBehaviour
     {
-        [SerializeField] private Transform gunRoot;
-        [SerializeField] private TimeStopAbility ability;
+        [SerializeField] private Transform gunRoot; 
         [SerializeField] private CloseRange leftHand;
         [SerializeField] private CloseRange leg;
 
+        private TimeStopAbility _ability;
+        
         private readonly GunSwitchInput _gunSwitchInput = new();
         private Player.Player _owner;
         private readonly List<Gun> _guns = new();
@@ -68,13 +72,9 @@ namespace Guns.General
         private List<Gun> HiddenGuns => _guns.FindAll(g => !g.IsActive);
 
         [Inject]
-        private void Construct(TimeController timeController, ITimeNotifier timeNotifier)
+        private void Construct(Player.Player player, TimeStopAbility timeStopAbility)
         {
-            ability.Init(timeController, timeNotifier);
-        }
-        
-        public void Init(Player.Player player)
-        {
+            _ability = timeStopAbility;
             _owner = player;
             InitHand();
             InitLeg();
@@ -115,14 +115,16 @@ namespace Guns.General
             {
                 AbilityRequest = Input.GetKeyDown(KeyCode.Q),
                 ShootRequest = Input.GetMouseButton(0),
+                ReloadRequest = Input.GetKeyDown(KeyCode.R),
                 HandPunchRequest = Input.GetMouseButtonDown(4),
                 LegPunchRequest = Input.GetKeyDown(KeyCode.F),
                 StartSpinRequest =  Input.GetMouseButtonDown(1),
                 EndSpinRequest = !Input.GetMouseButton(1)
             };
 
-            if (input.AbilityRequest) ability.SwitchActive();
+            if (input.AbilityRequest) _ability.SwitchActive();
             if (_activeGun && input.ShootRequest) _activeGun.Shoot();
+            if (_activeGun && input.ReloadRequest) _activeGun.Reload();
             if (input.HandPunchRequest) leftHand.Shoot();
             if (input.LegPunchRequest) leg.Shoot();
             if (_activeGun is ISpinnableGun spinnableGun)

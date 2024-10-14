@@ -328,6 +328,7 @@ namespace RayFire
             {
                 scrRigid.meshDemolition.badMesh++;
                 Debug.Log("Bad mesh: " + scrRigid.name);
+                scrRigid.DestroyObject(scrRigid.gameObject);
             }
             else
                 for (int i = 0; i < meshes.Length; i++)

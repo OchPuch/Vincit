@@ -547,7 +547,7 @@ MonoBehaviour:
   - {fileID: 5619523431695986091}
   - {fileID: 4588306482143788117}
   normalColor: {r: 1, g: 0.8049691, b: 0, a: 1}
-  overloadedColor: {r: 1, g: 0.087898776, b: 0, a: 1}
+  overloadedColor: {r: 1, g: 0.42698717, b: 0, a: 1}
 --- !u!114 &3838715365608391844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,6 +560,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aae98af4160c3f44a105545f7b49970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: shotEvent
+      Entry: 7
+      Data: 0|RayFire.RFShotEvent, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
   axis: 2
   maxDistance: 100
   target: {fileID: 0}

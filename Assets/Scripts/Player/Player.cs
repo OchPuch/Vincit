@@ -3,15 +3,13 @@ using General;
 using KinematicCharacterController.Core;
 using KinematicCharacterController.Examples;
 using Player.Data;
+using Saving;
 using UnityEngine;
-using Utils;
-
 namespace Player
 {
+   
     public class Player : GamePlayBehaviour, IDamageable
     {
-        public static Player Instance { get; private set; }
-        
         public PlayerData Data { get; private set; }
         private PlayerController _character;
         private ExampleCharacterCamera _characterCamera;
@@ -22,30 +20,24 @@ namespace Player
         private const string MouseScrollInput = "Mouse ScrollWheel";
         private const string HorizontalInput = "Horizontal";
         private const string VerticalInput = "Vertical";
-
+        
         public void Init(PlayerData data, PlayerController character  ,ExampleCharacterCamera characterCamera)
         {
-            if (Instance == this) return;
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-            
-            Data = data;
+           Data = data;
             _character = character;
             _characterCamera = characterCamera;
             if (Data.motor.AttachedRigidbody != null)
                 _physicsMover = Data.motor.AttachedRigidbody.GetComponent<PhysicsMover>();
         }
-
-        protected override void OnDestroy()
+        
+        public SaveData.CharacterSaveData GetCharacterSaveData()
         {
-            base.OnDestroy();
-            if (Instance != this) return;
-            Instance = null;
+            return new SaveData.CharacterSaveData()
+            {
+                PositionX = transform.position.x,
+                PositionY = transform.position.y,
+                PositionZ = transform.position.z
+            };
         }
 
         private void Update()
@@ -125,11 +117,17 @@ namespace Player
             _character.SetInputs(ref characterInputs);
         }
 
-        public void RequestPush(Vector3 pushForce, ForceMode pushMode)
+        public void RequestPush(Vector3 pushForce, ForceMode pushMode, bool forceUnground = true, PushBasedOnGroundStatus pushBasedOnGroundStatus = PushBasedOnGroundStatus.Any)
         {
-            Data.pushForce = pushForce;
-            Data.pushMode = pushMode;
-            Data.pushRequested = true;
+            var pushRequest = new PushRequest()
+            {
+                pushForce = pushForce,
+                pushMode = pushMode,
+                forceUngroundOnPush = forceUnground,
+                pushBasedOnGroundStatus = pushBasedOnGroundStatus,
+            };
+            
+            Data.PushRequests.Add(pushRequest);
         }
 
         public void Damage(float damage)

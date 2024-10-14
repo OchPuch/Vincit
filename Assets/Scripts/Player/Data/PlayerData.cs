@@ -10,28 +10,50 @@ using UnityEngine.Serialization;
 
 namespace Player.Data
 {
+    public struct PushRequest
+    {
+        public ForceMode pushMode;
+        public Vector3 pushForce;
+        public bool forceUngroundOnPush;
+        public PushBasedOnGroundStatus pushBasedOnGroundStatus;
+    }
+    
+    public enum PushBasedOnGroundStatus
+    {
+        OnlyIfUnstable,
+        OnlyIfStable,
+        Any
+    }
+        
     [Serializable]
     public class PlayerData
     {
         [Header("Settings")] public PlayerConfig playerConfig;
-        public Vector3 gravity = new Vector3(0, -30f, 0);
-        [Header("Components")] [Space(5)] public KinematicCharacterMotor motor;
+        public Vector3 gravity = new(0, -30f, 0);
+        [Header("Components")] 
+        [Space(5)] 
+        public KinematicCharacterMotor motor;
         public PlayerMovementAudio playerMovementAudio;
-        [Space(2)] public RayfireGun slamGun;
+        [Space(2)] 
+        public RayfireGun slamGun;
         public RayfireGun dashGun;
         public Transform dashCrushPoint;
-        [Header("Transforms")] [Space(5)] public Transform meshRoot;
+        [Header("Transforms")] 
+        [Space(5)]
+        public RectTransform gunStateUiRoot;
+        public Transform meshRoot;
         public Transform cameraFollowPoint;
-        [Space(10)] public LayerMask levelLayerMask;
+        [Space(10)] 
+        public LayerMask levelLayerMask;
         public List<Collider> IgnoredColliders = new List<Collider>();
         public BonusOrientationMethod bonusOrientationMethod = BonusOrientationMethod.TowardsGravity;
 
         #region input
-
+        
         public PlayerController.PlayerCharacterInputs Inputs;
         public Vector3 moveInputVector;
         public Vector3 lookInputVector;
-
+        
         #endregion
 
         #region jumping
@@ -86,8 +108,8 @@ namespace Player.Data
         public Vector3 lastInnerNormal = Vector3.zero;
         public Vector3 lastOuterNormal = Vector3.zero;
 
-        public bool pushRequested;
-        public ForceMode pushMode;
-        public Vector3 pushForce;
+        public List<PushRequest> PushRequests = new List<PushRequest>();
+        
+        
     }
 }

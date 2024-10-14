@@ -2,6 +2,7 @@
 using System.Collections;
 using General.GlobalManagers;
 using Guns.General;
+using Guns.Projectiles;
 using UnityEngine;
 using Zenject;
 
@@ -14,21 +15,29 @@ namespace Guns.Types.CloseRange
         private bool _approveRequested;
         private float _approveTimer;
 
+        private float _approveForce;
         private TimeController _timeController;
-        public event Action PunchApproved;
+        private Camera _camera;
+        
+        public event Action<float> PunchApproved;
         
         [Inject]
         public void Construct(TimeController timeController)
         {
             _timeController = timeController;
         }
-        
-        public override void Shoot()
+
+        private void Awake()
         {
-            if (Data.fireTimer < Data.Config.FireRate) return;
+            _camera = Camera.main;
+            Shot += (_) => Reload();
+        }
+
+        protected override ProjectileConfig OnShot()
+        {
             _approveTimer = 0;
             _approveRequested = false;
-            base.Shoot();
+            return base.OnShot();
         }
 
         protected override void Update()
@@ -44,9 +53,10 @@ namespace Guns.Types.CloseRange
             }
         }
         
-        public void RequestApprove(float approveTime)
+        public void RequestApprove(float approveTime, float approveForce)
         {
             if (_approveRequested) return;
+            _approveForce = approveForce;
             _approveRequested = true;
             _currentApproveTime = approveTime;
             StartCoroutine(ApproveRoutine(approveTime));
@@ -55,7 +65,7 @@ namespace Guns.Types.CloseRange
         private IEnumerator ApproveRoutine(float approveTime)
         {
             yield return new WaitForSecondsRealtime(NotFreezeTime);
-            _timeController.RequestTimeFreezeEffect(approveTime);
+            _timeController.RequestTimeFreezeEffect(approveTime, 0.01f);
         }
 
         private void ApprovePunch()
@@ -63,8 +73,11 @@ namespace Guns.Types.CloseRange
             if (!_approveRequested) return;
             _approveRequested = false;
             _timeController.RequestTimeUnfreezeEffect();
-            PunchApproved?.Invoke();
+            PunchApproved?.Invoke(_approveForce);
         }
+
+        
+            
         
 
     }

@@ -230,6 +230,7 @@ MonoBehaviour:
   disableOnTimeStop: 0
   <Config>k__BackingField: {fileID: 11400000, guid: d075934ad7218d546b6554950a544319,
     type: 2}
+  <BulletCollider>k__BackingField: {fileID: 7394453331849317086}
   rb: {fileID: 4889626753285415633}
   spinCollider: {fileID: 7812276007610711663}
   minTimeToFlyForward: 0.1

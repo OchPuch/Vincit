@@ -1,33 +1,37 @@
 ﻿using Guns.Data;
-using Guns.View;
 using UnityEngine;
+using Zenject;
 
 namespace Guns.General
 {
-    public class GunBootstrap : MonoBehaviour
+    public class GunBootstrap : MonoInstaller
     {
-        [Header("Bootstrap Settings")] [SerializeField]
-        private bool disableAfterAwake;
-        [SerializeField] private BoxCollider pickUpCollider;
+        [Header("Bootstrap Settings")] 
+        [SerializeField] private bool _disableAfterAwake;
+        [SerializeField] private BoxCollider _pickUpCollider;
 
         [Header("General components")] 
-        [SerializeField] private GunData data;
-        [SerializeField] private Gun gun;
-        [SerializeField] private Transform viewTransform;
+        [SerializeField] private GunData _data;
+        [SerializeField] protected Gun Gun;
+        
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesAndSelfTo<GunConfig>().FromInstance(_data.Config);
+            Container.BindInterfacesAndSelfTo<GunData>().FromInstance(_data);
+            BindGun();
+        }
 
-        [Header("View components")]
-        [SerializeField] private GunAudio gunAudio;
-        [SerializeField] private GunView view;
+        protected virtual void BindGun()
+        {
+            Container.BindInterfacesAndSelfTo<Gun>().FromInstance(Gun);
+        }
 
         private void Awake()
         {
-            gun.Init(data);
-            view.Init(gun, data);
-            if (gunAudio) gunAudio.Init(gun, data);
-            if (disableAfterAwake)
+            if (_disableAfterAwake)
             {
                 enabled = false;
-                pickUpCollider.enabled = false;
+                _pickUpCollider.enabled = false;
             }
         }
 
@@ -35,9 +39,9 @@ namespace Guns.General
         {
             if (other.TryGetComponent<GunController>(out var gunController))
             {
-                gunController.EquipGun(gun);
+                gunController.EquipGun(Gun);
                 enabled = false;
-                pickUpCollider.enabled = false;
+                _pickUpCollider.enabled = false;
             }
         }
     }

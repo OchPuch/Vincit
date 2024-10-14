@@ -16,7 +16,6 @@ namespace Player.States.DefaultState
         public DefaultState(PlayerController controller, IStateSwitcher stateMachine, PlayerData playerData) : base(
             controller, stateMachine, playerData)
         {
-            
         }
 
         public override void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
@@ -85,16 +84,17 @@ namespace Player.States.DefaultState
         public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
             base.UpdateVelocity(ref currentVelocity, deltaTime);
-            
+
             PlayerData.jumpedThisFrame = false;
             PlayerData.timeSinceJumpRequested += deltaTime;
 
             PlayerData.slideSpeedBufferApplyTimer -= deltaTime;
-            
+
             PlayerData.slamStorageKeepTimer += deltaTime;
             PlayerData.currentDashEnergy += deltaTime * PlayerData.playerConfig.MiscData.DashRechargeRate;
-            PlayerData.currentDashEnergy = Mathf.Clamp(PlayerData.currentDashEnergy, 0, PlayerData.playerConfig.MiscData.DashMaxEnergy);
-            
+            PlayerData.currentDashEnergy = Mathf.Clamp(PlayerData.currentDashEnergy, 0,
+                PlayerData.playerConfig.MiscData.DashMaxEnergy);
+
             // Take into account additive velocity
             if (PlayerData.internalVelocityAdd.sqrMagnitude > 0f)
             {
@@ -103,25 +103,37 @@ namespace Player.States.DefaultState
             }
         }
 
-        public override void ProcessPushRequests(ref Vector3 currentVelocity, float deltaTime)
+        public override void ProcessPushRequest(PushRequest pushRequest , ref Vector3 currentVelocity, float deltaTime)
         {
-            base.ProcessPushRequests(ref currentVelocity, deltaTime);
-            if (PlayerData.pushRequested)
+            switch (pushRequest.pushBasedOnGroundStatus)
             {
-                PlayerData.motor.ForceUnground();
-                switch (PlayerData.pushMode)
-                {
-                    case ForceMode.Impulse:
-                        currentVelocity += PlayerData.pushForce;
-                        break;
-                    default:
-                        currentVelocity = PlayerData.pushForce;
-                        break;
-                }
-
-                PlayerData.pushRequested = false;
-                StateMachine.SwitchState<DefaultAirborneState>();
+                case PushBasedOnGroundStatus.OnlyIfStable:
+                    if (!PlayerData.motor.GroundingStatus.IsStableOnGround) return;
+                    break;
+                case PushBasedOnGroundStatus.OnlyIfUnstable:
+                    if (PlayerData.motor.GroundingStatus.IsStableOnGround) return;
+                    break;
             }
+                
+            if (pushRequest.forceUngroundOnPush) PlayerData.motor.ForceUnground();
+            switch (pushRequest.pushMode)
+            {
+                case ForceMode.Impulse:
+                    currentVelocity += pushRequest.pushForce;
+                    break;
+                case ForceMode.Force:
+                    currentVelocity += pushRequest.pushForce * deltaTime;
+                    break;
+                case ForceMode.VelocityChange:
+                    currentVelocity = pushRequest.pushForce;
+                    break;
+                default:
+                    currentVelocity = pushRequest.pushForce;
+                    break;
+            }
+
+            
+            StateMachine.SwitchState<DefaultAirborneState>();
         }
 
         public override void AfterCharacterUpdate(float deltaTime)
@@ -134,7 +146,7 @@ namespace Player.States.DefaultState
             {
                 PlayerData.jumpRequested = false;
             }
-            
+
             if (PlayerData.slamStorageKeepTimer > PlayerData.playerConfig.SlamingData.SlamStorageKeepTime)
             {
                 PlayerData.slamStorage = 0;
@@ -146,6 +158,7 @@ namespace Player.States.DefaultState
                 {
                     StateMachine.SwitchState<DefaultDashState>();
                 }
+
                 PlayerData.dashRequested = false;
             }
         }
@@ -215,11 +228,11 @@ namespace Player.States.DefaultState
             if (!PlayerData.jumpRequested) return false;
             // See if we actually are allowed to jump
             if (!PlayerData.jumpConsumed &&
-                 ((PlayerData.playerConfig.JumpingData.AllowJumpingWhenSliding
-                      ? PlayerData.motor.GroundingStatus.FoundAnyGround
-                      : PlayerData.motor.GroundingStatus.IsStableOnGround) ||
-                  PlayerData.timeSinceLastAbleToJump <=
-                  PlayerData.playerConfig.JumpingData.JumpPostGroundingGraceTime))
+                ((PlayerData.playerConfig.JumpingData.AllowJumpingWhenSliding
+                     ? PlayerData.motor.GroundingStatus.FoundAnyGround
+                     : PlayerData.motor.GroundingStatus.IsStableOnGround) ||
+                 PlayerData.timeSinceLastAbleToJump <=
+                 PlayerData.playerConfig.JumpingData.JumpPostGroundingGraceTime))
             {
                 // Calculate jump direction before ungrounding
                 Vector3 jumpDirection = PlayerData.motor.CharacterUp;
@@ -227,7 +240,7 @@ namespace Player.States.DefaultState
                 {
                     jumpDirection = PlayerData.motor.GroundingStatus.GroundNormal;
                 }
-                
+
                 PlayerData.motor.ForceUnground();
 
                 // Add to the return velocity and reset jump state
@@ -236,21 +249,23 @@ namespace Player.States.DefaultState
                 currentVelocity += (PlayerData.moveInputVector *
                                     PlayerData.playerConfig.JumpingData.JumpScalableForwardSpeed);
                 currentVelocity += (jumpDirection * PlayerData.slamStorage);
-                
+
                 //Crush ground if slam storage is greater than 0
                 if (PlayerData.slamStorage > 0)
                 {
                     float slamRadius = PlayerData.slamGun.radius;
-                    float slamStoragePercent = PlayerData.slamStorage / PlayerData.playerConfig.SlamingData.MaxSlamStorage;
+                    float slamStoragePercent =
+                        PlayerData.slamStorage / PlayerData.playerConfig.SlamingData.MaxSlamStorage;
                     if (slamStoragePercent >= PlayerData.playerConfig.SlamingData.MinCrushPercentage)
                     {
                         PlayerData.slamGun.radius = slamStoragePercent * slamRadius;
-                        PlayerData.slamGun.damage = slamStoragePercent * PlayerData.playerConfig.SlamingData.SlamDamageMultiplier;
+                        PlayerData.slamGun.damage =
+                            slamStoragePercent * PlayerData.playerConfig.SlamingData.SlamDamageMultiplier;
                         PlayerData.slamGun.Shoot();
                         PlayerData.slamGun.radius = slamRadius;
                     }
                 }
-                
+
                 PlayerData.jumpRequested = false;
                 PlayerData.jumpConsumed = true;
                 PlayerData.jumpedThisFrame = true;
@@ -278,8 +293,8 @@ namespace Player.States.DefaultState
                 {
                     PlayerData.wallNormal = hit.normal;
                 }
-                
-                
+
+
                 Vector3 jumpDirection;
                 if (VectorUtils.IsLookingAtThePlane(PlayerData.motor.CharacterForward, PlayerData.wallNormal))
                 {
@@ -289,15 +304,17 @@ namespace Player.States.DefaultState
                 {
                     jumpDirection = PlayerData.motor.CharacterForward;
                 }
-                
-                float jumpControlPercent = PlayerData.wallNormal == Vector3.zero ? 1 : PlayerData.playerConfig.JumpingData.WallJumpControlPercent;
-                
+
+                float jumpControlPercent = PlayerData.wallNormal == Vector3.zero
+                    ? 1
+                    : PlayerData.playerConfig.JumpingData.WallJumpControlPercent;
+
                 PlayerData.motor.ForceUnground();
-                
+
                 currentVelocity += (PlayerData.motor.CharacterUp * PlayerData.playerConfig.JumpingData.JumpUpSpeed) -
                                    Vector3.Project(currentVelocity, PlayerData.motor.CharacterUp);
-                currentVelocity += (jumpDirection * 
-                                    (PlayerData.playerConfig.JumpingData.JumpUpSpeed * 
+                currentVelocity += (jumpDirection *
+                                    (PlayerData.playerConfig.JumpingData.JumpUpSpeed *
                                      jumpControlPercent));
                 currentVelocity += (PlayerData.wallNormal *
                                     (PlayerData.playerConfig.JumpingData.JumpUpSpeed *
@@ -306,7 +323,7 @@ namespace Player.States.DefaultState
                 PlayerData.jumpConsumed = true;
                 PlayerData.jumpedThisFrame = true;
                 PlayerData.wallJumpCount++;
-                
+
                 StateMachine.SwitchState<DefaultFlyingState>();
                 PlayerData.playerMovementAudio.PlayWallJumpSound(PlayerData.wallJumpCount - 1);
             }

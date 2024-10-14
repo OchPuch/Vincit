@@ -1,20 +1,20 @@
-﻿using System;
+﻿using General;
 using General.GlobalManagers;
 using UnityEngine;
 using Zenject;
 
 namespace TimeStop
 {
-    [Serializable]
-    public class TimeStopAbility 
+    public class TimeStopAbility : GamePlayBehaviour
     {
-        [SerializeField] private float abilityDuration;
+        [field: SerializeField] public float AbilityDuration { get; private set; }
         private float _abilityTimer;
 
         private TimeController _timeController;
         private ITimeNotifier _timeNotifier;
 
-        public void Init(TimeController timeController, ITimeNotifier timeNotifier)
+        [Inject]
+        private void Construct(TimeController timeController, ITimeNotifier timeNotifier)
         {
             _timeController = timeController;
             _timeNotifier = timeNotifier;
@@ -36,18 +36,23 @@ namespace TimeStop
         {
             if (_timeNotifier.IsTimeStopped)
             {
-                _abilityTimer += Time.unscaledDeltaTime;
-                if (_abilityTimer > abilityDuration)
+                _abilityTimer -= Time.unscaledDeltaTime;
+                if (_abilityTimer <= 0)
                 {
                     _abilityTimer = 0f;
                     SwitchActive();
                 }
             }
-            else if (_abilityTimer > 0)
+            else
             {
-                _abilityTimer -= Time.unscaledDeltaTime;
-                if (_abilityTimer < 0) _abilityTimer = 0;
+                _abilityTimer += Time.unscaledDeltaTime;
+                if (_abilityTimer > AbilityDuration) _abilityTimer = AbilityDuration;
             }
+        }
+
+        public float GetCharge01()
+        {
+            return _abilityTimer / AbilityDuration;
         }
     }
 }

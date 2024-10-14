@@ -13,9 +13,9 @@ namespace General.GlobalManagers
             _timeManager = timeManager;
         }
 
-        public void RequestTimeFreezeEffect(float duration)
+        public void RequestTimeFreezeEffect(float duration, float timeScale = 0f)
         {
-            _timeManager.FreezeTimeEffectStart(duration);
+            _timeManager.FreezeTimeEffectStart(duration, timeScale);
         }
 
         public void RequestTimeUnfreezeEffect()

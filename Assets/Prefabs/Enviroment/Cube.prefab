@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5091020075522875935}
   - component: {fileID: 2266877274866874990}
   - component: {fileID: 3680643040397857609}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5091020075522875935
 MeshFilter:

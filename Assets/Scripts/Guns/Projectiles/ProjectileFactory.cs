@@ -7,10 +7,11 @@ namespace Guns.Projectiles
     public class ProjectileFactory : PlaceholderFactory<Projectile>
     {
         private readonly Projectile _projectilePrefab;
-
-        private DiContainer _diContainer;
         private readonly ObjectPool<Projectile> _projectilePool;
+        private DiContainer _diContainer;
 
+        public ProjectileConfig ProjectileConfig => _projectilePrefab.Config;
+        
         public ProjectileFactory(Projectile projectile)
         {
             _projectilePrefab = projectile;

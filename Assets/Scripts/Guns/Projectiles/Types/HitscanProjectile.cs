@@ -67,6 +67,7 @@ namespace Guns.Projectiles.Types
             
             UpdateTransform();
         }
+        
 
         public void OverloadEndPosition(Vector3 endPoint)
         {
@@ -163,7 +164,6 @@ namespace Guns.Projectiles.Types
 
         public override void ResetBullet()
         {
-            base.ResetBullet();
             ConsumeData = new ConsumeData();
             _destroyTimer = 0f;
             IsOverloaded = false;

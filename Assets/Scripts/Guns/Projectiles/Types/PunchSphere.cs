@@ -46,7 +46,7 @@ namespace Guns.Projectiles.Types
             {
                 _positionsToSpawnBullets.Add(rayfireRigid.transform.position);
                 HitColliders.Remove(hitCollider);
-                Destroy(rayfireRigid.gameObject);
+                DestroySchedule.Enqueue(rayfireRigid.gameObject);
             }
         }
         

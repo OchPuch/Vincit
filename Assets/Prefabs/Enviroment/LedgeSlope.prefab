@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1314270315803274939}
   - component: {fileID: 7099118838600516850}
   - component: {fileID: 3604347961542598131}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LedgeSlope
   m_TagString: Untagged
   m_Icon: {fileID: 0}

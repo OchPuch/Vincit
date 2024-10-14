@@ -19,10 +19,8 @@ namespace Guns.Projectiles
             Origin = origin;
         }
 
-        public virtual void ResetBullet()
-        {
-            
-        }
+        public virtual void ResetBullet() {}
+        
 
         public virtual void DestroyProjectile()
         {
