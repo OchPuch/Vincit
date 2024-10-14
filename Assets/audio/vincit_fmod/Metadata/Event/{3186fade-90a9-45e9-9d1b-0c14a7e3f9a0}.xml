@@ -5,7 +5,7 @@
 			<value>Wind_ambient</value>
 		</property>
 		<property name="outputFormat">
-			<value>5</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{83a316e8-99c1-4a58-8ad3-598d5b59f66e}</destination>
