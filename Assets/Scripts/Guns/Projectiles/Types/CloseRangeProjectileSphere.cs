@@ -2,6 +2,7 @@
 using System.Linq;
 using Entities;
 using Guns.General;
+using Guns.Projectiles.View;
 using Guns.Types.CloseRange;
 using RayFire;
 using TimeStop;
@@ -17,6 +18,7 @@ namespace Guns.Projectiles.Types
         [SerializeField] private float maxApproveTime = 0.3f;
         [SerializeField] private float extraApproveTimePerBullet = 0.025f;
         [SerializeField] private RayfireGun rayfireGun;
+        [SerializeField] private CloseRangeProjectileAudio _projectileAudio;
         
         protected bool NeedApprove;
         protected bool CrushWallPunch;
@@ -33,7 +35,6 @@ namespace Guns.Projectiles.Types
         public override void Init(Gun origin)
         {
             base.Init(origin);
-            
             Vector3 point1 = transform.position;
             Vector3 point2 = transform.position + transform.forward * Config.MaxDistance;
             HitColliders = Physics.OverlapCapsule(point1, point2, Config.StartRadius).ToList();
@@ -80,8 +81,14 @@ namespace Guns.Projectiles.Types
         private void FinishShoot()
         {
             CombineBullets();
+            _projectileAudio.PlaySwing();
+            if (HitColliders.Any(x => !x.isTrigger))
+            {
+                _projectileAudio.PlayPunch();
+            }
             foreach (var hitCollider in HitColliders.ToList())
             {
+                //Debug.Log(hitCollider.gameObject.name);
                 ProcessHit(hitCollider);
             }
             OnFinishShot();

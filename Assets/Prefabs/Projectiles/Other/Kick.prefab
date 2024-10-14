@@ -128,6 +128,9 @@ GameObject:
   - component: {fileID: 936348442727101248}
   - component: {fileID: 8050632413124965209}
   - component: {fileID: 4453921372053201525}
+  - component: {fileID: 301888845903651449}
+  - component: {fileID: -2918151921398590520}
+  - component: {fileID: -116537102264363984}
   m_Layer: 8
   m_Name: Kick
   m_TagString: Untagged
@@ -184,6 +187,7 @@ MonoBehaviour:
   maxApproveTime: 0.4
   extraApproveTimePerBullet: 0.025
   rayfireGun: {fileID: 4453921372053201525}
+  _projectileAudio: {fileID: 301888845903651449}
   seriousKickForceMultiplier: 0.2
   mediumKickForceMultiplier: 0.06
   smallKickForceMultiplier: 0.03
@@ -255,6 +259,92 @@ MonoBehaviour:
   showRay: 1
   showHit: 1
   shooting: 0
+--- !u!114 &301888845903651449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6451369793157204274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0fd7620535496998e94828d7eec4a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  pauseable: 1
+  _swingEmitter: {fileID: -2918151921398590520}
+  _punchEmitter: {fileID: -116537102264363984}
+--- !u!114 &-2918151921398590520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6451369793157204274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1563014093
+      Data2: 1335487774
+      Data3: -898840703
+      Data4: -1709278684
+    Path: event:/Player/Swing
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &-116537102264363984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6451369793157204274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 800786963
+      Data2: 1079468361
+      Data3: -1346769495
+      Data4: -1714707944
+    Path: event:/Player/Foot_Punch
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &8593434520177902456
 GameObject:
   m_ObjectHideFlags: 0

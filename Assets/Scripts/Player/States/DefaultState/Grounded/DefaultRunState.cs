@@ -10,6 +10,13 @@ namespace Player.States.DefaultState.Grounded
         {
         }
 
+        public override void Enter()
+        {
+            base.Enter();
+            PlayerData.playerMovementAudio.StartFootstepSound();
+
+        }
+
         public override void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
             base.UpdateVelocity(ref currentVelocity, deltaTime);
@@ -18,11 +25,11 @@ namespace Player.States.DefaultState.Grounded
                 StateMachine.SwitchState<DefaultIdleState>();
             }
         }
-
-        public override void AfterCharacterUpdate(float deltaTime)
+        
+        public override void Exit()
         {
-            base.AfterCharacterUpdate(deltaTime);
-            PlayerData.playerMovementAudio.UpdateFootstepSound();
+            base.Exit();
+            PlayerData.playerMovementAudio.EndFootStepSound();
         }
     }
 }

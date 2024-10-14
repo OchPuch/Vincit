@@ -75,10 +75,5 @@ namespace Guns.Types.CloseRange
             _timeController.RequestTimeUnfreezeEffect();
             PunchApproved?.Invoke(_approveForce);
         }
-
-        
-            
-        
-
     }
 }

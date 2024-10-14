@@ -8,10 +8,17 @@ namespace Player.View.Audio
         [SerializeField] private StudioEventEmitter jumpEmitter;
         [SerializeField] private StudioEventEmitter wallJumpEmitter;
         [SerializeField] private StudioEventEmitter slideEmitter;
+        [SerializeField] private StudioEventEmitter footStepEmitter;
         
-        public void UpdateFootstepSound()
+        
+        public void StartFootstepSound()
         {
-         
+            footStepEmitter.Play();
+        }
+        
+        public void EndFootStepSound()
+        {
+            footStepEmitter.Stop();
         }
 
         private void StartFootstepTimer()
@@ -63,6 +70,7 @@ namespace Player.View.Audio
 
         }
 
-     
+
+      
     }
 }

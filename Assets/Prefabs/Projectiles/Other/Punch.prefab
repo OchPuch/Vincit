@@ -128,6 +128,9 @@ GameObject:
   - component: {fileID: 936348442727101248}
   - component: {fileID: 8050632413124965209}
   - component: {fileID: 4295856613528465066}
+  - component: {fileID: 1030893859246659350}
+  - component: {fileID: 6628747544277585450}
+  - component: {fileID: 1488286890327229503}
   m_Layer: 8
   m_Name: Punch
   m_TagString: Untagged
@@ -184,6 +187,7 @@ MonoBehaviour:
   maxApproveTime: 0.4
   extraApproveTimePerBullet: 0.025
   rayfireGun: {fileID: 4295856613528465066}
+  _projectileAudio: {fileID: 1030893859246659350}
   weakProjectilePrefab: {fileID: 4121726910312821292, guid: a990c64c98236af4094cd7f4afb5f093,
     type: 3}
   maxRayFireRigidShootSize: 2
@@ -255,6 +259,92 @@ MonoBehaviour:
   showRay: 1
   showHit: 1
   shooting: 0
+--- !u!114 &1030893859246659350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6451369793157204274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0fd7620535496998e94828d7eec4a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  pauseable: 1
+  _swingEmitter: {fileID: 6628747544277585450}
+  _punchEmitter: {fileID: 1488286890327229503}
+--- !u!114 &6628747544277585450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6451369793157204274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1563014093
+      Data2: 1335487774
+      Data3: -898840703
+      Data4: -1709278684
+    Path: event:/Player/Swing
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1488286890327229503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6451369793157204274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 90525352
+      Data2: 1218017279
+      Data3: 870010806
+      Data4: 1623902035
+    Path: event:/Player/Punch
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &8593434520177902456
 GameObject:
   m_ObjectHideFlags: 0

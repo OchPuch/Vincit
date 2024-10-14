@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -97,6 +98,8 @@ namespace RayFire
         public RFDemolitionEvent  demolitionEvent  = new RFDemolitionEvent();
         public RFActivationEvent  activationEvent  = new RFActivationEvent();
         public RFRestrictionEvent restrictionEvent = new RFRestrictionEvent();
+        
+        public event Action Demolished;
 
         /// /////////////////////////////////////////////////////////
         /// Methods
@@ -679,6 +682,8 @@ namespace RayFire
         // Demolish object
         public void Demolish()
         {
+            Demolished?.Invoke();
+            
             // Profiler.BeginSample ("Demolition");
             // Debug.Log (limitations.demolitionShould);
             
@@ -775,7 +780,8 @@ namespace RayFire
             // Debug.Log (t2 - t1);
             // Profiler.EndSample();
         }
-        
+
+
         /// /////////////////////////////////////////////////////////
         /// Fragments
         /// /////////////////////////////////////////////////////////

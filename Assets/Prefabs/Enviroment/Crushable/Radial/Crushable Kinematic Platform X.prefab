@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5453056911976994459}
   - component: {fileID: 8498952243113081590}
   - component: {fileID: 7482521138142011907}
+  - component: {fileID: 7976808889345509234}
+  - component: {fileID: -4920986950829087838}
   m_Layer: 11
   m_Name: Crushable Kinematic Platform X
   m_TagString: Untagged
@@ -395,3 +397,58 @@ MonoBehaviour:
     m_Center: {x: 74.61, y: -18.13, z: -58.72}
     m_Extent: {x: 10.559902, y: 0.3576, z: 9.396983}
   resetState: 0
+--- !u!114 &7976808889345509234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7743169149002118853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd80e0967cce4713b85529d14d7acb90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  pauseable: 1
+  _crushEmitter: {fileID: -4920986950829087838}
+  _rayfireRigid: {fileID: 5453056911976994459}
+--- !u!114 &-4920986950829087838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7743169149002118853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 894255845
+      Data2: 1119706549
+      Data3: -1006657897
+      Data4: 858969005
+    Path: event:/Environment/Wall_Crush
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
