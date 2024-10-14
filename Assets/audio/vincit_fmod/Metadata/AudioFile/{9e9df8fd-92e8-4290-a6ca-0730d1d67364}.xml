@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{9e9df8fd-92e8-4290-a6ca-0730d1d67364}">
+		<property name="assetPath">
+			<value>Player/punch_crush.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.3348299319727892</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{90915f39-0f21-4f67-8725-e741d70b1a68}</destination>
+		</relationship>
+	</object>
+</objects>
