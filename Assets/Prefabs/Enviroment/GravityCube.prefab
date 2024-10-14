@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7785041436524188545}
   - component: {fileID: 5614926498547005078}
   - component: {fileID: 4563844403101703719}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GravityCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 3696681598950992989}
   - component: {fileID: 3077830337012574163}
   - component: {fileID: 2173297254930695826}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,3 +211,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: {x: 0, y: -30, z: 0}
   gravityType: 1
+  prioritizeIfOverlapping: 0

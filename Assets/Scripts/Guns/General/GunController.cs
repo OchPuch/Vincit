@@ -57,11 +57,12 @@ namespace Guns.General
 
     public class GunController : GamePlayBehaviour
     {
-        [SerializeField] private Transform gunRoot;
-        [SerializeField] private TimeStopAbility ability;
+        [SerializeField] private Transform gunRoot; 
         [SerializeField] private CloseRange leftHand;
         [SerializeField] private CloseRange leg;
 
+        private TimeStopAbility _ability;
+        
         private readonly GunSwitchInput _gunSwitchInput = new();
         private Player.Player _owner;
         private readonly List<Gun> _guns = new();
@@ -71,9 +72,9 @@ namespace Guns.General
         private List<Gun> HiddenGuns => _guns.FindAll(g => !g.IsActive);
 
         [Inject]
-        private void Construct(TimeController timeController, ITimeNotifier timeNotifier, Player.Player player)
+        private void Construct(Player.Player player, TimeStopAbility timeStopAbility)
         {
-            ability.Init(timeController, timeNotifier);
+            _ability = timeStopAbility;
             _owner = player;
             InitHand();
             InitLeg();
@@ -121,7 +122,7 @@ namespace Guns.General
                 EndSpinRequest = !Input.GetMouseButton(1)
             };
 
-            if (input.AbilityRequest) ability.SwitchActive();
+            if (input.AbilityRequest) _ability.SwitchActive();
             if (_activeGun && input.ShootRequest) _activeGun.Shoot();
             if (_activeGun && input.ReloadRequest) _activeGun.Reload();
             if (input.HandPunchRequest) leftHand.Shoot();

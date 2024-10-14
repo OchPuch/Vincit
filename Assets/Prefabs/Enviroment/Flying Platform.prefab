@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1281349088743268035}
   - component: {fileID: 8142747937046893152}
   - component: {fileID: 4755185542113994648}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Flying Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -2,6 +2,7 @@
 using KinematicCharacterController.Examples;
 using Player.Data;
 using Player.View;
+using TimeStop;
 using UnityEngine;
 using Zenject;
 
@@ -13,13 +14,14 @@ namespace Player
         public PlayerController character;
         public ExampleCharacterCamera characterCamera;
         public Player player;
+        public TimeStopAbility TimeStopAbility;
 
         
         public override void InstallBindings()
         { 
             player.Init(playerData, character, characterCamera);
-            
-            
+
+            Container.Bind<TimeStopAbility>().FromInstance(TimeStopAbility);
             Container.Bind<PlayerData>().FromInstance(playerData);
             Container.Bind<Player>().FromInstance(player);
             Container.Bind<PlayerController>().FromInstance(character);

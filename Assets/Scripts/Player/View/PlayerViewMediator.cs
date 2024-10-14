@@ -12,7 +12,6 @@ namespace Player.View
         [SerializeField] private SpeedLinesView _dashLines;
         [SerializeField] private SpeedLinesView _groundSlamLines;
         [SerializeField] private SpeedLinesView _slideLines;
-
         
         private PlayerController _playerController;
         private PlayerData _playerData;
@@ -73,6 +72,8 @@ namespace Player.View
         
         private void Update()
         {
+            
+            
             if (_playerController.StateMachine.IsInState<DefaultSlamingState>())
             {
                 _groundSlamLines.UpdatePosition(PlayerPosition);

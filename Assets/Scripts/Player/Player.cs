@@ -1,12 +1,10 @@
-﻿using System;
-using Entities;
+﻿using Entities;
 using General;
 using KinematicCharacterController.Core;
 using KinematicCharacterController.Examples;
 using Player.Data;
+using Saving;
 using UnityEngine;
-
-
 namespace Player
 {
    
@@ -30,6 +28,16 @@ namespace Player
             _characterCamera = characterCamera;
             if (Data.motor.AttachedRigidbody != null)
                 _physicsMover = Data.motor.AttachedRigidbody.GetComponent<PhysicsMover>();
+        }
+        
+        public SaveData.CharacterSaveData GetCharacterSaveData()
+        {
+            return new SaveData.CharacterSaveData()
+            {
+                PositionX = transform.position.x,
+                PositionY = transform.position.y,
+                PositionZ = transform.position.z
+            };
         }
 
         private void Update()
