@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{72d0d9ed-564f-4f76-b92d-3b75f6b46865}">
 		<property name="assetPath">
-			<value>Monsta, Skrillex, Nero - Holdin' On Skrillex &amp; Nero Remix.mp3</value>
+			<value>Music/Monsta, Skrillex, Nero - Holdin' On Skrillex &amp; Nero Remix.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
