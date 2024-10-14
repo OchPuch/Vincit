@@ -6,6 +6,8 @@ namespace Player.View.Audio
     public class PlayerMovementAudio : MonoBehaviour
     {
         [SerializeField] private StudioEventEmitter jumpEmitter;
+        [SerializeField] private StudioEventEmitter wallJumpEmitter;
+        [SerializeField] private StudioEventEmitter slideEmitter;
         
         public void UpdateFootstepSound()
         {
@@ -33,7 +35,7 @@ namespace Player.View.Audio
 
         public void PlayWallJumpSound(int index)
         {
-
+            if (wallJumpEmitter) wallJumpEmitter.Play();
         }
 
         public void PlayDashSound()
@@ -48,12 +50,12 @@ namespace Player.View.Audio
 
         public void StartSlideLoop()
         {
-  
+            if (slideEmitter) slideEmitter.Play();
         }
 
         public void StopSlideLoop()
         {
- 
+            if (slideEmitter) slideEmitter.Stop();
         }
 
         public void StopAllSounds()
