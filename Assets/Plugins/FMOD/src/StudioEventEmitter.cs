@@ -18,7 +18,7 @@ namespace FMODUnity
 
         public bool AllowFadeout = true;
         public bool TriggerOnce = false;
-        public bool StaticTriggerOnlyOnce = true;
+        public bool StaticTriggerOnlyOnce = false;
         public bool Preload = false;
         [FormerlySerializedAs("AllowNonRigidbodyDoppler")]
         public bool NonRigidbodyVelocity = false;
