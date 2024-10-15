@@ -325,7 +325,6 @@ MonoBehaviour:
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
-  StaticTriggerOnlyOnce: 0
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
@@ -357,7 +356,6 @@ MonoBehaviour:
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
-  StaticTriggerOnlyOnce: 0
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
@@ -389,7 +387,6 @@ MonoBehaviour:
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
-  StaticTriggerOnlyOnce: 0
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
@@ -455,7 +452,6 @@ MonoBehaviour:
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
-  StaticTriggerOnlyOnce: 0
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
