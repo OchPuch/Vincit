@@ -30,8 +30,6 @@ namespace Guns.Projectiles.Types
         private float _destroyTime;
         private CloseRange CloseRangeGun => Origin as CloseRange;
         
-     
-        
         public override void Init(Gun origin)
         {
             base.Init(origin);

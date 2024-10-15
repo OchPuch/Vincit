@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entities;
 using Guns.General;
 using Guns.Projectiles.Interactions;
 using RayFire;
@@ -101,6 +102,11 @@ namespace Guns.Projectiles.Types
 
         private void ProcessHit(RaycastHit hit)
         {
+            if (hit.collider.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.Damage(Config.Damage);
+            }
+            
             if (hit.collider.TryGetComponent<Rigidbody>(out var rb))
             {
                 rb.AddForce(transform.forward * Config.PushPower, ForceMode.Impulse);
