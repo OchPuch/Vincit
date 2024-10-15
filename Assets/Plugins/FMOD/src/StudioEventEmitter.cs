@@ -18,7 +18,6 @@ namespace FMODUnity
 
         public bool AllowFadeout = true;
         public bool TriggerOnce = false;
-        public bool StaticTriggerOnlyOnce = false;
         public bool Preload = false;
         [FormerlySerializedAs("AllowNonRigidbodyDoppler")]
         public bool NonRigidbodyVelocity = false;
@@ -192,10 +191,7 @@ namespace FMODUnity
 
         public void Play()
         {
-            if (StaticTriggerOnlyOnce && IsPlaying())
-            {
-                return;
-            }
+          
             
             if (TriggerOnce && hasTriggered)
             {
