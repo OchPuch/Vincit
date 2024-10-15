@@ -11,6 +11,7 @@ namespace General.GlobalManagers
         public event Action TimeContinued;
 
         private float _pausedTimeScale = 1.0f;
+        private float _lastRequestedTimeScale;
         private Coroutine _freezingEffect;
         
         private readonly IPauseNotifier _pauseNotifier;
@@ -24,10 +25,14 @@ namespace General.GlobalManagers
             pauseManager.Resumed += OnResume;
         }
         
-
         public void FreezeTimeEffectStart(float effectTime, float timescale)
         {
-            if (_freezingEffect is not null) _context.StopCoroutine(_freezingEffect);
+            if (_freezingEffect is not null)
+            {
+                _context.StopCoroutine(_freezingEffect);
+                Time.timeScale = 1f;
+
+            }
             if (_context is null)
             {
                 Debug.LogError("Context is null");
@@ -46,7 +51,6 @@ namespace General.GlobalManagers
         private IEnumerator FreezeTimeForSeconds(float time, float timeScale)
         {
             float elapsedTime = 0;
-            float startTimeScale = Time.timeScale;
             Time.timeScale = timeScale;
             while (elapsedTime < time)
             {
@@ -59,7 +63,7 @@ namespace General.GlobalManagers
                 yield return null;
             }
 
-            Time.timeScale = startTimeScale;
+            Time.timeScale = 1;
             _freezingEffect = null;
         }
 

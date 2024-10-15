@@ -23,9 +23,9 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 5
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: af0dc69a1aa3f504c9c9e971a05ab367, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.95007694, g: 0.95007694, b: 0.95007694, a: 1}
+  m_IndirectSpecularColor: {r: 0.10744247, g: 0.10744247, b: 0.10744247, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -94,7 +94,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: e2e505406e9fa3c4588891f62146eb33,
+    type: 2}
   m_LightingSettings: {fileID: 581036193}
 --- !u!196 &4
 NavMeshSettings:
@@ -1656,6 +1657,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842565581}
   m_CullTransparentMesh: 1
+--- !u!1001 &943889942
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4024167472210115232, guid: 6ca1507c5a95a624b8d0ac4378d45f6c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024167472210115232, guid: 6ca1507c5a95a624b8d0ac4378d45f6c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024167472210115232, guid: 6ca1507c5a95a624b8d0ac4378d45f6c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024167472210115232, guid: 6ca1507c5a95a624b8d0ac4378d45f6c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024167472210115232, guid: 6ca1507c5a95a624b8d0ac4378d45f6c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024167472210115232, guid: 6ca1507c5a95a624b8d0ac4378d45f6c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024167472210115232, guid: 6ca1507c5a95a624b8d0ac4378d45f6c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024167472210115232, guid: 6ca1507c5a95a624b8d0ac4378d45f6c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024167472210115232, guid: 6ca1507c5a95a624b8d0ac4378d45f6c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024167472210115232, guid: 6ca1507c5a95a624b8d0ac4378d45f6c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024167472210115232, guid: 6ca1507c5a95a624b8d0ac4378d45f6c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616589529458315297, guid: 6ca1507c5a95a624b8d0ac4378d45f6c,
+        type: 3}
+      propertyPath: m_Name
+      value: SuperSimpleSkybox Demo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6985811784028250283, guid: 6ca1507c5a95a624b8d0ac4378d45f6c,
+        type: 3}
+      propertyPath: rotationsPerHour
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ca1507c5a95a624b8d0ac4378d45f6c, type: 3}
 --- !u!1 &1001753619
 GameObject:
   m_ObjectHideFlags: 0
