@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{56ea74e7-d9b1-4273-bc48-3b05cb367aa6}">
+		<property name="name">
+			<value>Wall_Jump_Count</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3cb90bf3-239e-4092-bb94-6274884d521c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{0c712b95-141f-4db6-8fd4-d10566a2a55f}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{0c712b95-141f-4db6-8fd4-d10566a2a55f}">
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
