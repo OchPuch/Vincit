@@ -12,12 +12,7 @@ public class LevelBounds : MonoBehaviour
             if (CheckpointManager.Instance.TryGetLastCheckPoint(out var saveData))
             {
                 var sceneName = saveData.SceneName;
-                CheckpointManager.Instance.DeleteCheckpoint();
-                LevelManager.Instance.LoadNewLevel(sceneName);
-            }
-            else
-            {
-                LevelManager.Instance.LoadNewLevel(LevelManager.Instance.LastLoadedLevel);
+                player.ApplyCheckpoint(saveData);
             }
         }
     }

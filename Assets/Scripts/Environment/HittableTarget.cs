@@ -80,5 +80,11 @@ namespace Environment
             base.PostTimeContinue();
             if (_animation.isAlive)  _animation.isPaused = false;    
         }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            _animation.Stop();
+        }
     }
 }

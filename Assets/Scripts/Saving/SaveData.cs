@@ -1,5 +1,5 @@
 ﻿using System;
-
+using UnityEngine;
 
 namespace Saving
 {
@@ -15,6 +15,10 @@ namespace Saving
             public float PositionX;
             public float PositionY;
             public float PositionZ;
+
+            public float GravityX;
+            public float GravityY;
+            public float GravityZ;
         }
     }
 }

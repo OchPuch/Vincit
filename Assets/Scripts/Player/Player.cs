@@ -36,7 +36,10 @@ namespace Player
             {
                 PositionX = transform.position.x,
                 PositionY = transform.position.y,
-                PositionZ = transform.position.z
+                PositionZ = transform.position.z,
+                GravityX = Data.gravity.x,
+                GravityY = Data.gravity.y,
+                GravityZ = Data.gravity.z
             };
         }
 
@@ -133,6 +136,19 @@ namespace Player
         public void Damage(float damage)
         {
             
+        }
+
+        public void ApplyCheckpoint(SaveData saveData)
+        {
+            Data.motor.SetPosition(new Vector3(
+                saveData.PlayerSaveData.PositionX,
+                saveData.PlayerSaveData.PositionY,
+                saveData.PlayerSaveData.PositionZ));
+
+            Data.gravity = new Vector3(
+                saveData.PlayerSaveData.GravityX,
+                saveData.PlayerSaveData.GravityY,
+                saveData.PlayerSaveData.GravityZ);
         }
     }
     

@@ -219,7 +219,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 5376954027599897998}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -289,7 +290,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Ambient.bank
   Name: Ambient
   StudioPath: bank:/Ambient
-  lastModified: 638645417796067632
+  lastModified: 638645955690064667
   FileSizes:
   - Name: Desktop
     Value: 3578880
@@ -309,10 +310,10 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Player_movement.bank
   Name: Player_movement
   StudioPath: bank:/Player/Player_movement
-  lastModified: 638645417796428653
+  lastModified: 638645955690452638
   FileSizes:
   - Name: Desktop
-    Value: 397984
+    Value: 407872
   Exists: 1
 --- !u!114 &-2612317424901269490
 MonoBehaviour:
@@ -368,7 +369,7 @@ MonoBehaviour:
   - {fileID: -6446473024037889458}
   MinDistance: 1
   MaxDistance: 20
-  Length: 112551
+  Length: 112553
 --- !u!114 &-1307197430826106070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,7 +385,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638645909771810240
+  lastModified: 638646048949798520
   FileSizes:
   - Name: Desktop
     Value: 4693792
@@ -412,10 +413,38 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 1557499613920055820}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-875233630518667682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Dash
+  m_EditorClassIdentifier: 
+  Path: event:/Player/Dash
+  Guid:
+    Data1: 470629588
+    Data2: 1095108968
+    Data3: -605436794
+    Data4: 663245923
+  Banks:
+  - {fileID: -3117452919013424540}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 687
 --- !u!114 &-295307685246060368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,10 +484,34 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638645417796081655
+  lastModified: 638645955690075675
   FileSizes:
   - Name: Desktop
-    Value: 2568
+    Value: 2648
+  Exists: 1
+--- !u!114 &-159993513013276746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Wall_Crush/Slowmo
+  m_EditorClassIdentifier: 
+  Name: Slowmo
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3158518654
+    data2: 1453052261
+  Type: 0
+  IsGlobal: 1
+  Labels: []
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -500,6 +553,7 @@ MonoBehaviour:
   - {fileID: -7631984303995312352}
   - {fileID: 7201302140525413998}
   - {fileID: 8296253697397168135}
+  - {fileID: -875233630518667682}
   EditorParameters:
   - {fileID: 5065739192910856838}
   - {fileID: -3860312579640275950}
@@ -509,7 +563,7 @@ MonoBehaviour:
   - {fileID: -4727955972461898235}
   StringsBanks:
   - {fileID: -274264624055383902}
-  cacheTime: 638645909771810240
+  cacheTime: 638646048949798520
   cacheVersion: 131619
 --- !u!114 &1021479448290296415
 MonoBehaviour:
@@ -563,6 +617,30 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &1557499613920055820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Jump/Slowmo
+  m_EditorClassIdentifier: 
+  Name: Slowmo
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3158518654
+    data2: 1453052261
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &1744172468824931996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,7 +664,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: -159993513013276746}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -605,10 +684,10 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Environment.bank
   Name: Environment
   StudioPath: bank:/Environment
-  lastModified: 638645417796076620
+  lastModified: 638645955690075675
   FileSizes:
   - Name: Desktop
-    Value: 20064
+    Value: 20640
   Exists: 1
 --- !u!114 &4145114140920436918
 MonoBehaviour:
@@ -734,11 +813,35 @@ MonoBehaviour:
   - {fileID: -3117452919013424540}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 354
+  Length: 409
+--- !u!114 &5376954027599897998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Wall_jump/Wall_Jump_Count
+  m_EditorClassIdentifier: 
+  Name: Wall_Jump_Count
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 508238047
+    data2: 2476699632
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &5747884555973829080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,4 +970,4 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 26000
+  Length: 25867

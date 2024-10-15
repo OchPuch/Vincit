@@ -1,4 +1,5 @@
-﻿using FMODUnity;
+﻿using System;
+using FMODUnity;
 using UnityEngine;
 
 namespace Player.View.Audio
@@ -9,8 +10,8 @@ namespace Player.View.Audio
         [SerializeField] private StudioEventEmitter wallJumpEmitter;
         [SerializeField] private StudioEventEmitter slideEmitter;
         [SerializeField] private StudioEventEmitter footStepEmitter;
-        
-        
+
+
         public void StartFootstepSound()
         {
             footStepEmitter.Play();

@@ -20,12 +20,14 @@ namespace GeneralUI
         
         private AudioManager _audioManager;
         private PauseManager _pauseManager;
-
+        private Player.Player _player;
+        
         [Inject]
-        private void Construct(AudioManager audioManager, PauseManager pauseManager)
+        private void Construct(AudioManager audioManager, PauseManager pauseManager, Player.Player player)
         {
             _pauseManager = pauseManager;
             _audioManager = audioManager;
+            _player = player;
         }
 
         private void Start()
@@ -80,7 +82,7 @@ namespace GeneralUI
         {
             if (CheckpointManager.Instance.TryGetLastCheckPoint(out var data))
             {
-                LevelManager.Instance.LoadCheckpoint(data);
+                _player.ApplyCheckpoint(data);
             }
 
             UnPause();
