@@ -78,19 +78,43 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   pauseable: 1
+  disableOnTimeStop: 0
+  _resetTime: 5
+  _resetEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _onHitEvent:
     m_PersistentCalls:
       m_Calls: []
   _renderer: {fileID: 4125871848303963940}
   _hitColor: {r: 0, g: 0.8317747, b: 1, a: 1}
   _model: {fileID: 2956936732818199627}
-  _rotationSettings:
+  _hitRotaitonSettings:
     startFromCurrent: 0
     startValue: {x: 0, y: 0, z: 0}
     endValue: {x: 180, y: 0, z: 0}
     settings:
-      duration: 0.4
+      duration: 1
       ease: 30
+      customEase:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      cycles: 1
+      cycleMode: 0
+      startDelay: 0
+      endDelay: 0
+      useUnscaledTime: 0
+      useFixedUpdate: 0
+  _resetRotaitonSettings:
+    startFromCurrent: 0
+    startValue: {x: 180, y: 0, z: 0}
+    endValue: {x: 360, y: 0, z: 0}
+    settings:
+      duration: 1
+      ease: 10
       customEase:
         serializedVersion: 2
         m_Curve: []
