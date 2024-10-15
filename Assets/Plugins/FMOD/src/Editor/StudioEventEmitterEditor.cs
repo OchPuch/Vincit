@@ -48,6 +48,7 @@ namespace FMODUnity
             var fadeout = serializedObject.FindProperty("AllowFadeout");
             var once = serializedObject.FindProperty("TriggerOnce");
             var preload = serializedObject.FindProperty("Preload");
+            var staticTriggerOnce = serializedObject.FindProperty("StaticTriggerOnlyOnce");
             var nonRigidbodyVelocity = serializedObject.FindProperty("NonRigidbodyVelocity");
             var overrideAtt = serializedObject.FindProperty("OverrideAttenuation");
             var minDistance = serializedObject.FindProperty("OverrideMinDistance");
@@ -122,6 +123,7 @@ namespace FMODUnity
                     EditorGUILayout.PropertyField(preload, new GUIContent("Preload Sample Data"));
                     EditorGUILayout.PropertyField(fadeout, new GUIContent("Allow Fadeout When Stopping"));
                     EditorGUILayout.PropertyField(once, new GUIContent("Trigger Once"));
+                    EditorGUILayout.PropertyField(staticTriggerOnce, new GUIContent("Static Trigger Only ONce"));
                     EditorGUILayout.PropertyField(nonRigidbodyVelocity, new GUIContent("Non-Rigidbody Velocity"));
                 }
             }

@@ -121,16 +121,17 @@ MonoBehaviour:
   CollisionTag: Player
   EventReference:
     Guid:
-      Data1: -795420375
-      Data2: 1162817076
-      Data3: -1347504206
-      Data4: 481566057
-    Path: event:/Song_Test
+      Data1: 1243743741
+      Data2: 1153699474
+      Data3: -706328430
+      Data4: 232120764
+    Path: event:/Music/All_Music
   Event: 
   PlayEvent: 4
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 1
+  StaticTriggerOnlyOnce: 1
   Preload: 1
   NonRigidbodyVelocity: 0
   Params: []

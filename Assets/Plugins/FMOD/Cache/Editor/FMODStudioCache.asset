@@ -117,7 +117,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Revolver.bank
   Name: Revolver
   StudioPath: bank:/Weapons/Revolver
-  lastModified: 638645898370189446
+  lastModified: 638645417796443785
   FileSizes:
   - Name: Desktop
     Value: 116160
@@ -164,7 +164,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638645898369664263
+  lastModified: 638645417796081655
   FileSizes:
   - Name: Desktop
     Value: 7446
@@ -289,7 +289,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Ambient.bank
   Name: Ambient
   StudioPath: bank:/Ambient
-  lastModified: 638645898369554264
+  lastModified: 638645417796067632
   FileSizes:
   - Name: Desktop
     Value: 3578880
@@ -309,7 +309,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Player_movement.bank
   Name: Player_movement
   StudioPath: bank:/Player/Player_movement
-  lastModified: 638645898370119421
+  lastModified: 638645417796428653
   FileSizes:
   - Name: Desktop
     Value: 397984
@@ -384,7 +384,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638645898370019453
+  lastModified: 638645417796408105
   FileSizes:
   - Name: Desktop
     Value: 4693792
@@ -455,7 +455,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638645898369714280
+  lastModified: 638645417796081655
   FileSizes:
   - Name: Desktop
     Value: 2568
@@ -509,7 +509,7 @@ MonoBehaviour:
   - {fileID: -4727955972461898235}
   StringsBanks:
   - {fileID: -274264624055383902}
-  cacheTime: 638645898370264460
+  cacheTime: 638645417796463819
   cacheVersion: 131619
 --- !u!114 &1021479448290296415
 MonoBehaviour:
@@ -605,7 +605,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Environment.bank
   Name: Environment
   StudioPath: bank:/Environment
-  lastModified: 638645898369614264
+  lastModified: 638645417796076620
   FileSizes:
   - Name: Desktop
     Value: 20064
@@ -754,7 +754,7 @@ MonoBehaviour:
   Path: Assets/audio/vincit_fmod/Build/Desktop/Winchester.bank
   Name: Winchester
   StudioPath: bank:/Weapons/Winchester
-  lastModified: 638645898370264460
+  lastModified: 638645417796463819
   FileSizes:
   - Name: Desktop
     Value: 166400
