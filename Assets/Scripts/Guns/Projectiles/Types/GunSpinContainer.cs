@@ -1,7 +1,6 @@
 ﻿using Guns.General;
 using Guns.Interfaces.Throw;
 using Guns.Projectiles.Interactions;
-using Guns.Types.SpinThrowGun;
 using PrimeTween;
 using UnityEngine;
 
@@ -12,8 +11,7 @@ namespace Guns.Projectiles.Types
     {
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Collider spinCollider;
-        [Header("Returning")] 
-        [SerializeField] private float minTimeToFlyForward;
+        [Header("Returning")] [SerializeField] private float minTimeToFlyForward;
         [SerializeField] private float maxTimeToFlyForward;
         [SerializeField] private float lameSpeed;
         [SerializeField] private float maxSpeed;
@@ -22,10 +20,10 @@ namespace Guns.Projectiles.Types
         private bool _returning;
         private Sequence _flyingSequence;
         private Vector3 _endPoint;
-        
+
         private Vector3 DirectionToOrigin => Origin.transform.position - transform.position;
 
-        
+
         public override void Init(Gun origin)
         {
             base.Init(origin);
@@ -37,8 +35,10 @@ namespace Guns.Projectiles.Types
                 _endPoint = stopHit.point;
             }
 
-            float timeForward = Mathf.Clamp(Vector3.Distance(transform.position, _endPoint) / Config.PushPower, minTimeToFlyForward, maxTimeToFlyForward);
-            _flyingSequence = Sequence.Create().Chain(Tween.Position(transform, _endPoint, timeForward, Ease.OutBounce).OnComplete(StartFlyingBack));
+            float timeForward = Mathf.Clamp(Vector3.Distance(transform.position, _endPoint) / Config.PushPower,
+                minTimeToFlyForward, maxTimeToFlyForward);
+            _flyingSequence = Sequence.Create().Chain(Tween.Position(transform, _endPoint, timeForward, Ease.OutBounce)
+                .OnComplete(StartFlyingBack));
         }
 
         public override void ResetBullet()
@@ -48,7 +48,7 @@ namespace Guns.Projectiles.Types
             _returning = false;
             _flyingSequence.Stop();
         }
-        
+
         private void OnTriggerStay(Collider other)
         {
             if (other.TryGetComponent(out Player.Player player))
@@ -56,14 +56,26 @@ namespace Guns.Projectiles.Types
                 Return();
             }
         }
-        
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out ISpinContainerTarget spinContainerTarget))
+            {
+                if (spinContainerTarget.Steal())
+                {
+                    Origin.InstantReload();
+                }
+                StartFlyingBack();
+            }
+        }
+
         private void StartFlyingBack()
         {
             rb.isKinematic = false;
             spinCollider.enabled = false;
             _returning = true;
         }
-        
+
         private void FixedUpdate()
         {
             if (_returning && !TimeNotifier.IsTimeStopped)
@@ -73,8 +85,8 @@ namespace Guns.Projectiles.Types
                 rb.velocity = speed;
                 if (rb.velocity.magnitude > maxSpeed) rb.velocity = rb.velocity.normalized * maxSpeed;
             }
-            
         }
+
         private void Return()
         {
             if (!gameObject.activeSelf) return;
@@ -83,16 +95,16 @@ namespace Guns.Projectiles.Types
             {
                 throwableGun.Catch();
             }
+
             DestroyProjectile();
         }
 
         public void Punch(Vector3 force)
-        { 
+        {
             if (!_returning) return;
             transform.forward = force;
             ResetBullet();
             Init(Origin);
         }
-        
     }
 }

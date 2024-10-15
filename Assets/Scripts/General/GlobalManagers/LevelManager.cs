@@ -7,14 +7,16 @@ using Utils;
 namespace General.GlobalManagers
 {
     public class LevelManager : MonoBehaviour
-    {        
+    {
         public static LevelManager Instance { get; private set; }
         [SerializeField] private SceneField persistentGameplayScene;
         [SerializeField] private SceneField startScene;
+        [SerializeField] private bool _loadStart;
         public int Reloads { get; private set; }
         public string LastLoadedLevel { get; private set; }
         public event Action LoadedNewLevel;
         public event Action LoadedCheckpoint;
+
         public void Awake()
         {
             if (Instance == null)
@@ -31,7 +33,7 @@ namespace General.GlobalManagers
 
         private void Start()
         {
-            LoadNewLevel(startScene);
+            if (_loadStart) LoadNewLevel(startScene);
         }
 
         private void OnDestroy()
@@ -41,7 +43,7 @@ namespace General.GlobalManagers
                 Instance = null;
             }
         }
-        
+
         public void LoadNewLevel(string level)
         {
             CheckpointManager.Instance.DeleteCheckpoint();
@@ -51,9 +53,9 @@ namespace General.GlobalManagers
             LastLoadedLevel = level;
             LoadedNewLevel?.Invoke();
         }
-        
+
         public void LoadCheckpoint(SaveData saveData)
-        { 
+        {
             Reloads += 1;
             SceneManager.LoadScene(persistentGameplayScene);
             SceneManager.LoadScene(saveData.SceneName, LoadSceneMode.Additive);
@@ -61,31 +63,38 @@ namespace General.GlobalManagers
             LoadedCheckpoint?.Invoke();
         }
 
-        public void LoadScenes(SceneField[] scenesToLoad) {
-            foreach (var scene in scenesToLoad) {
-                if (!SceneUtils.IsSceneLoaded(scene)) {
+        public void LoadScenes(SceneField[] scenesToLoad)
+        {
+            foreach (var scene in scenesToLoad)
+            {
+                if (!SceneUtils.IsSceneLoaded(scene))
+                {
                     SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
                     LastLoadedLevel = scene;
                 }
             }
         }
 
-        public void UnloadScenes(SceneField[] scenesToUnload) {
-            foreach (var t in scenesToUnload) {
-                if (SceneUtils.IsSceneLoaded(t)) {
+        public void UnloadScenes(SceneField[] scenesToUnload)
+        {
+            foreach (var t in scenesToUnload)
+            {
+                if (SceneUtils.IsSceneLoaded(t))
+                {
                     SceneManager.UnloadSceneAsync(t);
                 }
             }
         }
-        
-        public void UnloadScenes(Scene[] scenesToUnload) {
-            foreach (var t in scenesToUnload) {
-                if (t.isLoaded) {
+
+        public void UnloadScenes(Scene[] scenesToUnload)
+        {
+            foreach (var t in scenesToUnload)
+            {
+                if (t.isLoaded)
+                {
                     SceneManager.UnloadSceneAsync(t);
                 }
             }
         }
-        
-        
     }
 }

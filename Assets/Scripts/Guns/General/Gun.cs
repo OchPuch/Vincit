@@ -88,6 +88,17 @@ namespace Guns.General
             Reloaded?.Invoke();
         }
 
+        public void InstantReload()
+        {
+            Reloaded?.Invoke();
+            foreach (var capsuleHolder in Data.CapsuleHolders)
+            {
+                capsuleHolder.ReloadSame();
+            }
+            Data.FireTimer = 0f;
+            InvokeStopReload();
+        }
+
         protected virtual void OnReload()
         {
             if (_reloadRoutine is not null) StopCoroutine(_reloadRoutine);
