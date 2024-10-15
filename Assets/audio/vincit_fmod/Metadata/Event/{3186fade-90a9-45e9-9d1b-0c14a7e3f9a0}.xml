@@ -57,7 +57,11 @@
 			<destination>{cbca74c9-979e-422d-99de-64f84e9deb09}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{53f1a337-7c61-4ec4-ae45-0609c983052c}" />
+	<object class="EventAutomatableProperties" id="{53f1a337-7c61-4ec4-ae45-0609c983052c}">
+		<property name="maxVoices">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{1081c9f2-6448-456e-89ba-6a8e6d72cf6d}" />
 	<object class="GroupTrack" id="{06587e16-b5a9-47cf-a2ee-cfc134c24655}">
 		<relationship name="modules">
@@ -111,7 +115,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{57c04b61-da5d-450c-9f95-cad2b3c89bef}">
 		<property name="volume">
-			<value>-10</value>
+			<value>-22</value>
 		</property>
 		<property name="name">
 			<value>Wind_Base</value>
@@ -160,7 +164,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{f4f76195-adce-4139-aac2-f3caa0cbd25f}">
 		<property name="volume">
-			<value>-11</value>
+			<value>-15.5</value>
 		</property>
 		<property name="name">
 			<value>Howling</value>

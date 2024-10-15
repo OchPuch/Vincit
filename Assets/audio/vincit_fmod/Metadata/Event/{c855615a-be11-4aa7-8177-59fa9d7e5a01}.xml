@@ -135,7 +135,10 @@
 	</object>
 	<object class="SingleSound" id="{f75a8112-c395-478d-a3f0-856e055e4c97}">
 		<property name="length">
-			<value>26</value>
+			<value>25.8671875</value>
+		</property>
+		<property name="timelockedOffset">
+			<value>0.1328125</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{b1c69ba3-677d-4e71-9e11-1278ade1a907}</destination>
@@ -223,7 +226,7 @@
 	</object>
 	<object class="TransitionMarker" id="{1c3ace66-74af-4de7-97da-9ad86d4f0fda}">
 		<property name="position">
-			<value>26</value>
+			<value>25.8671875</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{53151675-5f3b-47e2-97aa-4196e38c4959}</destination>
